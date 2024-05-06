@@ -2,3 +2,13 @@ Link para buscar imagenes de Parking : https://www.pexels.com/search/parking%20l
 
 Example de dashboard Admin : https://github.com/themesberg/flowbite-admin-dashboard
 
+Views Movil 
+
+Landing - Register y Login: 
+
+Pegar imagen, esta en el chat de discord. 
+
+
+Home 
+
+Pegar imagen, esta en el chat de discord. 
