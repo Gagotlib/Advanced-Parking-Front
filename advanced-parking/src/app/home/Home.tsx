@@ -1,9 +1,10 @@
 import React from 'react'
+import Navbar from '../components/navbar/Navbar'
 
 export const Home = () => {
 	return (
 		<div>
-			<h1>Esto es Home</h1>
+			<Navbar />
 		</div>
 	)
 }
