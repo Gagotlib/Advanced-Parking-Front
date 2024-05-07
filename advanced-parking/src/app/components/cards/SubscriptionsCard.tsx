@@ -14,16 +14,16 @@ interface ISubscription {
 export const SubscriptionsCard = ({ subscription }: { subscription: ISubscription }) => {
 	const color = subscription.color
 	return (
-		<div className='flex flex-col items-start justify-start rounded-3xl w-11/12 h-40 shadow-2xl filter-none sm:filter grayscale blur-sm hover:filter-none '>
-			<Link href={`/subscriptions/${subscription.name}`}>
-				<figure className='relative  flex justify-center items-center w-full h-40'>
+		<div className='flex flex-col sm:flex-row items-start justify-start  rounded-3xl w-11/12 h-40 shadow-2xl'>
+			<Link href={`/subscriptions/${subscription.name}`} className='w-full'>
+				<div className='relative flex justify-center sm:justify-around items-center w-full h-40 filter-none sm:filter grayscale brightness-50 blur-sm hover:filter-none sm:flex-row sm:w-full'>
 					<Image src={subscription.img_href} alt={subscription.name} width={600} height={200} className='shadow-xl object-cover rounded-3xl h-full ' />
-					<figcaption className='absolute'>
-						<p className='font-bold text-3xl text-white text-center'>{subscription.name}</p>
-						<p className=' text-white text-center'>{subscription.shortDescription}</p>
-						<p className='  text-white text-center'>${subscription.price} / mes</p>
-					</figcaption>
-				</figure>
+					<div className='absolute sm:flex-col sm:relative sm:text-black text-white text-center  '>
+						<p className='font-bold text-3xl '>{subscription.name}</p>
+						<p className=''>{subscription.shortDescription}</p>
+						<p className=''>${subscription.price} / mes</p>
+					</div>
+				</div>
 			</Link>
 		</div>
 	)
