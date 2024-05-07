@@ -1,39 +1,3 @@
-export interface IProduct {
-	name: string
-	price: number
-	description: string
-	image: string
-	categoryId: number
-	stock: number
-	id?: number
-	category?: string
-}
-
-export interface ICategory {
-	id?: number
-	name: string
-	image: string
-}
-
-export interface IOrder {
-	id: number
-	date: Date
-	user: IUser
-	products: IProduct[]
-	status: string
-}
-
-export interface IUserLogin {
-	id: number
-	role: 'user' | 'admin'
-	name: string
-	email: string
-	phone: string
-	address: string
-	credential: {}
-	orders: IOrder[]
-}
-
 export interface IUser {
 	name: string
 	email: string
@@ -50,3 +14,16 @@ export interface IErrors {
 	phone?: string
 	address?: string
 }
+
+
+// export interface IUserLogin {
+// 	id: number
+// 	role: 'user' | 'admin'
+// 	name: string
+// 	email: string
+// 	phone: string
+// 	address: string
+// 	credential: {}
+// 	orders: IOrder[]
+// }
+
