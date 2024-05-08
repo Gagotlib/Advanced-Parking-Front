@@ -4,16 +4,17 @@ import { ParkingsMocks } from '../utils/parkingsMock'
 import SearchResultsCard from '../components/cards/SearchResultsCard'
 import Link from 'next/link'
 import { BackToHomeButton } from '../components/buttons/Buttons'
+import Navbar from '../components/navbar/Navbar'
 
 export const Ourparkings = () => {
 	const [searchValue, setSearchValue] = useState('')
 
 	// Filtrar los resultados basados en el valor de búsqueda (barrio)
-	const filteredResults = ParkingsMocks.filter((parking) => parking.barrio.toLowerCase().includes(searchValue.toLowerCase()))
+	const filteredResults = ParkingsMocks.filter((parking) => parking.location.toLowerCase().includes(searchValue.toLowerCase()))
 
 	return (
 		<div className='flex flex-col min-h-screen '>
-			<div className='h-16 bg-duck-yellow w-full'>ACA va estar el Navbar</div>
+			<Navbar />
 			<div className=' flex flex-col min-h-screen py-4 m-0 gap-4 items-center justify-start'>
 				<form className='w-10/12'>
 					<label htmlFor='search' className='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'>
