@@ -122,7 +122,13 @@ export const LoginForm = () => {
             Log In
           </button>
         </form>
-        <div className='flex gap-2 pt-5'>
+        <div className="text-center p-2">
+          <Link className="inline-block text-sm text-ghostwhite align-baseline hover:text-blue-800"
+            href="#">
+            Forgot Password?
+          </Link>
+        </div>
+        <div className='flex gap-2 pt-2'>
           <p className="text-ghostwhite text-sm">Don´t have an account?</p><Link className="text-ghostwhite text-sm underline"
             href="/register">Register here</Link>
         </div>

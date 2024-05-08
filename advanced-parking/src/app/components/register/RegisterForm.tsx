@@ -187,18 +187,12 @@ export const RegisterForm = () => {
             </div>
             <hr className="mb-6 border-t" />
             <div className="text-center">
-              <a className="inline-block text-sm text-ghostwhite align-baseline hover:text-blue-800"
-                href="#">
-                Forgot Password?
-              </a>
-            </div>
-            <div className="text-center">
               <p
                 className="text-ghostwhite text-sm ">
                 Already have an account?
                 <Link
                   className="inline-block text-sm text-ghostwhite align-baseline hover:text-blue-800 underline"
-                  href="/register">Login!
+                  href="/login">Login!
                 </Link>
               </p>
             </div>
