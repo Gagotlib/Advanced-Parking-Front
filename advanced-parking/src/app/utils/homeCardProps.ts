@@ -1,6 +1,6 @@
 export const homeCardProps = [
 	{
-		href: '/reservations',
+		href: '/ourparkings',
 		img_href: '/parkingslot1.jpg',
 		alt: 'imagen Nuestros parkings',
 		text: 'Reserva por hora'

@@ -12,11 +12,10 @@ export const Ourparkings = () => {
 	// Filtrar los resultados basados en el valor de búsqueda (barrio)
 	const filteredResults = ParkingsMocks.filter((parking) => parking.location.toLowerCase().includes(searchValue.toLowerCase()))
 
-	//useeffect para pedir los parkings 
+	//useeffect para pedir los parkings
 
 	return (
 		<div className='flex flex-col min-h-screen '>
-			<Navbar />
 			<div className=' flex flex-col min-h-screen py-4 m-0 gap-4 items-center justify-start'>
 				<form className='w-10/12'>
 					<label htmlFor='search' className='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'>
@@ -32,7 +31,7 @@ export const Ourparkings = () => {
 							type='search'
 							id='search'
 							className='block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500'
-							placeholder='Filtrar por barrio'
+							placeholder='Filtrar por dirección'
 							value={searchValue}
 							onChange={(e) => setSearchValue(e.target.value)}
 							required
