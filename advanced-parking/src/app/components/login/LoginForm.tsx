@@ -1,9 +1,11 @@
 'use client'
 import Toast from '@/app/components/alerts/Toast'
+import Image from 'next/image'
 // import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import imgLogin from "../../../../public/login.jpg"
 
 export const LoginForm = () => {
   const router = useRouter()
@@ -61,76 +63,94 @@ export const LoginForm = () => {
   }
 
   return (
-    <div className='h-screen bg-erieblack'>
-      <div className=' w-full h-full flex flex-col items-center pt-24'>
-        {showToast && <Toast message='Login successful' type='success' />}
-        {errorToast && <Toast message='Username or password are incorrect' type='error' />}
-        <h1 className="title text-2xl text-ghostwhite uppercase font-medium mb-1">Login</h1>
-        <p className="text-ghostwhite mb-6 text-sm">Welcome! So good to have you back!</p>
-        <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
-          <div className="mb-5">
-            <label
-              id="email"
-              className="block mb-2 text-sm font-medium text-ghostwhite">
-              Your email
-            </label>
-            <input
-              type='text'
-              id='email'
-              name='email'
-              className="bg-ghostwhite border border-ghostwhite text-erieblack text-sm rounded-lg focus:ring-yaleblue focus:border-yaleblue block w-full p-2.5"
-              placeholder="name@email.com"
-              value={loginData.email}
-              onChange={handleChange}
-              required />
-          </div>
-          <div className="mb-5">
-            <label
-              id="password"
-              className="block mb-2 text-sm font-medium text-ghostwhite">
-              Your password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="bg-ghostwhite border border-ghostwhite text-erieblack text-sm rounded-lg focus:ring-yaleblue focus:border-yaleblue block w-full p-2.5"
-              value={loginData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="flex items-start mb-5">
-            <div className="flex items-center h-5">
+    <div className='h-screen bg-erieblack '>
+      <div className="flex items-center justify-center min-h-screen px-4 py-6 fle-col">
+        <div className=' grid items-center w-full gap-4 md:grid-cols-2 max-w-7xl'>
+          {showToast && <Toast message='Login successful' type='success' />}
+          {errorToast && <Toast message='Username or password are incorrect' type='error' />}
+          <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
+            <h1 className="title text-4xl text-ghostwhite uppercase font-extrabold mb-1">Login</h1>
+            <p className="text-ghostwhite mb-6 text-sm">Welcome! So good to have you back!</p>
+            <div className="mb-5">
+              <label
+                id="email"
+                className="block mb-2 text-sm font-medium text-ghostwhite">
+                Your email
+              </label>
               <input
-                id="remember"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 border border-silver rounded bg-silver focus:ring-3 focus:ring-yaleblue"
+                type='text'
+                id='email'
+                name='email'
+                className="bg-ghostwhite border border-ghostwhite text-erieblack text-sm rounded-lg focus:ring-yaleblue focus:border-yaleblue block w-full p-2.5"
+                placeholder="name@email.com"
+                value={loginData.email}
+                onChange={handleChange}
+                required />
+            </div>
+            <div className="mb-5">
+              <label
+                id="password"
+                className="block mb-2 text-sm font-medium text-ghostwhite">
+                Your password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className="bg-ghostwhite border border-ghostwhite text-erieblack text-sm rounded-lg focus:ring-yaleblue focus:border-yaleblue block w-full p-2.5"
+                placeholder="********"
+                value={loginData.password}
+                onChange={handleChange}
                 required
               />
             </div>
-            <label
-              id="remember"
-              className="ms-2 text-sm font-normal text-ghostwhite">
-              Remember me
-            </label>
+            <div className="flex items-start mb-5">
+              <div className="flex items-center h-5">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 border border-silver rounded bg-silver focus:ring-3 focus:ring-yaleblue"
+                  required
+                />
+              </div>
+              <label
+                id="remember"
+                className="ms-2 text-sm font-normal text-ghostwhite">
+                Remember me
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+              Login
+            </button>
+            <div className="text-center p-2">
+              <Link className="inline-block text-sm text-ghostwhite align-baseline hover:text-blue-800"
+                href="#">
+                Forgot Password?
+              </Link>
+            </div>
+            <div className='flex gap-2 pt-2'>
+              <p className="text-ghostwhite text-sm">Don´t have an account?</p>
+              <Link
+                className="text-ghostwhite text-sm underline hover:text-duck-yellow"
+                href="/register">Register here
+              </Link>
+            </div>
+          </form>
+          <div>
+            <div className="mx-4 mt-4 max-md:hidden">
+              <Image
+                src={imgLogin}
+                alt="concepto-abstracto-sistema-control-acceso"
+                width={300}
+                height={300}
+                priority={true}
+                className="inline-block object-cover w-[450px] h-[450px] rounded-3xl"
+              />
+            </div>
           </div>
-          <button
-            type="submit"
-            className="text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-            Log In
-          </button>
-        </form>
-        <div className="text-center p-2">
-          <Link className="inline-block text-sm text-ghostwhite align-baseline hover:text-blue-800"
-            href="#">
-            Forgot Password?
-          </Link>
-        </div>
-        <div className='flex gap-2 pt-2'>
-          <p className="text-ghostwhite text-sm">Don´t have an account?</p><Link className="text-ghostwhite text-sm underline"
-            href="/register">Register here</Link>
         </div>
       </div>
     </div>
