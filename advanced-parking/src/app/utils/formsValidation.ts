@@ -29,3 +29,21 @@ export const validateRegister = (userData: IUser) => {
 
 	return errors
 }
+
+export const validateNewAppointment = (formData: any) => {
+	const { date, time, description } = formData
+	const errors = {}
+
+	// verificar que lafeca no sea fin de semana
+	// if (isWeekend(date)) {
+	// 	errors.date = 'Solo tomamos reservas para dias hábiles'
+	// }
+
+	// Verificar si la fecha es hoy
+	// const today = new Date()
+	// const selectedDate = new Date(date)
+	// if (selectedDate.getDate() === today.getDate() && selectedDate.getMonth() === today.getMonth() && selectedDate.getFullYear() === today.getFullYear()) {
+	// 	errors.date = 'No se pueden reservar turnos para hoy'
+	// }
+	return errors
+}

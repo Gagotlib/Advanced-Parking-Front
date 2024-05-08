@@ -72,7 +72,7 @@ export const HireButton = () => {
 			type='button'
 			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
 		>
-			<Link href=''>Contratar</Link>
+			<Link href='/reservations'>Contratar</Link>
 		</button>
 	)
 }
