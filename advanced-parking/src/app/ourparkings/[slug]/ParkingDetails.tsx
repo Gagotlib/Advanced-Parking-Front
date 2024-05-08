@@ -1,4 +1,4 @@
-import { BackToOurParkingsButton } from '@/app/components/buttons/Buttons'
+import { BackToOurParkingsButton, HireButton } from '@/app/components/buttons/Buttons'
 import { ParkingsMocks } from '@/app/utils/parkingsMock'
 import React from 'react'
 
@@ -12,6 +12,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 				<p>Dirección: {parking?.address}</p>
 				<p>Barrio: {parking?.barrio}</p>
 				<p>Lugares disponibles: {parking?.availableSlots}</p>
+				<HireButton />
 				<BackToOurParkingsButton />
 			</div>
 		</div>

@@ -1,14 +1,13 @@
 import React from 'react'
 import { subscriptionsMock } from '../utils/subscriptionsMock'
 import SubscriptionsCard from '../components/cards/SubscriptionsCard'
-import Link from 'next/link'
 import { BackToHomeButton } from '../components/buttons/Buttons'
-type Props = {}
+import Navbar from '../components/navbar/Navbar'
 
-const Subscriptions = (props: Props) => {
+export const Subscriptions = () => {
 	return (
 		<div className='flex flex-col min-h-screen '>
-			<div className='h-16 bg-duck-yellow w-full'>ACA va estar el Navbar</div>
+			<Navbar />
 			<div className='flex flex-col py-4 m-0 items-center justify-start'>
 				<div className='rounded-lg flex flex-col w-full gap-4  items-center justify-start'>
 					{subscriptionsMock.map((subscription) => (
