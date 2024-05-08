@@ -1,3 +1,4 @@
+import not_found from "@/app/not-found";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -10,6 +11,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         landing_page: "url('/bg_landing_page.jpg')",
+        not_found: "url('/notfound.jpg')",
       },
       colors: {
         "duck-yellow": "#FFCC00",
