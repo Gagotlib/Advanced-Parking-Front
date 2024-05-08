@@ -13,7 +13,7 @@ export const HomeCard = ({ cardProps }: { cardProps: IcardProp }) => {
 	return (
 		<div className='flex flex-col sm:flex-row items-start justify-start  rounded-3xl w-11/12 h-40 shadow-2xl'>
 			<Link href={cardProps.href} className='w-full'>
-				<div className='relative flex justify-center sm:justify-around items-center w-full h-40  sm:flex-row sm:w-full  sm:[&>img]:hover:filter-none'>
+				<div className='relative flex justify-center sm:justify-between sm pr-4 items-center w-full h-40  sm:flex-row sm:w-full  sm:[&>img]:hover:filter-none'>
 					<Image
 						src={cardProps.img_href}
 						alt={cardProps.alt}

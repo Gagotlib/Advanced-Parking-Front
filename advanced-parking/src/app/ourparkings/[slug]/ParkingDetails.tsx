@@ -11,9 +11,8 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 			<Navbar />
 			<div className='flex flex-col p-4 m-0 items-center justify-start gap-4 text-center'>
 				<h1>{parking?.name}</h1>
-				<p>Dirección: {parking?.address}</p>
-				<p>Barrio: {parking?.barrio}</p>
-				<p>Lugares disponibles: {parking?.availableSlots}</p>
+				<p>Dirección: {parking?.location}</p>
+				<p>Lugares disponibles: {parking?.slots_stock}</p>
 				<ul>
 					<li className='flex gap-2 items-center'>
 						<CheckIcon />
