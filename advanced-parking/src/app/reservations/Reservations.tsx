@@ -1,9 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/navbar/Navbar'
 import { BackToHomeButton, BackToOurParkingsButton, BackToSubscriptionsButton, HireButton } from '../components/buttons/Buttons'
 import { availableHours, getMaxDate, getTodayDate } from '../utils/dateHelpers'
-import { validateNewAppointment } from '../utils/formsValidation'
 import { ParkingsMocks } from '../utils/parkingsMock'
 import { useRouter } from 'next/navigation'
 import Toast from '../components/alerts/Toast'
@@ -102,7 +100,6 @@ export const Reservations = () => {
 
 	return (
 		<div className='flex flex-col min-h-screen '>
-			<Navbar />
 			{showToast && <Toast message='Login successful' type='success' />}
 			{errorToast && <Toast message='Username or password are incorrect' type='error' />}
 			<div className=' flex flex-col min-h-screen py-4 m-0 gap-4 items-center justify-start'>

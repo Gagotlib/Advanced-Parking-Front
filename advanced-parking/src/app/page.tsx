@@ -29,9 +29,7 @@ export default function Landing() {
 					<Link href='/home' className='text-ghostwhite font-medium text-base'>Continue as guest</Link>
 				</div>
 			</div>
-			<div className='text-md text-ghostwhite font-medium sm:text-md text-center text-xl'>
-				<p className=''>Advanced Parking &copy; 2024. All Rights Reserved.</p>
-			</div>
+
 		</main>
 	)
 }

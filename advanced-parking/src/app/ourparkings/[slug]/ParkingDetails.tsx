@@ -1,7 +1,6 @@
 import { BackToOurParkingsButton, HireButton } from '@/app/components/buttons/Buttons'
 import { CheckIcon } from '@/app/components/icons/icons'
-import Navbar from '@/app/components/navbar/Navbar'
-import Reservations from '@/app/reservations/Reservations'
+import ReservationForm from '@/app/components/reservationForm/ReservationForm'
 import { ParkingsMocks } from '@/app/utils/parkingsMock'
 import React from 'react'
 
@@ -16,7 +15,6 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 
 	return (
 		<div className='flex flex-col min-h-screen '>
-			<Navbar />
 			<div className='flex flex-col p-4 m-0 items-center justify-start gap-4 text-center'>
 				<h1>{parking?.name}</h1>
 				<p>Dirección: {parking?.location}</p>
@@ -36,8 +34,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 						<p>Ingreso y Salida automatizada</p>
 					</li>
 				</ul>
-				{/* <Reservations /> */}
-				<HireButton />
+				<ReservationForm />
 				<BackToOurParkingsButton />
 			</div>
 		</div>
