@@ -8,13 +8,15 @@ interface IcardProps {
 }
 
 const SearchResultsCard = ({ cardProps }: { cardProps: IcardProps }) => {
+	const color = cardProps.slots_stock < 5 ? 'text-red-500' : 'text-green-500'
+
 	return (
 		<Link href={`/ourparkings/${cardProps.name}`}>
 			<div className='border-2 rounded-lg h-auto flex flex-col shadow-xl'>
 				<p className='font-bold'>{cardProps.name}</p>
 				<p>Direccion: {cardProps.location}</p>
 
-				{cardProps.slots_stock < 5 ? <p className='text-red-500'>Espacios libres: {cardProps.slots_stock}</p> : <p className='text-green-500'>Espacios libres: {cardProps.slots_stock}</p>}
+				<p className={`${color}`}>Espacios libres en este momento: {cardProps.slots_stock}</p>
 				{cardProps.slots_stock === 0 && <p className='text-red-500'>Estacionamiento lleno!</p>}
 			</div>
 		</Link>

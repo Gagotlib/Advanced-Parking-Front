@@ -12,6 +12,8 @@ export const Ourparkings = () => {
 	// Filtrar los resultados basados en el valor de búsqueda (barrio)
 	const filteredResults = ParkingsMocks.filter((parking) => parking.location.toLowerCase().includes(searchValue.toLowerCase()))
 
+	//useeffect para pedir los parkings 
+
 	return (
 		<div className='flex flex-col min-h-screen '>
 			<Navbar />

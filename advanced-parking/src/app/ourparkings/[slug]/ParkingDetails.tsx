@@ -1,11 +1,19 @@
 import { BackToOurParkingsButton, HireButton } from '@/app/components/buttons/Buttons'
 import { CheckIcon } from '@/app/components/icons/icons'
 import Navbar from '@/app/components/navbar/Navbar'
+import Reservations from '@/app/reservations/Reservations'
 import { ParkingsMocks } from '@/app/utils/parkingsMock'
 import React from 'react'
 
 const ParkingDetails = ({ params }: { params: { slug: string } }) => {
-	const parking = ParkingsMocks.find((parking) => parking.name === params.slug)
+	const formattedSlug = params.slug.replace(/%20/g, ' ')
+
+	//!peticion para qe me traiga segun el id
+	const parking = ParkingsMocks.find((parking) => parking.name === formattedSlug)
+	// console.log(formattedSlug)
+
+	// peticion AL BACK EN BASE AL ID
+
 	return (
 		<div className='flex flex-col min-h-screen '>
 			<Navbar />
@@ -13,6 +21,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 				<h1>{parking?.name}</h1>
 				<p>Dirección: {parking?.location}</p>
 				<p>Lugares disponibles: {parking?.slots_stock}</p>
+				<p>id: {parking?.id}</p>
 				<ul>
 					<li className='flex gap-2 items-center'>
 						<CheckIcon />
@@ -27,6 +36,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 						<p>Ingreso y Salida automatizada</p>
 					</li>
 				</ul>
+				{/* <Reservations /> */}
 				<HireButton />
 				<BackToOurParkingsButton />
 			</div>
