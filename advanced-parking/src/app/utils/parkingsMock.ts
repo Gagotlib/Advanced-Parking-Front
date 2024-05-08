@@ -1,26 +1,26 @@
 const parking1 = {
 	name: 'Estacionamiento1',
-	address: 'direccion1',
-	barrio: 'palermo',
-	availableSlots: 10
+	location: 'direccion1, palermo',
+	// barrio: 'palermo',
+	slots_stock: 10
 }
 const parking2 = {
 	name: 'Estacionamiento2',
-	address: 'direccion2',
-	barrio: 'centro',
-	availableSlots: 10
+	location: 'direccion2, centro',
+	// barrio: 'centro',
+	slots_stock: 10
 }
 const parking3 = {
 	name: 'Estacionamiento3',
-	address: 'direccion3',
-	barrio: 'barracas',
-	availableSlots: 2
+	location: 'direccion3, barracas',
+	// barrio: 'barracas',
+	slots_stock: 2
 }
 const parking4 = {
 	name: 'Estacionamiento4',
-	address: 'direccion4',
-	barrio: 'belgrano',
-	availableSlots: 0
+	location: 'direccion4, belgrano',
+	// barrio: 'belgrano',
+	slots_stock: 0
 }
 
 export const ParkingsMocks = [parking1, parking2, parking3, parking4]
