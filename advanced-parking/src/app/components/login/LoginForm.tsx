@@ -1,9 +1,11 @@
 'use client'
 import Toast from '@/app/components/alerts/Toast'
+import Image from 'next/image'
 // import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import imgLogin from "../../../../public/login.jpg"
 
 export const LoginForm = () => {
 	const router = useRouter()
@@ -59,6 +61,7 @@ export const LoginForm = () => {
 			setErrorToast(true)
 		}
 	}
+
 
 	return (
 		<div className='h-screen bg-erieblack'>
@@ -126,6 +129,7 @@ export const LoginForm = () => {
 			</div>
 		</div>
 	)
+
 }
 
 export default LoginForm
