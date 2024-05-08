@@ -1,10 +1,12 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/navbar/Navbar'
-import { BackToHomeButton, HireButton } from '../components/buttons/Buttons'
-import { getMaxDate, getTodayDate } from '../utils/dateHelpers'
+import { BackToHomeButton, BackToOurParkingsButton, BackToSubscriptionsButton, HireButton } from '../components/buttons/Buttons'
+import { availableHours, getMaxDate, getTodayDate } from '../utils/dateHelpers'
 import { validateNewAppointment } from '../utils/formsValidation'
 import { ParkingsMocks } from '../utils/parkingsMock'
+import { useRouter } from 'next/navigation'
+import Toast from '../components/alerts/Toast'
 
 interface IFormData {
 	userId: string
@@ -16,6 +18,30 @@ interface IFormData {
 export const Reservations = () => {
 	const user = { id: 1 } //hardcodeado
 	const userId = user.id
+
+	const router = useRouter()
+	const [errorToast, setErrorToast] = useState(false)
+	const [showToast, setShowToast] = useState(false)
+
+	useEffect(() => {
+		if (showToast || errorToast) {
+			const timeout = setTimeout(() => {
+				setShowToast(false)
+				setErrorToast(false)
+			}, 3000)
+			return () => clearTimeout(timeout)
+		}
+	}, [showToast, errorToast])
+
+	useEffect(() => {
+		if (showToast) {
+			const timeout = setTimeout(() => {
+				setShowToast(false)
+				router.push('/')
+			}, 3000)
+			return () => clearTimeout(timeout)
+		}
+	}, [showToast, router])
 
 	const [formData, setFormData] = useState({
 		date: getTodayDate(),
@@ -66,43 +92,19 @@ export const Reservations = () => {
 				parking: '',
 				userId: user.id
 			})
+			setShowToast(true)
 
-			// alert('reserva agendada')
 		} catch (error) {
 			console.log(error)
+			setErrorToast(true)
 		}
 	}
-
-	const availableHours = [
-		'00:00',
-		'01:00',
-		'02:00',
-		'03:00',
-		'04:00',
-		'05:00',
-		'06:00',
-		'07:00',
-		'08:00',
-		'09:00',
-		'10:00',
-		'11:00',
-		'12:00',
-		'13:00',
-		'14:00',
-		'15:00',
-		'16:00',
-		'17:00',
-		'18:00',
-		'19:00',
-		'20:00',
-		'21:00',
-		'22:00',
-		'23:00'
-	]
 
 	return (
 		<div className='flex flex-col min-h-screen '>
 			<Navbar />
+			{showToast && <Toast message='Login successful' type='success' />}
+			{errorToast && <Toast message='Username or password are incorrect' type='error' />}
 			<div className=' flex flex-col min-h-screen py-4 m-0 gap-4 items-center justify-start'>
 				<div>
 					<h1>Solicitar una nueva Reserva</h1>
@@ -154,7 +156,12 @@ export const Reservations = () => {
 						</button>
 					</form>
 				</div>
-				<BackToHomeButton />
+				{/* ver si estastos links son necesarios o los sacamos porque estan en el navbar */}
+				<div className='flex flex-col gap sm:flex-row'>
+					<BackToOurParkingsButton />
+					<BackToSubscriptionsButton />
+					<BackToHomeButton />
+				</div>
 			</div>
 		</div>
 	)
