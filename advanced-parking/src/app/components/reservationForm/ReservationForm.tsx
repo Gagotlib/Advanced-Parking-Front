@@ -3,6 +3,7 @@ import { availableHours, getMaxDate, getTodayDate } from '@/app/utils/dateHelper
 import { ParkingsMocks } from '@/app/utils/parkingsMock'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export const ReservationForm = () => {
 	const user = { id: 1 } //hardcodeado
@@ -36,7 +37,8 @@ export const ReservationForm = () => {
 		date: getTodayDate(),
 		time: '08:00',
 		parking: '',
-		userId: user.id
+		userId: user.id,
+		license_plate: '',
 	})
 	const [errors, setErrors] = useState({
 		date: '',
@@ -67,11 +69,14 @@ export const ReservationForm = () => {
 		console.log('Fecha seleccionada:', formData.date)
 		console.log('Hora seleccionada:', formData.time)
 		console.log('Parking:', formData.parking)
+		console.log('license plate:', formData.license_plate)
 
 		try {
 			//! enviar info al backend
 			// await postNewAppointment(formData) // servicio post para mandar la reserva a la BD
-
+			const response = await axios.post('http://localhost:3001/appointments', formData)
+			console.log(response);
+			
 			// getAppointmentsByUserId(userId, dispatch) // servicio get para traer las reservas
 
 			// Limpiar el formulario
@@ -79,7 +84,8 @@ export const ReservationForm = () => {
 				date: getTodayDate(),
 				time: '08:00',
 				parking: '',
-				userId: user.id
+				userId: user.id,
+				license_plate: "",
 			})
 			setShowToast(true)
 		} catch (error) {
@@ -118,6 +124,11 @@ export const ReservationForm = () => {
 							</option>
 						))}
 					</select>
+				</div>
+				<div className=''>
+					<label htmlFor='license_plate'>Licencia :</label>
+					<input id='license_plate' name='license_plate' value={formData.license_plate} onChange={handleInputChange} required>
+					</input>
 				</div>
 
 				<button

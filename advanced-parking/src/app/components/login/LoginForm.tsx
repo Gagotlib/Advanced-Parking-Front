@@ -1,11 +1,11 @@
 'use client'
 import Toast from '@/app/components/alerts/Toast'
 import Image from 'next/image'
-// import axios from 'axios'
+import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import imgLogin from "../../../../public/login.jpg"
+import imgLogin from '../../../../public/login.jpg'
 
 export const LoginForm = () => {
 	const router = useRouter()
@@ -43,25 +43,26 @@ export const LoginForm = () => {
 			[name]: value
 		}))
 	}
-	const ruta = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+	// const ruta = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
 			console.log(loginData)
 
-			// const session = await axios.post(`${ruta}/users/login`, loginData)
+			const session = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
+			console.log(session)
+
 			// localStorage.setItem('authToken', session.data.token)
 			// localStorage.setItem('user', JSON.stringify(session.data.user))
-			// setShowToast(true)
-			// throw new Error('Login successful')
+			setShowToast(true)
+			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
 			console.log(error)
 			console.error('Error al iniciar sesión:', error?.response?.data.message)
 			setErrorToast(true)
 		}
 	}
-
 
 	return (
 		<div className='h-screen bg-erieblack'>
@@ -102,6 +103,7 @@ export const LoginForm = () => {
 					</div>
 					<div className='flex items-start mb-5'>
 						<div className='flex items-center h-5'>
+							<label htmlFor='remember'></label>
 							<input id='remember' type='checkbox' value='' className='w-4 h-4 border border-silver rounded bg-silver focus:ring-3 focus:ring-yaleblue' required />
 						</div>
 						<label id='remember' className='ms-2 text-sm font-normal text-ghostwhite'>
@@ -129,7 +131,6 @@ export const LoginForm = () => {
 			</div>
 		</div>
 	)
-
 }
 
 export default LoginForm
