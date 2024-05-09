@@ -2,16 +2,15 @@
 import React, { useState } from 'react'
 import { ParkingsMocks } from '../utils/parkingsMock'
 import SearchResultsCard from '../components/cards/SearchResultsCard'
-import Link from 'next/link'
 import { BackToHomeButton } from '../components/buttons/Buttons'
-import Navbar from '../components/navbar/Navbar'
 
 export const Ourparkings = () => {
 	const [searchValue, setSearchValue] = useState('')
 
-	// Filtrar los resultados basados en el valor de búsqueda (barrio)
-	const filteredResults = ParkingsMocks.filter((parking) => parking.location.toLowerCase().includes(searchValue.toLowerCase()))
-
+	// Filtrar los resultados basados en el valor de búsqueda (nombre o dirección)
+	const filteredResults = ParkingsMocks.filter((parking) => {
+		return parking.location.toLowerCase().includes(searchValue.toLowerCase()) || parking.name.toLowerCase().includes(searchValue.toLowerCase())
+	})
 	//useeffect para pedir los parkings
 
 	return (
@@ -31,7 +30,7 @@ export const Ourparkings = () => {
 							type='search'
 							id='search'
 							className='block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500'
-							placeholder='Filtrar por dirección'
+							placeholder='Filtrar por nombre o dirección'
 							value={searchValue}
 							onChange={(e) => setSearchValue(e.target.value)}
 							required
@@ -41,7 +40,7 @@ export const Ourparkings = () => {
 						</button> */}
 					</div>
 				</form>
-				<div className='rounded-lg flex flex-col w-10/12 gap-4'>
+				<div className='rounded-lg flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-10/12 gap-4'>
 					{filteredResults.map((result) => (
 						<SearchResultsCard key={result.name} cardProps={result} />
 					))}
