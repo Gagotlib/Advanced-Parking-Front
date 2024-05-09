@@ -41,7 +41,7 @@ export const BackToHomeButton = () => {
 			type='button'
 			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
 		>
-			<Link href='/home'>back to home</Link>
+			<Link href='/home'>Back to home</Link>
 		</button>
 	)
 }
@@ -52,7 +52,7 @@ export const BackToSubscriptionsButton = () => {
 			type='button'
 			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
 		>
-			<Link href='/subscriptions'>back to subscriptions</Link>
+			<Link href='/subscriptions'>Back to subscriptions</Link>
 		</button>
 	)
 }
@@ -62,7 +62,7 @@ export const BackToOurParkingsButton = () => {
 			type='button'
 			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
 		>
-			<Link href='/ourparkings'>back to our parkings</Link>
+			<Link href='/ourparkings'>Back to our parkings</Link>
 		</button>
 	)
 }
@@ -73,7 +73,7 @@ export const HireButton = () => {
 			type='button'
 			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
 		>
-			<Link href='/reservations'>Contratar</Link>
+			<Link href='/reservations'>Reserve</Link>
 		</button>
 	)
 }
