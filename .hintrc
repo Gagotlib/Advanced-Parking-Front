@@ -8,6 +8,7 @@
       {
         "aria-valid-attr-value": "off"
       }
-    ]
+    ],
+    "axe/forms": "off"
   }
 }

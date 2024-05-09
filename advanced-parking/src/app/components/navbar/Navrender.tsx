@@ -8,7 +8,7 @@ const Navrender = () => {
 	const pathname = usePathname()
 	console.log(pathname)
 	if (pathname === '/') {
-		return null // No renderizar el Navbar en la landing page, login o register
+		return null // No renderizar el Navbar en la landing page
 	} else {
 		return <Navbar />
 	}
