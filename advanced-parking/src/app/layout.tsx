@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
-import Footer from './components/footer/Footer'
-import { FooterRender, Navrender } from './components/navbar/Navrender'
+import { FooterRender, NavRender } from './components/navbar/Navrender'
 
 const plus_Jakarta_Sans = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
@@ -19,7 +18,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={plus_Jakarta_Sans.className}>
-				<Navrender />
+				<NavRender />
 				<div className='w-full h-full'>{children}</div>
 				<FooterRender />
 			</body>

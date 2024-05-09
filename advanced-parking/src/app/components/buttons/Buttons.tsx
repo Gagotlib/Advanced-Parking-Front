@@ -5,7 +5,7 @@ export const GoogleButton = () => {
 	return (
 		<button
 			type='button'
-			className='text-ghostwhite bg-yaleblue hover:bg-yaleblue/90 focus:ring-4 focus:outline-none focus:ring-yaleblue/50 font-medium rounded-lg text-md sm:text-2xl px-5 py-2.5 text-center inline-flex items-center me-2 mb-2'
+			className='text-ghostwhite bg-yaleblue hover:bg-yaleblue/90 focus:ring-4 focus:outline-none focus:ring-yaleblue/50 font-medium rounded-lg text-md sm:text-xl px-5 py-2.5 text-center inline-flex items-center me-2 mb-2'
 		>
 			<svg
 				className='w-4 h-4 me-2'
@@ -28,7 +28,7 @@ export const CreateAccountButton = () => {
 	return (
 		<button
 			type='button'
-			className='py-2.5 px-5 me-2 mb-2 text-md sm:text-2xl font-medium text-erieblack focus:outline-none bg-ghostwhite rounded-lg border border-silver hover:bg-gray-100 hover:text-yaleblue focus:z-10 focus:ring-4 focus:ring-silver-100'
+			className='py-2.5 px-5 me-2 mb-2 text-md sm:text-xl font-medium text-ghostwhite focus:outline-none bg-yaleblue  rounded-lg border border-silver hover:bg-yaleblue/90  hover:text-ghostwhite focus:z-10 focus:ring-4 focus:ring-silver-100'
 		>
 			Create an account
 		</button>

@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import { BackToHomeButton, ContactButton } from '../components/buttons/Buttons'
 import Link from 'next/link'
 
 function About() {
@@ -18,7 +17,7 @@ function About() {
         <div className="w-full lg:w-6/12 pt-10">
           <Image
             src="/parking_lot_about.jpg"
-            className="w-[400px] h-[400px]"
+            className="w-[400px] h-[400px] rounded-full"
             alt="Advanced Parking Logo"
             priority={true}
             width={500}
@@ -94,10 +93,10 @@ function About() {
           </p>
         </div>
         <div className="w-full lg:w-8/12 lg:pt-8">
-          <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg rounded-md">
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg rounded-md">
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <Image
-                src=""
+                src="/GabrielGotlib.jpeg"
                 className="md:block hidden"
                 alt="Gabriel featured Image"
                 width={150}
@@ -106,17 +105,17 @@ function About() {
               />
               <Image
                 className="md:hidden block"
-                src=""
+                src="/GabrielGotlib.jpeg"
                 alt="Gabriel featured Image"
                 width={150}
                 height={150}
                 priority={true}
               />
-              <p className="font-medium text-xl leading-5 text-gray-800 mt-4">Gabriel Gotlib</p>
+              <p className="font-medium text-base leading-5 text-gray-800 mt-4">Gabriel Gotlib</p>
             </div>
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <Image
-                src=""
+                src="/MarceloLencina.jpeg"
                 className="md:block hidden"
                 alt="Marcelo featured Image"
                 width={150}
@@ -125,18 +124,18 @@ function About() {
               />
               <Image
                 className="md:hidden block"
-                src=""
+                src="/MarceloLencina.jpeg"
                 alt="Marcelo featured Image"
                 width={150}
                 height={150}
                 priority={true}
               />
-              <p className="font-medium text-xl leading-5 text-gray-800 mt-4">Marcelo Lencina</p>
+              <p className="font-medium text-base leading-5 text-gray-800 mt-4">Marcelo Lencina</p>
             </div>
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <Image
                 className="md:block hidden"
-                src=""
+                src="/SimonSalas.jpeg"
                 alt="Simon featued Image"
                 width={150}
                 height={150}
@@ -144,18 +143,18 @@ function About() {
               />
               <Image
                 className="md:hidden block"
-                src=""
+                src="/SimonSalas.jpeg"
                 alt="Simon featued Image"
                 width={150}
                 height={150}
                 priority={true}
               />
-              <p className="font-medium text-xl leading-5 text-gray-800 mt-4">Simón Salas</p>
+              <p className="font-medium text-base leading-5 text-gray-800 mt-4">Simón Salas</p>
             </div>
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <Image
                 className="md:block hidden"
-                src=""
+                src="/MarioGutierrez.jpeg"
                 alt="Mario featured image"
                 width={150}
                 height={150}
@@ -163,18 +162,18 @@ function About() {
               />
               <Image
                 className="md:hidden block"
-                src=""
+                src="/MarioGutierrez.jpeg"
                 alt="Mario featured image"
                 width={150}
                 height={150}
                 priority={true}
               />
-              <p className="font-medium text-xl leading-5 text-gray-800 mt-4">Mario Gutiérrez</p>
+              <p className="font-medium text-base leading-5 text-gray-800 mt-4">Mario Gutiérrez</p>
             </div>
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <Image
                 className="md:block hidden"
-                src=""
+                src="/JoseColedani.jpeg"
                 alt="Jose featured image"
                 width={150}
                 height={150}
@@ -182,18 +181,18 @@ function About() {
               />
               <Image
                 className="md:hidden block"
-                src=""
+                src="/JoseColedani.jpeg"
                 alt="Jose featured image"
                 width={150}
                 height={150}
                 priority={true}
               />
-              <p className="font-medium text-xl leading-5 text-gray-800 mt-4">Jose Coledani</p>
+              <p className="font-medium text-base leading-5 text-gray-800 mt-4">Jose Coledani</p>
             </div>
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <Image
                 className="md:block hidden"
-                src=""
+                src="/SebastianIbarguen.jpeg"
                 alt="Sebastian featured image"
                 width={150}
                 height={150}
@@ -201,13 +200,13 @@ function About() {
               />
               <Image
                 className="md:hidden block"
-                src=""
+                src="/SebastianIbarguen.jpeg"
                 alt="Sebastian featured image"
                 width={150}
                 height={150}
                 priority={true}
               />
-              <p className="font-medium text-xl leading-5 text-gray-800 mt-4">Sebastian Ibargüen</p>
+              <p className="font-medium text-base leading-5 text-gray-800 mt-4">Sebastian Ibargüen</p>
             </div>
           </div>
         </div>
