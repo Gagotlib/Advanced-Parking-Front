@@ -2,7 +2,7 @@
 
 ## About App
 
-<p>Somos una aplicación creada para darle al usuario exclusividad a la hora de buscar un estacionamiento disponible en las zonas urbanas de la ciudad. Brindamos seguridad, estacionamiento 100% asegurado y con beneficios adicionales exclusivos.</p>
+<p>Somos una aplicación creada para darle al usuario exclusividad a la hora de buscar un estacionamiento disponible en las zonas urbanas de la ciudad. Brindamos seguridad, estacionamiento 100% asegurado en la reserva y con beneficios adicionales exclusivos.</p>
 
 ### Resources
 
