@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import Navlinks from './navLinks/Navlinks'
 import Navprofile from './navProfile/Navprofile'
