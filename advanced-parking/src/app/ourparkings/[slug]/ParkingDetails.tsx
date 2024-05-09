@@ -14,7 +14,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 	// peticion AL BACK EN BASE AL ID
 
 	return (
-		<div className='flex flex-col min-h-screen '>
+		<div className='flex flex-col min-h-screen pt-24'>
 			<div className='flex flex-col p-4 m-0 items-center justify-start gap-4 text-center'>
 				<h1>{parking?.name}</h1>
 				<p>Dirección: {parking?.location}</p>

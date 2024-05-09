@@ -99,7 +99,7 @@ export const Reservations = () => {
 	}
 
 	return (
-		<div className='flex flex-col min-h-screen '>
+		<div className='flex flex-col min-h-screen pt-24'>
 			{showToast && <Toast message='Login successful' type='success' />}
 			{errorToast && <Toast message='Username or password are incorrect' type='error' />}
 			<div className=' flex flex-col min-h-screen py-4 m-0 gap-4 items-center justify-start'>

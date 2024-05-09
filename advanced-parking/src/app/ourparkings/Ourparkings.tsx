@@ -15,7 +15,7 @@ export const Ourparkings = () => {
 	//useeffect para pedir los parkings
 
 	return (
-		<div className='flex flex-col min-h-screen '>
+		<div className='flex flex-col min-h-screen pt-24'>
 			<div className=' flex flex-col min-h-screen py-4 m-0 gap-4 items-center justify-start'>
 				<form className='w-10/12'>
 					<label htmlFor='search' className='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'>

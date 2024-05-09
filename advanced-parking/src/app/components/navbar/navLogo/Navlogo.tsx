@@ -8,7 +8,7 @@ function Navlogo() {
       <Image
         src='/logo_advanced_parking.jpg'
         className='h-auto w-auto '
-        alt='Advanced_Parking Logo'
+        alt='Advanced Parking Logo'
         width={60}
         height={60}
         priority={true}

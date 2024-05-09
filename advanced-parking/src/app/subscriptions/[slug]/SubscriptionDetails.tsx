@@ -9,7 +9,7 @@ export const SubscriptionDetails = ({ params }: { params: { slug: string } }) =>
 	const subscription = subscriptionsMock.find((subscription) => subscription.name === params.slug)
 
 	return (
-		<div className='flex flex-col min-h-screen '>
+		<div className='flex flex-col min-h-screen pt-24'>
 			<div className='flex flex-col p-4 m-0 items-center justify-start gap-4 text-center'>
 				<h1>Subscripción {subscription?.name}</h1>
 				<p>{subscription?.longDescription}</p>

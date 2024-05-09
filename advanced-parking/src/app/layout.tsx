@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/navbar/Navbar'
+import Footer from './components/footer/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
 const plus_Jakarta_Sans = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -21,10 +20,10 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={plus_Jakarta_Sans.className}>
 				<Navbar />
-				{children}
-				<div className='text-md bg-erieblack text-ghostwhite font-medium sm:text-md text-center text-xl'>
-					<p className=''>Advanced Parking &copy; 2024. All Rights Reserved.</p>
+				<div className='w-full h-full'>
+					{children}
 				</div>
+				<Footer />
 			</body>
 		</html>
 	)
