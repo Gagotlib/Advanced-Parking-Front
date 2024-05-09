@@ -45,6 +45,7 @@ export const BackToHomeButton = () => {
 		</button>
 	)
 }
+
 export const BackToSubscriptionsButton = () => {
 	return (
 		<button
@@ -76,3 +77,27 @@ export const HireButton = () => {
 		</button>
 	)
 }
+
+export const SendButton = () => {
+	return (
+		<button
+			type='button'
+			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
+		>
+			<Link href=''>Send</Link>
+		</button>
+	)
+}
+
+export const ContactButton = () => {
+	return (
+		<button
+			type='button'
+			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
+		>
+			<Link href='/contact'>Contact Us</Link>
+		</button>
+	)
+}
+
+
