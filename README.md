@@ -1,11 +1,20 @@
-# Advanced-Parking-Front
+# Advanced Parking (Front)
 
-Front del PF de Henry
+## About App
 
-## Integrantes
+<p>Somos una aplicación creada para darle al usuario exclusividad a la hora de buscar un estacionamiento disponible en las zonas urbanas de la ciudad. Brindamos seguridad, estacionamiento 100% asegurado y con beneficios adicionales exclusivos.</p>
 
-- Gotlib, Gabriel – Front
-- Salas Seeber, Simón - Back
-- Ibargüen Currea, Diego Sebastian - Front
-- Lencina, Marcelo Daniel - Back
-- Coledani Grillo, Jose Salvador - Back
+### Resources
+
+- Next.Js
+- Tailwind CSS
+- NestJs
+- PostgreSQL
+
+## Meet the Brains
+
+- Gotlib, Gabriel – Frontend
+- Salas Seeber, Simón - Backend
+- Ibargüen Currea, Diego Sebastian - Frontend
+- Lencina, Marcelo Daniel - Backend
+- Coledani Grillo, Jose Salvador - Backend
