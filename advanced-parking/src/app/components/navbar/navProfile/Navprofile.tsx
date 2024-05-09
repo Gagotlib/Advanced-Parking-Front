@@ -7,7 +7,7 @@ import { redirect, useRouter } from 'next/navigation'
 function Navprofile() {
 	const router = useRouter()
 	const [menuOpen, setMenuOpen] = useState(false)
-
+	//! hardcodeo de unos users para pruebas
 	const user1 = {
 		id: 1,
 		name: 'roberto',
@@ -62,7 +62,7 @@ function Navprofile() {
 					<ul className='py-2' aria-labelledby='dropdownInformationButton'>
 						{user.role === 'admin' && (
 							<li>
-								<Link href='#' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
+								<Link href='/dashboard' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
 									Dashboard
 								</Link>
 							</li>
