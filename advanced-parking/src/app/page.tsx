@@ -13,15 +13,15 @@ export default function Landing() {
 					width={400}
 					height={400}
 				/>
-				<div className='flex flex-col items-center gap-6 text-pretty'>
-					<div className='flex flex-col gap-3'>
-						<p
-							className='text-erieblack text-5xl font-bold'>
-							Welcome to your preferred parking!</p>
-						<p className='text-erieblack text-5xl font-bold'>
-							Your space awaits you.
-						</p>
-					</div>
+
+				<div className='flex flex-col items-center gap-4 text-pretty text-center '>
+					<h1
+						className='text-ghostwhite text-3xl font-bold '>
+						Welcome to your preferred parking!
+						<br />
+						Your space awaits you.
+					</h1>
+
 					<div className='flex flex-col'>
 						<Link href='/register' className='flex flex-col '>
 							<CreateAccountButton />
