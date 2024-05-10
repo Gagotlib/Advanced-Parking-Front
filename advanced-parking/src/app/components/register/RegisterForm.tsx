@@ -1,4 +1,5 @@
 'use client'
+
 import Toast from '@/app/components/alerts/Toast'
 import { IErrors, IUser } from '@/types'
 import { validateRegister } from '@/app/utils/formsValidation'
