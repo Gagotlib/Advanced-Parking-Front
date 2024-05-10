@@ -7,7 +7,7 @@ import Footer from '../footer/Footer'
 
 const NavRender = () => {
 	const pathname = usePathname()
-	console.log(pathname)
+	// console.log(pathname)
 	if (pathname === '/') {
 		return null
 	} else {

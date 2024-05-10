@@ -1,17 +1,30 @@
 'use client'
-import React, { useState } from 'react'
-import { ParkingsMocks } from '../utils/parkingsMock'
+import React, { useEffect, useState } from 'react'
 import SearchResultsCard from '../components/cards/SearchResultsCard'
 import { BackToHomeButton } from '../components/buttons/Buttons'
+import axios from 'axios'
+import { IParking } from '@/types'
+import { useAuth } from '../context/AuthContext'
 
 export const Ourparkings = () => {
 	const [searchValue, setSearchValue] = useState('')
 
+	const { allParkings, setAllParkings } = useAuth()
+	useEffect(() => {
+		axios.get('http://localhost:3001/parking-lot').then(({ data }) => {
+			setAllParkings(data)
+			const parkingLotString = JSON.stringify(data)
+			localStorage.setItem('allParkings', parkingLotString)
+			console.log(data)
+		})
+		console.log(allParkings)
+	}, [])
+	// const allParkings =  data.data
+
 	// Filtrar los resultados basados en el valor de búsqueda (nombre o dirección)
-	const filteredResults = ParkingsMocks.filter((parking) => {
+	const filteredResults = allParkings?.filter((parking) => {
 		return parking.location.toLowerCase().includes(searchValue.toLowerCase()) || parking.name.toLowerCase().includes(searchValue.toLowerCase())
 	})
-	//useeffect para pedir los parkings
 
 	return (
 		<div className='flex flex-col min-h-screen pt-24'>
@@ -22,9 +35,7 @@ export const Ourparkings = () => {
 					</label>
 					<div className='relative'>
 						<div className='absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none'>
-							<svg
-								className='w-4 h-4 text-gray-500 dark:text-gray-400' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none'
-								viewBox='0 0 20 20'>
+							<svg className='w-4 h-4 text-gray-500 dark:text-gray-400' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'>
 								<path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z' />
 							</svg>
 						</div>
@@ -37,13 +48,13 @@ export const Ourparkings = () => {
 							onChange={(e) => setSearchValue(e.target.value)}
 							required
 						/>
-						{/* <button type='submit' className='text-black absolute end-2.5 bottom-2.5 bg-duck-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 '>
+						<button type='submit' className='text-black absolute end-2.5 bottom-2.5 bg-duck-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 '>
 							Search
-						</button> */}
+						</button>
 					</div>
 				</form>
 				<div className='rounded-lg flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-10/12 gap-4'>
-					{filteredResults.map((result) => (
+					{filteredResults?.map((result) => (
 						<SearchResultsCard key={result.name} cardProps={result} />
 					))}
 				</div>

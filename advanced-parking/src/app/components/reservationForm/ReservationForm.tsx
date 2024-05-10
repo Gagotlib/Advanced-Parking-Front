@@ -6,10 +6,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { ReserveButton } from '../buttons/Buttons'
 import Image from 'next/image'
+import { useAuth } from '@/app/context/AuthContext'
+import { IParking } from '@/types'
+import Toast from '../alerts/Toast'
 
-export const ReservationForm = () => {
-	const user = { id: 1 } //hardcodeado
-	const userId = user.id
+export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
+	const { user } = useAuth()
+	console.log('usuario', user)
+	console.log('el parking', parking)
 
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
@@ -38,9 +42,11 @@ export const ReservationForm = () => {
 	const [formData, setFormData] = useState({
 		date: getTodayDate(),
 		time: '08:00',
-		parking: '',
-		userId: user.id,
+		parkingLotId: parking?.id,
+		userId: user?.id,
 		license_plate: '',
+		duration: '1',
+		is_parked: false
 	})
 	const [errors, setErrors] = useState({
 		date: '',
@@ -70,14 +76,15 @@ export const ReservationForm = () => {
 		//! control
 		console.log('Fecha seleccionada:', formData.date)
 		console.log('Hora seleccionada:', formData.time)
-		console.log('Parking:', formData.parking)
+		console.log('Parking:', formData.parkingLotId)
 		console.log('license plate:', formData.license_plate)
+		console.log('El userid:', formData.userId)
 
 		try {
 			//! enviar info al backend
 			// await postNewAppointment(formData) // servicio post para mandar la reserva a la BD
 			const response = await axios.post('http://localhost:3001/appointments', formData)
-			console.log(response);
+			console.log(response)
 
 			// getAppointmentsByUserId(userId, dispatch) // servicio get para traer las reservas
 
@@ -85,9 +92,11 @@ export const ReservationForm = () => {
 			setFormData({
 				date: getTodayDate(),
 				time: '08:00',
-				parking: '',
-				userId: user.id,
-				license_plate: "",
+				parkingLotId: parking?.id,
+				userId: user?.id,
+				license_plate: '',
+				duration: '1',
+				is_parked: false
 			})
 			setShowToast(true)
 		} catch (error) {
@@ -98,9 +107,11 @@ export const ReservationForm = () => {
 
 	return (
 		<div>
-			<h1 className='font-medium text-4xl lg:text-6xl' > Booking</h1>
+			{showToast && <Toast message='Reservation Successfull' type='success' />}
+			{errorToast && <Toast message='Reservation Error' type='error' />}
+			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 m-4 text-center border-2 border-lightgray rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
-				<div className='' >
+				<div className=''>
 					<label htmlFor='date'>Date:</label>
 					<input
 						type='date'
@@ -119,14 +130,7 @@ export const ReservationForm = () => {
 				</div>
 				<div className=''>
 					<label htmlFor='time'>Time: </label>
-					<select
-						id='time'
-						name='time'
-						className='z-10'
-						size={5}
-						value={formData.time}
-						onChange={handleInputChange}
-						required>
+					<select id='time' name='time' className='z-10' size={5} value={formData.time} onChange={handleInputChange} required>
 						{availableHours.map((hour) => (
 							<option key={hour} value={hour}>
 								{hour}
@@ -144,11 +148,10 @@ export const ReservationForm = () => {
 						className='block w-full p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite focus:ring-blue-500 focus:border-blue-500 text-center'
 						onChange={handleInputChange}
 						required
-					>
-					</input>
+					></input>
 				</div>
+				<ReserveButton />
 			</form>
-			<ReserveButton />
 		</div>
 	)
 }

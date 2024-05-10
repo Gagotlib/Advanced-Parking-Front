@@ -6,12 +6,14 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import imgLogin from '../../../../public/login.jpg'
+import { useAuth } from '@/app/context/AuthContext'
 
 export const LoginForm = () => {
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
-
+	const { user, setUser } = useAuth()
+	const { token, setToken } = useAuth()
 	useEffect(() => {
 		if (showToast || errorToast) {
 			const timeout = setTimeout(() => {
@@ -26,7 +28,8 @@ export const LoginForm = () => {
 		if (showToast) {
 			const timeout = setTimeout(() => {
 				setShowToast(false)
-				router.push('/')
+				router.refresh()
+				router.push('/home')
 			}, 3000)
 			return () => clearTimeout(timeout)
 		}
@@ -44,17 +47,17 @@ export const LoginForm = () => {
 		}))
 	}
 
-
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
-			console.log(loginData)
+			// console.log(loginData)
 
 			const session = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
-			console.log(session)
-
-			// localStorage.setItem('authToken', session.data.token)
-			localStorage.setItem('user', JSON.stringify(session.data.user))
+			// console.log(session.data)
+			setUser(session.data.userData)
+			setToken(session.data.token)
+			localStorage.setItem('authToken', session.data.token)
+			localStorage.setItem('user', JSON.stringify(session.data.userData))
 			setShowToast(true)
 			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
@@ -102,7 +105,7 @@ export const LoginForm = () => {
 							required
 						/>
 					</div>
-					<div className='flex items-start mb-5'>
+					{/* <div className='flex items-start mb-5'>
 						<div className='flex items-center h-5'>
 							<label htmlFor='remember'></label>
 							<input id='remember' type='checkbox' value='' className='w-4 h-4 border border-silver rounded bg-silver focus:ring-3 focus:ring-yaleblue' required />
@@ -110,7 +113,7 @@ export const LoginForm = () => {
 						<label id='remember' className='ms-2 text-sm font-normal text-ghostwhite'>
 							Remember me
 						</label>
-					</div>
+					</div> */}
 					<button
 						type='submit'
 						className='text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'

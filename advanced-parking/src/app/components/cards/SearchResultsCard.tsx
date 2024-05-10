@@ -13,8 +13,10 @@ const SearchResultsCard = ({ cardProps }: { cardProps: IcardProps }) => {
 	return (
 		<Link href={`/ourparkings/${cardProps.name}`}>
 			<div className='border-2 rounded-3xl h-60 flex flex-col shadow-x text-center p-2 items-center justify-around shadow-lg'>
-				<p className='font-bold text-2xl'>Parking {cardProps.name}</p>
-				<p>Address: <span className='italic'>{cardProps.location}</span></p>
+				<p className='font-bold text-2xl'> {cardProps.name}</p>
+				<p>
+					Address: <span className='italic'>{cardProps.location}</span>
+				</p>
 				<p className={`${color}`}>Available slots:{cardProps.slots_stock}</p>
 				{cardProps.slots_stock === 0 && <p className='text-red-500 font-medium'>Parking Lot Full</p>}
 			</div>

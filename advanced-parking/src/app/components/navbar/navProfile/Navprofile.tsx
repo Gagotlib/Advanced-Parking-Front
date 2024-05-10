@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
+import { useAuth } from '@/app/context/AuthContext'
 
 function Navprofile() {
 	const router = useRouter()
@@ -30,15 +31,23 @@ function Navprofile() {
 		role: ''
 	}
 	// const user = admin
-	const [user, setUser] = useState(usernull)
+	// const [user, setUser] = useState(usernull)
 	// const userToken = typeof window !== 'undefined' ? localStorage.getItem('user') : null
-	useEffect(() => {
-		const userString = localStorage.getItem('user')
-		const user = userString ? JSON.parse(userString) : null
-		setUser(user)
-	}, [])
+	// useEffect(() => {
+	// 	const userString = localStorage.getItem('user')
+	// 	const logedUser = userString ? JSON.parse(userString) : null
+	// 	console.log('ppppppppp' + logedUser)
 
+	// 	setUser(logedUser)
+	// }, [user])
 	// const userId = user.id --> puedo usar esto para crear ruta dinamica de /profile/${userId}
+	const { token, setToken } = useAuth()
+	const { user, setUser } = useAuth()
+
+	useEffect(() => {
+		// console.log('renderizado de navbar', user)
+		// console.log('renderizado', token)
+	}, [user, token])
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen)
@@ -48,12 +57,12 @@ function Navprofile() {
 		// que borre todos los datos del user
 		if (typeof window !== 'undefined') {
 			localStorage.removeItem('authToken')
-
 			localStorage.removeItem('user')
+			setToken(null)
+			setUser(null)
 		}
-		// redirigir a home
-		// redirect('/')
-		router.push('/home')
+
+		router.push('/')
 	}
 
 	return (

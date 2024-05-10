@@ -37,14 +37,14 @@ export const RegisterForm = () => {
 		name: '',
 		email: '',
 		password: '',
-		address: '',
+		confirmPassword: '',
 		phone: ''
 	})
 	const [errors, setErrors] = useState<IErrors>({
 		name: '',
 		email: '',
 		password: '',
-		address: '',
+		confirmPassword: '',
 		phone: ''
 	})
 
@@ -61,15 +61,17 @@ export const RegisterForm = () => {
 		}))
 	}
 
-
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		try {
+		console.log('mandado')
+		console.log(registerData)
 
-			const response = await axios.post('/ http://localhost:3001/auth/signup', registerData) //!deberia funcionar
-			console.log(response)
+		try {
+			const response = await axios.post('http://localhost:3001/auth/signup', registerData) //!deberia funcionar
+			console.log(response.data)
 
 			setShowToast(true)
+			// throw Error("error forzado")
 		} catch (error: Error | any) {
 			console.error('Error al Registrarse:', error?.response?.data.message)
 			setErrorToast(true)
@@ -158,18 +160,21 @@ export const RegisterForm = () => {
 								<input
 									className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
 									id='c_password'
+									name='confirmPassword'
 									type='password'
 									placeholder='*********'
+									value={registerData.confirmPassword}
+									onChange={handleChange}
 								/>
 							</div>
 						</div>
 						<div className='mb-6 text-center'>
 							{Object.values(errors).some((error) => error) ? (
-								<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline' type='button' disabled>
+								<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline' type='submit' disabled>
 									Register Account
 								</button>
 							) : (
-								<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline' type='button'>
+								<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline' type='submit'>
 									Register Account
 								</button>
 							)}
