@@ -31,7 +31,6 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		if (showToast) {
 			const timeout = setTimeout(() => {
 				setShowToast(false)
-				router.push('/')
 			}, 3000)
 			return () => clearTimeout(timeout)
 		}
@@ -84,7 +83,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			const response = await axios.post('http://localhost:3001/appointments', formData)
 			console.log(response)
 
-			// getAppointmentsByUserId(userId, dispatch) // servicio get para traer las reservas
+			//! enviar la response a algun lado para mostrarla
 
 			// Limpiar el formulario
 			setFormData({
@@ -97,6 +96,10 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				is_parked: false
 			})
 			setShowToast(true)
+			const timeout = setTimeout(() => {
+				setShowToast(false)
+				router.push(`/myappointments/${response.data.id}`)
+			}, 3000)
 		} catch (error) {
 			console.log(error)
 			setErrorToast(true)
