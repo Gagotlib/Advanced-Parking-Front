@@ -3,6 +3,7 @@
 import Toast from '@/app/components/alerts/Toast'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { SendButton } from '../buttons/Buttons'
 
 
 function ContactForm() {
@@ -80,11 +81,7 @@ function ContactForm() {
               placeholder="Leave a comment..."
             ></textarea>
           </div>
-          <button
-            type="submit"
-            className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none">
-            Send message
-          </button>
+          <SendButton />
         </form>
       </div>
     </section>

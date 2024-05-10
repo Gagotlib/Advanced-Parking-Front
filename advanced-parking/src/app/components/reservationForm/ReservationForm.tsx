@@ -4,6 +4,8 @@ import { ParkingsMocks } from '@/app/utils/parkingsMock'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { ReserveButton } from '../buttons/Buttons'
+import Image from 'next/image'
 
 export const ReservationForm = () => {
 	const user = { id: 1 } //hardcodeado
@@ -76,7 +78,7 @@ export const ReservationForm = () => {
 			// await postNewAppointment(formData) // servicio post para mandar la reserva a la BD
 			const response = await axios.post('http://localhost:3001/appointments', formData)
 			console.log(response);
-			
+
 			// getAppointmentsByUserId(userId, dispatch) // servicio get para traer las reservas
 
 			// Limpiar el formulario
@@ -96,10 +98,10 @@ export const ReservationForm = () => {
 
 	return (
 		<div>
-			<h1>Solicitar una Reserva</h1>
-			<form className='flex flex-wrap flex-col justify-center items-center gap-4 m-4 text-center border-2 border-lightgray rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
-				<div className=''>
-					<label htmlFor='date'>Seleccione una fecha: </label>
+			<h1 className='font-medium text-4xl lg:text-6xl' > Booking</h1>
+			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 m-4 text-center border-2 border-lightgray rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
+				<div className='' >
+					<label htmlFor='date'>Date:</label>
 					<input
 						type='date'
 						name='date'
@@ -116,8 +118,15 @@ export const ReservationForm = () => {
 					{/* {errors.date && <p className='text-red-500'>{errors.date}</p>} */}
 				</div>
 				<div className=''>
-					<label htmlFor='time'>Hora: </label>
-					<select id='time' name='time' value={formData.time} onChange={handleInputChange} required>
+					<label htmlFor='time'>Time: </label>
+					<select
+						id='time'
+						name='time'
+						className='z-10'
+						size={5}
+						value={formData.time}
+						onChange={handleInputChange}
+						required>
 						{availableHours.map((hour) => (
 							<option key={hour} value={hour}>
 								{hour}
@@ -125,19 +134,21 @@ export const ReservationForm = () => {
 						))}
 					</select>
 				</div>
+				{/* <p className='text-2xl mt-4'>Available slots: {parking?.slots_stock}</p> Validar con el back*/}
 				<div className=''>
-					<label htmlFor='license_plate'>Licencia :</label>
-					<input id='license_plate' name='license_plate' value={formData.license_plate} onChange={handleInputChange} required>
+					<label htmlFor='license_plate'>License plate:</label>
+					<input
+						id='license_plate'
+						name='license_plate'
+						value={formData.license_plate}
+						className='block w-full p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite focus:ring-blue-500 focus:border-blue-500 text-center'
+						onChange={handleInputChange}
+						required
+					>
 					</input>
 				</div>
-
-				<button
-					className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
-					type='submit'
-				>
-					Solicitar
-				</button>
 			</form>
+			<ReserveButton />
 		</div>
 	)
 }

@@ -22,7 +22,7 @@ export const HomeCard = ({ cardProps }: { cardProps: IcardProp }) => {
 						className='shadow-xl object-cover rounded-3xl h-full  filter-none lg:filter grayscale brightness-50 blur-[2px] '
 					/>
 					<div className='absolute lg:flex-col lg:flex-1 lg:relative lg:text-black text-white text-center '>
-						<p className='text-3xl'>{cardProps.text}</p>
+						<p className='text-4xl font-medium'>{cardProps.text}</p>
 					</div>
 				</div>
 			</Link>

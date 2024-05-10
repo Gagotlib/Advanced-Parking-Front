@@ -66,7 +66,7 @@ export const LoginForm = () => {
 
 	return (
 		<div className='h-screen bg-erieblack'>
-			<div className=' w-full h-full flex flex-col items-center pt-24'>
+			<div className='w-full h-full flex flex-col items-center pt-24'>
 				{showToast && <Toast message='Login successful' type='success' />}
 				{errorToast && <Toast message='Username or password are incorrect' type='error' />}
 				<h1 className='title text-2xl text-ghostwhite uppercase font-medium mb-1'>Login</h1>

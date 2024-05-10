@@ -10,14 +10,14 @@ function Navprofile() {
 	//! hardcodeo de unos users para pruebas
 	const user1 = {
 		id: 1,
-		name: 'roberto',
+		name: 'Roberto',
 		email: 'roberto@mail.com',
 		phone: '123456789',
 		role: 'user'
 	}
 	const admin = {
 		id: 1,
-		name: 'admin',
+		name: 'Admin',
 		email: 'admin@mail.com',
 		phone: '123456789',
 		role: 'admin'
