@@ -61,13 +61,11 @@ export const RegisterForm = () => {
 		}))
 	}
 
-	// const ruta = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
-			console.log(registerData)
-			// await axios.post(`${ruta}/users/register`, registerData)
+
 			const response = await axios.post('/ http://localhost:3001/auth/signup', registerData) //!deberia funcionar
 			console.log(response)
 

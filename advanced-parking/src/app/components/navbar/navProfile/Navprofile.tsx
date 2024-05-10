@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
 
 function Navprofile() {
@@ -22,7 +22,23 @@ function Navprofile() {
 		phone: '123456789',
 		role: 'admin'
 	}
-	const user = admin
+	const usernull = {
+		id: 0,
+		name: '',
+		email: '',
+		phone: '',
+		role: ''
+	}
+	// const user = admin
+	const [user, setUser] = useState(usernull)
+	// const userToken = typeof window !== 'undefined' ? localStorage.getItem('user') : null
+	useEffect(() => {
+		const userString = localStorage.getItem('user')
+		const user = userString ? JSON.parse(userString) : null
+		setUser(user)
+	}, [])
+
+	// const userId = user.id --> puedo usar esto para crear ruta dinamica de /profile/${userId}
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen)
@@ -30,8 +46,13 @@ function Navprofile() {
 	const handleLogOut = async () => {
 		console.log('TE DESLOGEASTE')
 		// que borre todos los datos del user
+		if (typeof window !== 'undefined') {
+			localStorage.removeItem('authToken')
 
+			localStorage.removeItem('user')
+		}
 		// redirigir a home
+		// redirect('/')
 		router.push('/home')
 	}
 
@@ -62,7 +83,7 @@ function Navprofile() {
 					<ul className='py-2' aria-labelledby='dropdownInformationButton'>
 						{user.role === 'admin' && (
 							<li>
-								<Link href='/dashboard' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
+								<Link href='/dashboard' onClick={toggleMenu} className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
 									Dashboard
 								</Link>
 							</li>
@@ -70,12 +91,12 @@ function Navprofile() {
 						{user.role === 'user' && (
 							<>
 								<li>
-									<Link href='#' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
+									<Link href='#' onClick={toggleMenu} className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
 										My Bookings
 									</Link>
 								</li>
 								<li>
-									<Link href='/profile' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
+									<Link href='/profile' onClick={toggleMenu} className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
 										My Profile
 									</Link>
 								</li>
@@ -91,12 +112,12 @@ function Navprofile() {
 				) : (
 					<ul className='py-2' aria-labelledby='dropdownInformationButton'>
 						<li>
-							<Link href='/login' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
+							<Link onClick={toggleMenu} href='/login' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
 								Sign in
 							</Link>
 						</li>
 						<li>
-							<Link href='/register' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
+							<Link onClick={toggleMenu} href='/register' className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
 								Register
 							</Link>
 						</li>

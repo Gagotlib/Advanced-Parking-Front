@@ -43,7 +43,7 @@ export const LoginForm = () => {
 			[name]: value
 		}))
 	}
-	// const ruta = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -54,7 +54,7 @@ export const LoginForm = () => {
 			console.log(session)
 
 			// localStorage.setItem('authToken', session.data.token)
-			// localStorage.setItem('user', JSON.stringify(session.data.user))
+			localStorage.setItem('user', JSON.stringify(session.data.user))
 			setShowToast(true)
 			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
@@ -98,6 +98,7 @@ export const LoginForm = () => {
 							className='bg-ghostwhite border border-ghostwhite text-erieblack text-sm rounded-lg focus:ring-yaleblue focus:border-yaleblue block w-full p-2.5'
 							value={loginData.password}
 							onChange={handleChange}
+							placeholder='************'
 							required
 						/>
 					</div>

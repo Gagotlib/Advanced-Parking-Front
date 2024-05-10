@@ -26,6 +26,9 @@ const Profile = () => {
 	}
 	const allUsers = [user1, user2, admin]
 	const user = user1
+
+		// const userString = localStorage.getItem('user')
+		// const user = userString ? JSON.parse(userString) : null
 	return (
 		<div className='h-screen  px-10'>
 			<div className='h-3/4 w-full flex flex-col pt-24 gap-4 items-center'>

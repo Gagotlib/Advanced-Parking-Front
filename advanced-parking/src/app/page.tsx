@@ -13,9 +13,9 @@ export default function Landing() {
 					width={400}
 					height={400}
 				/>
-				<div className='flex flex-col items-center gap-4 text-pretty'>
+				<div className='flex flex-col items-center gap-4 text-pretty text-center '>
 					<h1
-						className='text-ghostwhite text-3xl font-bold'>
+						className='text-ghostwhite text-3xl font-bold '>
 						Welcome to your preferred parking!
 						<br />
 						Your space awaits you.
