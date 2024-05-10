@@ -49,7 +49,7 @@ function Navlinks() {
             </Link>
           </li>
           <li>
-            <Link href='#' className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue  md:p-0'>
+            <Link href='/ourparkings' className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue  md:p-0'>
               Services
             </Link>
           </li>

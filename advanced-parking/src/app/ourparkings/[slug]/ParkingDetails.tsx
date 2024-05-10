@@ -15,26 +15,30 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 
 	return (
 		<div className='flex flex-col min-h-screen pt-24'>
-			<div className='flex flex-col p-4 m-0 items-center justify-start gap-4 text-center'>
-				<h1>{parking?.name}</h1>
-				<p>Dirección: {parking?.location}</p>
-				<p>Lugares disponibles: {parking?.slots_stock}</p>
-				<p>id: {parking?.id}</p>
-				<ul>
-					<li className='flex gap-2 items-center'>
-						<CheckIcon />
-						<p>Lugar asegurado</p>
-					</li>
-					<li className='flex gap-2 items-center'>
-						<CheckIcon />
-						<p>Seguridad las 24hs</p>
-					</li>
-					<li className='flex gap-2 items-center'>
-						<CheckIcon />
-						<p>Ingreso y Salida automatizada</p>
-					</li>
-				</ul>
-				<ReservationForm />
+			<div className='flex flex-col lg:flex lg:flex-row lg:items-start lg:justify-center lg:gap-40 p-4 m-0 items-center justify-start gap-4 text-center'>
+				<div>
+					<h1 className='font-medium text-4xl lg:text-6xl'>{parking?.name}</h1>
+					<p className='text-2xl'>Address: <span className='italic'>{parking?.location}</span> </p>
+					<ul className='pt-10'>
+						<li className='flex gap-2 items-center mb-4'>
+							<CheckIcon />
+							<p>100% insured parking in the reservation</p>
+						</li>
+						<li className='flex gap-2 items-center mb-4'>
+							<CheckIcon />
+							<p>Security 24hr</p>
+						</li>
+						<li className='flex gap-2 items-center mb-4'>
+							<CheckIcon />
+							<p>Automated check-in and check-out</p>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<ReservationForm />
+				</div>
+			</div>
+			<div className='flex justify-center mb-4'>
 				<BackToOurParkingsButton />
 			</div>
 		</div>
