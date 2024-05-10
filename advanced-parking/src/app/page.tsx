@@ -16,7 +16,7 @@ export default function Landing() {
 
 				<div className='flex flex-col items-center gap-4 text-pretty text-center '>
 					<h1
-						className='text-ghostwhite text-3xl font-bold '>
+						className='text-erieblack text-3xl font-bold '>
 						Welcome to your preferred parking!
 						<br />
 						Your space awaits you.

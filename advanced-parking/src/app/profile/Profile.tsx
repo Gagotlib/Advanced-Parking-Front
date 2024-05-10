@@ -1,34 +1,46 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Profile = () => {
 	//! si tuviera un servicio que me trae a un usuario por su id, podria traerme el id del params, y usarlo para traer la info del back en vez del local storage
-	const user1 = {
-		id: 1,
-		name: 'Roberto',
-		email: 'roberto@mail.com',
-		phone: '123456789',
-		role: 'user'
+	// const user1 = {
+	// 	id: 1,
+	// 	name: 'Roberto',
+	// 	email: 'roberto@mail.com',
+	// 	phone: '123456789',
+	// 	role: 'user'
+	// }
+	// const user2 = {
+	// 	id: 2,
+	// 	name: 'Jorge',
+	// 	email: 'jorge@mail.com',
+	// 	phone: '123456789',
+	// 	role: 'user'
+	// }
+	// const admin = {
+	// 	id: 1111,
+	// 	name: 'administrador',
+	// 	email: 'admin@mail.com',
+	// 	phone: '123456789',
+	// 	role: 'admin'
+	// }
+	// const allUsers = [user1, user2, admin]
+	const usernull = {
+		name: '',
+		email: '',
+		phone: '',
+		role: ''
 	}
-	const user2 = {
-		id: 2,
-		name: 'Jorge',
-		email: 'jorge@mail.com',
-		phone: '123456789',
-		role: 'user'
-	}
-	const admin = {
-		id: 1111,
-		name: 'administrador',
-		email: 'admin@mail.com',
-		phone: '123456789',
-		role: 'admin'
-	}
-	const allUsers = [user1, user2, admin]
-	const user = user1
+	const [user, setUser] = useState(usernull)
+	useEffect(() => {
+		const userString = localStorage.getItem('user')
+		const logedUser = userString ? JSON.parse(userString) : null
+		setUser(logedUser)
+	}, [])
 
-		// const userString = localStorage.getItem('user')
-		// const user = userString ? JSON.parse(userString) : null
+	// const userString = localStorage.getItem('user')
+	// const user = userString ? JSON.parse(userString) : null
 	return (
 		<div className='h-screen  px-10'>
 			<div className='h-3/4 w-full flex flex-col pt-24 gap-4 items-center'>

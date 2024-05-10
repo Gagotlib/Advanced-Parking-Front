@@ -1,24 +1,29 @@
+'use client'
 import { BackToOurParkingsButton, HireButton } from '@/app/components/buttons/Buttons'
 import { CheckIcon } from '@/app/components/icons/icons'
 import ReservationForm from '@/app/components/reservationForm/ReservationForm'
-import { ParkingsMocks } from '@/app/utils/parkingsMock'
-import React from 'react'
+import { Loading } from '@/app/components/suspense/Loading'
+import { useAuth } from '@/app/context/AuthContext'
+import { IParking } from '@/types'
+import React, { Suspense, useEffect, useState } from 'react'
 
 const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 	const formattedSlug = params.slug.replace(/%20/g, ' ')
+	const { allParkings, setAllParkings } = useAuth()
+	const foundParking = allParkings?.find((parking) => parking.name === formattedSlug)
 
-	//!peticion para qe me traiga segun el id
-	const parking = ParkingsMocks.find((parking) => parking.name === formattedSlug)
-	// console.log(formattedSlug)
+	// const [parking, setParking] = useState<IParking | undefined>(foundParking)
 
-	// peticion AL BACK EN BASE AL ID
+	console.log('los parkings', allParkings)
 
 	return (
 		<div className='flex flex-col min-h-screen pt-24'>
 			<div className='flex flex-col lg:flex lg:flex-row lg:items-start lg:justify-center lg:gap-40 p-4 m-0 items-center justify-start gap-4 text-center'>
 				<div>
-					<h1 className='font-medium text-4xl lg:text-6xl'>{parking?.name}</h1>
-					<p className='text-2xl'>Address: <span className='italic'>{parking?.location}</span> </p>
+					<h1 className='font-medium text-4xl lg:text-6xl'>{foundParking?.name}</h1>
+					<p className='text-2xl'>
+						Address: <span className='italic'>{foundParking?.location}</span>{' '}
+					</p>
 					<ul className='pt-10'>
 						<li className='flex gap-2 items-center mb-4'>
 							<CheckIcon />
@@ -35,7 +40,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 					</ul>
 				</div>
 				<div>
-					<ReservationForm />
+					<ReservationForm parking={foundParking} />
 				</div>
 			</div>
 			<div className='flex justify-center mb-4'>
