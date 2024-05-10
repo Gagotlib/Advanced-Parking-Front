@@ -44,26 +44,3 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 }
 export const useAuth = () => useContext(AuthContext)
 
-// import { IUser } from '@/types'
-// import React, { createContext, useState, useContext } from 'react'
-
-// interface UserMenuContextProps  {
-//   user: Partial<IUser> ;
-//   toggleUserMenu: () => void;
-// }
-
-// createContext<UserMenuContextProps | undefined>(undefined);
-
-// export const UserMenuProvider = ({ children }: { children: React.ReactNode }) => {}
-// 	const [user, setUser] = useState({})
-
-// 	const toggleUserMenu = () => {
-// 		setUser((prevState) => )
-// 	}
-
-// 	return <AuthContext.Provider value={{ isUserMenuOpen, toggleUserMenu }}>{children}</AuthContext.Provider>
-// }
-
-// export const useUserMenu = () => {
-// 	return useContext(UserMenuContext)
-// }
