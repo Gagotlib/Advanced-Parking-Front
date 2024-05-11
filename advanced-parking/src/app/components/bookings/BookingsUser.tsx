@@ -2,7 +2,7 @@ import React from 'react'
 
 function BookingsUser() {
 
-  // Traer la informacion del back segun la interfaces de reservas y luego mapearla en los scopes necesarios 
+  // Traer la informacion del back segun la interfaces de reservas y luego mapearla en los scope necesarios 
 
   return (
     <div className='flex flex-col'>

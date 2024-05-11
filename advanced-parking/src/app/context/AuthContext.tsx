@@ -1,4 +1,5 @@
 'use client'
+
 import { ILogedUser, IParking } from '@/types'
 import { createContext, useContext, useState, useEffect } from 'react'
 
@@ -12,11 +13,11 @@ interface AuthContextProps {
 }
 const AuthContext = createContext<AuthContextProps>({
 	token: null,
-	setToken: () => {},
+	setToken: () => { },
 	user: null,
-	setUser: () => {},
+	setUser: () => { },
 	allParkings: null,
-	setAllParkings: () => {}
+	setAllParkings: () => { }
 })
 interface AuthProviderProps {
 	children: React.ReactNode
