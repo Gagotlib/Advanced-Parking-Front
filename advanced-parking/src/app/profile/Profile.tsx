@@ -21,9 +21,6 @@ const Profile = () => {
 		setUser(logedUser)
 	}, [])
 
-	const getInitials = (name: string) => {
-		return name.split(' ').map((n) => n[0]).join('');
-	};
 
 	// Se supone que esta es para que con un nombre compouesto solo saque la primera letra de cada palabra pero no me funciona
 	// const getInitials = (name: string) => {
@@ -52,18 +49,19 @@ const Profile = () => {
 						<div className="flex mt-8 gap-5 sm:gap-10">
 							<div className="flex flex-col gap-3 items-center space-y-5 sm:space-y-0">
 								<Avatar
-									name={getInitials(user?.name || '')}
+									name={user.name}
 									size="150"
 									round
 									color="#1C1C1C"
+									maxInitials={2}
 								/>
 								<div className="flex flex-col space-y-5 sm:ml-2">
 									<button type="button"
-										className="py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
+										className="py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50">
 										Change picture
 									</button>
 									<button type="button"
-										className="py-2 px-2 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-silver hover:bg-yaleblue/90 hover:text-ghostwhite focus:z-10 focus:ring-4 focus:ring-indigo-200">
+										className="py-2 px-2 text-base font-medium text-yaleblue focus:outline-none bg-white rounded-lg border border-silver hover:bg-yaleblue/90 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50">
 										Delete picture
 									</button>
 								</div>

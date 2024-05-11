@@ -1,5 +1,5 @@
 'use client'
-import Image from 'next/image'
+
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
@@ -46,10 +46,6 @@ function Navprofile() {
 		router.push('/')
 	}
 
-	const getInitials = (name: string) => {
-		return name.split(' ').map((n) => n[0]).join('');
-	};
-
 	return (
 		<div className='flex items-center md:order-2 relative'>
 			<button
@@ -63,12 +59,13 @@ function Navprofile() {
 			>
 				<span className='sr-only'>Open user menu</span>
 				{user ? (
-					user.role === 'user' || 'admin' && (
+					user.role === 'user', 'admin' && (
 						<Avatar
-							name={getInitials(user?.name || '')}
+							name={user.name}
 							size="40"
 							round
 							color="#063971"
+							maxInitials={2}
 						/>
 					)) : (
 					<Avatar
