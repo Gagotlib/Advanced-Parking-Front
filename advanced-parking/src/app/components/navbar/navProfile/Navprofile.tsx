@@ -4,32 +4,13 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
 import { useAuth } from '@/app/context/AuthContext'
+import Avatar from 'react-avatar'
+
 
 function Navprofile() {
 	const router = useRouter()
 	const [menuOpen, setMenuOpen] = useState(false)
-	//! hardcodeo de unos users para pruebas
-	const user1 = {
-		id: 1,
-		name: 'Roberto',
-		email: 'roberto@mail.com',
-		phone: '123456789',
-		role: 'user'
-	}
-	const admin = {
-		id: 1,
-		name: 'Admin',
-		email: 'admin@mail.com',
-		phone: '123456789',
-		role: 'admin'
-	}
-	const usernull = {
-		id: 0,
-		name: '',
-		email: '',
-		phone: '',
-		role: ''
-	}
+
 	// const user = admin
 	// const [user, setUser] = useState(usernull)
 	// const userToken = typeof window !== 'undefined' ? localStorage.getItem('user') : null
@@ -65,6 +46,10 @@ function Navprofile() {
 		router.push('/')
 	}
 
+	const getInitials = (name: string) => {
+		return name.split(' ').map((n) => n[0]).join('');
+	};
+
 	return (
 		<div className='flex items-center md:order-2 relative'>
 			<button
@@ -77,7 +62,21 @@ function Navprofile() {
 				data-dropdown-placement='bottom'
 			>
 				<span className='sr-only'>Open user menu</span>
-				<Image className='w-8 h-8 rounded-full' src='/advanced_parking.jpg' alt='user photo' width={300} height={300} />
+				{user ? (
+					user.role === 'user' || 'admin' && (
+						<Avatar
+							name={getInitials(user?.name || '')}
+							size="40"
+							round
+							color="#063971"
+						/>
+					)) : (
+					<Avatar
+						size="38"
+						round
+						src='/profile-picture-blank.webp'
+					/>
+				)}
 			</button>
 
 			<div className={`z-50 ${menuOpen ? '' : 'hidden'} my-4 text-base list-none bg-ghostwhite divide-y divide-silver rounded-lg shadow fixed top-12 right-0 md:right-10`} id='dropdownInformation'>

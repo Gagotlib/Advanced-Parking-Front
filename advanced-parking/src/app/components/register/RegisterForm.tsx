@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export const RegisterForm = () => {
+
 	const router = useRouter()
 	const [showToast, setShowToast] = useState(false)
 	const [errorToast, setErrorToast] = useState(false)
@@ -24,6 +25,7 @@ export const RegisterForm = () => {
 			return () => clearTimeout(timeout)
 		}
 	}, [showToast, errorToast])
+
 	useEffect(() => {
 		if (showToast) {
 			const timeout = setTimeout(() => {
@@ -41,6 +43,7 @@ export const RegisterForm = () => {
 		confirmPassword: '',
 		phone: ''
 	})
+
 	const [errors, setErrors] = useState<IErrors>({
 		name: '',
 		email: '',
@@ -79,117 +82,142 @@ export const RegisterForm = () => {
 			setErrorMessage(error?.response?.data.message || 'An unexpected error occurred')
 		}
 	}
+
 	return (
-		<div className='h-screen bg-erieblack'>
-			<div className=' w-full h-full flex flex-col items-center pt-24'>
+		<div className='h-screen bg-ghostwhite'>
+			<div className='w-full h-full flex flex-col items-center pt-20'>
 				{showToast && <Toast message='Registered correctly' type='success' />}
 				{errorToast && <Toast message={errorMessage} type='error' />}
 				<div className='w-full lg:w-7/12 p-5 rounded-lg lg:rounded-l-none'>
-					<h3 className='py-4 text-2xl text-center text-ghostwhite'>Create an Account!</h3>
-					<form className='px-8 pt-6 pb-8 mb-4rounded' onSubmit={handleSubmit}>
-						<div className='mb-4 md:flex md:justify-between'>
-							<div className='mb-4 md:mr-2 md:mb-0'>
-								<label className='block mb-2 text-sm font-bold text-ghostwhite' id='name'>
-									First Name
+					<h3 className='py-2 text-2xl text-center font-extrabold text-erieblack sm:text-5xl'>
+						Create an Account!
+					</h3>
+					<div className='border-silver rounded-lg p-4 m-2 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40'>
+						<form
+							className='px-8 pb-8 mb-4 rounded sm:pt-6'
+							onSubmit={handleSubmit}>
+							<div className='mb-4 md:flex md:justify-between'>
+								<div className='mb-4 md:mr-2 md:mb-0'>
+									<label
+										id='name'
+										className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'
+									>
+										First Name
+									</label>
+									<input
+										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										id='name'
+										name='name'
+										type='text'
+										placeholder='First Name'
+										required
+										value={registerData.name}
+										onChange={handleChange}
+									/>
+									{errors.name && <p className='text-red-500'>{errors.name}</p>}
+								</div>
+								<div className='md:ml-2'>
+									<label
+										id='phone'
+										className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'
+									>
+										Phone Number
+									</label>
+									<input
+										className='w-full px-3 py-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										id='phone'
+										name='phone'
+										type='text'
+										placeholder='Phone number'
+										required
+										value={registerData.phone}
+										onChange={handleChange}
+									/>
+									{errors.phone && <p className='text-red-500'>{errors.phone}</p>}
+								</div>
+							</div>
+							<div className='mb-4'>
+								<label
+									id='email'
+									className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'
+								>
+									Email
 								</label>
 								<input
-									className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-									id='name'
-									name='name'
-									type='text'
-									placeholder='First Name'
+									className='w-full px-3 py-2 mb-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+									id='email'
+									name='email'
+									type='mail'
+									placeholder='Email'
 									required
-									value={registerData.name}
+									value={registerData.email}
 									onChange={handleChange}
 								/>
-								{errors.name && <p className='text-red-500'>{errors.name}</p>}
+								{errors.email && <p className='text-red-500'>{errors.email}</p>}
 							</div>
-							<div className='md:ml-2'>
-								<label className='block mb-2 text-sm font-bold text-ghostwhite' id='phone'>
-									Phone Number
-								</label>
-								<input
-									className='w-full px-3 py-2 text-sm leading-tight text-erieblack border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-									id='phone'
-									name='phone'
-									type='text'
-									placeholder='Phone number'
-									required
-									value={registerData.phone}
-									onChange={handleChange}
-								/>
-								{errors.phone && <p className='text-red-500'>{errors.phone}</p>}
+							<div className='mb-2 md:flex md:justify-between'>
+								<div className='mb-2 md:mr-2 md:mb-0'>
+									<label
+										id='password'
+										className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'
+									>
+										Password
+									</label>
+									<input
+										className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										id='password'
+										name='password'
+										type='password'
+										placeholder='*********'
+										required
+										value={registerData.password}
+										onChange={handleChange}
+									/>
+									{errors.password && <p className='text-red-500'>{errors.password}</p>}
+								</div>
+								<div className='md:ml-2'>
+									<label
+										id='c_password'
+										className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'
+									>
+										Confirm Password
+									</label>
+									<input
+										className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										id='c_password'
+										name='confirmPassword'
+										type='password'
+										placeholder='*********'
+										value={registerData.confirmPassword}
+										onChange={handleChange}
+									/>
+								</div>
 							</div>
-						</div>
-						<div className='mb-4'>
-							<label className='block mb-2 text-sm font-bold text-ghostwhite' id='email'>
-								Email
-							</label>
-							<input
-								className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-								id='email'
-								name='email'
-								type='mail'
-								placeholder='Email'
-								required
-								value={registerData.email}
-								onChange={handleChange}
-							/>
-							{errors.email && <p className='text-red-500'>{errors.email}</p>}
-						</div>
-						<div className='mb-4 md:flex md:justify-between'>
-							<div className='mb-4 md:mr-2 md:mb-0'>
-								<label className='block mb-2 text-sm font-bold text-ghostwhite' id='password'>
-									Password
-								</label>
-								<input
-									className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-									id='password'
-									name='password'
-									type='password'
-									placeholder='*********'
-									required
-									value={registerData.password}
-									onChange={handleChange}
-								/>
-								{errors.password && <p className='text-red-500'>{errors.password}</p>}
+							<div className='mb-6 text-center'>
+								{Object.values(errors).some((error) => error) ? (
+									<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-yaleblue/80 focus:outline-none focus:shadow-outline' type='submit' disabled>
+										Register Account
+									</button>
+								) : (
+									<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-yaleblue/80 focus:outline-none focus:shadow-outline' type='submit'>
+										Register Account
+									</button>
+								)}
 							</div>
-							<div className='md:ml-2'>
-								<label className='block mb-2 text-sm font-bold text-ghostwhite' id='c_password'>
-									Confirm Password
-								</label>
-								<input
-									className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-									id='c_password'
-									name='confirmPassword'
-									type='password'
-									placeholder='*********'
-									value={registerData.confirmPassword}
-									onChange={handleChange}
-								/>
+							<hr className='border-t' />
+							<div className='text-center'>
+								<p className='text-erieblack text-sm '>
+									Already have an account?
+									<Link
+										href='/login'
+										className='inline-block text-sm text-erieblack align-baseline hover:text-yaleblue/80 underline'
+									>
+										Login!
+									</Link>
+								</p>
 							</div>
-						</div>
-						<div className='mb-6 text-center'>
-							{Object.values(errors).some((error) => error) ? (
-								<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline' type='submit' disabled>
-									Register Account
-								</button>
-							) : (
-								<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline' type='submit'>
-									Register Account
-								</button>
-							)}
-						</div>
-						<hr className='mb-6 border-t' />
-						<div className='text-center'>
-							<p className='text-ghostwhite text-sm '>
-								Already have an account?
-								<Link className='inline-block text-sm text-ghostwhite align-baseline hover:text-blue-800 underline' href='/login'>
-									Login!
-								</Link>
-							</p>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
