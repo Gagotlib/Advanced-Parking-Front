@@ -42,7 +42,9 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 						</li>
 					</ul>
 				</div>
-				<div>{parking ? <ReservationForm parking={parking} /> : null}</div>
+				<div className='w-1/2'>
+					<Suspense fallback={<Loading />}>{parking ? <ReservationForm parking={parking} /> : <Loading />}</Suspense>
+				</div>
 			</div>
 			<div className='flex justify-center mb-4'>
 				<BackToOurParkingsButton />

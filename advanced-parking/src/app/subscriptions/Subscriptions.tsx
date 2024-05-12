@@ -13,6 +13,7 @@ export const Subscriptions = () => {
 						<SubscriptionsCard key={subscription.name} subscription={subscription} />
 					))}
 				</div>
+				<br />
 				<BackToHomeButton />
 			</div>
 		</div>
