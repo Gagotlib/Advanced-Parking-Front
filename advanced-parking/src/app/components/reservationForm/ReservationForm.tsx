@@ -131,13 +131,14 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				</div>
 				<div className=''>
 					<label htmlFor='time'>Time: </label>
-					<select id='time' name='time' className='z-10' size={5} value={formData.time} onChange={handleInputChange} required>
+					<input type='time' name='time' id='time' step={'1800'} value={formData.time} onChange={handleInputChange} required />
+					{/* <select id='time' name='time' className='' value={formData.time} onChange={handleInputChange} required>
 						{availableHours.map((hour) => (
 							<option key={hour} value={hour}>
 								{hour}
 							</option>
 						))}
-					</select>
+					</select> */}
 				</div>
 				{/* <p className='text-2xl mt-4'>Available slots: {parking?.slots_stock}</p> Validar con el back*/}
 				<div className=''>
@@ -151,7 +152,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						required
 					></input>
 				</div>
-				<ReserveButton />
+				{!user ? <p> You must be logged in to book</p> : <ReserveButton />}
 			</form>
 		</div>
 	)

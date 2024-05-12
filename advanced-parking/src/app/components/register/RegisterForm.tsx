@@ -102,14 +102,14 @@ export const RegisterForm = () => {
 										id='name'
 										className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'
 									>
-										First Name
+										Full Name
 									</label>
 									<input
 										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 										id='name'
 										name='name'
 										type='text'
-										placeholder='First Name'
+										placeholder='Full Name'
 										required
 										value={registerData.name}
 										onChange={handleChange}
