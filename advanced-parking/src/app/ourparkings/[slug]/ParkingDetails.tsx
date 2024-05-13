@@ -21,14 +21,17 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 
 	return (
 		<div className='flex flex-col min-h-screen pt-24 items-center'>
-			<div className='flex flex-col lg:flex lg:flex-row lg:items-start lg:justify-center p-4 m-0 items-center justify-start gap-4 text-center'>
+
+			<div className='flex flex-col lg:flex-row  lg:justify-center lg:gap-40 p-4 m-0 items-center justify-start gap-4 text-center'>
+
 				<div className='flex flex-col items-center'>
 					<h1 className='font-medium text-4xl lg:text-6xl'>{parking?.name}</h1>
 					<p className='text-2xl'>
 						Address: <span className='italic'>{parking?.location}</span>{' '}
 					</p>
 
-					<ul className='pt-10 flex flex-col items-center'>
+					<ul className='pt-10 flex flex-col items-center '>
+
 						<li className='flex gap-2 items-center mb-4 w-full justify-start'>
 							<CheckIcon />
 							<p>100% insured parking in the reservation</p>
@@ -44,7 +47,9 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 					</ul>
 
 				</div>
-				<div className='flex flex-col items-center w-10/12 '>
+
+				<div className='w-full lg:w-10/12 flex flex-col items-center'>
+
 					<Suspense fallback={<Loading />}>{parking ? <ReservationForm parking={parking} /> : <Loading />}</Suspense>
 				</div>
 			</div>

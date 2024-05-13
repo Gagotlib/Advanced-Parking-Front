@@ -1,4 +1,5 @@
 export const subscriptionsMock = [
+
   {
     name: "Platinum",
     shortDescription: "Plan Gold + Car Wash",
@@ -27,3 +28,4 @@ export const subscriptionsMock = [
     img_href: "/descriptionimgstandard.jpg",
   },
 ];
+
