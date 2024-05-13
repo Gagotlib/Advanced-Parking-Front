@@ -8,7 +8,7 @@ import { useAuth } from '@/app/context/AuthContext'
 import { IParking } from '@/types'
 import Toast from '../alerts/Toast'
 
-const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
+export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 	const { user } = useAuth()
 	console.log('usuario', user)
 	console.log('el parking', parking)
@@ -158,5 +158,3 @@ const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 		</div>
 	)
 }
-
-export default ReservationForm

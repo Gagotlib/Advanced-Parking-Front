@@ -1,1 +1,1 @@
-export { default } from './ReservationForm'
+export { ReservationForm } from './ReservationForm'
