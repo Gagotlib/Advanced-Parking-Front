@@ -4,6 +4,7 @@ export interface IUser {
 	password: string
 	confirmPassword: string
 	phone: string
+	address: string
 }
 export interface ILogedUser {
 	id: string
