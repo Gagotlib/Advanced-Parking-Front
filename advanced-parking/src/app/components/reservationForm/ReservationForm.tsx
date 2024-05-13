@@ -111,7 +111,9 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			{showToast && <Toast message='Reservation Successfull' type='success' />}
 			{errorToast && <Toast message='Reservation Error' type='error' />}
 			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
-			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-lightgray rounded-xl p-4  w-10/12 text-lg' onSubmit={handleSubmit}>
+
+			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
+
 				<div className=''>
 					<label htmlFor='date'>Date:</label>
 					<input
