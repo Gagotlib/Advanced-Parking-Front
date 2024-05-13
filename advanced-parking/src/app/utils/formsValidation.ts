@@ -23,9 +23,6 @@ export const validateRegister = (userData: IUser) => {
 	if (!userData.phone) {
 		errors.phone = 'The phone number is required'
 	}
-	if (!userData.address) {
-		errors.address = 'Address is required'
-	}
 
 	return errors
 }
