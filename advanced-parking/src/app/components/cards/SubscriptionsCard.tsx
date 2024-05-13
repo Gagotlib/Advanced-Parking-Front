@@ -31,7 +31,7 @@ export const SubscriptionsCard = ({ subscription }: { subscription: ISubscriptio
 					</div>
 					<button
 						className="hidden sm:flex text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-						Ver detalle
+						Details
 					</button>
 				</div>
 			</Link>
