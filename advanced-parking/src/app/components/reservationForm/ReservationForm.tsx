@@ -8,7 +8,7 @@ import { useAuth } from '@/app/context/AuthContext'
 import { IParking } from '@/types'
 import Toast from '../alerts/Toast'
 
-export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
+const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 	const { user } = useAuth()
 	console.log('usuario', user)
 	console.log('el parking', parking)
@@ -113,7 +113,6 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
-
 				<div className=''>
 					<label htmlFor='date'>Date:</label>
 					<input
