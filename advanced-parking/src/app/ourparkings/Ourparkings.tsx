@@ -68,7 +68,7 @@ export const Ourparkings = () => {
 				<div className='flex gap-4'>
 					<button type='button' className=' text-black disabled:opacity-50' disabled={page === 1}>
 						<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth='1.5' stroke='currentColor' className='w-10 h-10' onClick={() => page > 1 && setPage(page - 1)}>
-							<path strokeLinecap='round' stroke-linejoin='round' d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18' />
+							<path strokeLinecap='round' strokeLinejoin='round' d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18' />
 						</svg>
 					</button>
 
@@ -76,7 +76,7 @@ export const Ourparkings = () => {
 
 					<button type='button' className=' text-black disabled:opacity-50' disabled={filteredResults && filteredResults?.length < cardLimit}>
 						<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth='1.5' stroke='currentColor' className='w-10 h-10' onClick={() => setPage(page + 1)}>
-							<path strokeLinecap='round' stroke-linejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' />
+							<path strokeLinecap='round' strokeLinejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' />
 						</svg>
 					</button>
 				</div>

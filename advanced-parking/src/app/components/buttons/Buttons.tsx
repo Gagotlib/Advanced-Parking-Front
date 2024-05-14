@@ -33,6 +33,7 @@ export const BackToSubscriptionsButton = () => {
 		</button>
 	)
 }
+
 export const BackToOurParkingsButton = () => {
 	return (
 		<button
@@ -70,7 +71,7 @@ export const ReserveButton = () => {
 		<button
 			type="submit"
 			className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none">
-			Reserve Slot
+			Reserve slot
 		</button>
 	)
 }
@@ -79,9 +80,20 @@ export const ContactButton = () => {
 	return (
 		<button
 			type='button'
-			className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
+			className="py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none"
 		>
-			<Link href='/contact'>Contact Us</Link>
+			<Link href='/contact'>Contact us</Link>
+		</button>
+	)
+}
+
+export const LoginButton = () => {
+	return (
+		<button
+			type='button'
+			className="py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none"
+		>
+			<Link href='/login'>Login</Link>
 		</button>
 	)
 }

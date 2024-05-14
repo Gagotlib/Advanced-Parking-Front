@@ -49,7 +49,24 @@ function Navprofile() {
 				data-dropdown-placement='bottom'
 			>
 				<span className='sr-only'>Open user menu</span>
-				{user ? (user.role === 'user', 'admin' && <Avatar name={user.name} size='40' round color='#063971' maxInitials={2} />) : <Avatar size='38' round src='/profile-picture-blank.webp' />}
+
+				{user ? (
+					user.role === 'user', 'admin' && (
+						<Avatar
+							name={user.name}
+							size="40"
+							round
+							color="#063971"
+							maxInitials={2}
+						/>
+					)) : (
+					<Avatar
+						size="40"
+						round
+						src='/profile-picture-blank.webp'
+					/>
+				)}
+
 			</button>
 
 			<div className={`z-50 ${menuOpen ? '' : 'hidden'} my-4 text-base list-none bg-ghostwhite divide-y divide-silver rounded-lg shadow fixed top-12 right-0 md:right-10`} id='dropdownInformation'>
