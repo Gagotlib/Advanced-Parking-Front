@@ -3,7 +3,8 @@ import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import { FooterRender, NavRender } from './components/navbar/Navrender'
 import { AuthProvider } from './context/AuthContext'
-import { Router } from 'react-router-dom'
+import Providers from './Providers'
+
 
 const plus_Jakarta_Sans = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
@@ -19,6 +20,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<AuthProvider>
+			<Providers>
+
 			<html lang='en'>
 				<body className={plus_Jakarta_Sans.className}>
 					<NavRender />
@@ -26,6 +29,7 @@ export default function RootLayout({
 					<FooterRender />
 				</body>
 			</html>
+			</Providers>
 		</AuthProvider>
 	)
 }
