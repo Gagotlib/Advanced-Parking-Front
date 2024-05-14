@@ -7,6 +7,7 @@ import { useAuth } from '@/app/context/AuthContext'
 import { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
+import axios from 'axios'
 
 function Navprofile() {
 	const router = useRouter()
@@ -19,9 +20,27 @@ function Navprofile() {
 	console.log('user logeado por login, consologeado desde Navprofile', user)
 
 	useEffect(() => {
+		session ? console.log('sesion guardada por google, consologeado desde landing', session?.user) : console.log('no hay sesion')
+		if (session) {
+			const newUser = session?.user
+			console.log(user)
+
+			axios
+				.post(' http://localhost:3001/auth/signup-auth0', newUser)
+				.then((response) => response.data)
+				.then((data) => {
+					setUser(data.userData)
+					setToken(data.token)
+					localStorage.setItem('authToken', data.token)
+					localStorage.setItem('user', JSON.stringify(data.userData))
+					// setShowToast(true))
+				})
+		} else {
+			console.log('NO HAY sesion')
+		}
 		// console.log('renderizado de navbar', user)
 		// console.log('renderizado', token)
-	}, [user, token])
+	}, [ session ])
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen)
@@ -56,12 +75,12 @@ function Navprofile() {
 					(user.role === 'user',
 					'admin' && (
 						<Avatar
-							// name={user.name}
+							name={user.name}
 							size='40'
 							round
-							// color="#063971"
+							color="#063971"
 							src={user.image}
-							// maxInitials={2}
+							maxInitials={2}
 						/>
 					))
 				) : (
