@@ -64,12 +64,6 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	async function handleSubmit(event: any) {
 		event.preventDefault()
 
-		// Si hay errores, mostrar alerta y salir de la función
-		// const hasErrors = Object.keys(errors).some((key) => errors[key] !== '')
-		// if (hasErrors) {
-		// 	alert(errors.date)
-		// 	return
-		// }
 		//! control
 		console.log('Fecha seleccionada:', formData.date)
 		console.log('Hora seleccionada:', formData.time)
@@ -79,11 +73,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 		try {
 			//! enviar info al backend
-			// await postNewAppointment(formData) // servicio post para mandar la reserva a la BD
 			const response = await axios.post('http://localhost:3001/appointments', formData)
 			console.log(response)
-
-			//! enviar la response a algun lado para mostrarla
 
 			// Limpiar el formulario
 			setFormData({
