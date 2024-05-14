@@ -1,6 +1,7 @@
 import { useAuth } from '@/app/context/AuthContext'
 import React from 'react'
 
+
 interface IBooking {
 	date: string
 	duration: string

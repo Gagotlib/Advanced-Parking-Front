@@ -37,6 +37,9 @@ function Footer() {
                   <Link href="https://www.postgresql.org/" className="hover:underline">PostgreSQL</Link>
                 </li>
                 <li className="mb-2">
+                  <Link href="https://www.typescriptlang.org/" className="hover:underline">TypeScript</Link>
+                </li>
+                <li className="mb-2">
                   <a href="https://github.com/Gagotlib/Advanced-Parking-Front" className="hover:underline ">Github</a>
                 </li>
               </ul>
