@@ -6,8 +6,7 @@ import Avatar from 'react-avatar'
 import { useAuth } from '@/app/context/AuthContext'
 import { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
-
+import { signOut, useSession } from 'next-auth/react'
 
 function Navprofile() {
 	const router = useRouter()
@@ -16,9 +15,8 @@ function Navprofile() {
 	const { user, setUser } = useAuth()
 
 	const { data: session } = useSession()
-	console.log("sesion guardada por google, consologeado desde navbar",session?.user)
-	console.log("user logeado por login, consologeado desde Navprofile",user);
-	
+	console.log('sesion guardada por google, consologeado desde navbar', session?.user)
+	console.log('user logeado por login, consologeado desde Navprofile', user)
 
 	useEffect(() => {
 		// console.log('renderizado de navbar', user)
@@ -31,12 +29,12 @@ function Navprofile() {
 	const handleLogOut = async () => {
 		console.log('TE DESLOGEASTE')
 		// que borre todos los datos del user
-		if (typeof window !== 'undefined') {
-			localStorage.removeItem('authToken')
-			localStorage.removeItem('user')
-			setToken(null)
-			setUser(null)
-		}
+
+		localStorage.removeItem('authToken')
+		localStorage.removeItem('user')
+		setToken(null)
+		setUser(null)
+		signOut()
 
 		router.push('/')
 	}
@@ -55,22 +53,20 @@ function Navprofile() {
 				<span className='sr-only'>Open user menu</span>
 
 				{user ? (
-					user.role === 'user', 'admin' && (
+					(user.role === 'user',
+					'admin' && (
 						<Avatar
-							name={user.name}
-							size="40"
+							// name={user.name}
+							size='40'
 							round
-							color="#063971"
-							maxInitials={2}
+							// color="#063971"
+							src={user.image}
+							// maxInitials={2}
 						/>
-					)) : (
-					<Avatar
-						size="40"
-						round
-						src='/profile-picture-blank.webp'
-					/>
+					))
+				) : (
+					<Avatar size='40' round src='/profile-picture-blank.webp' />
 				)}
-
 			</button>
 
 			<div className={`z-50 ${menuOpen ? '' : 'hidden'} my-4 text-base list-none bg-ghostwhite divide-y divide-silver rounded-lg shadow fixed top-12 right-0 md:right-10`} id='dropdownInformation'>
