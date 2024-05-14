@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/app/context/AuthContext'
 import { useLocation } from 'react-router-dom'
+import { GoogleButton } from '../buttons/GoogleButton'
 
 export const LoginForm = () => {
 	const pathname = usePathname()
@@ -53,7 +54,7 @@ export const LoginForm = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
-			// console.log(loginData)
+			console.log(loginData)
 
 			const session = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
 			// console.log(session.data)
@@ -137,6 +138,8 @@ export const LoginForm = () => {
 						Register here
 					</Link>
 				</div>
+				<br />
+					<GoogleButton />
 			</div>
 		</div>
 	)

@@ -2,28 +2,21 @@
 
 import Link from 'next/link'
 import Avatar from 'react-avatar'
+
 import { useAuth } from '@/app/context/AuthContext'
 import { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 
 function Navprofile() {
 	const router = useRouter()
 	const [menuOpen, setMenuOpen] = useState(false)
-
-	// const user = admin
-	// const [user, setUser] = useState(usernull)
-	// const userToken = typeof window !== 'undefined' ? localStorage.getItem('user') : null
-	// useEffect(() => {
-	// 	const userString = localStorage.getItem('user')
-	// 	const logedUser = userString ? JSON.parse(userString) : null
-	// 	console.log('ppppppppp' + logedUser)
-
-	// 	setUser(logedUser)
-	// }, [user])
-	// const userId = user.id --> puedo usar esto para crear ruta dinamica de /profile/${userId}
 	const { token, setToken } = useAuth()
 	const { user, setUser } = useAuth()
+
+	const { data: session } = useSession()
+	console.log("sessuin desde navbar",session?.user)
 
 	useEffect(() => {
 		// console.log('renderizado de navbar', user)
@@ -58,6 +51,7 @@ function Navprofile() {
 				data-dropdown-placement='bottom'
 			>
 				<span className='sr-only'>Open user menu</span>
+
 				{user ? (
 					user.role === 'user', 'admin' && (
 						<Avatar
@@ -74,6 +68,7 @@ function Navprofile() {
 						src='/profile-picture-blank.webp'
 					/>
 				)}
+
 			</button>
 
 			<div className={`z-50 ${menuOpen ? '' : 'hidden'} my-4 text-base list-none bg-ghostwhite divide-y divide-silver rounded-lg shadow fixed top-12 right-0 md:right-10`} id='dropdownInformation'>
