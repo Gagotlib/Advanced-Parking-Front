@@ -44,7 +44,7 @@ function Navlinks() {
 						</Link>
 					</li>
 					<li>
-						<Link href='#' onClick={toggleNav} className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0'>
+						<Link href='/pricing' onClick={toggleNav} className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0'>
 							Pricing
 						</Link>
 					</li>

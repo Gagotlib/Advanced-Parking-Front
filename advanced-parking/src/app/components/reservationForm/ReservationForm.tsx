@@ -147,7 +147,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				{!user
 					?
 					<div className='flex flex-col items-center'>
-						<p className='text-erieblack text-md sm:text-md m-2'>You must be logged in to book</p>
+						<p className='text-erieblack text-sm sm:text-lg m-2'>You must be <span className='font-semibold'>logged</span>  in to book</p>
 						<LoginButton />
 					</div>
 					:
