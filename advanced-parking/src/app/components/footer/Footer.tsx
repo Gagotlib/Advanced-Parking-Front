@@ -15,7 +15,7 @@ function Footer() {
                 alt='Advanced Parking Logo'
                 width={100}
                 height={100}
-                priority={true}
+                // priority={true}
               />
               <span className="self-center text-3xl lg-text-4xl font-semibold whitespace-nowrap md:whitespace-normal">Advanced Parking</span>
             </Link>
