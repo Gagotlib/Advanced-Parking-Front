@@ -1,11 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { redirect, useRouter } from 'next/navigation'
-import { useAuth } from '@/app/context/AuthContext'
 import Avatar from 'react-avatar'
+
+import { useAuth } from '@/app/context/AuthContext'
+import { useEffect, useState } from 'react'
+import { redirect, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+
 
 function Navprofile() {
 	const router = useRouter()

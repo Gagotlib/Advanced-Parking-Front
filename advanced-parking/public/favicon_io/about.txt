@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Plus Jakarta Sans
+- Font Author: Copyright 2020 The Plus Jakarta Sans Project Authors (https://github.com/tokotype/PlusJakartaSans)
+- Font Source: https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_TknNShXUEKi4Rw.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
