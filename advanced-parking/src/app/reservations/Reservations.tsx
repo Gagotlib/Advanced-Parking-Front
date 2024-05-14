@@ -66,12 +66,6 @@ export const Reservations = () => {
 	async function handleSubmit(event: any) {
 		event.preventDefault()
 
-		// Si hay errores, mostrar alerta y salir de la función
-		// const hasErrors = Object.keys(errors).some((key) => errors[key] !== '')
-		// if (hasErrors) {
-		// 	alert(errors.date)
-		// 	return
-		// }
 		//! control
 		console.log('Fecha seleccionada:', formData.date)
 		console.log('Hora seleccionada:', formData.time)

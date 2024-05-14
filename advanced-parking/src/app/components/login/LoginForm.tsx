@@ -16,9 +16,6 @@ export const LoginForm = () => {
 	const { user, setUser } = useAuth()
 	const { token, setToken } = useAuth()
 
-	// const location = useLocation()
-	// const prevPath = location.state?.from || '/home'
-
 	useEffect(() => {
 		if (showToast || errorToast) {
 			const timeout = setTimeout(() => {
