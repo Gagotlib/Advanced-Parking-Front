@@ -56,12 +56,12 @@ export const LoginForm = () => {
 		try {
 			console.log(loginData)
 
-			const session = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
-			// console.log(session.data)
-			setUser(session.data.userData)
-			setToken(session.data.token)
-			localStorage.setItem('authToken', session.data.token)
-			localStorage.setItem('user', JSON.stringify(session.data.userData))
+			const response = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
+			// console.log(response.data)
+			setUser(response.data.userData)
+			setToken(response.data.token)
+			localStorage.setItem('authToken', response.data.token)
+			localStorage.setItem('user', JSON.stringify(response.data.userData))
 			setShowToast(true)
 			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
@@ -139,7 +139,7 @@ export const LoginForm = () => {
 					</Link>
 				</div>
 				<br />
-					<GoogleButton />
+				<GoogleButton />
 			</div>
 		</div>
 	)

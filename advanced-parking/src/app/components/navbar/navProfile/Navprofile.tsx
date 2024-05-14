@@ -16,7 +16,9 @@ function Navprofile() {
 	const { user, setUser } = useAuth()
 
 	const { data: session } = useSession()
-	console.log("sessuin desde navbar",session?.user)
+	console.log("sesion guardada por google, consologeado desde navbar",session?.user)
+	console.log("user logeado por login, consologeado desde Navprofile",user);
+	
 
 	useEffect(() => {
 		// console.log('renderizado de navbar', user)
