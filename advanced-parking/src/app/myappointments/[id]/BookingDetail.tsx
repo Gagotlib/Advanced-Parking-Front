@@ -1,7 +1,6 @@
 import { useAuth } from '@/app/context/AuthContext'
 import React from 'react'
 
-
 interface IBooking {
 	date: string
 	duration: string
@@ -12,17 +11,18 @@ interface IBooking {
 	slot: {
 		id: string
 		slot_status: string
-		parking_lot: {
-			id: string
-			location: string
-			name: string
-			slots_stock: number
-		}
+	}
+	parking_lot: {
+		id: string
+		location: string
+		name: string
+		slots_stock: number
 	}
 }
 
 function BookingDetail({ booking }: { booking: IBooking }) {
 	const { user, setUser } = useAuth()
+	console.log(' booking:', booking)
 
 	return (
 		<div className='bg-white border rounded-lg shadow-lg px-6 py-4 max-w-md mx-auto mt-2'>
@@ -40,9 +40,9 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 				<p className='text-gray-700 mb-2'>Name: {user?.name}</p>
 				<p className='text-gray-700'>Email: {user?.email}</p>
 				<br />
-				<p className='text-gray-700 mb-2'>Parking: {booking.slot.parking_lot.name}</p>
+				<p className='text-gray-700 mb-2'>Parking: {booking.parking_lot.name}</p>
 				<p className='text-gray-700 mb-2'>Slot: {booking.slot.id}</p>
-				<p className='text-gray-700 mb-2'>Address: {booking.slot.parking_lot.location}</p>
+				<p className='text-gray-700 mb-2'>Address: {booking.parking_lot.location}</p>
 			</div>
 			<table className='w-full mb-8'>
 				<thead>
