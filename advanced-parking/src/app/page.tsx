@@ -4,10 +4,35 @@ import { CreateAccountButton } from './components/buttons/Buttons'
 import Link from 'next/link'
 import { GoogleButton } from './components/buttons/GoogleButton'
 import { useSession } from 'next-auth/react'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { useAuth } from './context/AuthContext'
 
 export default function Landing() {
 	const { data: session } = useSession()
-console.log('sessuin desde landing', session?.user)
+	const { user, setUser } = useAuth()
+	const { token, setToken } = useAuth()
+
+	useEffect(() => {
+		session ? console.log('sesion guardada por google, consologeado desde landing', session?.user) : console.log('no hay sesion')
+		if (session) {
+			const newUser = session?.user
+			console.log(user)
+
+			axios
+				.post(' http://localhost:3001/auth/signup-auth0', newUser)
+				.then((response) => response.data)
+				.then((data) => {
+					setUser(data.userData)
+					setToken(data.token)
+					localStorage.setItem('authToken', data.token)
+					localStorage.setItem('user', JSON.stringify(data.userData))
+					// setShowToast(true))
+				})
+		} else {
+			console.log('NO HAY sesion')
+		}
+	}, [session])
 
 	return (
 		<main className='bg-duck-yellow pt-0 py-4 min-h-screen flex flex-col items-center'>
