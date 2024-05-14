@@ -3,7 +3,7 @@ import { availableHours, getMaxDate, getTodayDate } from '@/app/utils/dateHelper
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { ReserveButton } from '../buttons/Buttons'
+import { LoginButton, ReserveButton } from '../buttons/Buttons'
 import { useAuth } from '@/app/context/AuthContext'
 import { IParking } from '@/types'
 import Toast from '../alerts/Toast'
@@ -144,7 +144,14 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						required
 					></input>
 				</div>
-				{!user ? <p> You must be logged in to book</p> : <ReserveButton />}
+				{!user
+					?
+					<div className='flex flex-col items-center'>
+						<p className='text-erieblack text-md sm:text-md m-2'>You must be logged in to book</p>
+						<LoginButton />
+					</div>
+					:
+					<ReserveButton />}
 			</form>
 		</div>
 	)

@@ -69,7 +69,7 @@ function Navprofile() {
 						/>
 					)) : (
 					<Avatar
-						size="38"
+						size="40"
 						round
 						src='/profile-picture-blank.webp'
 					/>
