@@ -11,7 +11,7 @@ import Toast from '../alerts/Toast'
 export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 	const { user } = useAuth()
 	console.log('usuario', user)
-	console.log('el parking', parking)
+	// console.log('el parking', parking)
 
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
@@ -36,19 +36,23 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		}
 	}, [showToast, router])
 
-	const [formData, setFormData] = useState({
-		date: getTodayDate(),
-		time: '08:00',
-		parkingLotId: parking?.id,
-		userId: user?.id,
-		license_plate: '',
-		duration: '1',
-		is_parked: false
+	useEffect(() => {
+		const initialValues = {
+			date: localStorage.getItem('date') || getTodayDate(),
+			time: localStorage.getItem('time') || '08:00',
+			license_plate: localStorage.getItem('license_plate') || '',
+			duration: localStorage.getItem('duration') || 1
+		}
 	})
-	const [errors, setErrors] = useState({
-		date: '',
-		time: '',
-		parking: ''
+
+	const [formData, setFormData] = useState({
+		date: localStorage.getItem('date') || getTodayDate(),
+		time: localStorage.getItem('time') || '08:00',
+		parkingLotId: parking?.id,
+		user_id: user?.id,
+		license_plate: localStorage.getItem('license_plate') || '',
+		duration: localStorage.getItem('duration') || 1,
+		is_parked: false
 	})
 
 	function handleInputChange(event: any) {
@@ -57,6 +61,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			...prevFormData,
 			[name]: value
 		}))
+		localStorage.setItem(`${name}`, value)
 
 		// setErrors(validateNewAppointment(formData))
 	}
@@ -69,28 +74,46 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		console.log('Hora seleccionada:', formData.time)
 		console.log('Parking:', formData.parkingLotId)
 		console.log('license plate:', formData.license_plate)
-		console.log('El userid:', formData.userId)
+		console.log('El userid:', formData.user_id)
+		console.log('El nombredel usuario:', user?.name)
 
 		try {
 			//! enviar info al backend
-			const response = await axios.post('http://localhost:3001/appointments', formData)
-			console.log(response)
+			//!creamos el appointment
+			const responseAppointment = await axios.post('http://localhost:3001/appointments', formData)
+			const appointment_id = responseAppointment.data.id
+
+			//!enviamos al pago
+			const bodyreq = { type_of_service: 'One time payment', unit_amount: 10, appointment_id: appointment_id }
+			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
+			const response = await axios.post('http://localhost:3001/payment/create-checkout-session', bodyreq, {
+				headers: {
+					'stripe-signature': token
+				}
+			})
+			console.log(response.data.url)
+			const url = response.data.url //! url que devuelve la creacion de la solicitud
+
+			setShowToast(true)
+			const timeout = setTimeout(() => {
+				setShowToast(false)
+				router.push(`${url}`)
+			}, 3000)
+			// console.log(response)
+
+			// http://localhost:3001/cancel
+			// http://localhost:3001/success
 
 			// Limpiar el formulario
 			setFormData({
 				date: getTodayDate(),
 				time: '08:00',
 				parkingLotId: parking?.id,
-				userId: user?.id,
+				user_id: user?.id,
 				license_plate: '',
 				duration: '1',
 				is_parked: false
 			})
-			setShowToast(true)
-			const timeout = setTimeout(() => {
-				setShowToast(false)
-				router.push(`/myappointments/${response.data.id}`)
-			}, 3000)
 		} catch (error) {
 			console.log(error)
 			setErrorToast(true)
@@ -99,7 +122,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 	return (
 		<div className='w-10/12 flex flex-col items-center'>
-			{showToast && <Toast message='Reservation Successfull' type='success' />}
+			{showToast && <Toast message='Being redirect to payment' type='success' />}
 			{errorToast && <Toast message='Reservation Error' type='error' />}
 			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
 
@@ -132,6 +155,10 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						))}
 					</select> */}
 				</div>
+				<div className='block'>
+					<label htmlFor='duration'>How many hours are you staying?</label>
+					<input type='number' name='duration' id='duration' value={formData.duration} onChange={handleInputChange} required min='1' />
+				</div>
 				{/* <p className='text-2xl mt-4'>Available slots: {parking?.slots_stock}</p> Validar con el back*/}
 				<div className=''>
 					<label htmlFor='license_plate'>License plate:</label>
@@ -141,17 +168,23 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						value={formData.license_plate}
 						className='block w-full p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite focus:ring-blue-500 focus:border-blue-500 text-center'
 						onChange={handleInputChange}
+						placeholder='AAA-000 '
 						required
 					></input>
 				</div>
-				{!user
-					?
+				{!user ? (
 					<div className='flex flex-col items-center'>
-						<p className='text-erieblack text-sm sm:text-lg m-2'>You must be <span className='font-semibold'>logged</span>  in to book</p>
+						<p className='text-erieblack text-sm sm:text-lg m-2'>
+							You must be <span className='font-semibold'>logged</span> in to book
+						</p>
 						<LoginButton />
 					</div>
-					:
-					<ReserveButton />}
+				) : (
+					<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
+						Reserve
+						{/* <Link href='/ourparkings'>Reserve</Link> */}
+					</button>
+				)}
 			</form>
 		</div>
 	)

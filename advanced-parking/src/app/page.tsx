@@ -14,10 +14,9 @@ export default function Landing() {
 	const { token, setToken } = useAuth()
 
 	useEffect(() => {
-		session ? console.log('sesion guardada por google, consologeado desde landing', session?.user) : console.log('no hay sesion')
+		// session ? console.log('sesion guardada por google, consologeado desde landing', session?.user) : console.log('no hay sesion')
 		if (session) {
 			const newUser = session?.user
-			console.log(user)
 
 			axios
 				.post(' http://localhost:3001/auth/signup-auth0', newUser)
@@ -30,20 +29,20 @@ export default function Landing() {
 					// setShowToast(true))
 				})
 		} else {
-			console.log('NO HAY sesion')
+			// console.log('NO HAY sesion')
 		}
 	}, [session])
 
 	return (
-		<main className='bg-duck-yellow pt-0 py-4 min-h-screen flex flex-col items-center'>
+		<main className='bg-duck-yellow min-h-screen flex flex-col items-center'>
 			<div className='flex flex-col flex-1 items-center md:gap-6 lg:flex-row sm:px-10 lg:justify-around w-full'>
-				<Image src='/advanced_parking.png' alt='advanced parking app' className='min-w-[200px] min-h-[200px] sm:w-[550px] ' width={400} height={400} priority={true} />
+				<Image src='/advanced_parking.png' alt='advanced parking app' className='min-w-[200px] min-h-[200px] sm:w-[550px] ' width={380} height={400} priority={true} />
 
 				<div className='flex flex-col items-center gap-4 text-pretty text-center '>
 					<h1 className='text-erieblack text-3xl font-bold '>
-						Welcome to your preferred parking!
+						Welcome to a new  parking solution!
 						<br />
-						Your space awaits you.
+						Book your slot in only 3 steps.
 					</h1>
 
 					<div className='flex flex-col'>

@@ -16,14 +16,15 @@ function Navprofile() {
 	const { user, setUser } = useAuth()
 
 	const { data: session } = useSession()
-	console.log('sesion guardada por google, consologeado desde navbar', session?.user)
-	console.log('user logeado por login, consologeado desde Navprofile', user)
+	// console.log('sesion guardada por google, consologeado desde navbar', session?.user)
+	// console.log('user logeado por login, consologeado desde Navprofile', user)
 
 	useEffect(() => {
-		session ? console.log('sesion guardada por google, consologeado desde landing', session?.user) : console.log('no hay sesion')
+		// session ? console.log('sesion guardada por google, consologeado desde navprofile', session?.user) : console.log('no hay sesion')
+
 		if (session) {
 			const newUser = session?.user
-			console.log(user)
+			// console.log(user)
 
 			axios
 				.post(' http://localhost:3001/auth/signup-auth0', newUser)
@@ -37,10 +38,19 @@ function Navprofile() {
 				})
 		} else {
 			console.log('NO HAY sesion')
+			const userstring = localStorage.getItem('user')
+
+			const user = userstring && JSON.parse(userstring)
+			const token = localStorage.getItem('authToken')
+			setUser(user)
+			setToken(token)
+
+			console.log('AHORA SI HAY sesion, user del localstorage:', user)
+			// setShowToast(true))
 		}
 		// console.log('renderizado de navbar', user)
 		// console.log('renderizado', token)
-	}, [ session ])
+	}, [session])
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen)
@@ -72,17 +82,7 @@ function Navprofile() {
 				<span className='sr-only'>Open user menu</span>
 
 				{user ? (
-					(user.role === 'user',
-					'admin' && (
-						<Avatar
-							name={user.name}
-							size='40'
-							round
-							color="#063971"
-							src={user.image}
-							maxInitials={2}
-						/>
-					))
+					(user.role === 'user', 'admin' && <Avatar name={user.name} size='40' round color='#063971' src={user.image} maxInitials={2} />)
 				) : (
 					<Avatar size='40' round src='/profile-picture-blank.webp' />
 				)}
