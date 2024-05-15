@@ -1,6 +1,7 @@
 import React from 'react'
 import HomeCard from '../components/cards/HomeCard'
 import { homeCardProps } from '../utils/homeCardProps'
+import Reviews from '../components/reviews/Reviews'
 
 export const Home = () => {
 	return (
@@ -11,6 +12,7 @@ export const Home = () => {
 						<HomeCard key={cardProps.text} cardProps={cardProps} />
 					))}
 				</div>
+				<Reviews />
 			</div>
 		</div>
 	)
