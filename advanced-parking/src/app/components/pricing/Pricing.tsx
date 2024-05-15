@@ -6,7 +6,7 @@ function Pricing() {
   return (
     <div className='pt-20 pb-8'>
       <Image
-        src='/rates.jpg'
+        src='/rates.webp'
         className='w-lvw h-80 object-cover'
         alt='Image Pricing Page'
         priority

@@ -1,5 +1,5 @@
-import not_found from "@/app/not-found";
 import type { Config } from "tailwindcss";
+import daisyui from "daisyui";
 
 const config: Config = {
   content: [
@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        landing_page: "url('/bg_landing_page.jpg')",
-        not_found: "url('/notfound.jpg')",
+        landing_page: "url('/bg_landing_page.webp')",
+        not_found: "url('/notfound.webp')",
       },
       colors: {
         "duck-yellow": "#FFCC00",
@@ -22,7 +22,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [daisyui],
 };
 export default config;
 // theme: {
