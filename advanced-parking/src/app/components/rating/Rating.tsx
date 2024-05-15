@@ -1,9 +1,17 @@
+"use client"
+
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
 function Rating() {
-  return (
 
+  const [rating, setRating] = useState(0);
+
+  const handleChange = (index: any) => {
+    setRating(index + 1)
+  };
+
+  return (
     <div className="min-h-screen bg-ghostwhite py-6 px-6 flex flex-col justify-center sm:py-12 pt-24">
       <div className="py-3 sm:max-w-xl sm:mx-auto">
         <div className="bg-ghostwhite min-w-1xl flex flex-col rounded-xl shadow-xl shadow-silver/90  border border-silver">
@@ -14,11 +22,16 @@ function Rating() {
             <div className="flex flex-col items-center py-6 space-y-3">
               <span className="text-lg text-erieblack text-center">What did you think of the booking process?</span>
               <div className="rating">
-                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
-                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                {[...Array(5)].map((_, index) => (
+                  <input
+                    key={index}
+                    type="radio"
+                    name="rating"
+                    className="mask mask-star-2 bg-orange-400"
+                    checked={index === rating - 1}
+                    onClick={() => handleChange(index)}
+                  />
+                ))}
               </div>
             </div>
             <div className="w-3/4 flex flex-col">
@@ -36,7 +49,7 @@ function Rating() {
           <div className="h-20 flex items-center justify-center">
             <Link
               href="/home"
-              className="text-erieblack">Maybe later
+              className="text-erieblack text-sm sm:text-md">Maybe later
             </Link>
           </div>
         </div>
