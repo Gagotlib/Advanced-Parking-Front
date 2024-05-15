@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
-import Navprofile from '../navProfile/Navprofile'
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
 
 function Navlinks() {
 	const [navOpen, setNavOpen] = useState(false)
+	const pathname = usePathname()
 
 	const toggleNav = () => {
 		setNavOpen(!navOpen)
@@ -29,27 +31,37 @@ function Navlinks() {
 			<div className={`items-center ${navOpen ? '' : 'hidden'} justify-between w-full md:flex md:w-auto md:order-1 max-md:fixed top-20 right-0 z-50 bg-duck-yellow `} id='navbar-user'>
 				<ul className='flex flex-col items-center font-medium p-4 md:p-0 mt-4 border bg-none md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-none'>
 					<li>
-						<Link href='/home' onClick={toggleNav} className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0' aria-current='page'>
+						<Link href='/home' onClick={toggleNav} className={clsx('block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0', {
+							'underline decoration-silver text-yaleblue': pathname === '/home'
+						})}>
 							Home
 						</Link>
 					</li>
 					<li>
-						<Link href='/about' onClick={toggleNav} className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0'>
+						<Link href='/about' onClick={toggleNav} className={clsx('block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0', {
+							'underline decoration-silver text-yaleblue': pathname === '/about'
+						})}>
 							About
 						</Link>
 					</li>
 					<li>
-						<Link href='/ourparkings' onClick={toggleNav} className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue  md:p-0'>
-							Services
+						<Link href='/how_it_works' onClick={toggleNav} className={clsx('block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0', {
+							'underline decoration-silver text-yaleblue': pathname === '/how_it_works'
+						})}>
+							How it Works
 						</Link>
 					</li>
 					<li>
-						<Link href='/pricing' onClick={toggleNav} className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0'>
+						<Link href='/pricing' onClick={toggleNav} className={clsx('block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0', {
+							'underline decoration-silver text-yaleblue': pathname === '/pricing'
+						})}>
 							Pricing
 						</Link>
 					</li>
 					<li>
-						<Link href='/contact' onClick={toggleNav} className='block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0'>
+						<Link href='/contact' onClick={toggleNav} className={clsx('block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0', {
+							'underline decoration-silver text-yaleblue': pathname === '/contact'
+						})}>
 							Contact
 						</Link>
 					</li>
