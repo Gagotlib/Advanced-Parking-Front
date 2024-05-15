@@ -74,6 +74,12 @@ export const RegisterForm = () => {
 			console.log(response.data)
 
 			setShowToast(true)
+			const bodyemail = {
+				name: registerData.name,
+				email: registerData.email
+			}
+			axios.post('http://localhost:3001/email-sender/registered', bodyemail)
+			
 			// throw Error("error forzado")
 		} catch (error: Error | any) {
 			console.error('Error al Registrarse:', error?.response?.data.message)
