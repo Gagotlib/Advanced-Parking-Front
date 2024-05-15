@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/app/context/AuthContext'
 import { useLocation } from 'react-router-dom'
+import { GoogleButton } from '../buttons/GoogleButton'
 
 export const LoginForm = () => {
 	const pathname = usePathname()
@@ -53,14 +54,14 @@ export const LoginForm = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
-			// console.log(loginData)
+			console.log(loginData)
 
-			const session = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
-			// console.log(session.data)
-			setUser(session.data.userData)
-			setToken(session.data.token)
-			localStorage.setItem('authToken', session.data.token)
-			localStorage.setItem('user', JSON.stringify(session.data.userData))
+			const response = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
+			// console.log(response.data)
+			setUser(response.data.userData)
+			setToken(response.data.token)
+			localStorage.setItem('authToken', response.data.token)
+			localStorage.setItem('user', JSON.stringify(response.data.userData))
 			setShowToast(true)
 			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
@@ -137,6 +138,8 @@ export const LoginForm = () => {
 						Register here
 					</Link>
 				</div>
+				<br />
+				<GoogleButton />
 			</div>
 		</div>
 	)

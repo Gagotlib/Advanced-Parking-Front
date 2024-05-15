@@ -2,7 +2,7 @@ import React from 'react'
 import { subscriptionsMock } from '@/app/utils/subscriptionsMock'
 import { BackToSubscriptionsButton, HireButton } from '@/app/components/buttons/Buttons'
 import { CheckIcon } from '@/app/components/icons/icons'
-import Navbar from '@/app/components/navbar/Navbar'
+
 import Link from 'next/link'
 
 export const SubscriptionDetails = ({ params }: { params: { slug: string } }) => {
@@ -12,7 +12,7 @@ export const SubscriptionDetails = ({ params }: { params: { slug: string } }) =>
 		<div className='flex flex-col min-h-screen pt-24'>
 			<div className='flex flex-col p-4 m-0 items-center justify-start gap-4 text-center'>
 
-				<h1 className='text-4xl sm:text-6xl'>Suscription {subscription?.name}</h1>
+				<h1 className='text-4xl sm:text-6xl font-bold'>Suscription {subscription?.name}</h1>
 				<p className='text-xl '>{subscription?.longDescription}</p>
 
 				<ul>
@@ -32,14 +32,9 @@ export const SubscriptionDetails = ({ params }: { params: { slug: string } }) =>
 					</li>
 				</ul>
 
-				<p>${subscription?.price} per Month</p>
+				<p className='font-semibold text-2xl '>${subscription?.price} per Month</p>
 
-				<button
-					type='button'
-					className='py-2.5 px-5 my-8 me-2 text-md sm:text-2xl font-medium text-gray-900 focus:outline-none bg-duck-yellow rounded-lg border border-gray-200 hover:bg-yellow-300  focus:z-10 focus:ring-4 focus:ring-gray-100 shadow-xl'
-				>
-					<Link href=''>Hire</Link>
-				</button>
+				<HireButton />
 				<BackToSubscriptionsButton />
 			</div>
 		</div>

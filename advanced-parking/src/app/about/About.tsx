@@ -14,30 +14,30 @@ function About() {
 					</p>
 				</div>
 				<div className='w-full lg:w-6/12 pt-10 flex items-center justify-center'>
-					<Image src='/parking_lot_about.jpg' className='w-[400px] h-[400px] rounded-full' alt='Advanced Parking Logo' priority={true} width={500} height={500} />
+					<Image src='/parking_lot_about.webp' className='w-[400px] h-[400px] rounded-full' alt='Advanced Parking Logo' priority={true} width={500} height={500} />
 				</div>
 			</div>
 			<div>
 				<h2 className='text-3xl lg:text-5xl font-extrabold leading-9 text-erieblack'>Resources</h2>
 				<div className='w-full flex justify-center items-center flex-wrap'>
 					<div className='min-w-max pt-10 flex justify-center flex-col items-center px-4'>
-						<Image src='/icon_nextjs.png' className=' h-20 w-20' alt='NextJs Icon' priority={true} width={500} height={500} />
+						<Image src='/icon_nextjs.webp' className=' h-20 w-20' alt='NextJs Icon' priority={true} width={500} height={500} />
 						<p className='text-lg '>Next.Js</p>
 					</div>
 					<div className='min-w-max  pt-10 flex justify-center flex-col items-center  px-4'>
-						<Image src='/icon_tailwind.jpeg' className=' h-20 w-20' alt='Tailwind CSS Icon' priority={true} width={500} height={500} />
+						<Image src='/icon_tailwind.webp' className=' h-20 w-20' alt='Tailwind CSS Icon' priority={true} width={500} height={500} />
 						<p className='text-lg '>Tailwind CSS</p>
 					</div>
 					<div className='min-w-max  pt-10 flex justify-center flex-col items-center  px-4'>
-						<Image src='/icon_nestjs.png' className=' h-20 w-20' alt='NestJs Icon' priority={true} width={500} height={500} />
+						<Image src='/icon_nestjs.webp' className=' h-20 w-20' alt='NestJs Icon' priority={true} width={500} height={500} />
 						<p className='text-lg '>NestJs</p>
 					</div>
 					<div className='min-w-max  pt-10 flex justify-center flex-col items-center  px-4'>
-						<Image src='/icon_postgreSQL.png' className=' h-20 w-20' alt='PostgreSQL Icon' priority={true} width={500} height={500} />
+						<Image src='/icon_postgreSQL.webp' className=' h-20 w-20' alt='PostgreSQL Icon' priority={true} width={500} height={500} />
 						<p className='text-lg '>PostgreSQL</p>
 					</div>
 					<div className='min-w-max pt-10 flex justify-center flex-col items-center  px-4'>
-						<Image src='/icon_typescript.png' className=' h-20 w-20' alt='PostgreSQL Icon' priority={true} width={500} height={500} />
+						<Image src='/icon_typescript.webp' className=' h-20 w-20' alt='PostgreSQL Icon' priority={true} width={500} height={500} />
 						<p className='text-lg '>TypeScript</p>
 					</div>
 				</div>
@@ -60,33 +60,33 @@ function About() {
 				<div className='w-full lg:w-8/12 lg:pt-8'>
 					<div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg rounded-md'>
 						<Link target='_blank' href='https://www.linkedin.com/in/gabriel-gotlib-5855197b/' className='p-4 pb-6 flex justify-center flex-col items-center'>
-							<Image src='/GabrielGotlib.jpeg' className='md:block hidden rounded-full' alt='Gabriel featured Image' width={150} height={150} priority={true} />
-							<Image className='md:hidden block rounded-full' src='/GabrielGotlib.jpeg' alt='Gabriel featured Image' width={150} height={150} priority={true} />
+							<Image src='/GabrielGotlib.webp' className='md:block hidden rounded-full' alt='Gabriel featured Image' width={150} height={150} priority={true} />
+							<Image className='md:hidden block rounded-full' src='/GabrielGotlib.webp' alt='Gabriel featured Image' width={150} height={150} priority={true} />
 							<p className='font-medium text-base leading-5 text-gray-800 mt-4'>Gabriel Gotlib</p>
 						</Link>
 						<Link target='_blank' href='https://www.linkedin.com/in/mlmarce/' className='p-4 pb-6 flex justify-center flex-col items-center'>
-							<Image src='/MarceloLencina.jpeg' className='md:block hidden rounded-full' alt='Marcelo featured Image' width={150} height={150} priority={true} />
-							<Image src='/MarceloLencina.jpeg' className='md:hidden block rounded-full' alt='Marcelo featured Image' width={150} height={150} priority={true} />
+							<Image src='/MarceloLencina.webp' className='md:block hidden rounded-full' alt='Marcelo featured Image' width={150} height={150} priority={true} />
+							<Image src='/MarceloLencina.webp' className='md:hidden block rounded-full' alt='Marcelo featured Image' width={150} height={150} priority={true} />
 							<p className='font-medium text-base leading-5 text-gray-800 mt-4'>Marcelo Lencina</p>
 						</Link>
 						<Link target='_blank' href='https://www.linkedin.com/in/sim%C3%B3n-salas-seeber-138112144/' className='p-4 pb-6 flex justify-center flex-col items-center'>
-							<Image className='md:block hidden rounded-full' src='/SimonSalas.jpeg' alt='Simon featued Image' width={150} height={150} priority={true} />
-							<Image className='md:hidden block rounded-full' src='/SimonSalas.jpeg' alt='Simon featued Image' width={150} height={150} priority={true} />
+							<Image className='md:block hidden rounded-full' src='/SimonSalas.webp' alt='Simon featued Image' width={150} height={150} priority={true} />
+							<Image className='md:hidden block rounded-full' src='/SimonSalas.webp' alt='Simon featued Image' width={150} height={150} priority={true} />
 							<p className='font-medium text-base leading-5 text-gray-800 mt-4'>Simón Salas</p>
 						</Link>
 						<Link target='_blank' href='https://www.linkedin.com/in/mario-gutierrez-tello/' className='p-4 pb-6 flex justify-center flex-col items-center'>
-							<Image className='md:block hidden rounded-full' src='/MarioGutierrez.jpeg' alt='Mario featured image' width={150} height={150} priority={true} />
-							<Image className='md:hidden block rounded-full' src='/MarioGutierrez.jpeg' alt='Mario featured image' width={150} height={150} priority={true} />
+							<Image className='md:block hidden rounded-full' src='/MarioGutierrez.webp' alt='Mario featured image' width={150} height={150} priority={true} />
+							<Image className='md:hidden block rounded-full' src='/MarioGutierrez.webp' alt='Mario featured image' width={150} height={150} priority={true} />
 							<p className='font-medium text-base leading-5 text-gray-800 mt-4'>Mario Gutiérrez</p>
 						</Link>
 						<Link target='_blank' href='https://www.linkedin.com/in/jose-salvador-coledani-grillo-10b857278/' className='p-4 pb-6 flex justify-center flex-col items-center'>
-							<Image className='md:block hidden rounded-full' src='/JoseColedani.jpeg' alt='Jose featured image' width={150} height={150} priority={true} />
-							<Image className='md:hidden block rounded-full' src='/JoseColedani.jpeg' alt='Jose featured image' width={150} height={150} priority={true} />
+							<Image className='md:block hidden rounded-full' src='/JoseColedani.webp' alt='Jose featured image' width={150} height={150} priority={true} />
+							<Image className='md:hidden block rounded-full' src='/JoseColedani.webp' alt='Jose featured image' width={150} height={150} priority={true} />
 							<p className='font-medium text-base leading-5 text-gray-800 mt-4'>Jose Coledani</p>
 						</Link>
 						<Link target='_blank' href='https://www.linkedin.com/in/sebastianibarguen/' className='p-4 pb-6 flex justify-center flex-col items-center'>
-							<Image className='md:block hidden rounded-full' src='/SebastianIbarguen.jpeg' alt='Sebastian featured image' width={150} height={150} priority={true} />
-							<Image className='md:hidden block rounded-full' src='/SebastianIbarguen.jpeg' alt='Sebastian featured image' width={150} height={150} priority={true} />
+							<Image className='md:block hidden rounded-full' src='/SebastianIbarguen.webp' alt='Sebastian featured image' width={150} height={150} priority={true} />
+							<Image className='md:hidden block rounded-full' src='/SebastianIbarguen.webp' alt='Sebastian featured image' width={150} height={150} priority={true} />
 							<p className='font-medium text-base leading-5 text-gray-800 mt-4'>Sebastian Ibargüen</p>
 						</Link>
 					</div>

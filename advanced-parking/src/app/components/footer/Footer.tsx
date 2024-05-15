@@ -15,7 +15,7 @@ function Footer() {
                 alt='Advanced Parking Logo'
                 width={100}
                 height={100}
-                priority={true}
+                // priority={true}
               />
               <span className="self-center text-3xl lg-text-4xl font-semibold whitespace-nowrap md:whitespace-normal">Advanced Parking</span>
             </Link>
@@ -35,6 +35,9 @@ function Footer() {
                 </li>
                 <li className="mb-2">
                   <Link href="https://www.postgresql.org/" className="hover:underline">PostgreSQL</Link>
+                </li>
+                <li className="mb-2">
+                  <Link href="https://www.typescriptlang.org/" className="hover:underline">TypeScript</Link>
                 </li>
                 <li className="mb-2">
                   <a href="https://github.com/Gagotlib/Advanced-Parking-Front" className="hover:underline ">Github</a>

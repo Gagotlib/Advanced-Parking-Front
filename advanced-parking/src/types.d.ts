@@ -12,6 +12,7 @@ export interface ILogedUser {
 	phone: string
 	role: string
 	status: string
+	image: string
 }
 
 export interface IErrors {

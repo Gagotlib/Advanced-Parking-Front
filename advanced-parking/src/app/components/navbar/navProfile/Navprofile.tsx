@@ -1,34 +1,46 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { redirect, useRouter } from 'next/navigation'
-import { useAuth } from '@/app/context/AuthContext'
 import Avatar from 'react-avatar'
 
+import { useAuth } from '@/app/context/AuthContext'
+import { useEffect, useState } from 'react'
+import { redirect, useRouter } from 'next/navigation'
+import { signOut, useSession } from 'next-auth/react'
+import axios from 'axios'
 
 function Navprofile() {
 	const router = useRouter()
 	const [menuOpen, setMenuOpen] = useState(false)
-
-	// const user = admin
-	// const [user, setUser] = useState(usernull)
-	// const userToken = typeof window !== 'undefined' ? localStorage.getItem('user') : null
-	// useEffect(() => {
-	// 	const userString = localStorage.getItem('user')
-	// 	const logedUser = userString ? JSON.parse(userString) : null
-	// 	console.log('ppppppppp' + logedUser)
-
-	// 	setUser(logedUser)
-	// }, [user])
-	// const userId = user.id --> puedo usar esto para crear ruta dinamica de /profile/${userId}
 	const { token, setToken } = useAuth()
 	const { user, setUser } = useAuth()
 
+	const { data: session } = useSession()
+	console.log('sesion guardada por google, consologeado desde navbar', session?.user)
+	console.log('user logeado por login, consologeado desde Navprofile', user)
+
 	useEffect(() => {
+		session ? console.log('sesion guardada por google, consologeado desde landing', session?.user) : console.log('no hay sesion')
+		if (session) {
+			const newUser = session?.user
+			console.log(user)
+
+			axios
+				.post(' http://localhost:3001/auth/signup-auth0', newUser)
+				.then((response) => response.data)
+				.then((data) => {
+					setUser(data.userData)
+					setToken(data.token)
+					localStorage.setItem('authToken', data.token)
+					localStorage.setItem('user', JSON.stringify(data.userData))
+					// setShowToast(true))
+				})
+		} else {
+			console.log('NO HAY sesion')
+		}
 		// console.log('renderizado de navbar', user)
 		// console.log('renderizado', token)
-	}, [user, token])
+	}, [ session ])
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen)
@@ -36,12 +48,12 @@ function Navprofile() {
 	const handleLogOut = async () => {
 		console.log('TE DESLOGEASTE')
 		// que borre todos los datos del user
-		if (typeof window !== 'undefined') {
-			localStorage.removeItem('authToken')
-			localStorage.removeItem('user')
-			setToken(null)
-			setUser(null)
-		}
+
+		localStorage.removeItem('authToken')
+		localStorage.removeItem('user')
+		setToken(null)
+		setUser(null)
+		signOut()
 
 		router.push('/')
 	}
@@ -58,21 +70,21 @@ function Navprofile() {
 				data-dropdown-placement='bottom'
 			>
 				<span className='sr-only'>Open user menu</span>
+
 				{user ? (
-					user.role === 'user', 'admin' && (
+					(user.role === 'user',
+					'admin' && (
 						<Avatar
 							name={user.name}
-							size="40"
+							size='40'
 							round
 							color="#063971"
+							src={user.image}
 							maxInitials={2}
 						/>
-					)) : (
-					<Avatar
-						size="38"
-						round
-						src='/profile-picture-blank.webp'
-					/>
+					))
+				) : (
+					<Avatar size='40' round src='/profile-picture-blank.webp' />
 				)}
 			</button>
 

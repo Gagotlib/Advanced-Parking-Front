@@ -26,20 +26,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [token, setToken] = useState<string | null>(null)
 	const [user, setUser] = useState<ILogedUser | null>(null)
 	const [allParkings, setAllParkings] = useState<IParking[] | null>(null)
+	
 	useEffect(() => {
-		const tokenFromCookie = localStorage.getItem('authToken')
-		const userFromCookie = localStorage.getItem('user')
-		const user = userFromCookie ? JSON.parse(userFromCookie) : null
-		// const allParkingsFromCookies = localStorage.getItem('allParkings')
-		// const allParkings = allParkingsFromCookies ? JSON.parse(allParkingsFromCookies) : null
+		// const tokenFromCookie = localStorage.getItem('authToken')
+		// const userFromCookie = localStorage.getItem('user')
+		// const user = userFromCookie ? JSON.parse(userFromCookie) : null
+		// setUser(user)
 
-		setUser(user)
-		// setAllParkings(allParkings)
-		// const parkingsFromCookies = localStorage.getItem('allParkings')
-		// setAllParkings(parkingsFromCookies)
-		if (tokenFromCookie) {
-			setToken(tokenFromCookie)
-		}
+		// if (tokenFromCookie) {
+		// 	setToken(tokenFromCookie)
+		// }
 	}, [])
 	return <AuthContext.Provider value={{ token, setToken, user, setUser, allParkings, setAllParkings }}>{children}</AuthContext.Provider>
 }

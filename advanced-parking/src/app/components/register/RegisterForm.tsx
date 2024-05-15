@@ -93,9 +93,7 @@ export const RegisterForm = () => {
 						<form className='px-8 pb-8 mb-4 rounded sm:pt-6' onSubmit={handleSubmit}>
 							<div className='mb-4 md:flex md:justify-between'>
 								<div className='mb-4 md:mr-2 md:mb-0'>
-									<label id='name' className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>
-										Full Name
-									</label>
+									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Full Name</label>
 									<input
 										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 										id='name'
@@ -109,9 +107,7 @@ export const RegisterForm = () => {
 									{errors.name && <p className='text-red-500'>{errors.name}</p>}
 								</div>
 								<div className='md:ml-2'>
-									<label id='phone' className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>
-										Phone Number
-									</label>
+									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Phone Number</label>
 									<input
 										className='w-full px-3 py-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 										id='phone'
@@ -126,9 +122,7 @@ export const RegisterForm = () => {
 								</div>
 							</div>
 							<div className='mb-4'>
-								<label id='email' className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>
-									Email
-								</label>
+								<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Email</label>
 								<input
 									className='w-full px-3 py-2 mb-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 									id='email'
@@ -143,9 +137,7 @@ export const RegisterForm = () => {
 							</div>
 							<div className='mb-2 md:flex md:justify-between'>
 								<div className='mb-2 md:mr-2 md:mb-0'>
-									<label id='password' className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>
-										Password
-									</label>
+									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Password</label>
 									<input
 										className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 										id='password'
@@ -159,9 +151,7 @@ export const RegisterForm = () => {
 									{errors.password && <p className='text-red-500'>{errors.password}</p>}
 								</div>
 								<div className='md:ml-2'>
-									<label id='c_password' className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>
-										Confirm Password
-									</label>
+									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Confirm Password</label>
 									<input
 										className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 										id='c_password'
