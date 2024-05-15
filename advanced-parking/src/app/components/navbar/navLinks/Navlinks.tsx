@@ -48,7 +48,7 @@ function Navlinks() {
 						<Link href='/how_it_works' onClick={toggleNav} className={clsx('block py-2 px-3 text-erieblack rounded hover:bg-silver md:hover:bg-transparent md:hover:text-yaleblue md:p-0', {
 							'underline decoration-silver text-yaleblue': pathname === '/how_it_works'
 						})}>
-							How it Works
+							How it works
 						</Link>
 					</li>
 					<li>
