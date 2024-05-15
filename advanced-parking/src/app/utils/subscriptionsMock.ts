@@ -5,7 +5,7 @@ export const subscriptionsMock = [
     longDescription:
       "This subscription includes one slot in the selected parking, valet parking service, and additionally one premium wash service per month, for a duration of one month.",
     price: 1499,
-    img_href: "/carwash.jpg",
+    img_href: "/premium.webp",
   },
   {
     name: "Gold",
@@ -13,7 +13,7 @@ export const subscriptionsMock = [
     longDescription:
       "This subscription includes one slot in the selected parking, and additionally valet parking service, for a duration of one month.",
     price: 1099,
-    img_href: "/valetparking.jpg",
+    img_href: "/gold.webp",
   },
   {
     name: "Standard",
@@ -21,6 +21,6 @@ export const subscriptionsMock = [
     longDescription:
       "This subscription includes one slot in the selected parking, for a duration of one month.",
     price: 810,
-    img_href: "/descriptionimgstandard.jpg",
+    img_href: "/standard.webp",
   },
 ];
