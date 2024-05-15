@@ -7,17 +7,20 @@ function Footer() {
     <footer className="p-4 bg-duck-yellow sm:p-6">
       <div className="mx-auto max-w-screen-xl">
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
+          <div className="mb-6 md:mb-0 flex">
+            <Image
+              src='/logo_advanced.webp'
+              className='sm:h-[180px] sm:w-[180px]'
+              alt='Advanced Parking Logo'
+              width={80}
+              height={80}
+              priority
+            />
             <Link href="/home" className="flex items-center">
-              <Image
-                src='/logo_advanced_parking.jpg'
-                className='h-[100px] w-[100px]'
-                alt='Advanced Parking Logo'
-                width={100}
-                height={100}
-                // priority={true}
-              />
-              <span className="self-center text-3xl lg-text-4xl font-semibold whitespace-nowrap md:whitespace-normal">Advanced Parking</span>
+              <span
+                className="self-center text-3xl lg-text-4xl font-semibold whitespace-nowrap md:whitespace-normal text-erieblack">
+                Advanced Parking
+              </span>
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
