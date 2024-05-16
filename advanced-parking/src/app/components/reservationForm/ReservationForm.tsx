@@ -7,15 +7,17 @@ import { LoginButton, ReserveButton } from '../buttons/Buttons'
 import { useAuth } from '@/app/context/AuthContext'
 import { IParking } from '@/types'
 import Toast from '../alerts/Toast'
+import SlotSelection from '../slotselection/SlotSelection'
 
 export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 	const { user } = useAuth()
-	console.log('usuario', user)
+	// console.log('usuario', user)
 	// console.log('el parking', parking)
 
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
+	const [slotShow, setSlotShow] = useState(false)
 
 	useEffect(() => {
 		if (showToast || errorToast) {
@@ -120,6 +122,12 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		}
 	}
 
+	//! funciones correspondientes a los slots
+	const handleShowSelectSlot = () => {
+		setSlotShow(!slotShow)
+	}
+	const [selectedSlot, setSelectedSlot] = useState(null)
+
 	return (
 		<div className='w-10/12 flex flex-col items-center'>
 			{showToast && <Toast message='Being redirect to payment' type='success' />}
@@ -160,6 +168,17 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 					<input type='number' name='duration' id='duration' value={formData.duration} onChange={handleInputChange} required min='1' />
 				</div>
 				{/* <p className='text-2xl mt-4'>Available slots: {parking?.slots_stock}</p> Validar con el back*/}
+				<div>
+					<button
+						type='button'
+						className='py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none'
+						onClick={handleShowSelectSlot}
+					>
+						Choose your slot
+					</button>
+
+					<p>Slot selected: {selectedSlot}</p>
+				</div>
 				<div className=''>
 					<label htmlFor='license_plate'>License plate:</label>
 					<input
@@ -172,6 +191,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						required
 					></input>
 				</div>
+
+				{slotShow && <SlotSelection selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} />}
 				{!user ? (
 					<div className='flex flex-col items-center'>
 						<p className='text-erieblack text-sm sm:text-lg m-2'>

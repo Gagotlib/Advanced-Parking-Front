@@ -3,8 +3,8 @@ import React from 'react'
 
 function Reviews() {
   return (
-    <div className='pt-10'>
-      <section id="testimonials" aria-label="What our customers are saying" className="bg-ghostwhite py-20 sm:py-32">
+    <div className='pt-2'>
+      <section id="testimonials" aria-label="What our customers are saying" className=" py-4 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-erieblack sm:text-5xl">What our users say</h2>

@@ -7,7 +7,7 @@ export const homeCardProps = [
   // },
   {
     href: "/ourparkings",
-    img_href: "/parkingslot3.jpg",
+    img_href: "/parkingslot3.webp",
     alt: "imagen Nuestros parkings",
     text: "Find your Parking",
     text2: "Search for a Parking lot and make a reservation"
