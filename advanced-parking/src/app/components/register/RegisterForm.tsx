@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export const RegisterForm = () => {
+	const rute = process.env.NEXT_PUBLIC_URL
 	const router = useRouter()
 	const [showToast, setShowToast] = useState(false)
 	const [errorToast, setErrorToast] = useState(false)
@@ -40,7 +41,7 @@ export const RegisterForm = () => {
 		email: '',
 		password: '',
 		confirmPassword: '',
-		phone: ''
+		phone: 0
 	})
 
 	const [errors, setErrors] = useState<IErrors>({
@@ -70,7 +71,7 @@ export const RegisterForm = () => {
 		console.log(registerData)
 
 		try {
-			const response = await axios.post('http://localhost:3001/auth/signup', registerData) //!deberia funcionar
+			const response = await axios.post(`${rute}}/auth/signup`, registerData) //!deberia funcionar
 			console.log(response.data)
 
 			setShowToast(true)
@@ -78,13 +79,15 @@ export const RegisterForm = () => {
 				name: registerData.name,
 				email: registerData.email
 			}
-			axios.post('http://localhost:3001/email-sender/registered', bodyemail)
-			
-			// throw Error("error forzado")
+			axios.post(`${rute}/email-sender/registered`, bodyemail)
+
+			throw Error('error forzado')
 		} catch (error: Error | any) {
 			console.error('Error al Registrarse:', error?.response?.data.message)
+
 			setErrorToast(true)
 			setErrorMessage(error?.response?.data.message || 'An unexpected error occurred')
+			alert(error?.response?.data.message)
 		}
 	}
 
@@ -118,7 +121,7 @@ export const RegisterForm = () => {
 										className='w-full px-3 py-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 										id='phone'
 										name='phone'
-										type='text'
+										type='number'
 										placeholder='Phone number'
 										required
 										value={registerData.phone}

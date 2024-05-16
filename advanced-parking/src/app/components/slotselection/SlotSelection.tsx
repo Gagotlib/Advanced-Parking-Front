@@ -13,7 +13,7 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot }: any) => {
 	return (
 		<div className='absolute lg:left-20 lg:w-1/2 lg:top-28 z-5 h-auto w-3/4 bg-ghostwhite border border-black rounded-xl'>
 			<div className='grid h-3/4 grid-cols-3 mt-4 mx-2'>
-				<div className='flex flex-col gap-1 '>
+				<div className='flex flex-col-reverse gap-1 '>
 					{slots.map((slot, index) => (
 						<div
 							key={index + 1}

@@ -5,7 +5,6 @@ import BookingsUser from '../components/bookings/BookingsUser'
 import Avatar from 'react-avatar'
 import axios from 'axios'
 
-
 interface IApointment {
 	id: string
 	parkingLot: string
@@ -21,7 +20,7 @@ const Profile = () => {
 		role: '',
 		image: ''
 	}
-
+	const rute = process.env.NEXT_PUBLIC_URL
 	const [user, setUser] = useState(usernull)
 	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>([{ id: '123123123', parkingLot: 'nombre estacionamiento', date: '15/05/2024', hour: '09:00', licensePlate: 'AAA111' }])
 
@@ -37,7 +36,7 @@ const Profile = () => {
 		//! hacer peticion al back por id del usuario para tener las reservas
 		const userId = logedUser.id
 		const response = axios
-			.get(`http://localhost:3001/user/${userId}`, {
+			.get(`${rute}/user/${userId}`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}
