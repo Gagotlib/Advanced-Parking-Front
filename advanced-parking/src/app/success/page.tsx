@@ -16,7 +16,7 @@ const Page = () => {
 	return (
 		<div className='flex flex-col items-center min-h-screen pt-24'>
 			<div className='flex items-center justify-center gap-4'>
-				<h1>Reserva Confirmada </h1>
+				<h1>Approved appointment</h1>
 
 				<CheckIcon />
 			</div>
