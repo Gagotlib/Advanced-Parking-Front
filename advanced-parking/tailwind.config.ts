@@ -10,7 +10,6 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        landing_page: "url('/bg_landing_page.webp')",
         not_found: "url('/notfound.webp')",
       },
       colors: {
