@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import BookingsUser from '../components/bookings/BookingsUser'
 import Avatar from 'react-avatar'
 import axios from 'axios'
-import { useAuth } from '../context/AuthContext'
+
 
 interface IApointment {
 	id: string

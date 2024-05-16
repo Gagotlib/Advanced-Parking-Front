@@ -4,6 +4,9 @@ export interface IUser {
 	password: string
 	confirmPassword: string
 	phone: string
+	appointments?: []
+	id?: string
+	role?: string
 }
 export interface ILogedUser {
 	id: string
