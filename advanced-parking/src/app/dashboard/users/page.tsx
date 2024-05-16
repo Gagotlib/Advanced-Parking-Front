@@ -1,48 +1,47 @@
+'use client'
+import { IUser } from '@/types'
+import axios from 'axios'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 type Props = {}
 
-const page = (props: Props) => {
-	const user1 = {
-		id: 1,
-		name: 'Roberto',
-		email: 'roberto@mail.com',
-		phone: '123456789',
-		role: 'user'
-	}
-	const user2 = {
-		id: 2,
-		name: 'Jorge',
-		email: 'jorge@mail.com',
-		phone: '123456789',
-		role: 'user'
-	}
-	const admin = {
-		id: 1111,
-		name: 'administrador',
-		email: 'admin@mail.com',
-		phone: '123456789',
-		role: 'admin'
-	}
-	const allUsers = [user1, user2, admin]
+const Page = (props: Props) => {
+	const [allUsers, setAllsers] = useState<IUser[] | []>([])
+	useEffect(() => {
+		const token = localStorage.getItem('authToken')
+		axios
+			.get(`http://localhost:3001/user`, {
+				headers: {
+					Authorization: `Bearer: ${token}`
+				}
+			})
+			.then(({ data }) => {
+				setAllsers(data)
+			})
+	}, [])
 
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
 			<h1>Esto es lo correspondiente a users</h1>
-			<div className='flex flex-col gap-7'>
-				{allUsers.map((user) => (
-					<div key={user.id}>
-						<Link href={`/dashboard/users/${user.id}`}>
-							<p className='font-bold'>{user.name}</p>
-							<p>{user.role}</p>
-							<p>{user.email}</p>
+			<div className='relative flex flex-col'>
+				<ul className='flex flex-row font-bold gap-4 pl-2'>
+					<li className='w-40'>User Name </li>
+					<li> Role</li>
+					<li>email </li>
+				</ul>
+				<ul>
+					{allUsers?.map((user) => (
+						<Link key={user.id} href={`/dashboard/users/${user.id}`} className='flex flex-row gap-4 border border-1 p-2 hover:bg-slate-200'>
+							<li className='w-40'>{user.name}</li>
+							<li>{user.role}</li>
+							<li>{user.email}</li>
 						</Link>
-					</div>
-				))}
+					))}
+				</ul>
 			</div>
 		</div>
 	)
 }
 
-export default page
+export default Page

@@ -14,7 +14,7 @@ function BookingsUser({ userAppointments }: any) {
 	return (
 		<div className='flex flex-col'>
 			<div>
-				<h1 className='font-bold text-4xl'>My Bookings</h1>
+				<h1 className='font-bold text-4xl'>Bookings</h1>
 			</div>
 			<div className='relative overflow-x-auto'>
 				<table className='w-full text-center text-erieblack table-auto border-collapse border border-erieblack/90'>
@@ -35,7 +35,7 @@ function BookingsUser({ userAppointments }: any) {
 						</tr>
 					</thead>
 					<tbody>
-						{userAppointments.map((appointment: any) => (
+						{userAppointments?.map((appointment: any) => (
 							<tr key={appointment.id} className='bg-ghostwhite'>
 								<th scope='row' className='px-6 py-4 font-medium text-erieblack whitespace-nowrap border-collapse border border-erieblack'>
 									{appointment.parking_lot?.name}
