@@ -9,8 +9,8 @@ import { useLocation } from 'react-router-dom'
 import { GoogleButton } from '../buttons/GoogleButton'
 
 export const LoginForm = () => {
-	const pathname = usePathname()
-	const rute = process.env.NEXT_API_URL
+	// const pathname = usePathname()
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
@@ -57,7 +57,7 @@ export const LoginForm = () => {
 			console.log(loginData)
 
 			const response = await axios.post(`${rute}/auth/signin`, loginData) //deberia funcionar
-			// console.log(response.data)
+			console.log(response.data)
 			setUser(response.data.userData)
 			setToken(response.data.token)
 			localStorage.setItem('authToken', response.data.token)
@@ -66,7 +66,7 @@ export const LoginForm = () => {
 			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
 			console.log(error)
-			console.error('Error al iniciar sesión:', error?.response?.data.message)
+			console.error('Error al iniciar sesión:', error?.response)
 			setErrorToast(true)
 		}
 	}

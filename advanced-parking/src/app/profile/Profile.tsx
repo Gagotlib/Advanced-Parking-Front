@@ -21,7 +21,7 @@ const Profile = () => {
 		image: ''
 	}
 
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [user, setUser] = useState(usernull)
 	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>([{ id: '123123123', parkingLot: 'nombre estacionamiento', date: '15/05/2024', hour: '09:00', licensePlate: 'AAA111' }])
 
@@ -47,16 +47,42 @@ const Profile = () => {
 	console.log('user appointments', userAppointments)
 
 	const [showChangeImage, setShowChangeImage] = useState(false)
-	const [newImage, setNewImage] = useState('')
+	const [file, setFile] = useState('')
+
 	const handleChangeImage = () => {
 		setShowChangeImage(!showChangeImage)
 	}
 	const handleSendNewImage = (e: any) => {
-		console.log(newImage)
-		//! funcion que lleve el archivo al back
+		console.log(file)
+		const userString = localStorage.getItem('user')
+		const logedUser = userString ? JSON.parse(userString) : null
+		const token = localStorage.getItem('authToken')
+
+		// funcion que lleve el archivo al back
+		axios
+			.post(
+				`${rute}/files/profile-image/${logedUser.id}`,
+				{ file },
+				{
+					headers: {
+						Authorization: `Bearer: ${token}`
+					}
+				}
+			)
+			.then((response) => console.log(response))
 	}
 	const handleDeleteImage = () => {
-		//! funcion que permita hacer user.image="" y se guarde en bd
+		// funcion que permita hacer user.image="" y se guarde en bd
+		const userString = localStorage.getItem('user')
+		const logedUser = userString ? JSON.parse(userString) : null
+		const token = localStorage.getItem('authToken')
+		axios
+			.delete(`${rute}/files/profile-image/${logedUser.id}`, {
+				headers: {
+					Authorization: `Bearer: ${token}`
+				}
+			})
+			.then((response) => console.log(response))
 	}
 
 	return (
@@ -106,7 +132,7 @@ const Profile = () => {
 								</div>
 								{showChangeImage && (
 									<div>
-										<input type='file' className='' onChange={(e) => setNewImage(e.target.files ? (e.target.files[0] as any) : null)}></input>
+										<input type='file' className='' onChange={(e) => setFile(e.target.files ? (e.target.files[0] as any) : null)}></input>
 										<button
 											type='button'
 											onClick={(e) => handleSendNewImage(e)}

@@ -10,7 +10,7 @@ import { signOut, useSession } from 'next-auth/react'
 import axios from 'axios'
 
 function Navprofile() {
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
 	const [menuOpen, setMenuOpen] = useState(false)
 	const { token, setToken } = useAuth()

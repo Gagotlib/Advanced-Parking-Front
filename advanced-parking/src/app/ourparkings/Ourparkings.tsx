@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 
 export const Ourparkings = () => {
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [searchValue, setSearchValue] = useState('')
 	const [page, setPage] = useState(1)
 	const { allParkings, setAllParkings } = useAuth()

@@ -9,7 +9,9 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export const RegisterForm = () => {
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
+	console.log('ruta NEXT_PUBLIC_BACK_API_URL', rute)
+
 	const router = useRouter()
 	const [showToast, setShowToast] = useState(false)
 	const [errorToast, setErrorToast] = useState(false)
@@ -71,7 +73,7 @@ export const RegisterForm = () => {
 		console.log(registerData)
 		console.log(typeof registerData.phone);
 		try {
-			const response = await axios.post(`${rute}/auth/signup`, registerData) //!deberia funcionar
+			const response = await axios.post(`https://advancedparking-latest.onrender.com/auth/signup`, registerData) //!deberia funcionar
 			console.log(response.data)
 
 			setShowToast(true)
@@ -79,7 +81,7 @@ export const RegisterForm = () => {
 				name: registerData.name,
 				email: registerData.email
 			}
-			axios.post(`${rute}/email-sender/registered`, bodyemail)
+			axios.post(`https://advancedparking-latest.onrender.com/email-sender/registered`, bodyemail)
 
 			// throw Error('error forzado')
 

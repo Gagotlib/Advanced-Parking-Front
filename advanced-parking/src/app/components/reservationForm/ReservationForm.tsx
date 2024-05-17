@@ -14,7 +14,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const { user } = useAuth()
 	// console.log('usuario', user)
 	// console.log('el parking', parking)
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
@@ -44,7 +44,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			date: localStorage.getItem('date') || getTodayDate(),
 			time: localStorage.getItem('time') || '08:00',
 			license_plate: localStorage.getItem('license_plate') || '',
-			duration: localStorage.getItem('duration') || 1
+			duration: localStorage.getItem('duration') || '1'
 		}
 	})
 
@@ -54,7 +54,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		parkingLotId: parking?.id,
 		user_id: user?.id,
 		license_plate: localStorage.getItem('license_plate') || '',
-		duration: localStorage.getItem('duration') || 1,
+		duration: localStorage.getItem('duration') || '1',
 		is_parked: false
 	})
 
@@ -88,13 +88,15 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 			//!enviamos al pago
 			const bodyreq = { type_of_service: 'One time payment', unit_amount: 10, appointment_id: appointment_id }
-			const token = process.env.STRIPE_PRIVATE_KEY
+			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
+			console.log('el token de stripe', token)
+
 			const response = await axios.post(`${rute}/payment/create-checkout-session`, bodyreq, {
 				headers: {
 					'stripe-signature': token
 				}
 			})
-			console.log(response.data.url)
+			console.log('la respuesta del pago:', response.data.url)
 			const url = response.data.url //! url que devuelve la creacion de la solicitud
 
 			setShowToast(true)
@@ -129,7 +131,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	return (
 		<div className='w-10/12 flex flex-col items-center text-erieblack'>
 			{showToast && <Toast message='Being redirect to payment' type='success' />}
-			{errorToast && <Toast message='Reservation Error' type='error' />}
+			{errorToast && <Toast message='Reservation Error, please try again or contact our support team' type='error' />}
 			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
@@ -144,6 +146,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 					<label htmlFor='time' className='font-bold'>Time: </label>
 					<input type='time' name='time' id='time' step={'1800'} value={formData.time} onChange={handleInputChange} required />
 				</div>
+
 				<div className='block pb-2'>
 					<span className='text-sm text-center font-semibold'>Select Parking Duration</span>
 					<PricingRender />
