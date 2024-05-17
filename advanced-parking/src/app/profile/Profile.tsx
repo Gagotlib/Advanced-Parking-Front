@@ -56,14 +56,33 @@ const Profile = () => {
 		console.log(newImage)
 		const userString = localStorage.getItem('user')
 		const logedUser = userString ? JSON.parse(userString) : null
+		const token = localStorage.getItem('authToken')
+
 		// funcion que lleve el archivo al back
-		axios.post(`${rute}/files/profile-image/${logedUser.id}`, { file: newImage }).then((response) => console.log(response))
+		axios
+			.post(
+				`${rute}/files/profile-image/${logedUser.id}`,
+				{ file: newImage },
+				{
+					headers: {
+						Authorization: `Bearer: ${token}`
+					}
+				}
+			)
+			.then((response) => console.log(response))
 	}
 	const handleDeleteImage = () => {
 		// funcion que permita hacer user.image="" y se guarde en bd
 		const userString = localStorage.getItem('user')
 		const logedUser = userString ? JSON.parse(userString) : null
-		axios.delete(`${rute}/files/profile-image/${logedUser.id}`)
+		const token = localStorage.getItem('authToken')
+		axios
+			.delete(`${rute}/files/profile-image/${logedUser.id}`, {
+				headers: {
+					Authorization: `Bearer: ${token}`
+				}
+			})
+			.then((response) => console.log(response))
 	}
 
 	return (
