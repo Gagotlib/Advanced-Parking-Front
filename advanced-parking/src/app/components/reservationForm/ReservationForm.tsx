@@ -43,7 +43,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			date: localStorage.getItem('date') || getTodayDate(),
 			time: localStorage.getItem('time') || '08:00',
 			license_plate: localStorage.getItem('license_plate') || '',
-			duration: localStorage.getItem('duration') || 1
+			duration: localStorage.getItem('duration') || '1'
 		}
 	})
 
@@ -53,7 +53,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		parkingLotId: parking?.id,
 		user_id: user?.id,
 		license_plate: localStorage.getItem('license_plate') || '',
-		duration: localStorage.getItem('duration') || 1,
+		duration: localStorage.getItem('duration') || '1',
 		is_parked: false
 	})
 
