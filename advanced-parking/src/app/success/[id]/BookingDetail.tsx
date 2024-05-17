@@ -56,14 +56,14 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 					<tr>
 						<td className='text-left text-gray-700'>{booking.license_plate} </td>
 						<td className='text-left text-gray-700'>{booking.duration} hour</td>
-						<td className='text-right text-gray-700'>$100</td>
+						<td className='text-right text-gray-700'>$10</td>
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
 						<td className='text-left font-bold text-gray-700'>Total</td>
 						<td className='text-left font-bold text-gray-700'></td>
-						<td className='text-right font-bold text-gray-700'>$100.00</td>
+						<td className='text-right font-bold text-gray-700'>$10.00</td>
 					</tr>
 				</tfoot>
 			</table>

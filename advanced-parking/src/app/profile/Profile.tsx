@@ -48,15 +48,22 @@ const Profile = () => {
 
 	const [showChangeImage, setShowChangeImage] = useState(false)
 	const [newImage, setNewImage] = useState('')
+
 	const handleChangeImage = () => {
 		setShowChangeImage(!showChangeImage)
 	}
 	const handleSendNewImage = (e: any) => {
 		console.log(newImage)
-		//! funcion que lleve el archivo al back
+		const userString = localStorage.getItem('user')
+		const logedUser = userString ? JSON.parse(userString) : null
+		// funcion que lleve el archivo al back
+		axios.post(`${rute}/files/profile-image/${logedUser.id}`, { file: newImage }).then((response) => console.log(response))
 	}
 	const handleDeleteImage = () => {
-		//! funcion que permita hacer user.image="" y se guarde en bd
+		// funcion que permita hacer user.image="" y se guarde en bd
+		const userString = localStorage.getItem('user')
+		const logedUser = userString ? JSON.parse(userString) : null
+		axios.delete(`${rute}/files/profile-image/${logedUser.id}`)
 	}
 
 	return (
