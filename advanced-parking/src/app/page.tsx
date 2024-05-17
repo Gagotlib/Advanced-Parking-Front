@@ -9,7 +9,7 @@ import axios from 'axios'
 import { useAuth } from './context/AuthContext'
 
 export default function Landing() {
-	const rute = process.env.NEXT_PUBLIC_URL
+	const rute = process.env.NEXT_API_URL
 	const { data: session } = useSession()
 	const { user, setUser } = useAuth()
 	const { token, setToken } = useAuth()

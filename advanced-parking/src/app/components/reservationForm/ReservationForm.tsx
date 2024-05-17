@@ -13,7 +13,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const { user } = useAuth()
 	// console.log('usuario', user)
 	// console.log('el parking', parking)
-	const rute = process.env.NEXT_PUBLIC_URL
+	const rute = process.env.NEXT_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
@@ -87,7 +87,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 			//!enviamos al pago
 			const bodyreq = { type_of_service: 'One time payment', unit_amount: 10, appointment_id: appointment_id }
-			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
+			const token = process.env.STRIPE_PRIVATE_KEY
 			const response = await axios.post(`${rute}/payment/create-checkout-session`, bodyreq, {
 				headers: {
 					'stripe-signature': token

@@ -6,7 +6,7 @@ import { CheckIcon } from '../components/icons/icons'
 
 const Page = () => {
 	const [booking, setBooking] = useState(null)
-	const rute = process.env.NEXT_PUBLIC_URL
+	const rute = process.env.NEXT_API_URL
 	// useEffect(() => {
 	// 	axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
 	// 	console.log(booking)

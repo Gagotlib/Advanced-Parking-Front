@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export const RegisterForm = () => {
-	const rute = process.env.NEXT_PUBLIC_URL
+	const rute = process.env.NEXT_API_URL
 	const router = useRouter()
 	const [showToast, setShowToast] = useState(false)
 	const [errorToast, setErrorToast] = useState(false)
@@ -56,7 +56,7 @@ export const RegisterForm = () => {
 		const { name, value } = e.target
 		setRegisterData((user) => ({
 			...user,
-			[name]: value
+			[name]: name === 'phone' ? Number(value) : value
 		}))
 		const fieldErrors = validateRegister({ ...registerData, [name]: value })
 		setErrors((prevErrors) => ({
@@ -69,6 +69,7 @@ export const RegisterForm = () => {
 		e.preventDefault()
 		console.log('mandado')
 		console.log(registerData)
+		console.log(typeof registerData.phone)
 
 		try {
 			const response = await axios.post(`${rute}}/auth/signup`, registerData) //!deberia funcionar
@@ -121,7 +122,7 @@ export const RegisterForm = () => {
 										className='w-full px-3 py-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
 										id='phone'
 										name='phone'
-										type='number'
+										type='text'
 										placeholder='Phone number'
 										required
 										value={registerData.phone}

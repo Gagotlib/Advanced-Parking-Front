@@ -21,7 +21,7 @@ const Profile = () => {
 		image: ''
 	}
 
-	const rute = process.env.NEXT_PUBLIC_URL
+	const rute = process.env.NEXT_API_URL
 	const [user, setUser] = useState(usernull)
 	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>([{ id: '123123123', parkingLot: 'nombre estacionamiento', date: '15/05/2024', hour: '09:00', licensePlate: 'AAA111' }])
 

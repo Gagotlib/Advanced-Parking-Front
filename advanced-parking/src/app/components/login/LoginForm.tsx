@@ -10,7 +10,7 @@ import { GoogleButton } from '../buttons/GoogleButton'
 
 export const LoginForm = () => {
 	const pathname = usePathname()
-	const rute = process.env.NEXT_PUBLIC_URL
+	const rute = process.env.NEXT_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
