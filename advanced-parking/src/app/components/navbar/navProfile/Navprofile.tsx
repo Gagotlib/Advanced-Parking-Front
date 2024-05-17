@@ -109,11 +109,6 @@ function Navprofile() {
 						{user.role === 'user' && (
 							<>
 								<li>
-									<Link href='#' onClick={toggleMenu} className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
-										My Bookings
-									</Link>
-								</li>
-								<li>
 									<Link href='/profile' onClick={toggleMenu} className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
 										My Profile
 									</Link>
