@@ -41,7 +41,7 @@ export const RegisterForm = () => {
 		email: '',
 		password: '',
 		confirmPassword: '',
-		phone: 0
+		phone: ''
 	})
 
 	const [errors, setErrors] = useState<IErrors>({
@@ -82,13 +82,13 @@ export const RegisterForm = () => {
 			}
 			axios.post(`${rute}/email-sender/registered`, bodyemail)
 
-			throw Error('error forzado')
+			// throw Error('error forzado')
 		} catch (error: Error | any) {
 			console.error('Error al Registrarse:', error?.response?.data.message)
 
 			setErrorToast(true)
 			setErrorMessage(error?.response?.data.message || 'An unexpected error occurred')
-			alert(error?.response?.data.message)
+			// alert(error?.response?.data.message)
 		}
 	}
 
