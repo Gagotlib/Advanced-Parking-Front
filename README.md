@@ -1,5 +1,4 @@
-
-![Advanced Parking](https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/advanced_parking.png)
+![Advanced Parking](https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/API/advanced_parking.png)
 
 # Advanced Parking
 
