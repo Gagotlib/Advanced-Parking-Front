@@ -57,7 +57,7 @@ export const LoginForm = () => {
 			console.log(loginData)
 
 			const response = await axios.post(`${rute}/auth/signin`, loginData) //deberia funcionar
-			// console.log(response.data)
+			console.log(response.data)
 			setUser(response.data.userData)
 			setToken(response.data.token)
 			localStorage.setItem('authToken', response.data.token)
