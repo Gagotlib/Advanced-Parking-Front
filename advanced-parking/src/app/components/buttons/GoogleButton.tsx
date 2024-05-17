@@ -6,6 +6,7 @@ import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export const GoogleButton = () => {
+	const rute = process.env.NEXT_API_URL
 	const { data: session } = useSession()
 	const router = useRouter()
 	const { user, setUser } = useAuth()
@@ -22,7 +23,7 @@ export const GoogleButton = () => {
 				console.log('ERRRRORRRRRRR')
 			}
 			axios
-				.post(' http://localhost:3001/auth/signup-auth0', newUserSession)
+				.post(`${rute}/auth/signup-auth0`, newUserSession)
 				.then((response) => response.data)
 				.then((data) => {
 					setUser(data.userData)

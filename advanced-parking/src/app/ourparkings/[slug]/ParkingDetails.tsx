@@ -9,15 +9,11 @@ import axios from 'axios'
 import React, { Suspense, useEffect, useState } from 'react'
 
 const ParkingDetails = ({ params }: { params: { slug: string } }) => {
-	// const formattedSlug = params.slug.replace(/%20/g, ' ')
-	// const { allParkings, setAllParkings } = useAuth()
-	// const foundParking = allParkings?.find((parking) => parking.name === formattedSlug)
+	const rute = process.env.NEXT_API_URL
 	const [parking, setParking] = useState<IParking | undefined>(undefined)
 	useEffect(() => {
-		axios.get(`http://localhost:3001/parking-lot/${params.slug}`).then(({ data }) => setParking(data))
+		axios.get(`${rute}/parking-lot/${params.slug}`).then(({ data }) => setParking(data))
 	}, [])
-
-	// console.log('los parkings', allParkings)
 
 	return (
 		<div className='flex flex-col min-h-screen pt-24 items-center'>

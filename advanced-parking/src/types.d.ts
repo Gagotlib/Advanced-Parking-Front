@@ -3,7 +3,10 @@ export interface IUser {
 	email: string
 	password: string
 	confirmPassword: string
-	phone: string
+	phone: number
+	appointments?: []
+	id?: string
+	role?: string
 }
 export interface ILogedUser {
 	id: string
