@@ -13,7 +13,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const { user } = useAuth()
 	// console.log('usuario', user)
 	// console.log('el parking', parking)
-	const rute = process.env.BACK_API_URL
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)

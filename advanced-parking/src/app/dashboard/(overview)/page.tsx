@@ -3,7 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Page = () => {
-	const rute = process.env.BACK_API_URL
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	//* para traerme todos los usuarios
 	const [allUsers, setAllsers] = useState([])
 	const [allParkinglots, setAllParkinglots] = useState([])
