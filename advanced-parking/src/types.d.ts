@@ -3,7 +3,7 @@ export interface IUser {
 	email: string
 	password: string
 	confirmPassword: string
-	phone: number
+	phone: string
 	appointments?: []
 	id?: string
 	role?: string
