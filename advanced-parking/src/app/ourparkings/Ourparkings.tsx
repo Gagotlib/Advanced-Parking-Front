@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 
 export const Ourparkings = () => {
+	const rute = process.env.NEXT_PUBLIC_URL
 	const [searchValue, setSearchValue] = useState('')
 	const [page, setPage] = useState(1)
 	const { allParkings, setAllParkings } = useAuth()
@@ -13,13 +14,13 @@ export const Ourparkings = () => {
 	const [pageParkings, setPageParkings] = useState([])
 
 	useEffect(() => {
-		axios.get(`http://localhost:3001/parking-lot?page=${page}&limit=${cardLimit}`).then(({ data }) => {
+		axios.get(`${rute}/parking-lot?page=${page}&limit=${cardLimit}`).then(({ data }) => {
 			setPageParkings(data)
 		})
 	}, [page])
 
 	useEffect(() => {
-		axios.get(`http://localhost:3001/parking-lot`).then(({ data }) => {
+		axios.get(`${rute}/parking-lot`).then(({ data }) => {
 			setAllParkings(data)
 			const parkingLotString = JSON.stringify(data)
 			localStorage.setItem('allParkings', parkingLotString)
