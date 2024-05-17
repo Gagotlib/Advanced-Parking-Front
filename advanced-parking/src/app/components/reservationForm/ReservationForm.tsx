@@ -8,6 +8,7 @@ import { useAuth } from '@/app/context/AuthContext'
 import { IParking } from '@/types'
 import Toast from '../alerts/Toast'
 import SlotSelection from '../slotselection/SlotSelection'
+import PricingRender from '../pricing/PricingRender'
 
 export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 	const { user } = useAuth()
@@ -126,36 +127,39 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const [selectedSlot, setSelectedSlot] = useState(null)
 
 	return (
-		<div className='w-10/12 flex flex-col items-center'>
+		<div className='w-10/12 flex flex-col items-center text-erieblack'>
 			{showToast && <Toast message='Being redirect to payment' type='success' />}
 			{errorToast && <Toast message='Reservation Error' type='error' />}
 			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
 				<div className=''>
+
 					<label htmlFor='date'>Date:</label>
 					<input type='date' name='date' id='date' value={formData.date} min={getTodayDate()} max={getMaxDate()} onChange={handleInputChange} required pattern='\d{4}-\d{2}-\d{2}' />
+
 					{/* {errors.date && <p className='text-red-500'>{errors.date}</p>} */}
 				</div>
 				<div className=''>
-					<label htmlFor='time'>Time: </label>
+					<label htmlFor='time' className='font-bold'>Time: </label>
 					<input type='time' name='time' id='time' step={'1800'} value={formData.time} onChange={handleInputChange} required />
 				</div>
-				<div className='block'>
-					<label htmlFor='duration'>How many hours are you staying?</label>
-					<input type='number' name='duration' id='duration' value={formData.duration} onChange={handleInputChange} required min='1' className='border rounded-md w-14 ml-2' />
+				<div className='block pb-2'>
+					<span className='text-sm text-center font-semibold'>Select Parking Duration</span>
+					<PricingRender />
+					{/* <label htmlFor='duration' className='font-bold'>How many hours are you staying?</label>
+					<input type='number' name='duration' id='duration' value={formData.duration} onChange={handleInputChange} required min='1' /> */}
 				</div>
 				{/* <p className='text-2xl mt-4'>Available slots: {parking?.slots_stock}</p> Validar con el back*/}
-				<div>
+				<div className='flex justify-around gap-4'>
 					<button
 						type='button'
 						className='py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none'
 						onClick={handleShowSelectSlot}
 					>
-						Choose your slot
+						Pick your slot
 					</button>
-
-					<p>Slot selected: {selectedSlot}</p>
+					<p className='text-md font-normal'>Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span></p>
 				</div>
 				<div className=''>
 					<label htmlFor='license_plate'>License plate:</label>
@@ -165,11 +169,10 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						value={formData.license_plate}
 						className='block w-full p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite focus:ring-blue-500 focus:border-blue-500 text-center'
 						onChange={handleInputChange}
-						placeholder='AAA-000 '
+						placeholder='AAA-000'
 						required
 					></input>
 				</div>
-
 				{slotShow && <SlotSelection selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} />}
 				{!user ? (
 					<div className='flex flex-col items-center'>
