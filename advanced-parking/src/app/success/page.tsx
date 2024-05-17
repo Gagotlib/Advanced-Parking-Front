@@ -4,14 +4,15 @@ import BookingDetail from './BookingDetail'
 import axios from 'axios'
 import { CheckIcon } from '../components/icons/icons'
 
-const Page = () => {
+const Page = ({ params }: { params: { id: string } }) => {
 	const [booking, setBooking] = useState(null)
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-	// useEffect(() => {
-	// 	axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
-	// 	console.log(booking)
-	// }, [])
-	// console.log(booking)
+
+	useEffect(() => {
+		axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
+		console.log("booking:", booking)
+	}, [])
+	console.log('booking:', booking)
 
 	return (
 		<div className='flex flex-col items-center min-h-screen pt-24'>
