@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import BookingDetail from './BookingDetail'
 import axios from 'axios'
-import { CheckIcon } from '../components/icons/icons'
+import { CheckIcon } from '../../components/icons/icons'
 
 const Page = ({ params }: { params: { id: string } }) => {
 	const [booking, setBooking] = useState(null)
