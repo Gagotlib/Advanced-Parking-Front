@@ -6,7 +6,7 @@ import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export const GoogleButton = () => {
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.BACK_API_URL
 	const { data: session } = useSession()
 	const router = useRouter()
 	const { user, setUser } = useAuth()

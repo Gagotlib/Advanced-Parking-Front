@@ -10,7 +10,7 @@ import Image from 'next/image'
 export const ReservationForm = () => {
 	const user = { id: 1 } //hardcodeado
 	const userId = user.id
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.BACK_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)

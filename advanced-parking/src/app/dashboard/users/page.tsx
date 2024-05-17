@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 type Props = {}
 
 const Page = (props: Props) => {
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.BACK_API_URL
 	const [allUsers, setAllsers] = useState<IUser[] | []>([])
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')

@@ -5,7 +5,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const UserDetails = ({ params }: { params: { slug: string } }) => {
-	const rute = process.env.NEXT_API_URL
+	const rute = process.env.BACK_API_URL
 	const [userDetails, setUserDetails] = useState<IUser | null>(null)
 
 	//me traigo del back los datos de ese user segun id
