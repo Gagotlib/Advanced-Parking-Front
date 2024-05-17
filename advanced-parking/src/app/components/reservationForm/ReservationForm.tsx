@@ -88,6 +88,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			//!enviamos al pago
 			const bodyreq = { type_of_service: 'One time payment', unit_amount: 10, appointment_id: appointment_id }
 			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
+			console.log('el token de stripe', token)
 
 			const response = await axios.post(`${rute}/payment/create-checkout-session`, bodyreq, {
 				headers: {
