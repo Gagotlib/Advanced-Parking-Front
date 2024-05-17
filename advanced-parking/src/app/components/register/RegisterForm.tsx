@@ -72,7 +72,7 @@ export const RegisterForm = () => {
 		console.log(typeof registerData.phone)
 
 		try {
-			const response = await axios.post(`${rute}/auth/signup`, registerData) //!deberia funcionar
+			const response = await axios.post(`https://advancedparking-latest.onrender.com/auth/signup`, registerData) //!deberia funcionar
 			console.log(response.data)
 
 			setShowToast(true)
@@ -80,7 +80,7 @@ export const RegisterForm = () => {
 				name: registerData.name,
 				email: registerData.email
 			}
-			axios.post(`${rute}/email-sender/registered`, bodyemail)
+			axios.post(`https://advancedparking-latest.onrender.com/email-sender/registered`, bodyemail)
 
 			// throw Error('error forzado')
 		} catch (error: Error | any) {
