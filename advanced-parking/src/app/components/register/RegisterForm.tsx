@@ -10,6 +10,8 @@ import React, { useEffect, useState } from 'react'
 
 export const RegisterForm = () => {
 	const rute = process.env.NEXT_API_URL
+	console.log('ruta', rute)
+
 	const router = useRouter()
 	const [showToast, setShowToast] = useState(false)
 	const [errorToast, setErrorToast] = useState(false)
