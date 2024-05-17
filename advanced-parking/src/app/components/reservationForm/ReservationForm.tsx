@@ -143,7 +143,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				</div>
 				<div className='block'>
 					<label htmlFor='duration'>How many hours are you staying?</label>
-					<input type='number' name='duration' id='duration' value={formData.duration} onChange={handleInputChange} required min='1' className='border rounded-md w-14 ml-2' />
+					<input type='text' name='duration' id='duration' value={formData.duration} onChange={handleInputChange} required min='1' className='border rounded-md w-14 ml-2' />
 				</div>
 				{/* <p className='text-2xl mt-4'>Available slots: {parking?.slots_stock}</p> Validar con el back*/}
 				<div>
