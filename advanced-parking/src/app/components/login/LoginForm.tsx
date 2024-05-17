@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom'
 import { GoogleButton } from '../buttons/GoogleButton'
 
 export const LoginForm = () => {
-	const pathname = usePathname()
+	// const pathname = usePathname()
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
