@@ -5,7 +5,6 @@ import BookingsUser from '../components/bookings/BookingsUser'
 import Avatar from 'react-avatar'
 import axios from 'axios'
 
-
 interface IApointment {
 	id: string
 	parkingLot: string
@@ -22,6 +21,7 @@ const Profile = () => {
 		image: ''
 	}
 
+	const rute = process.env.NEXT_API_URL
 	const [user, setUser] = useState(usernull)
 	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>([{ id: '123123123', parkingLot: 'nombre estacionamiento', date: '15/05/2024', hour: '09:00', licensePlate: 'AAA111' }])
 
@@ -37,7 +37,7 @@ const Profile = () => {
 		//! hacer peticion al back por id del usuario para tener las reservas
 		const userId = logedUser.id
 		const response = axios
-			.get(`http://localhost:3001/user/${userId}`, {
+			.get(`${rute}/user/${userId}`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}
@@ -46,11 +46,17 @@ const Profile = () => {
 	}, [])
 	console.log('user appointments', userAppointments)
 
+	const [showChangeImage, setShowChangeImage] = useState(false)
+	const [newImage, setNewImage] = useState('')
 	const handleChangeImage = () => {
-		// funcion que permita modificar la propiedad user.image y la guarde en bd
+		setShowChangeImage(!showChangeImage)
+	}
+	const handleSendNewImage = (e: any) => {
+		console.log(newImage)
+		//! funcion que lleve el archivo al back
 	}
 	const handleDeleteImage = () => {
-		// funcion que permita hacer user.image="" y se guarde en bd
+		//! funcion que permita hacer user.image="" y se guarde en bd
 	}
 
 	return (
@@ -61,8 +67,8 @@ const Profile = () => {
 					<div className='w-full px-6 pb-8 mt-8 sm:rounded-lg'>
 						<div className='flex mt-8 gap-5 sm:gap-10'>
 							<div className='flex flex-col gap-3 items-center space-y-5 sm:space-y-0'>
-								<Avatar src={user.image} name={user.name} size='150' round color='#1C1C1C' maxInitials={2} />
-								<div className='flex flex-col space-y-5 sm:ml-2'>
+								<Avatar src={user?.image} name={user.name} size='150' round color='#1C1C1C' maxInitials={2} />
+								<div className='flex flex-col gap-2 sm:ml-2'>
 									<button
 										type='button'
 										className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
@@ -98,6 +104,18 @@ const Profile = () => {
 									</label>
 									Platinum || Gold || Standard
 								</div>
+								{showChangeImage && (
+									<div>
+										<input type='file' className='' onChange={(e) => setNewImage(e.target.files ? (e.target.files[0] as any) : null)}></input>
+										<button
+											type='button'
+											onClick={(e) => handleSendNewImage(e)}
+											className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+										>
+											Send
+										</button>
+									</div>
+								)}
 							</div>
 						</div>
 						<BookingsUser userAppointments={userAppointments} />

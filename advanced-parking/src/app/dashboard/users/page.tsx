@@ -7,11 +7,12 @@ import React, { useEffect, useState } from 'react'
 type Props = {}
 
 const Page = (props: Props) => {
+	const rute = process.env.NEXT_API_URL
 	const [allUsers, setAllsers] = useState<IUser[] | []>([])
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		axios
-			.get(`http://localhost:3001/user`, {
+			.get(`${rute}/user`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}

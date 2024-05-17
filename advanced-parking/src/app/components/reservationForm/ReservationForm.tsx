@@ -14,7 +14,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const { user } = useAuth()
 	// console.log('usuario', user)
 	// console.log('el parking', parking)
-
+	const rute = process.env.NEXT_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
@@ -83,13 +83,13 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		try {
 			//! enviar info al backend
 			//!creamos el appointment
-			const responseAppointment = await axios.post('http://localhost:3001/appointments', formData)
+			const responseAppointment = await axios.post(`${rute}/appointments`, formData)
 			const appointment_id = responseAppointment.data.id
 
 			//!enviamos al pago
 			const bodyreq = { type_of_service: 'One time payment', unit_amount: 10, appointment_id: appointment_id }
-			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
-			const response = await axios.post('http://localhost:3001/payment/create-checkout-session', bodyreq, {
+			const token = process.env.STRIPE_PRIVATE_KEY
+			const response = await axios.post(`${rute}/payment/create-checkout-session`, bodyreq, {
 				headers: {
 					'stripe-signature': token
 				}
@@ -103,9 +103,6 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				router.push(`${url}`)
 			}, 3000)
 			// console.log(response)
-
-			// http://localhost:3001/cancel
-			// http://localhost:3001/success
 
 			// Limpiar el formulario
 			setFormData({
@@ -137,33 +134,15 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
 				<div className=''>
-					<label htmlFor='date' className='font-bold'>Date:</label>
-					<input
-						className='text-erieblack'
-						type='date'
-						name='date'
-						id='date'
-						value={formData.date}
-						min={getTodayDate()}
-						max={getMaxDate()}
-						onChange={handleInputChange}
-						// onInvalid={(e) => e.target.setCustomValidity('Seleccione un día hábil entre hoy y dentro de 2 meses')}
-						// onInput={(e) => e.target.setCustomValidity('')}
-						required
-						pattern='\d{4}-\d{2}-\d{2}'
-					/>
+
+					<label htmlFor='date'>Date:</label>
+					<input type='date' name='date' id='date' value={formData.date} min={getTodayDate()} max={getMaxDate()} onChange={handleInputChange} required pattern='\d{4}-\d{2}-\d{2}' />
+
 					{/* {errors.date && <p className='text-red-500'>{errors.date}</p>} */}
 				</div>
 				<div className=''>
 					<label htmlFor='time' className='font-bold'>Time: </label>
 					<input type='time' name='time' id='time' step={'1800'} value={formData.time} onChange={handleInputChange} required />
-					{/* <select id='time' name='time' className='' value={formData.time} onChange={handleInputChange} required>
-						{availableHours.map((hour) => (
-							<option key={hour} value={hour}>
-								{hour}
-							</option>
-						))}
-					</select> */}
 				</div>
 				<div className='block pb-2'>
 					<span className='text-sm text-center font-semibold'>Select Parking Duration</span>

@@ -9,9 +9,10 @@ import axios from 'axios'
 import React, { Suspense, useEffect, useState } from 'react'
 
 const ParkingDetails = ({ params }: { params: { slug: string } }) => {
+	const rute = process.env.NEXT_API_URL
 	const [parking, setParking] = useState<IParking | undefined>(undefined)
 	useEffect(() => {
-		axios.get(`http://localhost:3001/parking-lot/${params.slug}`).then(({ data }) => setParking(data))
+		axios.get(`${rute}/parking-lot/${params.slug}`).then(({ data }) => setParking(data))
 	}, [])
 
 	return (

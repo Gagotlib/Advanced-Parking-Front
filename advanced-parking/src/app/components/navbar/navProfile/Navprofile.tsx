@@ -10,6 +10,7 @@ import { signOut, useSession } from 'next-auth/react'
 import axios from 'axios'
 
 function Navprofile() {
+	const rute = process.env.NEXT_API_URL
 	const router = useRouter()
 	const [menuOpen, setMenuOpen] = useState(false)
 	const { token, setToken } = useAuth()
@@ -27,7 +28,7 @@ function Navprofile() {
 			// console.log(user)
 
 			axios
-				.post(' http://localhost:3001/auth/signup-auth0', newUser)
+				.post(`${rute}/auth/signup-auth0`, newUser)
 				.then((response) => response.data)
 				.then((data) => {
 					setUser(data.userData)

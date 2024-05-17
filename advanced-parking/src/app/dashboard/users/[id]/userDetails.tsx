@@ -5,17 +5,18 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const UserDetails = ({ params }: { params: { slug: string } }) => {
+	const rute = process.env.NEXT_API_URL
 	const [userDetails, setUserDetails] = useState<IUser | null>(null)
 
 	//me traigo del back los datos de ese user segun id
 	useEffect(() => {
-		//!necesito token 
-		axios.get(`http://localhost:3001/user/${params.slug}`).then(({ data }) => setUserDetails(data))
+		//!necesito token
+		axios.get(`${rute}/user/${params.slug}`).then(({ data }) => setUserDetails(data))
 	}, [])
 
 	const handleDeleteUser = () => {
 		if (window.confirm('ARE YOU SURE YOU WANT TO DELETE THIS USER? ')) {
-			axios.delete(`http://localhost:3001/user/${params.slug}`)
+			axios.delete(`${rute}/user/${params.slug}`)
 		}
 		alert('USUARIO ELIMINADO')
 	}

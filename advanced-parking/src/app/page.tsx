@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useAuth } from './context/AuthContext'
 
 export default function Landing() {
+	const rute = process.env.NEXT_API_URL
 	const { data: session } = useSession()
 	const { user, setUser } = useAuth()
 	const { token, setToken } = useAuth()
@@ -19,7 +20,7 @@ export default function Landing() {
 			const newUser = session?.user
 
 			axios
-				.post(' http://localhost:3001/auth/signup-auth0', newUser)
+				.post(`${rute}/auth/signup-auth0`, newUser)
 				.then((response) => response.data)
 				.then((data) => {
 					setUser(data.userData)
@@ -36,16 +37,10 @@ export default function Landing() {
 	return (
 		<main className='bg-duck-yellow min-h-screen flex flex-col items-center'>
 			<div className='flex flex-col flex-1 items-center md:gap-6 lg:flex-row sm:px-10 lg:justify-around w-full'>
-				<Image src='/landing_advanced.webp'
-					alt='advanced parking app'
-					className='min-w-[200px] min-h-[200px] sm:w-[550px]'
-					width={380}
-					height={400}
-					priority
-				/>
+				<Image src='/landing_advanced.webp' alt='advanced parking app' className='min-w-[200px] min-h-[200px] sm:w-[550px]' width={380} height={400} priority />
 				<div className='flex flex-col items-center gap-4 text-pretty text-center '>
 					<h1 className='text-erieblack text-3xl font-bold '>
-						Welcome to a new  parking solution!
+						Welcome to a new parking solution!
 						<br />
 						Book your slot in only 3 steps.
 					</h1>

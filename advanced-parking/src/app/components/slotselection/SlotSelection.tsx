@@ -4,6 +4,7 @@ import Image from 'next/image'
 
 const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot }: any) => {
 
+
   const handleSelect = (e: any) => {
     const selected = e.target.innerHTML
     setSelectedSlot(selected)

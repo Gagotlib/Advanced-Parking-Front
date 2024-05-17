@@ -10,7 +10,7 @@ import { GoogleButton } from '../buttons/GoogleButton'
 
 export const LoginForm = () => {
 	const pathname = usePathname()
-
+	const rute = process.env.NEXT_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
@@ -56,7 +56,7 @@ export const LoginForm = () => {
 		try {
 			console.log(loginData)
 
-			const response = await axios.post(` http://localhost:3001/auth/signin`, loginData) //deberia funcionar
+			const response = await axios.post(`${rute}/auth/signin`, loginData) //deberia funcionar
 			// console.log(response.data)
 			setUser(response.data.userData)
 			setToken(response.data.token)
