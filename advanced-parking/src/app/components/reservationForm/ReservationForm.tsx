@@ -87,13 +87,14 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 			//!enviamos al pago
 			const bodyreq = { type_of_service: 'One time payment', unit_amount: 10, appointment_id: appointment_id }
-			const token = process.env.STRIPE_PRIVATE_KEY
+			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
+
 			const response = await axios.post(`${rute}/payment/create-checkout-session`, bodyreq, {
 				headers: {
 					'stripe-signature': token
 				}
 			})
-			console.log(response.data.url)
+			console.log('la respuesta del pago:', response.data.url)
 			const url = response.data.url //! url que devuelve la creacion de la solicitud
 
 			setShowToast(true)
@@ -128,7 +129,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	return (
 		<div className='w-10/12 flex flex-col items-center'>
 			{showToast && <Toast message='Being redirect to payment' type='success' />}
-			{errorToast && <Toast message='Reservation Error' type='error' />}
+			{errorToast && <Toast message='Reservation Error, please try again or contact our support team' type='error' />}
 			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
