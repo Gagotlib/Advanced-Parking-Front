@@ -40,7 +40,7 @@ export const RegisterForm = () => {
 		email: '',
 		password: '',
 		confirmPassword: '',
-		phone: ''
+		phone: 0
 	})
 
 	const [errors, setErrors] = useState<IErrors>({
@@ -55,7 +55,7 @@ export const RegisterForm = () => {
 		const { name, value } = e.target
 		setRegisterData((user) => ({
 			...user,
-			[name]: value
+			[name]: name === "phone" ? Number(value) : value
 		}))
 		const fieldErrors = validateRegister({ ...registerData, [name]: value })
 		setErrors((prevErrors) => ({
@@ -68,7 +68,7 @@ export const RegisterForm = () => {
 		e.preventDefault()
 		console.log('mandado')
 		console.log(registerData)
-
+		console.log(typeof registerData.phone);
 		try {
 			const response = await axios.post('http://localhost:3001/auth/signup', registerData) //!deberia funcionar
 			console.log(response.data)
@@ -79,7 +79,7 @@ export const RegisterForm = () => {
 				email: registerData.email
 			}
 			axios.post('http://localhost:3001/email-sender/registered', bodyemail)
-			
+
 			// throw Error("error forzado")
 		} catch (error: Error | any) {
 			console.error('Error al Registrarse:', error?.response?.data.message)

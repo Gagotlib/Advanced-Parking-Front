@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         not_found: "url('/notfound.webp')",
+        selectSlot: "url('/vistaSuperiorCoche.webp')",
       },
       colors: {
         "duck-yellow": "#FFCC00",
