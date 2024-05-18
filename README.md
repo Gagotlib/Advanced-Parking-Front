@@ -1,5 +1,5 @@
 
-<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/landing_advanced.webp" alt="Advanced Parking" width="500" height="300" />
+<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/landing_advanced.webp" alt="Advanced Parking" width="250" height="250" />
 
 # Advanced Parking
 
