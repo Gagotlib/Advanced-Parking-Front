@@ -126,13 +126,13 @@ const Profile = () => {
 								</div>
 								<div className='mb-2 sm:mb-6'>
 									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
-										Suscription
+										Subscription
 									</label>
 									Platinum || Gold || Standard
 								</div>
 								{showChangeImage && (
 									<div>
-										<input type='file' className='' onChange={(e) => setFile(e.target.files ? (e.target.files[0] as any) : null)}></input>
+										<input type='file' className="file-input file-input-bordered file-input-warning w-full max-w-xs" onChange={(e) => setFile(e.target.files ? (e.target.files[0] as any) : null)}></input>
 										<button
 											type='button'
 											onClick={(e) => handleSendNewImage(e)}

@@ -10,7 +10,6 @@ import React, { useEffect, useState } from 'react'
 
 export const RegisterForm = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-	console.log('ruta NEXT_PUBLIC_BACK_API_URL', rute)
 
 	const router = useRouter()
 	const [showToast, setShowToast] = useState(false)
@@ -40,74 +39,88 @@ export const RegisterForm = () => {
 
 	const [registerData, setRegisterData] = useState<IUser>({
 		name: '',
+		phone: '',
 		email: '',
 		password: '',
 		confirmPassword: '',
-		phone: 0
 	})
 
 	const [errors, setErrors] = useState<IErrors>({
 		name: '',
+		phone: '',
 		email: '',
 		password: '',
 		confirmPassword: '',
-		phone: ''
 	})
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target
+
+		const { name, value } = e.target;
 		setRegisterData((user) => ({
 			...user,
-			[name]: name === "phone" ? Number(value) : value
-		}))
-		const fieldErrors = validateRegister({ ...registerData, [name]: value })
+			[name]: value,
+		}));
+
+		const fieldErrors = validateRegister({ ...registerData, [name]: value });
 		setErrors((prevErrors) => ({
 			...prevErrors,
 			[name]: fieldErrors[name]
-		}))
+		}));
 	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
 		console.log('mandado')
 		console.log(registerData)
-		console.log(typeof registerData.phone);
-		try {
-			const response = await axios.post(`https://advancedparking-latest.onrender.com/auth/signup`, registerData) //!deberia funcionar
-			console.log(response.data)
 
-			setShowToast(true)
-			const bodyemail = {
-				name: registerData.name,
-				email: registerData.email
+		const validationErrors = validateRegister(registerData);
+		setErrors(validationErrors);
+
+		if (Object.keys(validationErrors).length === 0) {
+			try {
+
+				const registerPayload = {
+					...registerData,
+					phone: parseInt(registerData.phone, 10),
+				};
+
+				const response = await axios.post(`${rute}/auth/signup`, registerPayload) //!deberia funcionar
+				console.log(response.data)
+
+				setShowToast(true)
+				const bodyemail = {
+					name: registerData.name,
+					email: registerData.email,
+				};
+				axios.post(`${rute}/email-sender/registered`, bodyemail)
+
+				// throw Error('error forzado')
+
+			} catch (error: Error | any) {
+				console.error('Error al Registrarse:', error.response?.data?.message)
+
+				setErrorToast(true)
+				setErrorMessage(error.response?.data?.message || 'An unexpected error occurred')
+				// alert(error?.response?.data.message)
 			}
-			axios.post(`https://advancedparking-latest.onrender.com/email-sender/registered`, bodyemail)
-
-			// throw Error('error forzado')
-
-		} catch (error: Error | any) {
-			console.error('Error al Registrarse:', error?.response?.data.message)
-
-			setErrorToast(true)
-			setErrorMessage(error?.response?.data.message || 'An unexpected error occurred')
-			// alert(error?.response?.data.message)
 		}
 	}
 
 	return (
 		<div className='h-screen bg-ghostwhite'>
-			<div className='w-full h-full flex flex-col items-center pt-20'>
+			<div className='w-full h-full flex flex-col items-center pt-24'>
 				{showToast && <Toast message='Registered correctly' type='success' />}
 				{errorToast && <Toast message={errorMessage} type='error' />}
 				<div className='w-full lg:w-7/12 p-5 rounded-lg lg:rounded-l-none'>
 					<h3 className='py-2 text-2xl text-center font-extrabold text-erieblack sm:text-5xl'>Create an Account!</h3>
 					<div className='border-silver rounded-lg p-4 m-2 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40'>
 						<form className='px-8 pb-8 mb-4 rounded sm:pt-6' onSubmit={handleSubmit}>
-							<div className='mb-4 md:flex md:justify-between'>
+							<div className='mb-4 sm:flex sm:justify-between'>
 								<div className='mb-4 md:mr-2 md:mb-0'>
-									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Full Name</label>
+									<label className='block mb-1 text-sm font-bold text-erieblack sm:text-lg'>Full Name</label>
 									<input
-										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 										id='name'
 										name='name'
 										type='text'
@@ -116,12 +129,12 @@ export const RegisterForm = () => {
 										value={registerData.name}
 										onChange={handleChange}
 									/>
-									{errors.name && <p className='text-red-500'>{errors.name}</p>}
+									{errors.name && <p className='text-red-500 sm:absolute my-1 text-xs font-light'>{errors.name}</p>}
 								</div>
-								<div className='md:ml-2'>
-									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Phone Number</label>
+								<div className='mb-4 md:mr-2 md:mb-0'>
+									<label className='block mb-1 text-sm font-bold text-erieblack sm:text-lg'>Phone Number</label>
 									<input
-										className='w-full px-3 py-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 										id='phone'
 										name='phone'
 										type='text'
@@ -130,13 +143,13 @@ export const RegisterForm = () => {
 										value={registerData.phone}
 										onChange={handleChange}
 									/>
-									{errors.phone && <p className='text-red-500'>{errors.phone}</p>}
+									{errors.phone && <p className='text-red-500 sm:absolute my-1 text-xs font-light'>{errors.phone}</p>}
 								</div>
 							</div>
-							<div className='mb-4'>
-								<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Email</label>
+							<div className='mb-4 sm:mr-2 sm:mb-5'>
+								<label className='block mb-1 text-sm font-bold text-erieblack sm:text-lg'>Email</label>
 								<input
-									className='w-full px-3 py-2 mb-2 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+									className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 									id='email'
 									name='email'
 									type='mail'
@@ -145,13 +158,13 @@ export const RegisterForm = () => {
 									value={registerData.email}
 									onChange={handleChange}
 								/>
-								{errors.email && <p className='text-red-500'>{errors.email}</p>}
+								{errors.email && <p className='text-red-500 sm:absolute my-1 text-xs font-light'>{errors.email}</p>}
 							</div>
-							<div className='mb-2 md:flex md:justify-between'>
-								<div className='mb-2 md:mr-2 md:mb-0'>
-									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Password</label>
+							<div className='mb-4 sm:flex sm:justify-between'>
+								<div className='mb-4 sm:mr-2 sm:mb-5'>
+									<label className='block mb-1 text-sm font-bold text-erieblack sm:text-lg'>Password</label>
 									<input
-										className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 										id='password'
 										name='password'
 										type='password'
@@ -160,12 +173,12 @@ export const RegisterForm = () => {
 										value={registerData.password}
 										onChange={handleChange}
 									/>
-									{errors.password && <p className='text-red-500'>{errors.password}</p>}
+									{errors.password && <p className='text-red-500 sm:absolute my-1 text-xs font-light'>{errors.password}</p>}
 								</div>
-								<div className='md:ml-2'>
+								<div className='mb-4 md:mr-2 md:mb-0'>
 									<label className='block mb-2 text-sm font-bold text-erieblack sm:text-lg'>Confirm Password</label>
 									<input
-										className='w-full px-3 py-2 mb-3 text-sm leading-tight text-erieblack border rounded shadow shadow-erieblack appearance-none focus:outline-none focus:shadow-outline'
+										className='w-full px-3 py-2 text-sm leading-tight text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 										id='c_password'
 										name='confirmPassword'
 										type='password'
@@ -173,6 +186,7 @@ export const RegisterForm = () => {
 										value={registerData.confirmPassword}
 										onChange={handleChange}
 									/>
+									{errors.confirmPassword && <p className='text-red-500 sm:absolute my-1 text-xs font-light'>{errors.confirmPassword}</p>}
 								</div>
 							</div>
 							<div className='mb-6 text-center'>
