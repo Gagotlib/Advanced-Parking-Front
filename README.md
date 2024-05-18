@@ -34,13 +34,21 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 
 #### Resources
 <div display="flex">
-  <div flex justify-center flex-col items-center> 
+  <div display="flex" justify-content="center" flex-direction="column" align-items="center"> 
     NextJs <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nextjs.webp" alt="Next.Js" width="50" height="50" />
   </div>
-+ Tailwind CSS <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_tailwind.webp" alt="Tailwind CSS" width="50" height="50" />
-+ Nest Js <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nestjs.webp" alt="Nest Js" width="50" height="50" />
-+ PostgreSQL <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_postgreSQL.webp" alt="PostgreSQL" width="50" height="50" />
-+ TypeScript <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_typescript.webp" alt="TypeScript" width="50" height="50" />
+  <div display="flex" justify-content="center" flex-direction="column" align-items="center"> 
+    Tailwind CSS <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_tailwind.webp" alt="Tailwind CSS" width="50" height="50" />
+  </div>
+  <div display="flex" justify-content="center" flex-direction="column" align-items="center"> 
+   Nest Js <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nestjs.webp" alt="Nest Js" width="50" height="50" />
+  </div>
+  <div display="flex" justify-content="center" flex-direction="column" align-items="center"> 
+   PostgreSQL <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_postgreSQL.webp" alt="PostgreSQL" width="50" height="50" />
+  </div>
+  <div display="flex" justify-content="center" flex-direction="column" align-items="center"> 
+   TypeScript <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_typescript.webp" alt="TypeScript" width="50" height="50" />
+  </div>
 </div>
 
 ## Meet the Brains
