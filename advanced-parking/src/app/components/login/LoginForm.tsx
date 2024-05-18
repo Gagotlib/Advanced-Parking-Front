@@ -10,6 +10,7 @@ import { GoogleButton } from '../buttons/GoogleButton'
 
 export const LoginForm = () => {
 	// const pathname = usePathname()
+
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
@@ -30,9 +31,14 @@ export const LoginForm = () => {
 	useEffect(() => {
 		if (showToast) {
 			const timeout = setTimeout(() => {
+				const previewUrl = localStorage.getItem('pathname')
 				setShowToast(false)
 				router.refresh()
-				router.push('/home')
+				if (previewUrl?.includes('ourparkings')) {
+					console.log('CONTIENEEEEE')
+
+					router.push(previewUrl)
+				} else router.push('/home')
 			}, 3000)
 			return () => clearTimeout(timeout)
 		}

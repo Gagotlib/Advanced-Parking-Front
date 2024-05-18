@@ -57,8 +57,9 @@ function Navprofile() {
 		setMenuOpen(!menuOpen)
 	}
 	const handleLogOut = async () => {
-		console.log('TE DESLOGEASTE')
+		// console.log('TE DESLOGEASTE')
 		// que borre todos los datos del user
+		router.push('/home')
 
 		localStorage.removeItem('authToken')
 		localStorage.removeItem('user')
@@ -66,7 +67,6 @@ function Navprofile() {
 		setUser(null)
 		signOut()
 
-		router.push('/')
 	}
 
 	return (

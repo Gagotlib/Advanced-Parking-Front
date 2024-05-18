@@ -6,9 +6,14 @@ import { Loading } from '@/app/components/suspense/Loading'
 import { useAuth } from '@/app/context/AuthContext'
 import { IParking } from '@/types'
 import axios from 'axios'
+import { usePathname } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 
 const ParkingDetails = ({ params }: { params: { slug: string } }) => {
+	const pathname = usePathname()
+	console.log('el pathname', pathname);
+	localStorage.setItem("pathname", pathname)
+	
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [parking, setParking] = useState<IParking | undefined>(undefined)
 	useEffect(() => {

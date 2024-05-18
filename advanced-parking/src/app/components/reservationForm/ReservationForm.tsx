@@ -9,6 +9,7 @@ import { IParking } from '@/types'
 import Toast from '../alerts/Toast'
 import SlotSelection from '../slotselection/SlotSelection'
 import PricingRender from '../pricing/PricingRender'
+import { OverlayFull, OverlayNav } from '../overlay/overlay'
 
 export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 	const { user } = useAuth()
@@ -19,6 +20,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
 	const [slotShow, setSlotShow] = useState(false)
+	const [showOverlay, setShowOverlay] = useState(false)
 
 	useEffect(() => {
 		if (showToast || errorToast) {
@@ -125,6 +127,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	//! funciones correspondientes a los slots
 	const handleShowSelectSlot = () => {
 		setSlotShow(!slotShow)
+		setShowOverlay(!showOverlay)
 	}
 	const [selectedSlot, setSelectedSlot] = useState(null)
 
@@ -136,14 +139,15 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
 				<div className=''>
-
 					<label htmlFor='date'>Date:</label>
 					<input type='date' name='date' id='date' value={formData.date} min={getTodayDate()} max={getMaxDate()} onChange={handleInputChange} required pattern='\d{4}-\d{2}-\d{2}' />
 
 					{/* {errors.date && <p className='text-red-500'>{errors.date}</p>} */}
 				</div>
 				<div className=''>
-					<label htmlFor='time' className='font-bold'>Time: </label>
+					<label htmlFor='time' className='font-bold'>
+						Time:{' '}
+					</label>
 					<input type='time' name='time' id='time' step={'1800'} value={formData.time} onChange={handleInputChange} required />
 				</div>
 
@@ -162,7 +166,9 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 					>
 						Pick your slot
 					</button>
-					<p className='text-md font-normal'>Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span></p>
+					<p className='text-md font-normal'>
+						Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span>
+					</p>
 				</div>
 				<div className=''>
 					<label htmlFor='license_plate'>License plate:</label>
@@ -176,7 +182,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						required
 					></input>
 				</div>
-				{slotShow && <SlotSelection selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} />}
+				{showOverlay && <OverlayFull />}
+				{slotShow && <SlotSelection setShowOverlay={setShowOverlay} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} />}
 				{!user ? (
 					<div className='flex flex-col items-center'>
 						<p className='text-erieblack text-sm sm:text-lg m-2'>
