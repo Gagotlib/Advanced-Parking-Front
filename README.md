@@ -1,5 +1,5 @@
 
-![Advanced Parking](https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/API/landing_advanced.webp)
+![Advanced Parking](https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/landing_advanced.webp)
 
 
 # Advanced Parking
