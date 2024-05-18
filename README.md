@@ -33,12 +33,13 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 ¡Gracias por leernos y espero que lo hayan encontrado interesante!
 
 #### Resources
-
+<div display="flex">
 + NextJs <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nextjs.webp" alt="Next.Js" width="50" height="50" />
 + Tailwind CSS <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_tailwind.webp" alt="Tailwind CSS" width="50" height="50" />
 + Nest Js <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nestjs.webp" alt="Nest Js" width="50" height="50" />
 + PostgreSQL <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_postgreSQL.webp" alt="PostgreSQL" width="50" height="50" />
 + TypeScript <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_typescript.webp" alt="TypeScript" width="50" height="50" />
+</div>
 
 ## Meet the Brains
 
