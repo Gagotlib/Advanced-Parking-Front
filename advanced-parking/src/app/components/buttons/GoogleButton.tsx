@@ -14,14 +14,14 @@ export const GoogleButton = () => {
 
 	const handleGoogleLogin = async () => {
 		const result = await signIn('google', { redirect: true }) // Evita que signIn() realice la redirección por defecto
+		// console.log('result', result)
+
 		if (result?.error) {
 			// Manejar errores de inicio de sesión si es necesario
 			console.error('Error al iniciar sesión:', result.error)
 		} else {
 			const newUserSession = session?.user
-			if (!newUserSession) {
-				console.log('ERRRRORRRRRRR')
-			}
+
 			axios
 				.post(`${rute}/auth/signup-auth0`, newUserSession)
 				.then((response) => response.data)
@@ -30,13 +30,10 @@ export const GoogleButton = () => {
 					setToken(data.token)
 					localStorage.setItem('authToken', data.token)
 					localStorage.setItem('user', JSON.stringify(data.userData))
-					// setShowToast(true))
 				})
 				.catch((error) => console.error('Error al iniciar sesión:', error))
-			// La autenticación fue exitosa, ahora podemos redirigir al usuario
 		}
 	}
-	// console.log('consologeado desde el botton, Nombre:', session?.user?.name)
 
 	return (
 		<button

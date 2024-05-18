@@ -1,9 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import SearchResultsCard from '../components/cards/SearchResultsCard'
 import { BackToHomeButton } from '../components/buttons/Buttons'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
+import Loading from '../components/suspense/Loading'
+import LoadingOurParkings from '../components/suspense/LoadingOurParkings'
+import { IParking } from '@/types'
 
 export const Ourparkings = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
@@ -11,7 +14,7 @@ export const Ourparkings = () => {
 	const [page, setPage] = useState(1)
 	const { allParkings, setAllParkings } = useAuth()
 	const cardLimit = 8
-	const [pageParkings, setPageParkings] = useState([])
+	const [pageParkings, setPageParkings] = useState<IParking[]>([])
 
 	useEffect(() => {
 		axios.get(`${rute}/parking-lot?page=${page}&limit=${cardLimit}`).then(({ data }) => {
@@ -62,9 +65,7 @@ export const Ourparkings = () => {
 					</div>
 				</form>
 				<div className='rounded-lg flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-10/12 gap-4'>
-					{filteredResults?.map((result) => (
-						<SearchResultsCard key={result.name} cardProps={result} />
-					))}
+					<Suspense fallback={<LoadingOurParkings />}>{allParkings ? pageParkings.map((result) => <SearchResultsCard key={result.name} cardProps={result} />) : <LoadingOurParkings />}</Suspense>
 				</div>
 				<div className='flex gap-4'>
 					<button type='button' className=' text-black disabled:opacity-50' disabled={page === 1}>
