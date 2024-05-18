@@ -104,7 +104,7 @@ const Profile = () => {
 									</button>
 									<button
 										type='button'
-										className='py-2 px-2 text-base font-medium text-yaleblue focus:outline-none bg-white rounded-lg border border-silver hover:bg-yaleblue/90 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+										className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
 										onClick={handleDeleteImage}
 									>
 										Delete picture
@@ -131,14 +131,14 @@ const Profile = () => {
 									Platinum || Gold || Standard
 								</div>
 								{showChangeImage && (
-									<div>
+									<div className='flex gap-1'>
 										<input type='file' className="file-input file-input-bordered file-input-warning w-full max-w-xs" onChange={(e) => setFile(e.target.files ? (e.target.files[0] as any) : null)}></input>
 										<button
 											type='button'
 											onClick={(e) => handleSendNewImage(e)}
-											className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+											className='py-2 px-2 text-base h-12 font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
 										>
-											Send
+											Upload File
 										</button>
 									</div>
 								)}
