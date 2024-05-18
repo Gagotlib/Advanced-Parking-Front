@@ -32,21 +32,26 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 ¡Gracias por leernos y espero que lo hayan encontrado interesante!
 
 #### Resources
-<div style="display: flex;">
-  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;"> 
-    **NextJs** <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nextjs.webp" alt="Next.Js" width="50" height="50" />
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+  <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nextjs.webp" alt="Next.Js" width="50" height="50" />
+    <p style="text-align: center; margin-top: 5px;">Next.Js</p>
   </div>
-  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;"> 
-    **Tailwind CSS** <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_tailwind.webp" alt="Tailwind CSS" width="50" height="50" />
+  <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_tailwind.webp" alt="Tailwind CSS" width="50" height="50" />
+    <p style="text-align: center; margin-top: 5px;">Tailwind CSS</p>
   </div>
-  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;"> 
-   **Nest Js** <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nestjs.webp" alt="Nest Js" width="50" height="50" />
+  <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nestjs.webp" alt="Nest Js" width="50" height="50" />
+    <p style="text-align: center; margin-top: 5px;">Nest Js</p>
   </div>
-  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;"> 
-   **PostgreSQL** <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_postgreSQL.webp" alt="PostgreSQL" width="50" height="50" />
+  <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_postgreSQL.webp" alt="PostgreSQL" width="50" height="50" />
+    <p style="text-align: center; margin-top: 5px;">PostgreSQL</p>
   </div>
-  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;"> 
-   **TypeScript** <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_typescript.webp" alt="TypeScript" width="50" height="50" />
+  <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_typescript.webp" alt="TypeScript" width="50" height="50" />
+    <p style="text-align: center; margin-top: 5px;">TypeScript</p>
   </div>
 </div>
 
