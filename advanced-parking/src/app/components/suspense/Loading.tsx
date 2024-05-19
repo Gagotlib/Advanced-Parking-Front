@@ -4,7 +4,7 @@ type Props = {}
 
 export const Loading = () => {
 	return (
-		<div className='animate-pulse h-full min-w-full'>
+		<div className='animate-pulse h-[500px] w-80 sm:w-96'>
 			<h1 className='h-10 bg-gray-200 rounded-xl'></h1>
 			<form className='m-4 border-2 rounded-xl p-4 w-10/20'>
 				<div className=''>

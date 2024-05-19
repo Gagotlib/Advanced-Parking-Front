@@ -42,14 +42,14 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		}
 	}, [showToast, router])
 
-	useEffect(() => {
-		const initialValues = {
-			date: localStorage.getItem('date') || getTodayDate(),
-			time: localStorage.getItem('time') || '08:00',
-			license_plate: localStorage.getItem('license_plate') || '',
-			duration: localStorage.getItem('duration') || '1'
-		}
-	})
+	// useEffect(() => {
+	// 	const initialValues = {
+	// 		date: localStorage.getItem('date') || getTodayDate(),
+	// 		time: localStorage.getItem('time') || '08:00',
+	// 		license_plate: localStorage.getItem('license_plate') || '',
+	// 		duration: localStorage.getItem('duration') || '1'
+	// 	}
+	// })
 
 	const [formData, setFormData] = useState({
 		date: localStorage.getItem('date') || getTodayDate(),
@@ -119,6 +119,12 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				duration: '1',
 				is_parked: false
 			})
+			localStorage.removeItem('date')
+			localStorage.removeItem('time')
+			localStorage.removeItem('license_plate')
+			localStorage.removeItem('duration')
+			localStorage.removeItem('pathname')
+
 		} catch (error) {
 			console.log(error)
 			setErrorToast(true)
