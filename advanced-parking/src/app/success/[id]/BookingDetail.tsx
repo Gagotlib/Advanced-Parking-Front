@@ -1,5 +1,6 @@
 'use client'
 
+import { BackToHomeButton } from '@/app/components/buttons/Buttons'
 import QRGenerator from '@/app/components/qrcode/QRGenerator'
 import { useAuth } from '@/app/context/AuthContext'
 import Image from 'next/image'
@@ -29,9 +30,9 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 	console.log(' booking:', booking)
 
 	return (
-		<div className='sm:grid sm:grid-cols-2 justify-center items-center min-h-screen pt-28 px-12 pb-10'>
+		<div className='sm:grid sm:grid-cols-2 items-center min-h-screen px-4 pb-10 lg:gap-40'>
 			<div className='flex flex-col items-center gap-2 max-md:hidden'>
-				<h1 className='font-bold text-2xl sm:text-5xl'>Advanced Parking</h1>
+				<h1 className='font-bold text-2xl sm:text-5xl md:text-center'>Advanced Parking</h1>
 				<Image
 					src='/paymentApproved.webp'
 					alt='Image Payment Approved'
@@ -86,6 +87,10 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 					<p className='flex text-center text-xs sm:text-md text-erieblack'>Check your email. Your invoice has been sent.</p>
 					<p className='flex text-center text-xs sm:text-md text-erieblack mb-4'>Thank you for using our services!</p>
 				</div>
+
+			</div>
+			<div className='flex justify-center items-center pt-8 sm:hidden'>
+				<BackToHomeButton />
 			</div>
 		</div>
 	)
