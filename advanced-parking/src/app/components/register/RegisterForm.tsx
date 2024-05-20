@@ -89,6 +89,7 @@ export const RegisterForm = () => {
 				console.log(response.data)
 
 				setShowToast(true)
+				
 				const bodyemail = {
 					name: registerData.name,
 					email: registerData.email,

@@ -5,8 +5,10 @@ import Image from 'next/image'
 const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOverlay }: any) => {
 	const handleSelect = (e: any) => {
 		const selected = e.target.innerHTML
+		console.log('selected', selected)
 		setSelectedSlot(selected)
 	}
+	console.log('selected slot', selectedSlot)
 	const slots = Array.from({ length: 10 }, (_, index) => index + 1)
 	const floor1 = slots.slice(0, 5)
 	const floor2 = slots.slice(5, 10)

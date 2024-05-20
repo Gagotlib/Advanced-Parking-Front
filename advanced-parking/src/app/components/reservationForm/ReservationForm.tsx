@@ -23,7 +23,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const [slotShow, setSlotShow] = useState(false)
 	const [showOverlay, setShowOverlay] = useState(false)
 	const [duration, setDuration] = useState(Array.from({ length: 10 }, (_, index) => index + 1))
-	const [prices, setPrices] = useState(duration.map(hour => hour * 3.55))
+	const [prices, setPrices] = useState(duration.map((hour) => hour * 3.55))
 
 	useEffect(() => {
 		if (showToast || errorToast) {
@@ -52,6 +52,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	// 		duration: localStorage.getItem('duration') || '1'
 	// 	}
 	// })
+	const [selectedSlot, setSelectedSlot] = useState('1')
 
 	const [formData, setFormData] = useState({
 		date: localStorage.getItem('date') || getTodayDate(),
@@ -62,7 +63,15 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		duration: localStorage.getItem('duration') || '1',
 		is_parked: false,
 		total: 3.55,
+		slot_number: selectedSlot
 	})
+
+	useEffect(() => {
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			slot_number: selectedSlot
+		}))
+	}, [selectedSlot])
 
 	useEffect(() => {
 		setFormData((prevFormData) => ({
@@ -81,17 +90,18 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 		// setErrors(validateNewAppointment(formData))
 	}
+	//! funciones correspondientes a los slots
+	const handleShowSelectSlot = () => {
+		setSlotShow(!slotShow)
+		setShowOverlay(!showOverlay)
+	}
 
 	async function handleSubmit(event: any) {
 		event.preventDefault()
-
+		if (formData.slot_number === null) {
+			return
+		}
 		//! control
-		// console.log('Fecha seleccionada:', formData.date)
-		// console.log('Hora seleccionada:', formData.time)
-		// console.log('Parking:', formData.parkingLotId)
-		// console.log('license plate:', formData.license_plate)
-		// console.log('El userid:', formData.user_id)
-		// console.log('El nombredel usuario:', user?.name)
 		console.log('Esto es todo el formData', formData)
 
 		try {
@@ -101,7 +111,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			const appointment_id = responseAppointment.data.id
 
 			//!enviamos al pago
-			const bodyreq = { type_of_service: 'One time payment', unit_amount: 10, appointment_id: appointment_id }
+			const bodyreq = { type_of_service: 'One time payment', unit_amount: formData.total, appointment_id: appointment_id }
 			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
 			console.log('el token de stripe', token)
 
@@ -121,35 +131,28 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			// console.log(response)
 
 			// Limpiar el formulario
-			setFormData({
-				date: getTodayDate(),
-				time: '08:00',
-				parkingLotId: parking?.id,
-				user_id: user?.id,
-				license_plate: '',
-				duration: '1',
-				is_parked: false,
-				total: 3.55
-			})
-			localStorage.removeItem('date')
-			localStorage.removeItem('time')
-			localStorage.removeItem('license_plate')
-			localStorage.removeItem('duration')
-			localStorage.removeItem('pathname')
-			localStorage.removeItem('total')
-
+			// setFormData({
+			// 	date: getTodayDate(),
+			// 	time: '08:00',
+			// 	parkingLotId: parking?.id,
+			// 	user_id: user?.id,
+			// 	license_plate: '',
+			// 	duration: '1',
+			// 	is_parked: false,
+			// 	total: 3.55,
+			// 	slot: null
+			// })
+			// localStorage.removeItem('date')
+			// localStorage.removeItem('time')
+			// localStorage.removeItem('license_plate')
+			// localStorage.removeItem('duration')
+			// localStorage.removeItem('pathname')
+			// localStorage.removeItem('total')
 		} catch (error) {
 			console.log(error)
 			setErrorToast(true)
 		}
 	}
-
-	//! funciones correspondientes a los slots
-	const handleShowSelectSlot = () => {
-		setSlotShow(!slotShow)
-		setShowOverlay(!showOverlay)
-	}
-	const [selectedSlot, setSelectedSlot] = useState(null)
 
 	return (
 		<div className='w-10/12 flex flex-col items-center text-erieblack'>
@@ -211,9 +214,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				) : (
 					<div className='flex justify-center items-center gap-6'>
 						<div>
-							<p className='text-sm sm:text-md font-bold'>Total to pay: <span
-								className='text-sm sm:text-md font-light'> {(parseInt(formData.duration) * 3.55).toFixed(2)} €
-							</span>
+							<p className='text-sm sm:text-md font-bold'>
+								Total to pay: <span className='text-sm sm:text-md font-light'> {(parseInt(formData.duration) * 3.55).toFixed(2)} €</span>
 							</p>
 						</div>
 						<div>
