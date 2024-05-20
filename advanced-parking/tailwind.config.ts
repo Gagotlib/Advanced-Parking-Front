@@ -25,15 +25,3 @@ const config: Config = {
   plugins: [daisyui],
 };
 export default config;
-// theme: {
-//     fontFamily: {
-//       'sarala': ['Sarala', 'sans-serif']
-//     },
-//     colors: {
-//       'charcoal': '#fbe5c0',
-//       'coral': '#f88379',
-//       'serenity': '#d0e6f0',
-//       'charcoal2': '#4c5d70'
-//     },
-//     extend: {},
-//   }

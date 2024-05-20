@@ -17,11 +17,13 @@ Con Advanced Parking el usuario podrá ingresar a nuestro aplicativo, registrars
 Nuestra aplicación se distingue por ser amigable con el usuario, con políticas de precios transparente y promociones especiales para fomentar la fidelidad del cliente. Además, proporcionamos un servicio de navegación que le permite al usuario encontrar la ruta óptima desde su ubicación actual hasta el estacionamiento seleccionado.
 
 ### Estrategia
+
 ###### Flujo del Usuario
 
 Creamos un el flujo del usuario que define cómo interactuar con la aplicación y los pasos involucrados al reservar el primer espacio de estacionamiento. Nos basamos en una estructura muy dinamica pero a su minimizando la cantidad de pasos que se vieran involucrados.
 
 <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/userFlow.webp" alt="User Flow" width="250" height="250" />
+
 
 ## Conclusión
 
@@ -32,6 +34,7 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 ¡Gracias por leernos y espero que lo hayan encontrado interesante!
 
 #### Resources
+
 <div style="display: flex; justify-content: center; flex-wrap: wrap;">
   <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
     <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/icon_nextjs.webp" alt="Next.Js" width="50" height="50" />

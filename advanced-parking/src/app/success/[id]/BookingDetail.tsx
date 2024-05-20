@@ -1,13 +1,20 @@
+'use client'
+
+import { BackToHomeButton } from '@/app/components/buttons/Buttons'
+import QRGenerator from '@/app/components/qrcode/QRGenerator'
 import { useAuth } from '@/app/context/AuthContext'
+import Image from 'next/image'
 import React from 'react'
 
-interface IBooking {
+export interface IBooking {
 	date: string
 	duration: string
 	id: string
 	is_parked: boolean
 	license_plate: string
 	time: string
+	total: number
+	slot_number: string
 	slot: {
 		id: string
 		slot_status: string
@@ -22,52 +29,66 @@ interface IBooking {
 
 function BookingDetail({ booking }: { booking: IBooking }) {
 	const { user, setUser } = useAuth()
-	console.log(' booking:', booking)
+	// console.log(' booking:', booking)
 
 	return (
-		<div className='bg-white border rounded-lg shadow-lg px-6 py-4 max-w-md mx-auto mt-2'>
-			<h1 className='font-bold text-2xl my-4 text-center text-yaleblue'>Advanced Parking</h1>
-			<hr className='mb-2' />
-			<div className='flex flex-col justify-between mb-6'>
-				<h2 className='text-lg font-bold'>Invoice</h2>
-				<div className='text-gray-700'>
-					<p>Date: {booking.date}</p>
-					<p>Nr: {booking.id}</p>
+		<div className='sm:grid sm:grid-cols-2 items-center min-h-screen px-4 pb-10 lg:gap-40'>
+			<div className='flex flex-col items-center gap-2 max-md:hidden'>
+				<h1 className='font-bold text-2xl sm:text-5xl md:text-center'>Advanced Parking</h1>
+				<Image src='/paymentApproved.webp' alt='Image Payment Approved' width={400} height={400} priority={true} />
+			</div>
+			<div className='bg-ghostwhite border border-silver/80 rounded-lg shadow-lg shadow-erieblack/80 px-6 mx-auto mt-8'>
+				<h1 className='font-bold text-2xl sm:text-3xl my-4 text-center text-erieblack'>Reservation Successful</h1>
+				<hr className='mb-1' />
+				<div className='flex flex-col mb-2'>
+					<p className='flex justify-end text-lg sm:text-2xl font-bold'>Invoice </p>
+					<p className='text-sm'>Date: {booking.date}</p>
+				</div>
+				<div className='flex justify-center'>
+					<QRGenerator />
+				</div>
+				<div className='mb-8'>
+					<h2 className='text-lg font-bold mb-4'>
+						Ticket To: <span className='text-erieblack/80 text-sm'>{booking.id}</span>
+					</h2>
+					<p className='text-erieblack/80 mb-2'>Name: {user?.name}</p>
+					<p className='text-erieblack/80'>Email: {user?.email} </p>
+					<br />
+					<p className='text-erieblack/80 mb-2'>Parking: {booking.parking_lot.name}</p>
+					<p className='text-erieblack/80 mb-2'>Slot: {booking.slot_number}</p>
+					<p className='text-erieblack/80 mb-2'>Address: {booking.parking_lot.location}</p>
+				</div>
+				<table className='w-full mb-8'>
+					<thead>
+						<tr>
+							<th className='text-left font-bold text-erieblack'>License Plate</th>
+							<th className='text-left font-bold text-erieblack'>Time</th>
+							<th className='text-right font-bold text-erieblack'>Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td className='text-left font-light text-erieblack/80'>{booking.license_plate}</td>
+							<td className='text-left font-light text-erieblack/80'>{booking.duration} hrs</td>
+							<td className='text-right font-light text-erieblack/80'>{booking.total} €</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td className='text-left font-bold text-erieblack'>Total</td>
+							<td></td>
+							<td className='text-right font-bold text-erieblack'>{booking.total} €</td>
+						</tr>
+					</tfoot>
+				</table>
+				<div className='flex flex-col items-center gap-3'>
+					<p className='flex text-center text-xs sm:text-md text-erieblack'>Check your email. Your invoice has been sent.</p>
+					<p className='flex text-center text-xs sm:text-md text-erieblack mb-4'>Thank you for using our services!</p>
 				</div>
 			</div>
-			<div className='mb-8'>
-				<h2 className='text-lg font-bold mb-4'>Ticket To:</h2>
-				<p className='text-gray-700 mb-2'>Name: {user?.name}</p>
-				<p className='text-gray-700'>Email: {user?.email}</p>
-				<br />
-				<p className='text-gray-700 mb-2'>Parking: {booking.parking_lot.name}</p>
-				<p className='text-gray-700 mb-2'>Slot: {booking.slot.id}</p>
-				<p className='text-gray-700 mb-2'>Address: {booking.parking_lot.location}</p>
+			<div className='flex justify-center items-center pt-8 sm:hidden'>
+				<BackToHomeButton />
 			</div>
-			<table className='w-full mb-8'>
-				<thead>
-					<tr>
-						<th className='text-left font-bold text-gray-700'>License Plate</th>
-						<th className='text-left font-bold text-gray-700'>Time</th>
-						<th className='text-right font-bold text-gray-700'>Amount</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td className='text-left text-gray-700'>{booking.license_plate} </td>
-						<td className='text-left text-gray-700'>{booking.duration} hour</td>
-						<td className='text-right text-gray-700'>$10</td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td className='text-left font-bold text-gray-700'>Total</td>
-						<td className='text-left font-bold text-gray-700'></td>
-						<td className='text-right font-bold text-gray-700'>$10.00</td>
-					</tr>
-				</tfoot>
-			</table>
-			<div className='text-gray-700 mb-10'>Thank you for using our services!</div>
 		</div>
 	)
 }

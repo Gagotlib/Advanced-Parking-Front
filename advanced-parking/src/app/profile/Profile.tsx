@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import BookingsUser from '../components/bookings/BookingsUser'
 import Avatar from 'react-avatar'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '../context/AuthContext'
 
 interface IApointment {
 	id: string
@@ -13,6 +15,7 @@ interface IApointment {
 	licensePlate: string
 }
 const Profile = () => {
+	const router = useRouter()
 	const usernull = {
 		name: '',
 		email: '',
@@ -22,7 +25,7 @@ const Profile = () => {
 	}
 
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-	const [user, setUser] = useState(usernull)
+	const { user, setUser } = useAuth()
 	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>([{ id: '123123123', parkingLot: 'nombre estacionamiento', date: '15/05/2024', hour: '09:00', licensePlate: 'AAA111' }])
 
 	useEffect(() => {
@@ -44,45 +47,69 @@ const Profile = () => {
 			})
 			.then(({ data }) => setUserAppointments(data.appointments))
 	}, [])
-	console.log('user appointments', userAppointments)
 
 	const [showChangeImage, setShowChangeImage] = useState(false)
-	const [file, setFile] = useState('')
 
 	const handleChangeImage = () => {
 		setShowChangeImage(!showChangeImage)
 	}
-	const handleSendNewImage = (e: any) => {
-		console.log(file)
+
+	const handleSendNewImage = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const fileInput = document.getElementById('fileInput') as HTMLInputElement
+		const file = fileInput?.files ? fileInput.files[0] : null
+		console.log('fileinput', file)
+
+		if (!file) {
+			console.error('No file selected')
+			return
+		}
+
+		const formData = new FormData()
+		formData.append('file', file)
+		// for (let key of formData.keys()) {
+		// 	console.log(key, formData.get(key))
+		// }
+
 		const userString = localStorage.getItem('user')
 		const logedUser = userString ? JSON.parse(userString) : null
+		if (!logedUser) {
+			console.error('No logged user found')
+			return
+		}
 		const token = localStorage.getItem('authToken')
-
+		if (!token) {
+			console.error('No auth token found')
+			return
+		}
 		// funcion que lleve el archivo al back
+
 		axios
-			.post(
-				`${rute}/files/profile-image/${logedUser.id}`,
-				{ file },
-				{
-					headers: {
-						Authorization: `Bearer: ${token}`
-					}
+			.post(`${rute}/files/profile-image/${logedUser.id}`, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${token}`
 				}
-			)
-			.then((response) => console.log(response))
+			})
+			.then((response) => {
+				setUser(response.data)
+			})
+			.catch((error) => console.error('Error uploading file:', error))
 	}
 	const handleDeleteImage = () => {
 		// funcion que permita hacer user.image="" y se guarde en bd
 		const userString = localStorage.getItem('user')
 		const logedUser = userString ? JSON.parse(userString) : null
 		const token = localStorage.getItem('authToken')
-		axios
-			.delete(`${rute}/files/profile-image/${logedUser.id}`, {
-				headers: {
-					Authorization: `Bearer: ${token}`
-				}
-			})
-			.then((response) => console.log(response))
+		axios.delete(`${rute}/files/profile-image/${logedUser.id}`, {
+			headers: {
+				Authorization: `Bearer: ${token}`
+			}
+		})
+
+		const updatedUser = { ...logedUser, image: '' }
+		setUser(updatedUser)
+		localStorage.setItem('user', JSON.stringify(updatedUser))
 	}
 
 	return (
@@ -93,7 +120,7 @@ const Profile = () => {
 					<div className='w-full px-6 pb-8 mt-8 sm:rounded-lg'>
 						<div className='flex mt-8 gap-5 sm:gap-10'>
 							<div className='flex flex-col gap-3 items-center space-y-5 sm:space-y-0'>
-								<Avatar src={user?.image} name={user.name} size='150' round color='#1C1C1C' maxInitials={2} />
+								<Avatar src={user?.image} name={user?.name} size='150' round color='#1C1C1C' maxInitials={2} />
 								<div className='flex flex-col gap-2 sm:ml-2'>
 									<button
 										type='button'
@@ -104,7 +131,7 @@ const Profile = () => {
 									</button>
 									<button
 										type='button'
-										className='py-2 px-2 text-base font-medium text-yaleblue focus:outline-none bg-white rounded-lg border border-silver hover:bg-yaleblue/90 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+										className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
 										onClick={handleDeleteImage}
 									>
 										Delete picture
@@ -126,21 +153,20 @@ const Profile = () => {
 								</div>
 								<div className='mb-2 sm:mb-6'>
 									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
-										Suscription
+										Subscription
 									</label>
 									Platinum || Gold || Standard
 								</div>
 								{showChangeImage && (
-									<div>
-										<input type='file' className='' onChange={(e) => setFile(e.target.files ? (e.target.files[0] as any) : null)}></input>
+									<form className='flex gap-1' onSubmit={handleSendNewImage}>
+										<input id='fileInput' type='file' className='file-input file-input-bordered file-input-warning w-full max-w-xs' name='file' accept='image/*' required></input>
 										<button
-											type='button'
-											onClick={(e) => handleSendNewImage(e)}
-											className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+											type='submit'
+											className='py-2 px-2 text-base h-12 font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
 										>
-											Send
+											Upload File
 										</button>
-									</div>
+									</form>
 								)}
 							</div>
 						</div>
