@@ -22,6 +22,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const [showToast, setShowToast] = useState(false)
 	const [slotShow, setSlotShow] = useState(false)
 	const [showOverlay, setShowOverlay] = useState(false)
+	const [duration, setDuration] = useState(Array.from({ length: 10 }, (_, index) => index + 1))
+	const [prices, setPrices] = useState(duration.map(hour => hour * 3.55))
 
 	useEffect(() => {
 		if (showToast || errorToast) {
@@ -58,8 +60,16 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		user_id: user?.id,
 		license_plate: localStorage.getItem('license_plate') || '',
 		duration: localStorage.getItem('duration') || '1',
-		is_parked: false
+		is_parked: false,
+		total: 3.55,
 	})
+
+	useEffect(() => {
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			total: 3.55 * Number(formData.duration)
+		}))
+	}, [formData.duration])
 
 	function handleInputChange(event: any) {
 		const { name, value } = event.target
@@ -76,12 +86,13 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		event.preventDefault()
 
 		//! control
-		console.log('Fecha seleccionada:', formData.date)
-		console.log('Hora seleccionada:', formData.time)
-		console.log('Parking:', formData.parkingLotId)
-		console.log('license plate:', formData.license_plate)
-		console.log('El userid:', formData.user_id)
-		console.log('El nombredel usuario:', user?.name)
+		// console.log('Fecha seleccionada:', formData.date)
+		// console.log('Hora seleccionada:', formData.time)
+		// console.log('Parking:', formData.parkingLotId)
+		// console.log('license plate:', formData.license_plate)
+		// console.log('El userid:', formData.user_id)
+		// console.log('El nombredel usuario:', user?.name)
+		console.log('Esto es todo el formData', formData)
 
 		try {
 			//! enviar info al backend
@@ -117,13 +128,15 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				user_id: user?.id,
 				license_plate: '',
 				duration: '1',
-				is_parked: false
+				is_parked: false,
+				total: 3.55
 			})
 			localStorage.removeItem('date')
 			localStorage.removeItem('time')
 			localStorage.removeItem('license_plate')
 			localStorage.removeItem('duration')
 			localStorage.removeItem('pathname')
+			localStorage.removeItem('total')
 
 		} catch (error) {
 			console.log(error)
@@ -160,11 +173,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 				<div className='block pb-2'>
 					<span className='text-sm text-center font-semibold'>Select Parking Duration</span>
-					<PricingRender />
-					{/* <label htmlFor='duration' className='font-bold'>How many hours are you staying?</label>
-					<input type='number' name='duration' id='duration' value={formData.duration} onChange={handleInputChange} required min='1' /> */}
+					<PricingRender duration={parseInt(formData.duration)} setFormData={setFormData} />
 				</div>
-				{/* <p className='text-2xl mt-4'>Available slots: {parking?.slots_stock}</p> Validar con el back*/}
 				<div className='flex justify-around gap-4'>
 					<button
 						type='button'
@@ -199,10 +209,19 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						<LoginButton />
 					</div>
 				) : (
-					<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
-						Reserve
-						{/* <Link href='/ourparkings'>Reserve</Link> */}
-					</button>
+					<div className='flex justify-center items-center gap-6'>
+						<div>
+							<p className='text-sm sm:text-md font-bold'>Total to pay: <span
+								className='text-sm sm:text-md font-light'> {(parseInt(formData.duration) * 3.55).toFixed(2)} €
+							</span>
+							</p>
+						</div>
+						<div>
+							<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
+								Reserve
+							</button>
+						</div>
+					</div>
 				)}
 			</form>
 		</div>
