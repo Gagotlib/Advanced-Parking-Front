@@ -6,6 +6,8 @@ import Avatar from 'react-avatar'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../context/AuthContext'
+import { showSweetAlert } from '../components/alerts/SweetAlert'
+
 
 interface IApointment {
 	id: string
@@ -46,6 +48,7 @@ const Profile = () => {
 				}
 			})
 			.then(({ data }) => setUserAppointments(data.appointments))
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const [showChangeImage, setShowChangeImage] = useState(false)
@@ -98,18 +101,20 @@ const Profile = () => {
 	}
 	const handleDeleteImage = () => {
 		// funcion que permita hacer user.image="" y se guarde en bd
-		const userString = localStorage.getItem('user')
-		const logedUser = userString ? JSON.parse(userString) : null
-		const token = localStorage.getItem('authToken')
-		axios.delete(`${rute}/files/profile-image/${logedUser.id}`, {
-			headers: {
-				Authorization: `Bearer: ${token}`
-			}
-		})
+		showSweetAlert(() => {
+			const userString = localStorage.getItem('user')
+			const logedUser = userString ? JSON.parse(userString) : null
+			const token = localStorage.getItem('authToken')
+			axios.delete(`${rute}/files/profile-image/${logedUser.id}`, {
+				headers: {
+					Authorization: `Bearer: ${token}`
+				}
+			})
 
-		const updatedUser = { ...logedUser, image: '' }
-		setUser(updatedUser)
-		localStorage.setItem('user', JSON.stringify(updatedUser))
+			const updatedUser = { ...logedUser, image: '' }
+			setUser(updatedUser)
+			localStorage.setItem('user', JSON.stringify(updatedUser))
+		})
 	}
 
 	return (
@@ -120,7 +125,7 @@ const Profile = () => {
 					<div className='w-full px-6 pb-8 mt-8 sm:rounded-lg'>
 						<div className='flex mt-8 gap-5 sm:gap-10'>
 							<div className='flex flex-col gap-3 items-center space-y-5 sm:space-y-0'>
-								<Avatar src={user?.image} name={user?.name} size='150' round color='#1C1C1C' maxInitials={2} />
+								<Avatar src={user?.image} name={user?.name} className='object-cover' size='150' round color='#1C1C1C' maxInitials={2} />
 								<div className='flex flex-col gap-2 sm:ml-2'>
 									<button
 										type='button'
