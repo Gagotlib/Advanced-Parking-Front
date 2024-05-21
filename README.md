@@ -22,14 +22,13 @@ Nuestra aplicación se distingue por ser amigable con el usuario, con políticas
 
 Creamos un el flujo del usuario que define cómo interactuar con la aplicación y los pasos involucrados al reservar el primer espacio de estacionamiento. Nos basamos en una estructura muy dinamica pero a su minimizando la cantidad de pasos que se vieran involucrados.
 
-<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/userFlow.webp" alt="User Flow" width="250" height="250" />
-
+<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/userFlow.webp" alt="User Flow" width="650" height="400" />
 
 ## Conclusión
 
 Crear esta aplicación para nosotros ha sido una experiencia totalmente gratificante, (¡con sus altibajos y tediosidad!), el trabajo en equipo, la construcción desde el interés desde el dia #1 hasta la finalización nos ha dejado marcados por la unión y la firmeza para ayudar a cada área. No dudamos del tiempo invertido, las largas horas apagando incendios cada vez que leiamos Error 500 Internal Server.
 
-Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho la implementacion de la aplicación en las dos ramas, backend y frontend. 
+Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho la implementacion de la aplicación en las dos ramas, backend y frontend.
 
 ¡Gracias por leernos y espero que lo hayan encontrado interesante!
 

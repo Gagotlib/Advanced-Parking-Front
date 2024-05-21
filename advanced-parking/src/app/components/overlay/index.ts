@@ -1,1 +1,1 @@
-export { default } from './overlay'
+export { OverlayFull, OverlayNav } from './overlay'
