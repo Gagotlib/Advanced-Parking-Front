@@ -215,7 +215,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 					<div className='flex justify-center items-center gap-6'>
 						<div>
 							<p className='text-sm sm:text-md font-bold'>
-								Total to pay: <span className='text-sm sm:text-md font-light'> {(parseInt(formData.duration) * 3.55).toFixed(2)} €</span>
+								Total to pay: <span className='text-sm sm:text-md font-light'> {(parseInt(formData.duration) * 3.55).toFixed(2)} $</span>
 							</p>
 						</div>
 						<div>

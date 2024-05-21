@@ -43,7 +43,7 @@ function Pricing() {
                 </td>
                 <td className="px-6 py-2 ">
                   <p className='font-light  '>
-                    {prices[index].toFixed(2)} <span >€</span>
+                    {prices[index].toFixed(2)} <span >$</span>
                   </p>
                 </td>
               </tr>
