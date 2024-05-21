@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/app/context/AuthContext'
 import { useLocation } from 'react-router-dom'
 import { GoogleButton } from '../buttons/GoogleButton'
+import Spiner from '../spiner/Spiner'
 
 export const LoginForm = () => {
 	// const pathname = usePathname()
@@ -17,6 +18,7 @@ export const LoginForm = () => {
 	const [showToast, setShowToast] = useState(false)
 	const { user, setUser } = useAuth()
 	const { token, setToken } = useAuth()
+	const [isloging, setIsloging] = useState(false)
 
 	useEffect(() => {
 		if (showToast || errorToast) {
@@ -59,6 +61,7 @@ export const LoginForm = () => {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		setIsloging(true)
 		try {
 			console.log(loginData)
 
@@ -68,12 +71,14 @@ export const LoginForm = () => {
 			setToken(response.data.token)
 			localStorage.setItem('authToken', response.data.token)
 			localStorage.setItem('user', JSON.stringify(response.data.userData))
+			setIsloging(false)
 			setShowToast(true)
 			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
 			console.log(error)
 			console.error('Error al iniciar sesión:', error?.response)
 			setErrorToast(true)
+			setIsloging(false)
 		}
 	}
 
@@ -129,7 +134,7 @@ export const LoginForm = () => {
 							type='submit'
 							className='text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
 						>
-							Log In
+							{isloging ? <Spiner /> : 'Login'}
 						</button>
 					</form>
 				</div>

@@ -7,24 +7,19 @@ import { useRouter } from 'next/navigation'
 export default function Layout({ children }: { children: React.ReactNode }) {
 	const { user, setUser } = useAuth()
 	const router = useRouter()
+	useEffect(() => {
+		if (user && user.role !== 'admin') {
+			console.log('sacado por no ser admin')
+			router.push('/')
+		}
+	}, [user])
 
-//! descomentar para que funcione el control de usuario
-	// useEffect(() => {
-	// 	const userFromCookie = localStorage.getItem('user')
-	// 	const user = userFromCookie ? JSON.parse(userFromCookie) : null
-	// 	setUser(user)
-
-	// 	if (user?.role !== 'admin') {
-	// 		router.push('/')
-	// 	}
-	// }, [])
-
-	return user?.role === 'user' ? (
+	return user?.role !== 'admin' ? (
 		<div className='flex h-screen flex-col md:flex-row md:overflow-hidden pt-28'>
 			<h1>You dont have permission to access this page</h1>
 		</div>
 	) : (
-		<div className='flex h-screen flex-col md:flex-row md:overflow-hidden pt-6'>
+		<div className='flex minh-screen flex-col md:flex-row md:overflow-hidden pt-6'>
 			<div className='w-full flex-none md:w-64'>
 				<SideNav />
 			</div>

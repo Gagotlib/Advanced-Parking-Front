@@ -17,6 +17,7 @@ function Navprofile() {
 	const { user, setUser } = useAuth()
 
 	const { data: session } = useSession()
+
 	// console.log('sesion guardada por google, consologeado desde navbar', session?.user)
 	// console.log('user logeado por login, consologeado desde Navprofile', user)
 	// useEffect(() => {
@@ -48,7 +49,7 @@ function Navprofile() {
 					// setShowToast(true))
 				})
 		} else {
-			console.log('NO HAY sesion')
+			// console.log('NO HAY sesion')
 			const userstring = localStorage.getItem('user')
 
 			const user = userstring && JSON.parse(userstring)
@@ -56,7 +57,7 @@ function Navprofile() {
 			setUser(user)
 			setToken(token)
 
-			console.log('AHORA SI HAY sesion, user del localstorage:', user)
+			// console.log('AHORA SI HAY sesion, user del localstorage:', user)
 			// setShowToast(true))
 		}
 		// console.log('renderizado de navbar', user)
@@ -78,6 +79,7 @@ function Navprofile() {
 		signOut()
 	}
 
+	
 	return (
 		<div className='flex items-center md:order-2 relative'>
 			<button

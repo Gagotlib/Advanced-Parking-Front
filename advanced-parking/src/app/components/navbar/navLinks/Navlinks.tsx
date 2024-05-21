@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { OverlayNav } from '../../overlay/overlay'
@@ -9,11 +9,18 @@ function Navlinks() {
 	const pathname = usePathname()
 	const [showOverlay, setShowOverlay] = useState(false)
 
+	useEffect(() => {
+		if (navOpen) {
+			setShowOverlay(true)
+		} else {
+			setShowOverlay(false)
+		}
+	}, [navOpen])
+
 	const toggleNav = () => {
 		setNavOpen(!navOpen)
 		setShowOverlay(!showOverlay)
 	}
-
 
 	return (
 		<div className='max-w-screen-xl flex items-center justify-between mx-auto'>

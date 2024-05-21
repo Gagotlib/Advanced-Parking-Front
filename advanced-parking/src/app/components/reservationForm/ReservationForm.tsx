@@ -11,6 +11,7 @@ import Toast from '../alerts/Toast'
 import SlotSelection from '../slotselection/SlotSelection'
 import PricingRender from '../pricing/PricingRender'
 import { OverlayFull, OverlayNav } from '../overlay/overlay'
+import Spiner from '../spiner/Spiner'
 
 export const ReservationForm = ({ parking }: { parking: IParking | undefined }) => {
 	const { user } = useAuth()
@@ -24,6 +25,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const [showOverlay, setShowOverlay] = useState(false)
 	const [duration, setDuration] = useState(Array.from({ length: 10 }, (_, index) => index + 1))
 	const [prices, setPrices] = useState(duration.map((hour) => hour * 3.55))
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		if (showToast || errorToast) {
@@ -98,6 +100,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 	async function handleSubmit(event: any) {
 		event.preventDefault()
+		setIsLoading(true)
 		if (formData.slot_number === null) {
 			return
 		}
@@ -122,35 +125,16 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			})
 			console.log('la respuesta del pago:', response.data.url)
 			const url = response.data.url //! url que devuelve la creacion de la solicitud
-
+			setIsLoading(false)
 			setShowToast(true)
 			const timeout = setTimeout(() => {
 				setShowToast(false)
 				router.push(`${url}`)
 			}, 3000)
-			// console.log(response)
-
-			// Limpiar el formulario
-			// setFormData({
-			// 	date: getTodayDate(),
-			// 	time: '08:00',
-			// 	parkingLotId: parking?.id,
-			// 	user_id: user?.id,
-			// 	license_plate: '',
-			// 	duration: '1',
-			// 	is_parked: false,
-			// 	total: 3.55,
-			// 	slot: null
-			// })
-			// localStorage.removeItem('date')
-			// localStorage.removeItem('time')
-			// localStorage.removeItem('license_plate')
-			// localStorage.removeItem('duration')
-			// localStorage.removeItem('pathname')
-			// localStorage.removeItem('total')
 		} catch (error) {
 			console.log(error)
 			setErrorToast(true)
+			setIsLoading(false)
 		}
 	}
 
@@ -220,7 +204,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						</div>
 						<div>
 							<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
-								Reserve
+								{isLoading ? <Spiner /> : 'Reserve'}
 							</button>
 						</div>
 					</div>
