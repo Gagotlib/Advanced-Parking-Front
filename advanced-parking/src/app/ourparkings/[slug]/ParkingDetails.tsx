@@ -1,5 +1,6 @@
 'use client'
 import { BackToOurParkingsButton } from '@/app/components/buttons/Buttons'
+import Directions from '@/app/components/googleMaps/Directions'
 import Maps from '@/app/components/googleMaps/Maps'
 import { ReservationForm } from '@/app/components/reservationForm/ReservationForm'
 import { Loading } from '@/app/components/suspense/Loading'
@@ -23,12 +24,13 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 	// console.log(parking)
 
 	return (
-		<div className='flex flex-col min-h-screen pt-24 items-center'>
-			<div className='flex flex-col lg:flex-row lg:justify-center lg:gap-40 p-4 m-0 items-center justify-start gap-4 text-center'>
+		<div className='flex flex-col min-h-screen pt-28 sm:pt-24 lg:pt-12 items-center lg:mr-10'>
+			<div className='flex flex-col lg:flex-row lg:justify-center lg:gap-40 p-2 m-0 items-center justify-start gap-4 text-center'>
+				{/* <Directions latProp={latProp} lngProp={lngProp} /> */}
 				<Suspense fallback={<Loading />}>
 					{parking ? (
-						<div className='flex flex-col items-center gap-4 mt-4'>
-							<h1 className='font-medium text-4xl lg:text-6xl p-0 m-0'>Parking {parking?.name}</h1>
+						<div className='flex flex-col items-center gap-4 mt-0'>
+							<h1 className='font-medium text-4xl lg:text-4xl p-0 m-0'>Parking {parking?.name}</h1>
 							<p className='text-xl'>
 								Address: <span className='italic'>{parking?.location}</span>{' '}
 							</p>

@@ -139,10 +139,10 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	}
 
 	return (
-		<div className='w-10/12 flex flex-col items-center text-erieblack'>
+		<div className='w-10/12 flex flex-col items-center text-erieblack pt-12 sm:pt-0'>
 			{showToast && <Toast message='Redirecting to the payment' type='success' />}
 			{errorToast && <Toast message='Reservation error. Please try again or contact our support team' type='error' />}
-			<h1 className='font-medium text-4xl lg:text-6xl'> Booking</h1>
+			<h1 className='font-medium text-4xl lg:text-4xl lg:pt-12'> Booking</h1>
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
 				<div className=''>

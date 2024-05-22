@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, MapControl, ControlPosition } from '@vis.gl/react-google-maps'
 import { CustomZoomControl } from './CustomZoomControl';
 import { useAuth } from '@/app/context/AuthContext';
+import Link from 'next/link';
 
 function OurParkingsMaps() {
 
@@ -13,8 +14,8 @@ function OurParkingsMaps() {
   const [controlPosition, setControlControlPosition] = useState<ControlPosition>(ControlPosition.LEFT_BOTTOM);
 
   const defaultPosition = {
-    lat: -34.559524,
-    lng: -58.462132
+    lat: -34.590422,
+    lng: -58.392357
   }
 
   const parkingValues = allParkings?.map((parking) => {
@@ -24,12 +25,14 @@ function OurParkingsMaps() {
         lng: -parseFloat(parking.lng),
       },
       name: parking.name,
+      id: parking.id,
+      address: parking.location
     };
   });
 
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string} >
-      <div className='relative' style={{ height: '67vh', width: '100%' }} >
+      <div className='relative w-full h-[60vh]' >
         <Map
           mapId={process.env.NEXT_PUBLIC_MAP_ID}
           zoom={zoom}
@@ -67,7 +70,11 @@ function OurParkingsMaps() {
                   position={parking.position}
                   onCloseClick={() => setOpenIndex(null)}
                 >
-                  <p>Parking {parking.name}</p>
+                  <p className='font-bold'>Parking {parking.name}</p>
+                  <p className='font-light'>{parking.address}</p>
+                  <Link href={`/ourparkings/${parking.id}`} className='underline decoration-yaleblue text-yaleblue'>
+                    View details
+                  </Link>
                 </InfoWindow>
               )}
             </div>

@@ -24,7 +24,7 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 	// console.log('selected slot', selectedSlot)
 
 	return (
-		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[12rem] z-5 h-auto w-3/4 top-[45rem] bg-ghostwhite border border-black rounded-xl shadow-lg shadow-silver/80'>
+		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[8rem] z-5 h-auto w-3/4 top-[38rem] bg-ghostwhite border border-black rounded-xl shadow-lg shadow-silver/80'>
 			<div className='sm:mx-4 mr-2'>
 				<div className='grid h-3/4 grid-cols-3 mt-4 mx-2'>
 					<div className='flex flex-col gap-1'>
@@ -60,8 +60,8 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 						))}
 					</div>
 				</div>
-				<p>Enter / Exit</p>
-				<hr className='border border-erieblack/80 border-1 mb-4' />
+				{/* <p>Enter / Exit</p> */}
+
 				<button
 					type='button'
 					className='mb-2 py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none'

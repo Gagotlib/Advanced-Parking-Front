@@ -3,7 +3,7 @@ import OurParkingsMaps from './OurParkingsMaps'
 
 function ViewParkingsMap({ setIsOpenMap, setIsOverlayFull }: any) {
   return (
-    <div className='absolute lg:left-[10rem] lg:w-10/12 lg:top-[8rem] z-10 h-3/4 w-3/4 top-[31.5rem] bg-ghostwhite border border-black shadow-lg rounded-b-lg shadow-silver/80'>
+    <div className='fixed lg:left-[10rem] lg:w-10/12 lg:top-[8rem] z-10 h-auto w-3/4 top-[10.5rem] bg-ghostwhite border border-black shadow-lg rounded-b-lg shadow-silver/80'>
       <div className='pb-2'>
         <OurParkingsMaps />
       </div>
