@@ -187,7 +187,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 					></input>
 				</div>
 				{showOverlay && <OverlayFull />}
-				{slotShow && <SlotSelection setShowOverlay={setShowOverlay} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} />}
+				{slotShow && <SlotSelection setShowOverlay={setShowOverlay} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} parking={parking} />}
 				{!user ? (
 					<div className='flex flex-col items-center'>
 						<p className='text-erieblack text-sm sm:text-lg m-2'>

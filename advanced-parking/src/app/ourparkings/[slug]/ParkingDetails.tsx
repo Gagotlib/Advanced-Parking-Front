@@ -20,7 +20,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 		axios.get(`${rute}/parking-lot/${params.slug}`).then(({ data }) => setParking(data))
 	}, [])
 
-	console.log(parking)
+	// console.log(parking)
 
 	return (
 		<div className='flex flex-col min-h-screen pt-24 items-center'>
