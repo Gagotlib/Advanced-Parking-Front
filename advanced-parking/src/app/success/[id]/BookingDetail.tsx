@@ -1,10 +1,10 @@
 'use client'
 
-import { BackToHomeButton } from '@/app/components/buttons/Buttons'
-import QRGenerator from '@/app/components/qrcode/QRGenerator'
-import { useAuth } from '@/app/context/AuthContext'
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
+import { useAuth } from '@/app/context/AuthContext'
+import QRGenerator from '@/app/components/qrcode/QRGenerator'
+import { BackToHomeButton } from '@/app/components/buttons/Buttons'
 
 export interface IBooking {
 	date: string
@@ -12,16 +12,16 @@ export interface IBooking {
 	id: string
 	is_parked: boolean
 	license_plate: string
+	parking_lot: {
+		id: string
+		lat: string
+		lng: string
+		location: string
+		name: string
+		slots_stock: number
+	}
 	slot: {
 		id: string
-		parking_lot: {
-			id: string
-			lat: string
-			lng: string
-			location: string
-			name: string
-			slots_stock: number
-		}
 		slot_number: number
 		slot_status: string
 	}
@@ -33,7 +33,7 @@ export interface IBooking {
 
 function BookingDetail({ booking }: { booking: IBooking }) {
 	const { user, setUser } = useAuth()
-	// console.log(' booking:', booking)
+	console.log(' booking:', booking)
 
 	return (
 		<div className='sm:grid sm:grid-cols-2 items-center min-h-screen px-4 pb-10 lg:gap-40'>
@@ -58,9 +58,9 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 					<p className='text-erieblack/80 mb-2'>Name: {user?.name}</p>
 					<p className='text-erieblack/80'>Email: {user?.email} </p>
 					<br />
-					<p className='text-erieblack/80 mb-2'>Parking: {booking.slot.parking_lot.name}</p>
+					<p className='text-erieblack/80 mb-2'>Parking: {booking.parking_lot.name}</p>
 					<p className='text-erieblack/80 mb-2'>Slot: {booking.slot_number}</p>
-					<p className='text-erieblack/80 mb-2'>Address: {booking.slot.parking_lot.location}</p>
+					<p className='text-erieblack/80 mb-2'>Address: {booking.parking_lot.location}</p>
 				</div>
 				<table className='w-full mb-8'>
 					<thead>
