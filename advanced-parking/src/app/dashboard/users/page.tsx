@@ -24,7 +24,7 @@ const Page = (props: Props) => {
 
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
-			<h1>Esto es lo correspondiente a users</h1>
+			<h1>These are all the Users</h1>
 			<div className='relative flex flex-col'>
 				<div className='flex flex-row font-bold gap-4 pl-2'>
 					<p className='w-32'>User Name </p>
