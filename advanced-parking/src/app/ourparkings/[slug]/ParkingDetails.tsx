@@ -1,6 +1,6 @@
 'use client'
-import { BackToOurParkingsButton, HireButton } from '@/app/components/buttons/Buttons'
-import { CheckIcon } from '@/app/components/icons/icons'
+import { BackToOurParkingsButton } from '@/app/components/buttons/Buttons'
+import Maps from '@/app/components/googleMaps/Maps'
 import { ReservationForm } from '@/app/components/reservationForm/ReservationForm'
 import { Loading } from '@/app/components/suspense/Loading'
 import { useAuth } from '@/app/context/AuthContext'
@@ -25,32 +25,17 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 			<div className='flex flex-col lg:flex-row lg:justify-center lg:gap-40 p-4 m-0 items-center justify-start gap-4 text-center'>
 				<Suspense fallback={<Loading />}>
 					{parking ? (
-						<div className='flex flex-col items-center'>
-							<h1 className='font-medium text-4xl lg:text-6xl'>{parking?.name}</h1>
-							<p className='text-2xl'>
+						<div className='flex flex-col items-center gap-4 mt-4'>
+							<h1 className='font-medium text-4xl lg:text-6xl p-0 m-0'>Parking {parking?.name}</h1>
+							<p className='text-xl'>
 								Address: <span className='italic'>{parking?.location}</span>{' '}
 							</p>
-
-							<ul className='pt-10 flex flex-col items-center '>
-								<li className='flex gap-2 items-center mb-4 w-full justify-start'>
-									<CheckIcon />
-									<p>100% insured parking in the reservation</p>
-								</li>
-								<li className='flex gap-2 items-center mb-4 w-full justify-start'>
-									<CheckIcon />
-									<p>Security 24hr</p>
-								</li>
-								<li className='flex gap-2 items-center mb-4 w-full justify-start'>
-									<CheckIcon />
-									<p>Automated check-in and check-out</p>
-								</li>
-							</ul>
+							<Maps />
 						</div>
 					) : (
 						<Loading />
 					)}
 				</Suspense>
-
 				<div className='w-full lg:w-10/12 flex flex-col items-center'>
 					<Suspense fallback={<Loading />}>{parking ? <ReservationForm parking={parking} /> : <Loading />}</Suspense>
 				</div>
