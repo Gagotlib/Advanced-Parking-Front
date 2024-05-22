@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.6",
+    "@googlemaps/markerclusterer": "^2.5.3",
+    "@vis.gl/react-google-maps": "^1.0.0",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "next": "14.2.3",
