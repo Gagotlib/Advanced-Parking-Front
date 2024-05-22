@@ -20,6 +20,8 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 		axios.get(`${rute}/parking-lot/${params.slug}`).then(({ data }) => setParking(data))
 	}, [])
 
+	console.log(parking)
+
 	return (
 		<div className='flex flex-col min-h-screen pt-24 items-center'>
 			<div className='flex flex-col lg:flex-row lg:justify-center lg:gap-40 p-4 m-0 items-center justify-start gap-4 text-center'>
@@ -30,7 +32,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 							<p className='text-xl'>
 								Address: <span className='italic'>{parking?.location}</span>{' '}
 							</p>
-							<Maps />
+							<Maps latProp={parseFloat(parking.lat)} lngProp={parseFloat(parking.lng)} nameProp={parking.name} />
 						</div>
 					) : (
 						<Loading />
