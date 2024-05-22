@@ -12,19 +12,23 @@ export interface IBooking {
 	id: string
 	is_parked: boolean
 	license_plate: string
-	time: string
-	total: number
-	slot_number: string
 	slot: {
 		id: string
+		parking_lot: {
+			id: string
+			lat: string
+			lng: string
+			location: string
+			name: string
+			slots_stock: number
+		}
+		slot_number: number
 		slot_status: string
 	}
-	parking_lot: {
-		id: string
-		location: string
-		name: string
-		slots_stock: number
-	}
+	slot_number: string
+	status: string
+	time: string
+	total: number
 }
 
 function BookingDetail({ booking }: { booking: IBooking }) {
@@ -54,9 +58,9 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 					<p className='text-erieblack/80 mb-2'>Name: {user?.name}</p>
 					<p className='text-erieblack/80'>Email: {user?.email} </p>
 					<br />
-					<p className='text-erieblack/80 mb-2'>Parking: {booking.parking_lot.name}</p>
+					<p className='text-erieblack/80 mb-2'>Parking: {booking.slot.parking_lot.name}</p>
 					<p className='text-erieblack/80 mb-2'>Slot: {booking.slot_number}</p>
-					<p className='text-erieblack/80 mb-2'>Address: {booking.parking_lot.location}</p>
+					<p className='text-erieblack/80 mb-2'>Address: {booking.slot.parking_lot.location}</p>
 				</div>
 				<table className='w-full mb-8'>
 					<thead>

@@ -5,9 +5,8 @@ import React, { useEffect, useState } from 'react'
 const Page = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	//* para traerme todos los usuarios
-	const [allUsers, setAllsers] = useState([])
-	const [allParkinglots, setAllParkinglots] = useState([])
 
+	const [allUsers, setAllsers] = useState([])
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		axios
@@ -21,6 +20,7 @@ const Page = () => {
 			})
 	}, [])
 
+	const [allParkinglots, setAllParkinglots] = useState([])
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		axios
@@ -34,17 +34,20 @@ const Page = () => {
 			})
 	}, [])
 
-	const [allBookings, setAllBookings] = useState([])
+	const [allAppointments, setAllAppointments] = useState([])
+	const [page, setPage] = useState(1)
+	const cardLimit = 20
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
+		// console.log(token);
 		axios
-			.get(`${rute}/appointments`, {
+			.get(`${rute}/appointments?page=${page}&limit=${cardLimit}`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}
 			})
 			.then(({ data }) => {
-				setAllBookings(data)
+				setAllAppointments(data)
 			})
 	}, [])
 
@@ -58,9 +61,9 @@ const Page = () => {
 					<p className='text-4xl'> {allUsers?.length}</p>
 				</div>
 				<div className='border rounded-xl flex flex-col h-40 gap-4 pt-4'>
-					<h3 className='font-bold'>Bookings</h3>
-					<p>Total of Bookings: </p>
-					<p className='text-4xl'>{allBookings.length} </p>
+					<h3 className='font-bold'>Appointments</h3>
+					<p>Total of Appointments: </p>
+					<p className='text-4xl'>{allAppointments.length} </p>
 				</div>
 				<div className='border rounded-xl flex flex-col h-40 gap-4 pt-4'>
 					<h3 className='font-bold'>Parking lots</h3>
