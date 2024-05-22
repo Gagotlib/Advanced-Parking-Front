@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, MapControl, ControlPosition } from '@vis.gl/react-google-maps'
 import { CustomZoomControl } from './CustomZoomControl'
+import Directions from './Directions';
 
 function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number; nameProp: string }) {
 	const [controlPosition, setControlControlPosition] = useState<ControlPosition>(ControlPosition.LEFT_BOTTOM)
@@ -18,8 +19,9 @@ function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number
 
 	return (
 		<APIProvider apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>
-			<div className='relative md:ml-10  border-2 border-yaleblue/90 w-[350px] h-[350px] md:w-[450px] md:h-[450px]'>
+			<div className='relative md:ml-10  border-2 border-yaleblue/90 w-[350px] h-[350px] md:w-[720px] md:h-[370px]'>
 				<Map mapId={process.env.NEXT_PUBLIC_MAP_ID} zoom={zoom} onZoomChanged={(ev) => setZoom(ev.detail.zoom)} disableDefaultUI={true} gestureHandling={'greedy'} defaultCenter={defaultPosition}>
+					<Directions latProp={latProp} lngProp={lngProp} />
 					<MapControl position={ControlPosition.TOP_LEFT}>
 						<div
 							style={{

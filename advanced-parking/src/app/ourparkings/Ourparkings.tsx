@@ -47,7 +47,7 @@ export const Ourparkings = () => {
 	return (
 		<div className='flex flex-col min-h-screen pt-24'>
 			<div className=' flex flex-col min-h-screen py-4 m-0 gap-4 items-center justify-start'>
-				<div className='flex flex-row w-10/12 items-center justify-between'>
+				<div className='flex flex-row w-10/12 items-center justify-between gap-2'>
 					<form className='w-1/2'>
 						<label htmlFor='search' className='mb-2 text-sm font-medium text-erieblack sr-only dark:text-ghostwhite'>
 							Search
