@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 interface IApointment {
@@ -32,17 +33,27 @@ function BookingsUser({ userAppointments }: any) {
 							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
 								License Plate
 							</th>
+							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
+								Details
+							</th>
 						</tr>
 					</thead>
 					<tbody>
 						{userAppointments?.map((appointment: any) => (
 							<tr key={appointment.id} className='bg-ghostwhite'>
-								<th scope='row' className='px-6 py-4 font-medium text-erieblack whitespace-nowrap border-collapse border border-erieblack'>
+								<th scope='row' className='px-3 py-4 font-medium text-erieblack whitespace-nowrap border-collapse border border-erieblack'>
 									{appointment.parking_lot?.name}
 								</th>
-								<td className='px-6 py-4 border border-erieblack/90'>{appointment.date}</td>
-								<td className='px-6 py-4 border border-erieblack/90'>{appointment.time}</td>
-								<td className='px-6 py-4 border border-erieblack/90'>{appointment.license_plate}</td>
+								<td className='px-3 py-4 border border-erieblack/90'>{appointment.date}</td>
+								<td className='px-3 py-4 border border-erieblack/90'>{appointment.time}</td>
+								<td className='px-3 py-4 border border-erieblack/90'>{appointment.license_plate}</td>
+								<td>
+									<Link href={`/dashboard/appointments/${appointment.id}`}>
+										<button type='button' className='py-3 px-3 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
+											View Details
+										</button>
+									</Link>
+								</td>
 							</tr>
 						))}
 						{/* <tr className='bg-ghostwhite'>
