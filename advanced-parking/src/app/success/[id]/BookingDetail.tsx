@@ -12,16 +12,16 @@ export interface IBooking {
 	id: string
 	is_parked: boolean
 	license_plate: string
+	parking_lot: {
+		id: string
+		lat: string
+		lng: string
+		location: string
+		name: string
+		slots_stock: number
+	}
 	slot: {
 		id: string
-		parking_lot: {
-			id: string
-			lat: string
-			lng: string
-			location: string
-			name: string
-			slots_stock: number
-		}
 		slot_number: number
 		slot_status: string
 	}

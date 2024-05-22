@@ -10,7 +10,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [observer, setObserver] = useState(0)
 	const [parking, setParking] = useState<IParking | undefined>(undefined)
-	
+
 	useEffect(() => {
 		axios.get(`${rute}/parking-lot/${params.id}`).then(({ data }) => setParking(data))
 	}, [observer])
@@ -101,9 +101,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 									onChange={(e) => handleChangeStatus(e, slot.id)}
 									className='bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 								>
-									<option selected value='change status'>
-										change status
-									</option>
+									<option value='change status'>change status</option>
 									<option value='available'>available</option>
 									<option value='unavailable'>unavailable</option>
 									<option value='reserved'>reserved</option>

@@ -33,10 +33,17 @@ export const Appointments = (props: Props) => {
 			<div className='flex flex-col '>
 				<Suspense fallback={<p>Loading...</p>}>
 					<h2>Total of Appointments: {allAppointments?.length}</h2>
+					<div className='flex flex-row font-bold pl-2 justify-between'>
+						<p className='mr-20'>Parking </p>
+						<p className='mr-14'>Date</p>
+						<p className=''>Time</p>
+						<p className=''>Slot #</p>
+						<p>Status</p>
+					</div>
 					{allAppointments ? (
 						allAppointments.map((appointment) => (
-							<Link key={appointment.id} href={`/dashboard/appointments/${appointment.id}`} className='flex flex-col border border-1 p-2 hover:bg-slate-200 w-28'>
-								<p>{appointment.slot.parking_lot.name}</p>
+							<Link key={appointment.id} href={`/dashboard/appointments/${appointment.id}`} className='flex flex-row gap-2 border border-1 p-2 hover:bg-slate-200 justify-between'>
+								<p className='w-32'>{appointment.slot.parking_lot.name}</p>
 								<p>{appointment.date}</p>
 								<p>{appointment.time}</p>
 								<p>{appointment.slot.slot_number}</p>
