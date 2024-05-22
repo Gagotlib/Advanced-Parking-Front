@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.6",
+    "@googlemaps/markerclusterer": "^2.5.3",
+    "@vis.gl/react-google-maps": "^1.0.0",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "next": "14.2.3",
@@ -18,7 +21,8 @@
     "react-avatar": "^5.0.3",
     "react-dom": "^18",
     "react-router-dom": "^6.23.1",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "sweetalert2": "^11.11.0"
   },
   "devDependencies": {
     "@types/node": "^20",

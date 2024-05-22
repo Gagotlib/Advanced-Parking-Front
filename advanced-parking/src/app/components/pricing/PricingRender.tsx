@@ -6,7 +6,7 @@ interface PricingRenderProps {
 }
 
 function PricingRender({ duration, setFormData }: PricingRenderProps) {
-  const [selectedHour, setSelectedHour] = useState<number | null>(localStorage.getItem("duration") ? parseInt(localStorage.getItem("duration")!) : null)
+	const [selectedHour, setSelectedHour] = useState<number | null>(localStorage.getItem("duration") ? parseInt(localStorage.getItem("duration")!) : null)
 	const durations = Array.from({ length: 10 }, (_, index) => index + 1)
 	const prices = durations.map((hour: any) => hour * 3.55)
 
@@ -28,7 +28,7 @@ function PricingRender({ duration, setFormData }: PricingRenderProps) {
 							<p className='font-bold'>
 								{hour} <span className='font-bold'>hrs</span>
 							</p>
-							<p className='font-light'>{prices[index].toFixed(2)} €</p>
+							<p className='font-light'>{prices[index].toFixed(2)} $</p>
 							<button
 								type='button'
 								className={`rounded-xl border border-silver w-3.5 h-3.5 focus:z-10 focus:outline-none ${selectedHour === hour ? 'bg-duck-yellow/80' : 'bg-ghostwhite'}`}

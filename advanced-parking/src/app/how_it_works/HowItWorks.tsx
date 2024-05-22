@@ -1,5 +1,6 @@
 import React from 'react'
 import { ReserveButton } from '../components/buttons/Buttons'
+import Maps from '../components/googleMaps/Maps'
 
 function HowItWorks() {
   return (
