@@ -1,16 +1,30 @@
-import Link from 'next/link'
 import React from 'react'
 
 interface IApointment {
-	id: string
-	parkingLot: string
 	date: string
-	hour: string
-	licensePlate: string
+	duration: string
+	id: string
+	is_parked: boolean
+	license_plate: string
+	parking_lot: {
+		id: string
+		lat: string
+		lng: string
+		location: string
+		name: string
+		slots_stock: number
+	}
+	slot_number: string
+	status: string
+	time: string
+	total: number
 }
 
-function BookingsUser({ userAppointments }: any) {
-	// Traer la informacion del back segun la interfaces de reservas y luego mapearla en los scope necesarios
+interface BookingsUserProps {
+	userAppointments: IApointment[] | null
+}
+
+const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 
 	return (
 		<div className='flex flex-col'>
@@ -34,12 +48,13 @@ function BookingsUser({ userAppointments }: any) {
 								License Plate
 							</th>
 							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
-								Details
+								Status
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						{userAppointments?.map((appointment: any) => (
+						{userAppointments?.map((appointment: IApointment) => (
+
 							<tr key={appointment.id} className='bg-ghostwhite'>
 								<th scope='row' className='px-3 py-4 font-medium text-erieblack whitespace-nowrap border-collapse border border-erieblack'>
 									{appointment.parking_lot?.name}
@@ -47,24 +62,9 @@ function BookingsUser({ userAppointments }: any) {
 								<td className='px-3 py-4 border border-erieblack/90'>{appointment.date}</td>
 								<td className='px-3 py-4 border border-erieblack/90'>{appointment.time}</td>
 								<td className='px-3 py-4 border border-erieblack/90'>{appointment.license_plate}</td>
-								<td>
-									<Link href={`/dashboard/appointments/${appointment.id}`}>
-										<button type='button' className='py-3 px-3 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
-											View Details
-										</button>
-									</Link>
-								</td>
+								<td className='px-3 py-4 border border-erieblack/90'>{appointment.status}</td>
 							</tr>
 						))}
-						{/* <tr className='bg-ghostwhite'>
-              
-							<th scope='row' className='px-6 py-4 font-medium text-erieblack whitespace-nowrap border-collapse border border-erieblack'>
-								Name Parkin Lot
-							</th>
-							<td className='px-6 py-4 border border-erieblack/90'>10/05/2024</td>
-							<td className='px-6 py-4 border border-erieblack/90'>10:00</td>
-							<td className='px-6 py-4 border border-erieblack/90'>ARG 123</td>
-						</tr> */}
 					</tbody>
 				</table>
 			</div>

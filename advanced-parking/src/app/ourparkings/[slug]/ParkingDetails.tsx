@@ -1,10 +1,9 @@
 'use client'
 import { BackToOurParkingsButton } from '@/app/components/buttons/Buttons'
-import Directions from '@/app/components/googleMaps/Directions'
 import Maps from '@/app/components/googleMaps/Maps'
 import { ReservationForm } from '@/app/components/reservationForm/ReservationForm'
 import { Loading } from '@/app/components/suspense/Loading'
-import { useAuth } from '@/app/context/AuthContext'
+import LoadingMapDetail from '@/app/components/suspense/LoadingMapDetail'
 import { IParking } from '@/types'
 import axios from 'axios'
 import { usePathname } from 'next/navigation'
@@ -27,7 +26,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 		<div className='flex flex-col min-h-screen pt-28 sm:pt-24 lg:pt-12 items-center lg:mr-10'>
 			<div className='flex flex-col lg:flex-row lg:justify-center lg:gap-40 p-2 m-0 items-center justify-start gap-4 text-center'>
 				{/* <Directions latProp={latProp} lngProp={lngProp} /> */}
-				<Suspense fallback={<Loading />}>
+				<Suspense fallback={<LoadingMapDetail />}>
 					{parking ? (
 						<div className='flex flex-col items-center gap-4 mt-0'>
 							<h1 className='font-medium text-4xl lg:text-4xl p-0 m-0'>Parking {parking?.name}</h1>
@@ -37,7 +36,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 							<Maps latProp={parseFloat(parking.lat)} lngProp={parseFloat(parking.lng)} nameProp={parking.name} />
 						</div>
 					) : (
-						<Loading />
+						<LoadingMapDetail />
 					)}
 				</Suspense>
 				<div className='w-full lg:w-10/12 flex flex-col items-center'>

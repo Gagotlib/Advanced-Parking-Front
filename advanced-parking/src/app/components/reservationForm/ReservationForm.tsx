@@ -54,7 +54,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	// 		duration: localStorage.getItem('duration') || '1'
 	// 	}
 	// })
-	const [selectedSlot, setSelectedSlot] = useState('1')
+	const [selectedSlot, setSelectedSlot] = useState('')
 
 	const [formData, setFormData] = useState({
 		date: localStorage.getItem('date') || getTodayDate(),
@@ -141,26 +141,52 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		}
 	}
 
+	const isFormValid = formData.date && formData.time && formData.license_plate && selectedSlot
+
 	return (
-		<div className='w-10/12 flex flex-col items-center text-erieblack pt-12 sm:pt-0'>
+		<div className='w-10/12 flex flex-col items-center text-erieblack dark:text-ghostwhite pt-12 sm:pt-0'>
 			{showToast && <Toast message='Redirecting to the payment' type='success' />}
 			{errorToast && <Toast message='Reservation error. Please try again or contact our support team' type='error' />}
 			<h1 className='font-medium text-4xl lg:text-4xl lg:pt-12'> Booking</h1>
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
-				<div className=''>
-					<label htmlFor='date' className='font-bold'>Date:</label>
-					<input type='date' name='date' id='date' value={formData.date} min={getTodayDate()} max={getMaxDate()} onChange={handleInputChange} required pattern='\d{4}-\d{2}-\d{2}' />
-
-					{/* {errors.date && <p className='text-red-500'>{errors.date}</p>} */}
+				<div className='flex items-center justify-center gap-3'>
+					<label htmlFor='date' className='font-bold text-sm sm:text-lg'>Select date:</label>
+					<input
+						type='date'
+						name='date'
+						id='date'
+						value={formData.date}
+						min={getTodayDate()}
+						max={getMaxDate()}
+						onChange={handleInputChange}
+						required
+						pattern='\d{4}-\d{2}-\d{2}'
+						className="bg-ghostwhite/50 border border-silver/80 text-erieblack text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						placeholder="Select date"
+					/>
 				</div>
-				<div className=''>
-					<label htmlFor='time' className='font-bold'>
-						Time:{' '}
-					</label>
-					<input type='time' name='time' id='time' step={'1800'} value={formData.time} onChange={handleInputChange} required />
-				</div>
 
+				<div className='flex items-center justify-center gap-3'>
+					<label htmlFor="time" className="block mb-2 text-sm lg:text-lg font-bold">Select time:</label>
+					<div className="relative">
+						<div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+							<svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+								<path fillRule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clipRule="evenodd" />
+							</svg>
+						</div>
+						<input
+							type='time'
+							name='time'
+							id='time'
+							step='1800'
+							value={formData.time}
+							onChange={handleInputChange}
+							required
+							className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						/>
+					</div>
+				</div>
 				<div className='block pb-2'>
 					<span className='text-sm text-center font-semibold'>Select Parking Duration</span>
 					<PricingRender duration={parseInt(formData.duration)} setFormData={setFormData} />
@@ -168,7 +194,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				<div className='flex justify-around gap-4'>
 					<button
 						type='button'
-						className='py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none'
+						className='py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ringz-4 focus:outline-none'
 						onClick={handleShowSelectSlot}
 					>
 						Pick your slot
@@ -177,7 +203,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span>
 					</p>
 				</div>
-				<div className=''>
+				<div >
 					<label htmlFor='license_plate'>License plate:</label>
 					<input
 						id='license_plate'
@@ -206,7 +232,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 							</p>
 						</div>
 						<div>
-							<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
+							<button type='submit' className={`py-3 px-5 text-sm font-medium text-center text-white rounded-lg ${isFormValid ? 'bg-yaleblue hover:bg-yaleblue/90' : 'bg-gray-400 cursor-not-allowed'} sm:w-fit focus:ring-4 focus:outline-none`} disabled={!isFormValid}>
 								{isLoading ? <Spiner /> : 'Reserve'}
 							</button>
 						</div>

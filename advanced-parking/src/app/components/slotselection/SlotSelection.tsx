@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { IParking } from '@/types'
-import axios from 'axios'
 
 interface IParkingSlot {
 	id: string
@@ -76,7 +74,6 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 						)}
 					</div>
 				</div>
-				{/* <p>Enter / Exit</p> */}
 
 				<button
 					type='button'
