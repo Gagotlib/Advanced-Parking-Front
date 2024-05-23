@@ -1,21 +1,40 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, MapControl, ControlPosition } from '@vis.gl/react-google-maps'
 import { CustomZoomControl } from './CustomZoomControl'
 import Directions from './Directions';
 
 function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number; nameProp: string }) {
-	const [controlPosition, setControlControlPosition] = useState<ControlPosition>(ControlPosition.LEFT_BOTTOM)
 
 	const [zoom, setZoom] = useState(14)
-
+	const [open, setOpen] = useState(false)
+	// const [defaultPosition, setDefaultPosition] = useState({ lat: latProp, lng: lngProp });
+	const [controlPosition, setControlControlPosition] = useState<ControlPosition>(ControlPosition.LEFT_BOTTOM)
 	const defaultPosition = {
 		lat: -latProp,
 		lng: -lngProp
 	}
 
-	const [open, setOpen] = useState(false)
+	// useEffect(() => {
+	// 	// Solicita permisos de geolocalización
+	// 	if (navigator.geolocation) {
+	// 		navigator.geolocation.getCurrentPosition(
+	// 			(position) => {
+	// 				const { latitude, longitude } = position.coords;
+	// 				setDefaultPosition({ lat: latitude, lng: longitude });
+	// 			},
+	// 			(error) => {
+	// 				console.error('Error obteniendo la geolocalización: ', error);
+	// 				// Maneja el error según sea necesario
+	// 			}
+	// 		);
+	// 	} else {
+	// 		console.error('La geolocalización no es soportada por este navegador.');
+	// 	}
+	// }, []);
+
+
 
 	return (
 		<APIProvider apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>

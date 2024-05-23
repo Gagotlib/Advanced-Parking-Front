@@ -1,8 +1,6 @@
-<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/landing_advanced.webp" alt="Advanced Parking" width="250" height="250" />
+<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/titleAdvancedParking.webp" alt="Title Advanced Parking" width="620" height="312" />
 
 # Advanced Parking
-
-Somos una aplicación creada para darle al usuario exclusividad a la hora de buscar un estacionamiento disponible en las zonas urbanas de la ciudad. Brindamos seguridad, estacionamiento 100% asegurado en la reserva y con beneficios adicionales exclusivos.
 
 ### Problematica
 
@@ -59,9 +57,20 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 
 ## Meet the Brains
 
-1. Gotlib, Gabriel – Frontend
-2. Salas Seeber, Simón - Backend
-3. Ibargüen Currea, Diego Sebastian - Frontend
-4. Lencina, Marcelo Daniel - Backend
-5. Coledani Grillo, Jose Salvador - Backend
-6. Gutiérrez Tello, Mario Sebastián
+1. [Gotlib, Gabriel](https://www.linkedin.com/in/gabriel-gotlib-5855197b/) – Frontend
+2. [Ibargüen Currea, Diego Sebastian](https://www.linkedin.com/in/sebastianibarguen/) - Frontend
+3. [Salas Seeber, Simón](https://www.linkedin.com/in/sim%C3%B3n-salas-seeber-138112144/) - Backend
+4. [Lencina, Marcelo Daniel](https://www.linkedin.com/in/mlmarce/) - Backend
+5. [Coledani Grillo, Jose Salvador](https://www.linkedin.com/in/jose-salvador-coledani-grillo-10b857278/) - Backend
+6. [Gutiérrez Tello, Mario Sebastián](https://www.linkedin.com/in/mario-gutierrez-tello/) - Backend
+
+# Modo de Uso
+
+<p>Este proyecto esta creado con el fin de simular el proceso de reserva de establicimiento de parqueo, registrar, iniciar sesión y realizar las peticiones de crear un reserva, simulador de pago, edición de información de perfil y demás.</p>
+
+<h3>Instalación</h3>
+
+- Clonar el repositorio.
+- Ubicarte en la ruta a la altura de la carpeta **/front** e instalar las dependencias usando _npm install_.
+- Configurar las variables de entorno, usa la guia del arhchivo _.env.example_ en la raiz de la carpeta **/front**.
+- Levanta el proyecto desde la ruta _/front_ usado **npm run dev**.

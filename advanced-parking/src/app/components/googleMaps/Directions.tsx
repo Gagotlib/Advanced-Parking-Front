@@ -61,7 +61,7 @@ function Directions({ latProp, lngProp }: { latProp: number; lngProp: number; })
       <h3 className='font-bold md:text-xl text-md text-wrap'>
         {leg.start_address.split(',')[0]} to {leg.end_address.split(',')[0]}
       </h3>
-      <p> Distance: <span className='font-medium md:text-lg text-sm'> {leg.distance?.text}</span></p>
+      <p>Distance: <span className='font-medium md:text-lg text-sm'> {leg.distance?.text}</span></p>
       <p>Duration: <span className='font-medium md:text-lg text-sm'> {leg.duration?.text}</span></p>
     </div>
   )

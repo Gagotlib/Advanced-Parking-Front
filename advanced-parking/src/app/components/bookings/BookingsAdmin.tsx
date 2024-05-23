@@ -1,30 +1,16 @@
+import Link from 'next/link'
 import React from 'react'
 
 interface IApointment {
-	date: string
-	duration: string
 	id: string
-	is_parked: boolean
-	license_plate: string
-	parking_lot: {
-		id: string
-		lat: string
-		lng: string
-		location: string
-		name: string
-		slots_stock: number
-	}
-	slot_number: string
-	status: string
-	time: string
-	total: number
+	parkingLot: string
+	date: string
+	hour: string
+	licensePlate: string
 }
 
-interface BookingsUserProps {
-	userAppointments: IApointment[] | null
-}
-
-const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
+function BookingsAdmin({ userAppointments }: any) {
+	// Traer la informacion del back segun la interfaces de reservas y luego mapearla en los scope necesarios
 
 	return (
 		<div className='flex flex-col'>
@@ -48,13 +34,12 @@ const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 								License Plate
 							</th>
 							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
-								Status
+								Details
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						{userAppointments?.map((appointment: IApointment) => (
-
+						{userAppointments?.map((appointment: any) => (
 							<tr key={appointment.id} className='bg-ghostwhite'>
 								<th scope='row' className='px-3 py-4 font-medium text-erieblack whitespace-nowrap border-collapse border border-erieblack'>
 									{appointment.parking_lot?.name}
@@ -62,7 +47,13 @@ const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 								<td className='px-3 py-4 border border-erieblack/90'>{appointment.date}</td>
 								<td className='px-3 py-4 border border-erieblack/90'>{appointment.time}</td>
 								<td className='px-3 py-4 border border-erieblack/90'>{appointment.license_plate}</td>
-								<td className='px-3 py-4 border border-erieblack/90'>{appointment.status}</td>
+								<td>
+									<Link href={`/dashboard/appointments/${appointment.id}`}>
+										<button type='button' className='py-3 px-3 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
+											View Details
+										</button>
+									</Link>
+								</td>
 							</tr>
 						))}
 					</tbody>
@@ -71,5 +62,4 @@ const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 		</div>
 	)
 }
-
-export default BookingsUser
+export default BookingsAdmin

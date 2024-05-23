@@ -1,10 +1,11 @@
 'use client'
 
-import { BackToHomeButton } from '@/app/components/buttons/Buttons'
-import QRGenerator from '@/app/components/qrcode/QRGenerator'
-import { useAuth } from '@/app/context/AuthContext'
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
+import { useAuth } from '@/app/context/AuthContext'
+import QRGenerator from '@/app/components/qrcode/QRGenerator'
+import { BackToHomeButton } from '@/app/components/buttons/Buttons'
+import { getTodayDate } from '@/app/utils/dateHelpers'
 
 export interface IBooking {
 	date: string
@@ -12,16 +13,16 @@ export interface IBooking {
 	id: string
 	is_parked: boolean
 	license_plate: string
+	parking_lot: {
+		id: string
+		lat: string
+		lng: string
+		location: string
+		name: string
+		slots_stock: number
+	}
 	slot: {
 		id: string
-		parking_lot: {
-			id: string
-			lat: string
-			lng: string
-			location: string
-			name: string
-			slots_stock: number
-		}
 		slot_number: number
 		slot_status: string
 	}
@@ -33,7 +34,9 @@ export interface IBooking {
 
 function BookingDetail({ booking }: { booking: IBooking }) {
 	const { user, setUser } = useAuth()
-	// console.log(' booking:', booking)
+	console.log(' booking:', booking)
+
+	const dateToday = getTodayDate()
 
 	return (
 		<div className='sm:grid sm:grid-cols-2 items-center min-h-screen px-4 pb-10 lg:gap-40'>
@@ -46,7 +49,7 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 				<hr className='mb-1' />
 				<div className='flex flex-col mb-2'>
 					<p className='flex justify-end text-lg sm:text-2xl font-bold'>Invoice </p>
-					<p className='text-sm'>Date: {booking.date}</p>
+					<p className='text-sm'>Date: {dateToday} </p>
 				</div>
 				<div className='flex justify-center'>
 					<QRGenerator />
@@ -55,12 +58,13 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 					<h2 className='text-lg font-bold mb-4'>
 						Ticket To: <span className='text-erieblack/80 text-sm'>{booking.id}</span>
 					</h2>
-					<p className='text-erieblack/80 mb-2'>Name: {user?.name}</p>
-					<p className='text-erieblack/80'>Email: {user?.email} </p>
-					<br />
-					<p className='text-erieblack/80 mb-2'>Parking: {booking.slot.parking_lot.name}</p>
-					<p className='text-erieblack/80 mb-2'>Slot: {booking.slot_number}</p>
-					<p className='text-erieblack/80 mb-2'>Address: {booking.slot.parking_lot.location}</p>
+					<p className='text-erieblack/80 text-sm'>Name: {user?.name}</p>
+					<p className='text-erieblack/80 text-sm'>Email: {user?.email} </p>
+					<p className='text-erieblack/80 text-sm'>Parking: {booking.parking_lot.name}</p>
+					<p className='text-erieblack/80 text-sm'>Slot: {booking.slot_number}</p>
+					<p className='text-erieblack/80 text-sm'>Check-in date: {booking.date}</p>
+					<p className='text-erieblack/80 text-sm'>Check-in hour: {booking.time}</p>
+					<p className='text-erieblack/80 text-sm'>Address: {booking.parking_lot.location}</p>
 				</div>
 				<table className='w-full mb-8'>
 					<thead>

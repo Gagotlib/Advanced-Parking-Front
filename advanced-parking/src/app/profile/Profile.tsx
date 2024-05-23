@@ -10,12 +10,25 @@ import { showSweetAlert } from '../components/alerts/SweetAlert'
 
 
 interface IApointment {
-	id: string
-	parkingLot: string
 	date: string
-	hour: string
-	licensePlate: string
+	duration: string
+	id: string
+	is_parked: boolean
+	license_plate: string
+	parking_lot: {
+		id: string
+		lat: string
+		lng: string
+		location: string
+		name: string
+		slots_stock: number
+	}
+	slot_number: string
+	status: string
+	time: string
+	total: number
 }
+
 const Profile = () => {
 	const router = useRouter()
 	const usernull = {
@@ -28,7 +41,7 @@ const Profile = () => {
 
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const { user, setUser } = useAuth()
-	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>([{ id: '123123123', parkingLot: 'nombre estacionamiento', date: '15/05/2024', hour: '09:00', licensePlate: 'AAA111' }])
+	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>(null)
 
 	useEffect(() => {
 		const userString = localStorage.getItem('user')
@@ -48,8 +61,12 @@ const Profile = () => {
 				}
 			})
 			.then(({ data }) => setUserAppointments(data.appointments))
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
+
+
+
 
 	const [showChangeImage, setShowChangeImage] = useState(false)
 

@@ -52,7 +52,7 @@ function Pricing() {
         </table>
       </div>
       <div className="flex justify-center text-md sm:text-lg pt-4 font-light">
-        <p> From the 10th hour to 24 hours, <span className='font-bold'>€35.50 </span> is charged.</p>
+        <p> From the 10th hour to 24 hours, <span className='font-bold'>$35.50 </span> is charged.</p>
       </div>
       <div className='flex flex-col items-center pt-10 gap-3'>
         <h3 className='flex font-semibold text-xl sm:text-5xl'> Reserve your place </h3>
