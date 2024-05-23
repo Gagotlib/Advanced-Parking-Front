@@ -1,4 +1,4 @@
-<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/titleAdvancedParking.webp" alt="Title Advanced Parking" width="920" height="312" />
+<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/titleAdvancedParking.webp" alt="Title Advanced Parking" width="720" height="312" />
 
 # Advanced Parking
 
@@ -64,7 +64,7 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 5. [Coledani Grillo, Jose Salvador](https://www.linkedin.com/in/jose-salvador-coledani-grillo-10b857278/) - Backend
 6. [Gutiérrez Tello, Mario Sebastián](https://www.linkedin.com/in/mario-gutierrez-tello/) - Backend
 
-#Modo de Uso
+# Modo de Uso
 
 <p>Este proyecto esta creado con el fin de simular el proceso de reserva de establicimiento de parqueo, registrar, iniciar sesión y realizar las peticiones de crear un reserva, simulador de pago, edición de información de perfil y demás.</p>
 
