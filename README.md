@@ -1,4 +1,4 @@
-<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/titleAdvancedParking.webp" alt="Title Advanced Parking" width="720" height="312" />
+<img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/titleAdvancedParking.webp" alt="Title Advanced Parking" width="620" height="312" />
 
 # Advanced Parking
 
