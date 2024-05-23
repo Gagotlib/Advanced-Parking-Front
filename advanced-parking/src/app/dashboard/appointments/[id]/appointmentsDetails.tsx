@@ -68,15 +68,16 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 			{appointmentDetails ? (
 				<div className='flex flex-col min-h-screen md:pt-8'>
 					<h1 className='font-medium text-4xl lg:text-5xl'>Appointments Details</h1>
-					<p>Appopintment id: {appointmentDetails.id}</p>
-					<p>Parking: {appointmentDetails.parking_lot.name}</p>
-					<p>Parking address{appointmentDetails.parking_lot.location}</p>
-					<p>Appointment date:{appointmentDetails.date}</p>
-					<p>Appointment time:{appointmentDetails.time}</p>
-					<p>Appointment duration:{appointmentDetails.duration}</p>
-					<p>Appointment slot:{appointmentDetails.slot_number}</p>
-					<p>Appointment total: {appointmentDetails.total}</p>
-					<p>Appointment license plate:{appointmentDetails.license_plate}</p>
+					<div className='flex flex-col gap-8 text-lg'>
+						<p>Appopintment id: {appointmentDetails.id}</p>
+						<p>Parking: {appointmentDetails.parking_lot.name}</p>
+						<p>Parking address{appointmentDetails.parking_lot.location}</p>
+						<p>Appointment date:{appointmentDetails.date}</p>
+						<p>Appointment time:{appointmentDetails.time}</p>
+						<p>Appointment duration:{appointmentDetails.duration}</p>
+						<p>Appointment slot:{appointmentDetails.slot_number}</p>
+						<p>Appointment total: {appointmentDetails.total}</p>
+						<p>Appointment license plate:{appointmentDetails.license_plate}</p>
 					{appointmentDetails.status === 'active' ? (
 						<button onClick={handleDeleteAppointment} type='button' className='bg-red-500 text-white rounded-lg px-4 py-2 mt-4 w-fit'>
 							Delete Appointment
@@ -84,6 +85,7 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 					) : (
 						<p className='text-red-500'>Appointment status: {appointmentDetails.status}</p>
 					)}
+					</div>
 				</div>
 			) : (
 				<div className='flex flex-col min-h-screen md:pt-6'>
