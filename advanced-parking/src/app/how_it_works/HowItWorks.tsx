@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReserveButton } from '../components/buttons/Buttons'
-import Maps from '../components/googleMaps/Maps'
+import Image from 'next/image'
 
 function HowItWorks() {
   return (
@@ -11,15 +11,74 @@ function HowItWorks() {
           <li className='marker:text-yaleblue marker:font-bold'>
             <span className='text-yaleblue font-medium antialiased '> Reserve a place on the website, </span> and immediately receive your payment receipt via email.
           </li>
-          {/* Aqui voy a colocar un pantallazo de 1. buscar el establecimiento y 2.ReservationForm */}
+          <div className='flex justify-center items-center py-8 gap-8'>
+            <Image
+              src="/stepOne-1.webp"
+              alt="Image Step One-1"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
+            <Image
+              src="/stepOne-2.webp"
+              alt="Image Step One-2"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
+            <Image
+              src="/stepOne-3.webp"
+              alt="Image Step One-3"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
+            <Image
+              src="/stepOne-4.webp"
+              alt="Image Step One-4"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
+          </div>
           <li className='marker:text-yaleblue marker:font-bold'>
             <span className='text-yaleblue font-medium antialiased '> On your way in, proceed to the property,</span> scan the QR code on your ticket for access and drive to the selected parking area.
           </li>
-          {/* Aqui voy a colocar un pantallazo de: 1.Ticket con el QR al email */}
+          <div className='flex justify-center items-center py-8 gap-8'>
+            <Image
+              src="/stepTwo-1.webp"
+              alt="Image Step Two-1"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
+          </div>
           <li className='marker:text-yaleblue marker:font-bold'>
             <span className='text-yaleblue font-medium antialiased '> When your reservation ends, </span> rate the service through the web application.
           </li>
-          {/* Aqui pantallazo de: 1. Vista de Rating y 2. vista del mensaje en nuestro home.  */}
+          <div className='flex justify-center items-center py-8 gap-8'>
+            <Image
+              src="/stepThree-1.webp"
+              alt="Image Step Three-1"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
+            <Image
+              src="/stepThree-2.webp"
+              alt="Image Step Three-2"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
+          </div>
         </ol>
       </div>
       <div className='flex justify-center'>

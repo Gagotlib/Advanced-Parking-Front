@@ -1,16 +1,15 @@
 'use client'
+
 import Toast from '@/app/components/alerts/Toast'
 import axios from 'axios'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/app/context/AuthContext'
-import { useLocation } from 'react-router-dom'
 import { GoogleButton } from '../buttons/GoogleButton'
 import Spiner from '../spiner/Spiner'
 
 export const LoginForm = () => {
-	// const pathname = usePathname()
 
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
@@ -63,10 +62,9 @@ export const LoginForm = () => {
 		e.preventDefault()
 		setIsloging(true)
 		try {
-			console.log(loginData)
+			// console.log(loginData)
 
-			const response = await axios.post(`${rute}/auth/signin`, loginData) //deberia funcionar
-			console.log(response.data)
+			const response = await axios.post(`${rute}/auth/signin`, loginData)
 			setUser(response.data.userData)
 			setToken(response.data.token)
 			localStorage.setItem('authToken', response.data.token)
