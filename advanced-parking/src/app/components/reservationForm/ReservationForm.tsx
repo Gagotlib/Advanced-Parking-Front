@@ -101,11 +101,14 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	async function handleSubmit(event: any) {
 		event.preventDefault()
 		setIsLoading(true)
+		
 		if (formData.slot_number === null) {
 			return
 		}
 		//! control
 		console.log('Esto es todo el formData', formData)
+		console.log(typeof formData.date);
+		
 
 		try {
 			//! enviar info al backend
@@ -187,7 +190,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 					></input>
 				</div>
 				{showOverlay && <OverlayFull />}
-				{slotShow && <SlotSelection setShowOverlay={setShowOverlay} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} parking={parking} />}
+				{slotShow && <SlotSelection setShowOverlay={setShowOverlay} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} parking={parking} date={formData.date} time={formData.time} duration={formData.duration} />}
 				{!user ? (
 					<div className='flex flex-col items-center'>
 						<p className='text-erieblack text-sm sm:text-lg m-2'>

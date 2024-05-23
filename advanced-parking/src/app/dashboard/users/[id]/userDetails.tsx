@@ -1,8 +1,8 @@
 'use client'
-import BookingsUser from '@/app/components/bookings/BookingsUser'
+import BookingsAdmin from '@/app/components/bookings/BookingsAdmin'
 import { IUser } from '@/types'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 
 const UserDetails = ({ params }: { params: { id: string } }) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
@@ -29,22 +29,31 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 	}
 
 	return (
-		<div className='flex flex-col min-h-screen pt-2 md:pt-14 gap-8'>
-			<h1> User Details</h1>
-			<h3> Name: {userDetails?.name}</h3>
-			<h3> Email: {userDetails?.email}</h3>
+		<Suspense fallback={<h1></h1>}>
+			{userDetails ? (
+				<div className='flex flex-col min-h-screen pt-2 md:pt-14 gap-8'>
+					<h1> User Details</h1>
+					<h3> Name: {userDetails?.name}</h3>
+					<h3> Email: {userDetails?.email}</h3>
+					<h3> Phone: {userDetails?.phone}</h3>
 
-			<button
-				type='button'
-				className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-red-500 rounded-lg border border-silver hover:bg-red-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
-				onClick={handleDeleteUser}
-			>
-				{' '}
-				Delete User{' '}
-			</button>
+					<button
+						type='button'
+						className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-red-500 rounded-lg border border-silver hover:bg-red-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+						onClick={handleDeleteUser}
+					>
+						{' '}
+						Delete User{' '}
+					</button>
 
-			<BookingsUser userAppointments={userDetails?.appointments} />
-		</div>
+					<BookingsAdmin userAppointments={userDetails?.appointments} />
+				</div>
+			) : (
+				<div className='flex flex-col min-h-screen md:pt-6'>
+					<h1>Loading...</h1>
+				</div>
+			)}
+		</Suspense>
 	)
 }
 

@@ -8,7 +8,7 @@ type Props = {}
 
 const Page = (props: Props) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-	const [allUsers, setAllsers] = useState<IUser[] | []>([])
+	const [allUsers, setAllsers] = useState<IUser[] | null>(null)
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		axios
@@ -31,8 +31,8 @@ const Page = (props: Props) => {
 					<p className='w-14'>Role</p>
 					<p>Email </p>
 				</div>
-				<Suspense fallback={<h1></h1>}>
-					<div>
+				<div>
+					<Suspense fallback={<p>Loading...</p>}>
 						{allUsers ? (
 							allUsers.map((user) => (
 								<Link key={user.id} href={`/dashboard/users/${user.id}`} className='flex flex-row gap-4 border border-1 p-2 hover:bg-slate-200'>
@@ -42,12 +42,10 @@ const Page = (props: Props) => {
 								</Link>
 							))
 						) : (
-							<p className='flex flex-col min-h-screen md:pt-6'>
-								<h1>Loading...</h1>
-							</p>
+							<p>Loading...</p>
 						)}
-					</div>
-				</Suspense>
+					</Suspense>
+				</div>
 			</div>
 		</div>
 	)
