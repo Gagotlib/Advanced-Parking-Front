@@ -1,18 +1,21 @@
 'use client'
 import SideNav from '@/app/components/sidenav/Sidenav'
 import { useAuth } from '../context/AuthContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	const { user, setUser } = useAuth()
 	const router = useRouter()
+	const [cont, setCont] = useState(0)
 	useEffect(() => {
-		if (user && user.role !== 'admin') {
-			console.log('sacado por no ser admin')
+		// console.log(user)
+		if (cont === 0 && !user) {
+			setCont((prevcont) => prevcont + 1)
+		} else if (cont !== 0 && (!user || user.role !== 'admin')) {
 			router.push('/')
 		}
-	}, [user])
+	}, [cont])
 
 	return user?.role !== 'admin' ? (
 		<div className='flex h-screen flex-col md:flex-row md:overflow-hidden pt-28'>
