@@ -146,7 +146,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
 				<div className=''>
-					<label htmlFor='date'>Date:</label>
+					<label htmlFor='date' className='font-bold'>Date:</label>
 					<input type='date' name='date' id='date' value={formData.date} min={getTodayDate()} max={getMaxDate()} onChange={handleInputChange} required pattern='\d{4}-\d{2}-\d{2}' />
 
 					{/* {errors.date && <p className='text-red-500'>{errors.date}</p>} */}
