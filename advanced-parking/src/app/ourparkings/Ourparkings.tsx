@@ -69,15 +69,16 @@ export const Ourparkings = () => {
 							/>
 						</div>
 					</form>
-					<div className=' flex py-2 px-4 h-[53px] text-sm font-medium text-center items-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none'>
-						<button type='button' onClick={handleIsOpenMap}>
-							View Parkings on the Map
-						</button>
+					<div
+						onClick={handleIsOpenMap}
+						className=' flex py-2 px-4 h-[53px] text-sm font-medium text-center items-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 hover:cursor-pointer sm:w-fit focus:ring-4 focus:outline-none'
+					>
+						<button type='button'>View Parkings on the Map</button>
 					</div>
 				</div>
 				{isOpenMap && <ViewParkingsMap setIsOpenMap={setIsOpenMap} setIsOverlayFull={setIsOverlayFull} />}
 				{isOverlayFull && <OverlayFull />}
-				<div className='rounded-lg flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-10/12 gap-8'>
+				<div className='rounded-lg flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:h-[500px] w-10/12 gap-8'>
 					<Suspense fallback={<LoadingOurParkings />}>{allParkings ? filteredResults?.map((result) => <SearchResultsCard key={result.id} cardProps={result} />) : <LoadingOurParkings />}</Suspense>
 				</div>
 				<div className='flex gap-4'>
