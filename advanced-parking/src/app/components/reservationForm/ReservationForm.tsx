@@ -46,14 +46,6 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 		}
 	}, [showToast, router])
 
-	// useEffect(() => {
-	// 	const initialValues = {
-	// 		date: localStorage.getItem('date') || getTodayDate(),
-	// 		time: localStorage.getItem('time') || '08:00',
-	// 		license_plate: localStorage.getItem('license_plate') || '',
-	// 		duration: localStorage.getItem('duration') || '1'
-	// 	}
-	// })
 	const [selectedSlot, setSelectedSlot] = useState('')
 
 	const [formData, setFormData] = useState({
@@ -101,20 +93,20 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	async function handleSubmit(event: any) {
 		event.preventDefault()
 		setIsLoading(true)
-		
+
 		if (formData.slot_number === null) {
 			return
 		}
 		//! control
 		console.log('Esto es todo el formData', formData)
-		console.log(typeof formData.date);
-		
+		console.log(typeof formData.date)
 
 		try {
 			//! enviar info al backend
 			//!creamos el appointment
 			const responseAppointment = await axios.post(`${rute}/appointments`, formData)
 			const appointment_id = responseAppointment.data.id
+			console.log('la id del appointment creado', appointment_id)
 
 			//!enviamos al pago
 			const bodyreq = { type_of_service: 'One time payment', unit_amount: formData.total, appointment_id: appointment_id }
@@ -130,6 +122,21 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			const url = response.data.url //! url que devuelve la creacion de la solicitud
 			setIsLoading(false)
 			setShowToast(true)
+			localStorage.removeItem("date")
+			localStorage.removeItem("time")
+			localStorage.removeItem("duration")
+			localStorage.removeItem("license_plate")
+			setFormData({
+				date:  getTodayDate(),
+				time: '08:00',
+				parkingLotId: parking?.id,
+				user_id: user?.id,
+				license_plate: '',
+				duration: '1',
+				is_parked: false,
+				total: 3.55,
+				slot_number: ""
+			})
 			const timeout = setTimeout(() => {
 				setShowToast(false)
 				router.push(`${url}`)
@@ -151,7 +158,9 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 
 			<form className='flex flex-wrap flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 w-10/20 text-lg' onSubmit={handleSubmit}>
 				<div className='flex items-center justify-center gap-3'>
-					<label htmlFor='date' className='font-bold text-sm sm:text-lg'>Select date:</label>
+					<label htmlFor='date' className='font-bold text-sm sm:text-lg'>
+						Select date:
+					</label>
 					<input
 						type='date'
 						name='date'
@@ -162,17 +171,23 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						onChange={handleInputChange}
 						required
 						pattern='\d{4}-\d{2}-\d{2}'
-						className="bg-ghostwhite/50 border border-silver/80 text-erieblack text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="Select date"
+						className='bg-ghostwhite/50 border border-silver/80 text-erieblack text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+						placeholder='Select date'
 					/>
 				</div>
 
 				<div className='flex items-center justify-center gap-3'>
-					<label htmlFor="time" className="block mb-2 text-sm lg:text-lg font-bold">Select time:</label>
-					<div className="relative">
-						<div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-							<svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-								<path fillRule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clipRule="evenodd" />
+					<label htmlFor='time' className='block mb-2 text-sm lg:text-lg font-bold'>
+						Select time:
+					</label>
+					<div className='relative'>
+						<div className='absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none'>
+							<svg className='w-4 h-4 text-gray-500 dark:text-gray-400' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'>
+								<path
+									fillRule='evenodd'
+									d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z'
+									clipRule='evenodd'
+								/>
 							</svg>
 						</div>
 						<input
@@ -183,7 +198,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 							value={formData.time}
 							onChange={handleInputChange}
 							required
-							className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+							className='bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 						/>
 					</div>
 				</div>
@@ -203,7 +218,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span>
 					</p>
 				</div>
-				<div >
+				<div>
 					<label htmlFor='license_plate'>License plate:</label>
 					<input
 						id='license_plate'
@@ -216,7 +231,18 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 					></input>
 				</div>
 				{showOverlay && <OverlayFull />}
-				{slotShow && <SlotSelection setShowOverlay={setShowOverlay} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} setSlotShow={setSlotShow} parking={parking} date={formData.date} time={formData.time} duration={formData.duration} />}
+				{slotShow && (
+					<SlotSelection
+						setShowOverlay={setShowOverlay}
+						selectedSlot={selectedSlot}
+						setSelectedSlot={setSelectedSlot}
+						setSlotShow={setSlotShow}
+						parking={parking}
+						date={formData.date}
+						time={formData.time}
+						duration={formData.duration}
+					/>
+				)}
 				{!user ? (
 					<div className='flex flex-col items-center'>
 						<p className='text-erieblack text-sm sm:text-lg m-2'>
@@ -232,7 +258,13 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 							</p>
 						</div>
 						<div>
-							<button type='submit' className={`py-3 px-5 text-sm font-medium text-center text-white rounded-lg ${isFormValid ? 'bg-yaleblue hover:bg-yaleblue/90' : 'bg-gray-400 cursor-not-allowed'} sm:w-fit focus:ring-4 focus:outline-none`} disabled={!isFormValid}>
+							<button
+								type='submit'
+								className={`py-3 px-5 text-sm font-medium text-center text-white rounded-lg ${
+									isFormValid ? 'bg-yaleblue hover:bg-yaleblue/90' : 'bg-gray-400 cursor-not-allowed'
+								} sm:w-fit focus:ring-4 focus:outline-none`}
+								disabled={!isFormValid}
+							>
 								{isLoading ? <Spiner /> : 'Reserve'}
 							</button>
 						</div>

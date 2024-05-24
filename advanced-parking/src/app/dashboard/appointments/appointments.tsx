@@ -46,6 +46,7 @@ export const Appointments = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
 	const [page, setPage] = useState(1)
+
 	const cardLimit = 50
 	const router = useRouter()
 
