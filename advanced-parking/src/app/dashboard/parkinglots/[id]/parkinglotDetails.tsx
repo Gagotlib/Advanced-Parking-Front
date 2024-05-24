@@ -70,7 +70,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 			[name]: name === 'lat' || name === 'lng' ? parseFloat(value) : value
 		}))
 	}
-
+	//-34.63407057413574, -58.48206948050081
 	const handleSendChanges = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		console.log('fomrdata:', formData)
@@ -88,7 +88,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 			})
 		setFormData({})
 		setIsEditInput(false)
-		setObserver(observer + 1)
+		setObserver((observer) => observer + 1)
 	}
 
 	const handleDeleteParking = () => {
