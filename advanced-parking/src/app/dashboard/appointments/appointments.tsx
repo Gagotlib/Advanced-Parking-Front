@@ -44,50 +44,84 @@ export const Appointments = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
 	const [page, setPage] = useState(1)
-	const cardLimit = 40
-	useEffect(() => {
+
+	const cardLimit = 50
 		const token = localStorage.getItem('authToken')
-		// console.log(token);
-		axios
-			.get(`${rute}/appointments?page=${page}&limit=${cardLimit}`, {
+		try {
+			const { data } = await axios.get(`${rute}/appointments?page=${page}&limit=${cardLimit}`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}
 			})
-			.then(({ data }) => {
-				setAllAppointments(data)
-			})
-	}, [])
-	console.log(allAppointments)
+			// Ordenar por fecha descendente
+			const sortedAppointments = data.sort((a: IAppointment, b: IAppointment) => new Date(b.date).getTime() - new Date(a.date).getTime())
+			setAllAppointments(sortedAppointments)
+		} catch (error) {
+			console.error('Error fetching appointments:', error)
+		}
+	}
+
+	useEffect(() => {
+		fetchAppointments()
+	}, [page, rute])
+
+	const handleRefresh = () => {
+		fetchAppointments()
+	}
 
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
-			<h1>These are all the Appointments</h1>
+			<div className='flex justify-between items-center'>
+				<h1 className='text-2xl sm:text-5xl font-bold'>Info Appointments</h1>
+				<button onClick={handleRefresh} className='px-4 py-2 h-10 bg-yaleblue text-ghostwhite rounded hover:bg-yaleblue/80'>
+					Refresh
+				</button>
+			</div>
 			<div className='flex flex-col '>
 				<Suspense fallback={<p>Loading...</p>}>
-					<h2>Total of Appointments: {allAppointments?.length}</h2>
-					<div className='flex flex-row font-bold pl-2 justify-between'>
-						<p className='mr-20'>Parking </p>
-						<p className='mr-14'>Date</p>
-						<p className=''>Time</p>
-						<p className=''>User</p>
-						<p className=''>Slot #</p>
-						<p>Status</p>
-					</div>
-					{allAppointments ? (
-						allAppointments.map((appointment) => (
-							<Link key={appointment.id} href={`/dashboard/appointments/${appointment.id}`} className='flex flex-row gap-2 border border-1 p-2 hover:bg-slate-200 justify-between'>
-								<p className='w-32'>{appointment.slot.parking_lot.name}</p>
-								<p>{appointment.date}</p>
-								<p>{appointment.time}</p>
-								<p>{appointment.user.name}</p>
-								<p>{appointment.slot.slot_number}</p>
-								<p>{appointment.status}</p>
-							</Link>
-						))
-					) : (
-						<p>Loading...</p>
-					)}
+					<h3 className='flex justify-end text-md sm:text-xl font-base'>Total appointments: <span className='font-bold'>{allAppointments?.length}</span></h3>
+					<table className='sm:max-w-full min-w-full table-auto w-full h-full border-collapse'>
+						<thead>
+							<tr>
+								<th className='border p-2 text-left'>Parking</th>
+								<th className='border p-2 text-left'>Date</th>
+								<th className='border p-2 text-left'>User</th>
+								<th className='border p-2 text-left'>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							{allAppointments ? (
+								allAppointments.map((appointment) => (
+									<tr key={appointment.id} className='hover:bg-silver/20'>
+										<td className='border p-2'>
+											<Link href={`/dashboard/appointments/${appointment.id}`}>
+												{appointment.slot.parking_lot.name}
+											</Link>
+										</td>
+										<td className='border p-2'>
+											<Link href={`/dashboard/appointments/${appointment.id}`}>
+												{appointment.date}
+											</Link>
+										</td>
+										<td className='border p-2'>
+											<Link href={`/dashboard/appointments/${appointment.id}`}>
+												{appointment.user.name}
+											</Link>
+										</td>
+										<td className='border p-2'>
+											<Link href={`/dashboard/appointments/${appointment.id}`}>
+												{appointment.status}
+											</Link>
+										</td>
+									</tr>
+								))
+							) : (
+								<tr>
+									<td colSpan={4} className='border p-2 text-center'>Loading...</td>
+								</tr>
+							)}
+						</tbody>
+					</table>
 				</Suspense>
 			</div>
 		</div>
