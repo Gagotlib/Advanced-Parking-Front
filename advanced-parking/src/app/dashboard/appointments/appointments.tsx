@@ -44,7 +44,7 @@ export const Appointments = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
 	const [page, setPage] = useState(1)
-	const cardLimit = 20
+	const cardLimit = 40
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		// console.log(token);
