@@ -85,7 +85,7 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 						<tr>
 							<td className='text-left font-bold text-erieblack'>Total</td>
 							<td></td>
-							<td className='text-right font-bold text-erieblack'>{booking.total} €</td>
+							<td className='text-right font-bold text-erieblack'>{booking.total} $</td>
 						</tr>
 					</tfoot>
 				</table>

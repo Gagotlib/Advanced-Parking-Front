@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import HomeCard from '../components/cards/HomeCard'
 import { homeCardProps } from '../utils/homeCardProps'
 import Reviews from '../components/reviews/Reviews'
+import Chatbot from '../components/chatBot/ChatBot'
 
 export const Home = () => {
 	useEffect(() => {
@@ -19,6 +20,11 @@ export const Home = () => {
 					))}
 				</div>
 				<Reviews />
+				<div className="position: fixed; bottom: 20px; right: 20px; z-index: 50;">
+					<Chatbot />
+				</div>
+
+
 			</div>
 		</div>
 	)
