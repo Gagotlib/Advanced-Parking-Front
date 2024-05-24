@@ -11,39 +11,47 @@ function HowItWorks() {
           <li className='marker:text-yaleblue marker:font-bold'>
             <span className='text-yaleblue font-medium antialiased '> Reserve a place on the website, </span> and immediately receive your payment receipt via email.
           </li>
-          <div className='flex justify-center items-center py-8 gap-8'>
-            <Image
-              src="/stepOne-1.webp"
-              alt="Image Step One-1"
-              className='w-[180px] h-[400px]'
-              width={500}
-              height={500}
-              priority
-            />
-            <Image
-              src="/stepOne-2.webp"
-              alt="Image Step One-2"
-              className='w-[180px] h-[400px]'
-              width={500}
-              height={500}
-              priority
-            />
-            <Image
-              src="/stepOne-3.webp"
-              alt="Image Step One-3"
-              className='w-[180px] h-[400px]'
-              width={500}
-              height={500}
-              priority
-            />
-            <Image
-              src="/stepOne-4.webp"
-              alt="Image Step One-4"
-              className='w-[180px] h-[400px]'
-              width={500}
-              height={500}
-              priority
-            />
+          <div className='flex justify-start lg:justify-center items-center py-8 gap-8 overflow-x-auto scroll-smooth lg:overflow-x-hidden'>
+            <div className='flex-shrink-0'>
+              <Image
+                src="/stepOne-1.webp"
+                alt="Image Step One-1"
+                className='w-[180px] h-[400px]'
+                width={500}
+                height={500}
+                priority
+              />
+            </div>
+            <div className='flex-shrink-0'>
+              <Image
+                src="/stepOne-2.webp"
+                alt="Image Step One-2"
+                className='w-[180px] h-[400px]'
+                width={500}
+                height={500}
+                priority
+              />
+            </div>
+            <div className='flex-shrink-0'>
+              <Image
+                src="/stepOne-3.webp"
+                alt="Image Step One-3"
+                className='w-[180px] h-[400px]'
+                width={500}
+                height={500}
+                priority
+              />
+            </div>
+            <div className='flex-shrink-0'>
+              <Image
+                src="/stepOne-4.webp"
+                alt="Image Step One-4"
+                className='w-[180px] h-[400px]'
+                width={500}
+                height={500}
+                priority
+              />
+            </div>
           </div>
           <li className='marker:text-yaleblue marker:font-bold'>
             <span className='text-yaleblue font-medium antialiased '> On your way in, proceed to the property,</span> scan the QR code on your ticket for access and drive to the selected parking area.
@@ -80,11 +88,11 @@ function HowItWorks() {
             />
           </div>
         </ol>
-      </div>
+      </div >
       <div className='flex justify-center'>
         <ReserveButton />
       </div>
-    </div>
+    </div >
   )
 }
 
