@@ -1,72 +1,59 @@
-export const analyzeNextSteps = (step: any, userResponse: any) => {
-    return step === 0
-      ? {
-          purpose: "specify field",
-          message: `Nice to meet you, ${userResponse}! It feels like I know you already. We have some job positions for you. Which of these call out to you?`,
-          options: ["Frontend", "Backend", "Full Stack"]
-        }
-      : step === 1
-      ? {
-          purpose: "specify experience",
-          message:
-            "That's cool! Could you describe your experience in that field?"
-        }
-      : step === 2
-      ? {
-          purpose: "specify projects",
-          message:
-            "Did you do any projects that you're proud of? Can you tell me more about them? (class projects are cool too...)"
-        }
-      : step === 3
-      ? {
-          purpose: "specify personality",
-          message:
-            "Thanks for telling me that. Let's get personal... (just kidding). Could you tell me about yourself? How would you describe your personality?"
-        }
-      : step === 4
-      ? {
-          purpose: "prompt company info",
-          message: "Do you want me to explain what we do?",
-          options: ["Yeah sure!", "Meh, I'll pass"]
-        }
-      : step === 5
-      ? userResponse === "Yeah sure!"
-        ? {
-            purpose: "tell company info",
-            message: "Oh yay! This is what we do...",
-            options: ["Keep going."]
-          }
-        : {
-            purpose: "not tell company info",
-            message: "Aww... Well I guess you know what we do already.",
-            options: ["Keep going."]
-          }
-      : step === 6
-      ? {
-          purpose: "specify reason to work",
-          message:
-            "Now that you know what we do, how about you tell me why you want to work for us?"
-        }
-      : step === 7
-      ? {
-          purpose: "specify hobbies",
-          message:
-            "Alright, noted! One last question before we finish, besides coding/working, what do you do?"
-        }
-      : step === 8
-      ? {
-          purpose: "specify email",
-          message:
-            "That sounds awesome! Right, it looks like we've got your application set. I would need your email to contact you if you're a good fit for this role!"
-        }
-      : step === 9
-      ? {
-          purpose: "end",
-          message:
-            "Thank you so much for spending time chatting with me. Good luck with the application process! I hope we can meet soon. Bye!"
-        }
-      : {
-          purpose: "bye",
-          message: "Bye!"
-        };
+interface ResponseBotObject {
+  purpose: string;
+  message: string;
+  options?: string[];
+  sender: string;
+}
+
+
+export const analyzeNextSteps = (step: number, userResponse: string): ResponseBotObject => {
+  let response: ResponseBotObject = {
+    purpose: "",
+    message: "",
+    sender: "bot",
+    options: [] 
+  };
+
+  if (step === 0) {
+    response = {
+      purpose: "ask_option",
+      message: `Nice to meet you, ${userResponse}! What would you like to know about?`,
+      options: ["Parking lots", "Price information", "Cancellation policy"],
+      sender: "bot"
+    };
+  } else if (step === 1) {
+    if (userResponse === "Parking lots" || userResponse === "Price information" || userResponse === "Cancellation policy") {
+      response = {
+        purpose: "redirect",
+        message: `You can search for parking located in your neighborhoods by clicking on the Find Parkings Section. What else would you like to know?`,
+        options: ["Parking lots", "Price information", "Cancellation policy"],
+        sender: "bot"
+      };
+    }
+  } else if ((step === 2 || step === 3) && (userResponse === "Parking lots" || userResponse === "Price information" || userResponse === "Cancellation policy")) {
+    response = {
+      purpose: userResponse.toLowerCase().replace(/\s/g, "_"), 
+      message: userResponse === "Parking lots" ?
+        `You can search for parking located in your neighborhoods by clicking on this link: <a href="/ourparkings">Our Parkings</a>` :
+        userResponse === "Price information" ?
+        "The price is 3.55 USD per hour. Would you like to know something else?" :
+        "No cancellation is available and funds are not refundable. Would you like to know something else?",
+      options: ["Parking lots", "Price information", "Cancellation policy", "Finish chat"],
+      sender: "bot"
+    };
+  } else if (step === 4 && userResponse === "Finish chat") {
+    response = {
+      purpose: "end chat",
+      message: "Bye!",
+      sender: "bot"
+    };
+  } else {
+    response = {
+      purpose: "default",
+      message: "I'm sorry, I didn't understand that. Can you please choose one of the options: Parking lots, Price information, or Cancellation policy.",
+      sender: "bot"
+    };
   }
+
+  return response;
+};

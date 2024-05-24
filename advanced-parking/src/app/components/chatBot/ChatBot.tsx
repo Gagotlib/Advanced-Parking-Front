@@ -1,9 +1,12 @@
-"use client";
-import React, { useState } from "react";
-import Chats from "../chatBot/Chats";
-import { analyzeNextSteps } from "../../utils/analizeNextStep";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane} from "@fortawesome/free-regular-svg-icons"
+'use client';
+
+import React, { useRef, useState } from 'react';
+import Chats from '../chatBot/Chats';
+import { analyzeNextSteps } from '../../utils/analizeNextStep';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane, faExpandArrowsAlt, faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+
+
 
 interface ResponseBotObject {
   purpose: string;
@@ -18,21 +21,28 @@ const Chatbot: React.FC = () => {
   const [botResponse, setBotResponse] = useState<ResponseBotObject>({
     purpose: "",
     message: "",
-    sender: "bot",
+    sender: "bot"  
   });
   const [sendUserResponse, setSendUserResponse] = useState<string>("");
+  const [isExpanded, setIsExpanded] = useState<boolean>(true); // Estado para controlar si el chatbot está expandido o minimizado
+  const bodyRef = useRef<HTMLDivElement>(null);
+  // Función para alternar entre expandir y minimizar el chatbot
+  const toggleCompression = () => {
+    setIsExpanded(prevState =>!prevState);
+  };
 
   // setting next step when there's response and option click
   const setNextStep = (response: string) => {
     setStep((prevState) => prevState + 1);
     setSendUserResponse(response);
     let res = analyzeNextSteps(step, response);
-    setBotResponse({ ...res, sender: "bot" });
+    setBotResponse({...res, sender: 'bot'});
     setUserResponse("");
   };
+  
 
   const optionClick = (e: React.MouseEvent<HTMLElement>) => {
-    let option = e.currentTarget.dataset.id;
+    const option = e.currentTarget.dataset.id;
     if (option) {
       setNextStep(option);
     }
@@ -49,25 +59,37 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div className="chat-container bg-slate-400 fixed w-80 h-96 bottom-80 left-10 flex flex-col">
-      <Chats
-        userResponse={userResponse}
-        botResponse={botResponse}
-        sendUserResponse={sendUserResponse}
-        optionClick={optionClick}
-      />
-      <form onSubmit={(e) => handleSubmit(e)} className="form-container">
-        <input
-          onChange={(e) => handleInputChange(e)}
-          value={userResponse}
-        ></input>
-        <button>
-          <FontAwesomeIcon icon={faPaperPlane} size="2x" />
-          <i className="far fa-paper-plane"></i>
-        </button>
-      </form>
+    <div className={`chat-container bg-yellow-300 fixed bottom-16 right-2.5 ${isExpanded? 'w-1/5 h-3/5' : 'w-1/10 h-6'} flex flex-col justify-between p-8 rounded-lg transition-all duration-500 ease-in-out overflow-hidden`} ref={bodyRef}>
+      <button onClick={toggleCompression} className="absolute top-0 right-0 m-2">
+        {isExpanded? <FontAwesomeIcon icon={faCompressArrowsAlt} size="lg" /> : <FontAwesomeIcon icon={faExpandArrowsAlt} size="lg" />}
+      </button>
+  
+      {!isExpanded && (
+      <button onClick={toggleCompression}></button> 
+    )} 
+  
+      <div className={`${isExpanded? '' : 'hidden'} flex-grow overflow-auto`} ref={bodyRef}>
+        <Chats
+          userResponse={userResponse}
+          botResponse={botResponse}
+          sendUserResponse={sendUserResponse}
+          optionClick={optionClick}
+        />
+        <form onSubmit={handleSubmit} className="form-container flex justify-between mt-auto mb-4">
+          <input
+            onChange={handleInputChange}
+            value={userResponse}
+            className="w-11/12 border-b border-gray-700 rounded-lg px-4 py-2 focus:outline-none"
+          />
+          <button type="submit" className="bg-gray-200 text-gray-700 rounded-lg px-4 py-2 hover:bg-opacity-80 hover:cursor-pointer">
+            <FontAwesomeIcon icon={faPaperPlane} size="2x" />
+            <i className="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
     </div>
   );
+  
 };
 
 export default Chatbot;
