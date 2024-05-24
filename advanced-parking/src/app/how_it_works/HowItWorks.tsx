@@ -65,6 +65,14 @@ function HowItWorks() {
               height={500}
               priority
             />
+            <Image
+              src="/stepTwo-2.webp"
+              alt="Image Step Two-2"
+              className='w-[180px] h-[400px]'
+              width={500}
+              height={500}
+              priority
+            />
           </div>
           <li className='marker:text-yaleblue marker:font-bold'>
             <span className='text-yaleblue font-medium antialiased '> When your reservation ends, </span> rate the service through the web application.

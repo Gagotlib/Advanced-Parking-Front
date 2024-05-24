@@ -24,28 +24,46 @@ const Page = (props: Props) => {
 
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
-			<h1>These are all the Users</h1>
+			<h1 className='text-2xl sm:text-5xl font-bold'>Users Info</h1>
 			<div className='relative flex flex-col'>
-				<div className='flex flex-row font-bold gap-4 pl-2'>
-					<p className='w-32'>User Name </p>
-					<p className='w-14'>Role</p>
-					<p>Email </p>
-				</div>
-				<div>
-					<Suspense fallback={<p>Loading...</p>}>
-						{allUsers ? (
-							allUsers.map((user) => (
-								<Link key={user.id} href={`/dashboard/users/${user.id}`} className='flex flex-row gap-4 border border-1 p-2 hover:bg-slate-200'>
-									<p className='w-32 min-w-32'>{user.name}</p>
-									<p className='w-14'>{user.role}</p>
-									<p className='text-clip overflow-hidden'>{user.email}</p>
-								</Link>
-							))
-						) : (
-							<p>Loading...</p>
-						)}
-					</Suspense>
-				</div>
+				<Suspense fallback={<p>Loading...</p>}>
+					<table className='sm:max-w-full min-w-full table-auto w-full h-full border-collapse'>
+						<thead>
+							<tr>
+								<th className='border p-2 text-left'>Role</th>
+								<th className='border p-2 text-left'>Name </th>
+								<th className='border p-2 text-left'>Email </th>
+							</tr>
+						</thead>
+						<tbody>
+							{allUsers ? (
+								allUsers.map((user) => (
+									<tr key={user.id} className='hover:bg-silver/20'>
+										<td className='border p-2'>
+											<Link href={`/dashboard/users/${user.id}`}>
+												{user.role}
+											</Link>
+										</td>
+										<td className='border p-2'>
+											<Link href={`/dashboard/users/${user.id}`}>
+												{user.name}
+											</Link>
+										</td>
+										<td className='border p-2'>
+											<Link href={`/dashboard/users/${user.id}`}>
+												{user.email}
+											</Link>
+										</td>
+									</tr>
+								))
+							) : (
+								<tr>
+									<td colSpan={4} className='border p-2 text-center'>Loading...</td>
+								</tr>
+							)}
+						</tbody>
+					</table>
+				</Suspense>
 			</div>
 		</div>
 	)

@@ -54,11 +54,11 @@ const Parkinglots = () => {
 	}
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
-			<h1>These are all the Parkings</h1>
+			<h1 className='text-2xl sm:text-5xl font-bold'>Info Parking Lots</h1>
 			<div className='flex flex-col'>
 				<Suspense fallback={<LoadingParkings />}>
 					<div className='flex flex-row justify-between items-center'>
-						<h2>Total of Parkings: {allParkinglots?.length}</h2>
+						<h3 className='flex justify-start text-md sm:text-xl font-base'>Total Parkings: <span className='font-bold'> {allParkinglots?.length}</span></h3>
 						<button
 							type='button'
 							className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
@@ -118,23 +118,34 @@ const Parkinglots = () => {
 							</form>
 						)}
 					</div>
-
-					<div className='flex flex-row font-bold pl-2 mt-4'>
-						<div className='flex '>
-							<p className='w-60 mr-4'>Parking name </p>
-							<p>Address </p>
-						</div>
-					</div>
-					{allParkinglots ? (
-						allParkinglots.map((parkinglot) => (
-							<Link key={parkinglot.id} href={`/dashboard/parkinglots/${parkinglot.id}`} className='flex flex-row gap-4 border border-1 p-2 hover:bg-slate-200'>
-								<p className='w-60'>{parkinglot.name}</p>
-								<p>{parkinglot.location}</p>
-							</Link>
-						))
-					) : (
-						<LoadingParkings />
-					)}
+					<table className='sm:max-w-full min-w-full table-auto w-full h-full border-collapse'>
+						<thead>
+							<tr>
+								<th className='border p-2 text-left'>Parking name</th>
+								<th className='border p-2 text-left'>Address</th>
+							</tr>
+						</thead>
+						<tbody>
+							{allParkinglots ? (
+								allParkinglots.map((parkinglot) => (
+									<tr key={parkinglot.id} className='hover:bg-silver/20'>
+										<td className='border p-2'>
+											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>
+												{parkinglot.name}
+											</Link>
+										</td>
+										<td className='border p-2'>
+											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>
+												{parkinglot.location}
+											</Link>
+										</td>
+									</tr>
+								))
+							) : (
+								<LoadingParkings />
+							)}
+						</tbody>
+					</table>
 				</Suspense>
 			</div>
 		</div>

@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 	return user?.role !== 'admin' ? (
 		<div className='flex h-screen flex-col md:flex-row md:overflow-hidden pt-28'>
-			<h1>You dont have permission to access this page</h1>
+			<p className='font-base text-md'>You don´t have permission to access this page</p>
 		</div>
 	) : (
 		<div className='flex minh-screen flex-col md:flex-row md:overflow-hidden pt-6'>

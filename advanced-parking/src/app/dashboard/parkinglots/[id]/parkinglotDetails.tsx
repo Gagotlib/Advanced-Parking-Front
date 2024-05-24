@@ -85,10 +85,10 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 			})
 			.then((response) => {
 				console.log(response)
+				setObserver((observer) => observer + 1)
+				setFormData({})
+				setIsEditInput(false)
 			})
-		setFormData({})
-		setIsEditInput(false)
-		setObserver((observer) => observer + 1)
 	}
 
 	const handleDeleteParking = () => {

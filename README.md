@@ -41,12 +41,15 @@ Creamos un el flujo del usuario que define cómo interactuar con la aplicación 
 
   <div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-4.webp" alt="Image Step One-4" width="250" height="500">
+  </div><div style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-5.webp" alt="Image Step One-5" width="250" height="500">
   </div>
 
 • Al llegar, dirígete a la propiedad, escanea el código QR en tu boleto para acceder y conduce hasta el área de estacionamiento seleccionado.
 
   <div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepTwo-1.webp" alt="Image Step Two-1" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepTwo-2.webp" alt="Image Step Two-2" width="250" height="500">
   </div>
 
 • Cuando termine tu reserva, califica el servicio a través de la aplicación web.
