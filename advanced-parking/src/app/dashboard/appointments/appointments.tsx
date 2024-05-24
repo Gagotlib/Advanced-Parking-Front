@@ -3,7 +3,9 @@ import LoadingParkings from '@/app/components/suspense/LoadingParkings'
 import { IBooking } from '@/app/success/[id]/BookingDetail'
 import axios from 'axios'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
+
 
 export interface IAppointment {
 	date: string
@@ -45,29 +47,45 @@ export const Appointments = () => {
 	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
 	const [page, setPage] = useState(1)
 	const cardLimit = 50
+	const router = useRouter()
 
-	const fetchAppointments = async () => {
+	// const fetchAppointments = async () => {
+	// 	const token = localStorage.getItem('authToken')
+	// 	try {
+	// 		const { data } = await axios.get(`${rute}/appointments?page=${page}&limit=${cardLimit}`, {
+	// 			headers: {
+	// 				Authorization: `Bearer: ${token}`
+	// 			}
+	// 		})
+	// 		// Ordenar por fecha descendente
+	// 		const sortedAppointments = data.sort((a: IAppointment, b: IAppointment) => new Date(b.date).getTime() - new Date(a.date).getTime())
+	// 		setAllAppointments(sortedAppointments)
+	// 	} catch (error) {
+	// 		console.error('Error fetching appointments:', error)
+	// 	}
+	// }
+
+	useEffect(() => {
 		const token = localStorage.getItem('authToken')
-		try {
-			const { data } = await axios.get(`${rute}/appointments?page=${page}&limit=${cardLimit}`, {
+		// console.log(token);
+		axios
+			.get(`${rute}/appointments?page=${page}&limit=${cardLimit}`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}
 			})
-			// Ordenar por fecha descendente
-			const sortedAppointments = data.sort((a: IAppointment, b: IAppointment) => new Date(b.date).getTime() - new Date(a.date).getTime())
-			setAllAppointments(sortedAppointments)
-		} catch (error) {
-			console.error('Error fetching appointments:', error)
-		}
-	}
+			.then(({ data }) => {
+				const sortedAppointments = data.sort((a: IAppointment, b: IAppointment) => new Date(b.date).getTime() - new Date(a.date).getTime())
+				setAllAppointments(sortedAppointments)
+			})
+	}, [])
 
-	useEffect(() => {
-		fetchAppointments()
-	}, [page, rute])
+	// useEffect(() => {
+	// 	fetchAppointments()
+	// }, [page, rute])
 
 	const handleRefresh = () => {
-		fetchAppointments()
+		router.refresh()
 	}
 
 	return (
