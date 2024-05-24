@@ -41,7 +41,6 @@ Creamos un el flujo del usuario que define cómo interactuar con la aplicación 
 
   <div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-4.webp" alt="Image Step One-4" width="250" height="500">
-  </div><div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-5.webp" alt="Image Step One-5" width="250" height="500">
   </div>
 
