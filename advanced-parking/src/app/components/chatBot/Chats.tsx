@@ -59,31 +59,26 @@ const Chats: React.FC<Props> = ({ userResponse, botResponse, sendUserResponse, o
   }, [messages]);
 
   return (
-    <div className="flex-1 overflow-y-auto max-h-90">
-      {messages.map((chat, index) => (
-        <div key={index} className={`flex flex-col items-${chat.sender === 'user' ? 'end' : 'start'} mb-2`}>
-          <div className={`p-2 max-w-md mx-2 ${chat.sender === 'user' ? 'bg-blue-300 rounded-lg self-end' : 'bg-gray-300 rounded-lg self-start'}`}>
-            <p>{chat.message}</p>
-          </div>
-          {chat.options && (
-            <div className="flex flex-col mt-2">
-              {chat.options.map(option => (
-                <p
-                  onClick={optionClick}
-                  data-id={option}
-                  key={option}
-                  className={`p-2 border rounded-md border-gray-400 cursor-pointer bg-gray-100 text-gray-900`}
-                >
-                  {option}
-                </p>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-      <div ref={dummyRef}></div>
-    </div>
-  );
+		<div ref={bodyRef}  className='flex-1 overflow-y-auto max-h-90'>
+			{messages.map((chat, index) => (
+				<div key={index} className={`flex flex-col items-${chat.sender === 'user' ? 'end' : 'start'} mb-2`}>
+					<div className={`p-2 max-w-md mx-2 ${chat.sender === 'user' ? 'bg-blue-300 rounded-lg self-end' : 'bg-gray-300 rounded-lg self-start'}`}>
+						<p>{chat.message}</p>
+					</div>
+					{chat.options && (
+						<div className='flex flex-col mt-2'>
+							{chat.options.map((option) => (
+								<p onClick={optionClick} data-id={option} key={option} className={`p-2 border rounded-md border-gray-400 cursor-pointer bg-gray-100 text-gray-900`}>
+									{option}
+								</p>
+							))}
+						</div>
+					)}
+				</div>
+			))}
+			<div ref={dummyRef}></div>
+		</div>
+	)
 };
 
 export default Chats;
