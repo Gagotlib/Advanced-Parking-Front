@@ -70,7 +70,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 			[name]: name === 'lat' || name === 'lng' ? parseFloat(value) : value
 		}))
 	}
-	//-34.63407057413574, -58.48206948050081
+
 	const handleSendChanges = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		console.log('fomrdata:', formData)
@@ -110,58 +110,38 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 			{parking ? (
 				<div className='flex flex-col min-h-screen md:pt-6'>
 					<h1 className='font-medium text-4xl lg:text-5xl'>Parking Details</h1>
+					<div className='flex '>
+						<div className=' flex flex-col '>
+							<h2 className='flex items-center'>Name: {parking?.name}</h2>
+							<h2>Address: {parking?.location}</h2>
+							<h2>Latitude: {parking?.lat}</h2>
+							<h2>Longitude: {parking?.lng}</h2>
+							<button
+								type='button'
+								className=' py-2 px-2 w-20 h-10 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-blue-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+								onClick={handleShowEdit}
+							>
+								Edit
+							</button>
+						</div>
+						{isEditInput && (
+							<div className=' flex flex-col ml-5'>
+								<form onSubmit={handleSendChanges} className=' flex flex-col '>
+									<input type='text' name='name' id='nameinput' className='text-md rounded-xl border h-10 mt-2' onChange={handleChangeValue} value={formData.name} />
+									<input type='text' name='location' id='locationinput' className='text-md rounded-xl border h-10 mt-5' onChange={handleChangeValue} value={formData.location} />
+									<input type='number' name='lat' id='latinput' className='text-md rounded-xl border h-10 mt-5' onChange={handleChangeValue} value={formData.lat} />
+									<input type='number' name='lng' id='lnginput' className='text-md rounded-xl border h-10 mt-5' onChange={handleChangeValue} value={formData.lng} />
+									<button
+										type='submit'
+										className='mt-1 py-2 px-2 w-20 h-10 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-blue-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+									>
+										Send
+									</button>
+								</form>
+							</div>
+						)}
+					</div>
 
-					<div className='flex items-center gap-6'>
-						<h2>Name: {parking?.name}</h2>
-						{isEditInput && (
-							<form onSubmit={handleSendChanges} className='flex border rounded-xl h-10 '>
-								<input type='text' name='name' id='nameinput' className='text-md rounded-l-xl' onChange={handleChangeValue} value={formData.name} />
-								<button type='submit' className='px-4 hover:bg-gray-200 rounded-r-xl'>
-									Send
-								</button>
-							</form>
-						)}
-					</div>
-					<div className='flex items-center gap-6'>
-						<h2>Address: {parking?.location}</h2>
-						{isEditInput && (
-							<form onSubmit={handleSendChanges} className='flex border rounded-xl h-10 '>
-								<input type='text' name='location' id='locationinput' className='text-md rounded-l-xl' onChange={handleChangeValue} value={formData.location} />
-								<button type='submit' className='px-4 hover:bg-gray-200 rounded-r-xl'>
-									Send
-								</button>
-							</form>
-						)}
-					</div>
-					<div className='flex items-center gap-6'>
-						<h2>Latitude: {parking?.lat}</h2>
-						{isEditInput && (
-							<form onSubmit={handleSendChanges} className='flex border rounded-xl h-10 '>
-								<input type='number' name='lat' id='latinput' className='text-md rounded-l-xl' onChange={handleChangeValue} value={formData.lat} />
-								<button type='submit' className='px-4 hover:bg-gray-200 rounded-r-xl'>
-									Send
-								</button>
-							</form>
-						)}
-					</div>
-					<div className='flex items-center gap-6'>
-						<h2>Longitude: {parking?.lng}</h2>
-						{isEditInput && (
-							<form onSubmit={handleSendChanges} className='flex border rounded-xl h-10 '>
-								<input type='number' name='lng' id='lnginput' className='text-md rounded-l-xl' onChange={handleChangeValue} value={formData.lng} />
-								<button type='submit' className='px-4 hover:bg-gray-200 rounded-r-xl'>
-									Send
-								</button>
-							</form>
-						)}
-					</div>
-					<button
-						type='button'
-						className=' py-2 px-2 w-20 h-10 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-blue-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
-						onClick={handleShowEdit}
-					>
-						Edit
-					</button>
 					<h2>Parking slots:{parking?.slot.length}</h2>
 					<h2>Available slots:{parking.slots_stock} </h2>
 					<button

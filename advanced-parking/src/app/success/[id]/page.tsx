@@ -9,7 +9,11 @@ const Page = ({ params }: { params: { id: string } }) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 
 	useEffect(() => {
-		axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
+		//! peticion al back que modifique el estado de deleted a active
+		axios.put(`${rute}/appointments/success/` + params.id, { status: 'active' }).then(() => {
+			axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
+			console.log(booking)
+		})
 	}, [])
 
 	return (
