@@ -79,3 +79,5 @@ export const validateNewAppointment = (formData: any) => {
 
   return errors;
 };
+
+export { validateName, validatePhone, validatePassword, confirmPassword };
