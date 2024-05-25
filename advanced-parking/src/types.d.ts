@@ -7,6 +7,7 @@ export interface IUser {
 	appointments?: []
 	id?: string
 	role?: string
+	status?: string
 }
 export interface ILogedUser {
 	id: string

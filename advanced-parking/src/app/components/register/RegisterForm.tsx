@@ -42,7 +42,7 @@ export const RegisterForm = () => {
 		phone: '',
 		email: '',
 		password: '',
-		confirmPassword: '',
+		confirmPassword: ''
 	})
 
 	const [errors, setErrors] = useState<IErrors>({
@@ -50,22 +50,21 @@ export const RegisterForm = () => {
 		phone: '',
 		email: '',
 		password: '',
-		confirmPassword: '',
+		confirmPassword: ''
 	})
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-		const { name, value } = e.target;
+		const { name, value } = e.target
 		setRegisterData((user) => ({
 			...user,
-			[name]: value,
-		}));
+			[name]: value
+		}))
 
-		const fieldErrors = validateRegister({ ...registerData, [name]: value });
+		const fieldErrors = validateRegister({ ...registerData, [name]: value })
 		setErrors((prevErrors) => ({
 			...prevErrors,
 			[name]: fieldErrors[name]
-		}));
+		}))
 	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,30 +73,28 @@ export const RegisterForm = () => {
 		console.log('mandado')
 		console.log(registerData)
 
-		const validationErrors = validateRegister(registerData);
-		setErrors(validationErrors);
+		const validationErrors = validateRegister(registerData)
+		setErrors(validationErrors)
 
 		if (Object.keys(validationErrors).length === 0) {
 			try {
-
 				const registerPayload = {
 					...registerData,
-					phone: parseInt(registerData.phone, 10),
-				};
+					phone: parseInt(registerData.phone, 10)
+				}
 
 				const response = await axios.post(`${rute}/auth/signup`, registerPayload) //!deberia funcionar
 				console.log(response.data)
 
 				setShowToast(true)
-				
+
 				const bodyemail = {
 					name: registerData.name,
-					email: registerData.email,
-				};
+					email: registerData.email
+				}
 				axios.post(`${rute}/email-sender/registered`, bodyemail)
 
 				// throw Error('error forzado')
-
 			} catch (error: Error | any) {
 				console.error('Error al Registrarse:', error.response?.data?.message)
 

@@ -21,8 +21,8 @@ function OurParkingsMaps() {
   const parkingValues = allParkings?.map((parking) => {
     return {
       position: {
-        lat: -parseFloat(parking.lat),
-        lng: -parseFloat(parking.lng),
+        lat: parseFloat(parking.lat),
+        lng: parseFloat(parking.lng),
       },
       name: parking.name,
       id: parking.id,
