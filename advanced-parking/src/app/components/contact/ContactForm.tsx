@@ -33,6 +33,14 @@ function ContactForm() {
 		}))
 	}
 
+	const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		const { name, value } = e.target
+		setFormData((formData) => ({
+			...formData,
+			[name]: value
+		}))
+	}
+
 	function handleOnSubmit(e: { preventDefault: () => void }) {
 		e.preventDefault()
 		setShowToast(true)
@@ -91,7 +99,7 @@ function ContactForm() {
 							</label>
 							<textarea
 								value={formData.user_message}
-								onChange={handleChange}
+								onChange={handleChangeTextArea}
 								name='user_message'
 								id='message'
 								className='block p-2.5 w-full text-sm text-erieblack bg-ghostwhite rounded-lg shadow-sm border border-yaleblue resize-none'
