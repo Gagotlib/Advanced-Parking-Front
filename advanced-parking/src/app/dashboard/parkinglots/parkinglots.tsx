@@ -54,7 +54,7 @@ const Parkinglots = () => {
 	}
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
-			<h1 className='text-2xl sm:text-5xl font-bold'>Info Parking Lots</h1>
+			<h1 className='text-2xl sm:text-5xl font-bold'> Parking Lots Info</h1>
 			<div className='flex flex-col'>
 				<Suspense fallback={<LoadingParkings />}>
 					<div className='flex flex-row justify-between items-center'>

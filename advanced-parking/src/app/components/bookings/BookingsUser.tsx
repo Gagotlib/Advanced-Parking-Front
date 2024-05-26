@@ -39,20 +39,30 @@ const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 				<h1 className='font-bold text-4xl'>Bookings</h1>
 			</div>
 			<div className='relative overflow-x-auto'>
-				<table className='w-full text-center text-erieblack table-auto border-collapse border border-erieblack/90'>
+				<table className='w-full text-center text-erieblack dark:text-ghostwhite table-auto border-collapse border border-erieblack/90'>
 					<thead className='text-xs text-erieblack font-bold uppercase md:text-md bg-silver'>
 						<tr>
-							<th scope='col' className='px-6 py-2 border border-erieblack/90'>Parking Lot</th>
-							<th scope='col' className='px-6 py-2 border border-erieblack/90'>Date</th>
-							<th scope='col' className='px-6 py-2 border border-erieblack/90'>Hour</th>
-							<th scope='col' className='px-6 py-2 border border-erieblack/90'>Status</th>
-							<th scope='col' className='px-6 py-2 border border-erieblack/90'>Ticket</th>
+							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
+								Parking Lot
+							</th>
+							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
+								Date
+							</th>
+							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
+								Hour
+							</th>
+							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
+								Status
+							</th>
+							<th scope='col' className='px-6 py-2 border border-erieblack/90'>
+								Ticket
+							</th>
 						</tr>
 					</thead>
 					<tbody>
 						{userAppointments?.map((appointment: IApointment) => (
-							<tr key={appointment.id} className='bg-ghostwhite'>
-								<th scope='row' className='px-3 py-4 font-medium text-erieblack border-collapse border border-erieblack'>
+							<tr key={appointment.id} className='bg-ghostwhite dark:bg-gray-500'>
+								<th scope='row' className='px-3 py-4 font-medium text-erieblack dark:text-ghostwhite border-collapse border border-erieblack'>
 									{appointment.parking_lot?.name}
 								</th>
 								<td className='px-3 py-4 border border-erieblack/90'>{appointment.date}</td>
@@ -71,12 +81,10 @@ const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 						))}
 					</tbody>
 				</table>
-				{showTicket.show && showTicket.id && (
-					<TicketProfile params={{ id: showTicket.id }} />
-				)}
+				{showTicket.show && showTicket.id && <TicketProfile params={{ id: showTicket.id }} />}
 			</div>
 		</div>
-	);
+	)
 };
 
 export default BookingsUser;

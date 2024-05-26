@@ -59,10 +59,10 @@ const Chats: React.FC<Props> = ({ userResponse, botResponse, sendUserResponse, o
   }, [messages]);
 
   return (
-		<div ref={bodyRef}  className='flex-1 overflow-y-auto max-h-90'>
+		<div ref={bodyRef} className='flex-1 overflow-y-auto max-h-90'>
 			{messages.map((chat, index) => (
 				<div key={index} className={`flex flex-col items-${chat.sender === 'user' ? 'end' : 'start'} mb-2`}>
-					<div className={`p-2 max-w-md mx-2 ${chat.sender === 'user' ? 'bg-blue-300 rounded-lg self-end' : 'bg-gray-300 rounded-lg self-start'}`}>
+					<div className={`p-2 max-w-md mx-2 ${chat.sender === 'user' ? 'bg-blue-300 rounded-lg self-end text-black' : 'bg-gray-300 rounded-lg self-start text-black'}`}>
 						<p>{chat.message}</p>
 					</div>
 					{chat.options && (

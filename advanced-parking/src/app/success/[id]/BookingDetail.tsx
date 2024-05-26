@@ -45,7 +45,7 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 				<Image src='/paymentApproved.webp' alt='Image Payment Approved' width={400} height={400} priority={true} />
 			</div>
 			<div className='bg-ghostwhite border border-silver/80 rounded-lg shadow-lg shadow-erieblack/80 px-6 mx-auto mt-8'>
-				<h1 className='font-bold text-2xl sm:text-3xl my-4 text-center text-erieblack'>Reservation Successful</h1>
+				<h1 className='font-bold text-2xl sm:text-3xl my-4 text-center text-erieblack '>Reservation Successful</h1>
 				<hr className='mb-1' />
 				<div className='flex flex-col mb-2'>
 					<p className='flex justify-end text-lg sm:text-2xl font-bold'>Invoice </p>
@@ -56,15 +56,15 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 				</div>
 				<div className='mb-8'>
 					<h2 className='text-lg font-bold mb-4'>
-						Ticket To: <span className='text-erieblack/80 text-sm'>{booking.id}</span>
+						Ticket To: <span className='text-erieblack/80 text-sm '>{booking.id}</span>
 					</h2>
 					<p className='text-erieblack/80 text-sm'>Name: {user?.name}</p>
 					<p className='text-erieblack/80 text-sm'>Email: {user?.email} </p>
 					<p className='text-erieblack/80 text-sm'>Parking: {booking.parking_lot.name}</p>
 					<p className='text-erieblack/80 text-sm'>Slot: {booking.slot_number}</p>
-					<p className='text-erieblack/80 text-sm'>Check-in date: {booking.date}</p>
-					<p className='text-erieblack/80 text-sm'>Check-in hour: {booking.time}</p>
-					<p className='text-erieblack/80 text-sm'>Address: {booking.parking_lot.location}</p>
+					<p className='text-erieblack/80  text-sm'>Check-in date: {booking.date}</p>
+					<p className='text-erieblack/80  text-sm'>Check-in hour: {booking.time}</p>
+					<p className='text-erieblack/80  text-sm'>Address: {booking.parking_lot.location}</p>
 				</div>
 				<table className='w-full mb-8'>
 					<thead>
