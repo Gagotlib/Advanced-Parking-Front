@@ -21,16 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <AuthProvider>
-        <html lang="en">
-          <body className={plus_Jakarta_Sans.className}>
-            <NavRender />
-            <div className="w-full h-full">{children}</div>
-            <FooterRender />
-          </body>
-        </html>
-      </AuthProvider>
-    </Providers>
-  );
+		<Providers>
+			<AuthProvider>
+				<html lang='en'>
+					<body className={plus_Jakarta_Sans.className}>
+						<NavRender />
+						<div className='w-full h-full dark:text-ghostwhite'>{children}</div>
+						<FooterRender />
+					</body>
+				</html>
+			</AuthProvider>
+		</Providers>
+	)
 }

@@ -12,8 +12,8 @@ function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number
 	// const [defaultPosition, setDefaultPosition] = useState({ lat: latProp, lng: lngProp });
 	const [controlPosition, setControlControlPosition] = useState<ControlPosition>(ControlPosition.LEFT_BOTTOM)
 	const defaultPosition = {
-		lat: -latProp,
-		lng: -lngProp
+		lat: latProp,
+		lng: lngProp
 	}
 
 	// useEffect(() => {

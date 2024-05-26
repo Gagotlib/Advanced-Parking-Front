@@ -53,7 +53,7 @@ export const Appointments = () => {
 	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
 	const [page, setPage] = useState(1)
 	const [observer, setObserver] = useState(0)
-	const cardLimit = 50
+	const cardLimit = 100
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
 	const [showToast, setShowToast] = useState(false)
@@ -167,7 +167,7 @@ export const Appointments = () => {
 			<div className='flex justify-between items-center'>
 				{showToast && <Toast message='Appointment created' type='success' />}
 				{errorToast && <Toast message='Reservation error.' type='error' />}
-				<h1 className='text-2xl sm:text-5xl font-bold'>Info Appointments</h1>
+				<h1 className='text-2xl sm:text-5xl font-bold'> Appointments Info</h1>
 				<button type='button' onClick={handleRefresh} className='px-4 py-2 h-10 bg-yaleblue text-ghostwhite rounded hover:bg-yaleblue/80'>
 					Refresh
 				</button>

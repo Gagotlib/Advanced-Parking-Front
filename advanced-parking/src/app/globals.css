@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+	@apply transition-colors duration-300 ;
+}
+
 html {
 	line-height: 1.15; /* 1 */
 	text-size-adjust: 100%; /* 2 */

@@ -42,7 +42,7 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 	}
 
 	return (
-		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[8rem] z-5 h-auto w-3/4 top-[38rem] bg-ghostwhite border border-black rounded-xl shadow-lg shadow-silver/80'>
+		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[8rem] z-5 h-auto w-3/4 top-[38rem] bg-ghostwhite border dark:bg-gray-500 border-black rounded-xl shadow-lg shadow-silver/80'>
 			<div className='sm:mx-4 mr-2'>
 				{/* <div className='flex justify-end'>
 					<button

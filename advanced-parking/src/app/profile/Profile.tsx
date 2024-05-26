@@ -144,7 +144,6 @@ const Profile = () => {
 					<div className='w-full px-6 pb-8 mt-8 sm:rounded-lg'>
 						<div className='flex mt-8 gap-5 sm:gap-10'>
 							<div className='flex flex-col gap-3 items-center space-y-5 sm:space-y-0'>
-
 								<Avatar src={user?.image} name={user?.name} className='object-cover' size='150' round color='#1C1C1C' maxInitials={2} />
 
 								<button
@@ -173,21 +172,21 @@ const Profile = () => {
 									</button>
 								</div> */}
 							</div>
-							<div className='items-center mt-8 sm:mt-14 text-erieblack'>
+							<div className='items-center mt-8 sm:mt-14 text-erieblack dark:text-ghostwhite'>
 								<div className='mb-2 sm:mb-6'>
-									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
+									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Your email
 									</label>
 									{user?.email}
 								</div>
 								<div className='mb-2 sm:mb-6'>
-									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
+									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Your Phone
 									</label>
 									{user?.phone}
 								</div>
 								<div className='mb-2 sm:mb-6'>
-									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
+									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Subscription
 									</label>
 									Platinum || Gold || Standard
@@ -204,17 +203,9 @@ const Profile = () => {
 									</form>
 								)} */}
 							</div>
-							<div className='hidden lg:block'>
-								{showChangeInfo && (
-									<ProfileEdit />
-								)}
-							</div>
+							<div className='hidden lg:block'>{showChangeInfo && <ProfileEdit />}</div>
 						</div>
-						<div className='block lg:hidden pt-5'>
-							{showChangeInfo && (
-								<ProfileEdit />
-							)}
-						</div>
+						<div className='block lg:hidden pt-5'>{showChangeInfo && <ProfileEdit />}</div>
 						<BookingsUser userAppointments={userAppointments} />
 					</div>
 				</div>
