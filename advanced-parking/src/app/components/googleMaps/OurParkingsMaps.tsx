@@ -15,6 +15,7 @@ function OurParkingsMaps() {
 	const latLocalStorage = localStorage.getItem('lat')
 	const lngLocalStorage = localStorage.getItem('lng')
 
+
 	const positionDefault = {
 		lat: Number(latLocalStorage) || -34.590422,
 		lng: Number(lngLocalStorage) || -58.392357
@@ -95,6 +96,7 @@ function OurParkingsMaps() {
 			</div>
 		</APIProvider>
 	)
+
 }
 
 export default OurParkingsMaps
