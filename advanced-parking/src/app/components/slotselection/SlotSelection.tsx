@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 interface IParkingSlot {
 	id: string
@@ -30,9 +32,22 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 	}
 	// console.log('selected slot', selectedSlot)
 
+
+
 	return (
-		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[8rem] z-5 h-auto w-3/4 top-[38rem] bg-ghostwhite border border-black rounded-xl shadow-lg shadow-silver/80'>
+		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[8rem] z-5 h-auto w-3/4 top-[38rem] bg-ghostwhite border dark:bg-gray-500 border-black rounded-xl shadow-lg shadow-silver/80'>
 			<div className='sm:mx-4 mr-2'>
+				<div className='flex justify-end'>
+					<button
+						className="text-silver hover:text-erieblack"
+						onClick={() => {
+							setSlotShow(false)
+							setShowOverlay(false)
+						}}
+					>
+						<FontAwesomeIcon icon={faTimes} />
+					</button>
+				</div>
 				<div className='grid h-3/4 grid-cols-3 mt-4 mx-2'>
 					<div className='flex flex-col gap-1'>
 						{slots ? (

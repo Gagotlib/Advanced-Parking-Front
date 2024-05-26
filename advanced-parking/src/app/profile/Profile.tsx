@@ -1,12 +1,12 @@
 'use client'
 
+import axios from 'axios'
+import Avatar from 'react-avatar'
+import { useAuth } from '../context/AuthContext'
 import React, { useEffect, useState } from 'react'
 import BookingsUser from '../components/bookings/BookingsUser'
-import Avatar from 'react-avatar'
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
-import { useAuth } from '../context/AuthContext'
-import { showSweetAlert } from '../components/alerts/SweetAlert'
+import ProfileEdit from '../components/profile_file/ProfileEdit'
+import DeleteAccount from '../components/profile_file/DeleteAccount'
 
 
 interface IApointment {
@@ -30,18 +30,20 @@ interface IApointment {
 }
 
 const Profile = () => {
-	const router = useRouter()
-	const usernull = {
-		name: '',
-		email: '',
-		phone: '',
-		role: '',
-		image: ''
-	}
+	// const router = useRouter()
+	// const usernull = {
+	// 	name: '',
+	// 	email: '',
+	// 	phone: '',
+	// 	role: '',
+	// 	image: ''
+	// }
 
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const { user, setUser } = useAuth()
 	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>(null)
+	// const [showChangeImage, setShowChangeImage] = useState(false)
+	const [showChangeInfo, setShowChangeInfo] = useState(false)
 
 	useEffect(() => {
 		const userString = localStorage.getItem('user')
@@ -65,74 +67,74 @@ const Profile = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-
-
-
-	const [showChangeImage, setShowChangeImage] = useState(false)
-
-	const handleChangeImage = () => {
-		setShowChangeImage(!showChangeImage)
+	const handleChangeInfo = () => {
+		setShowChangeInfo(!showChangeInfo)
 	}
 
-	const handleSendNewImage = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-		const fileInput = document.getElementById('fileInput') as HTMLInputElement
-		const file = fileInput?.files ? fileInput.files[0] : null
-		console.log('fileinput', file)
+	// const handleChangeImage = () => {
+	// 	setShowChangeImage(!showChangeImage)
+	// }
 
-		if (!file) {
-			console.error('No file selected')
-			return
-		}
+	// const handleSendNewImage = (e: React.FormEvent<HTMLFormElement>) => {
+	// 	e.preventDefault()
+	// 	const fileInput = document.getElementById('fileInput') as HTMLInputElement
+	// 	const file = fileInput?.files ? fileInput.files[0] : null
+	// 	// console.log('fileinput', file)
+	// 	if (!file) {
+	// 		console.error('No file selected')
+	// 		return
+	// 	}
 
-		const formData = new FormData()
-		formData.append('file', file)
-		// for (let key of formData.keys()) {
-		// 	console.log(key, formData.get(key))
-		// }
+	// 	const formData = new FormData()
+	// 	formData.append('file', file)
+	// 	// for (let key of formData.keys()) {
+	// 	// 	console.log(key, formData.get(key))
+	// 	// }
 
-		const userString = localStorage.getItem('user')
-		const logedUser = userString ? JSON.parse(userString) : null
-		if (!logedUser) {
-			console.error('No logged user found')
-			return
-		}
-		const token = localStorage.getItem('authToken')
-		if (!token) {
-			console.error('No auth token found')
-			return
-		}
-		// funcion que lleve el archivo al back
+	// 	const userString = localStorage.getItem('user')
+	// 	const logedUser = userString ? JSON.parse(userString) : null
+	// 	if (!logedUser) {
+	// 		console.error('No logged user found')
+	// 		return
+	// 	}
+	// 	const token = localStorage.getItem('authToken')
+	// 	if (!token) {
+	// 		console.error('No auth token found')
+	// 		return
+	// 	}
 
-		axios
-			.post(`${rute}/files/profile-image/${logedUser.id}`, formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-					Authorization: `Bearer ${token}`
-				}
-			})
-			.then((response) => {
-				setUser(response.data)
-			})
-			.catch((error) => console.error('Error uploading file:', error))
-	}
-	const handleDeleteImage = () => {
-		// funcion que permita hacer user.image="" y se guarde en bd
-		showSweetAlert(() => {
-			const userString = localStorage.getItem('user')
-			const logedUser = userString ? JSON.parse(userString) : null
-			const token = localStorage.getItem('authToken')
-			axios.delete(`${rute}/files/profile-image/${logedUser.id}`, {
-				headers: {
-					Authorization: `Bearer: ${token}`
-				}
-			})
+	// 	// funcion que lleve el archivo al back
+	// 	axios
+	// 		.post(`${rute}/files/profile-image/${logedUser.id}`, formData, {
+	// 			headers: {
+	// 				'Content-Type': 'multipart/form-data',
+	// 				Authorization: `Bearer ${token}`
+	// 			}
+	// 		})
+	// 		.then((response) => {
+	// 			setUser(response.data)
+	// 		})
+	// 		.catch((error) => console.error('Error uploading file:', error))
+	// }
 
-			const updatedUser = { ...logedUser, image: '' }
-			setUser(updatedUser)
-			localStorage.setItem('user', JSON.stringify(updatedUser))
-		})
-	}
+	// //Función petición eliminar foto.
+	// const handleDeleteImage = () => {
+	// 	// funcion que permita hacer user.image="" y se guarde en bd
+	// 	showSweetAlert(() => {
+	// 		const userString = localStorage.getItem('user')
+	// 		const logedUser = userString ? JSON.parse(userString) : null
+	// 		const token = localStorage.getItem('authToken')
+	// 		axios.delete(`${rute}/files/profile-image/${logedUser.id}`, {
+	// 			headers: {
+	// 				Authorization: `Bearer: ${token}`
+	// 			}
+	// 		})
+
+	// 		const updatedUser = { ...logedUser, image: '' }
+	// 		setUser(updatedUser)
+	// 		localStorage.setItem('user', JSON.stringify(updatedUser))
+	// 	})
+	// }
 
 	return (
 		<div className=''>
@@ -142,10 +144,18 @@ const Profile = () => {
 					<div className='w-full px-6 pb-8 mt-8 sm:rounded-lg'>
 						<div className='flex mt-8 gap-5 sm:gap-10'>
 							<div className='flex flex-col gap-3 items-center space-y-5 sm:space-y-0'>
-
 								<Avatar src={user?.image} name={user?.name} className='object-cover' size='150' round color='#1C1C1C' maxInitials={2} />
 
-								<div className='flex flex-col gap-2 sm:ml-2'>
+								<button
+									type='button'
+									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+									onClick={handleChangeInfo}
+								>
+									Edit Profile
+								</button>
+								<DeleteAccount />
+
+								{/* <div className='flex flex-col gap-2 sm:ml-2'>
 									<button
 										type='button'
 										className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
@@ -160,28 +170,28 @@ const Profile = () => {
 									>
 										Delete picture
 									</button>
-								</div>
+								</div> */}
 							</div>
-							<div className='items-center mt-8 sm:mt-14 text-erieblack'>
+							<div className='items-center mt-8 sm:mt-14 text-erieblack dark:text-ghostwhite'>
 								<div className='mb-2 sm:mb-6'>
-									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
+									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Your email
 									</label>
 									{user?.email}
 								</div>
 								<div className='mb-2 sm:mb-6'>
-									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
+									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Your Phone
 									</label>
 									{user?.phone}
 								</div>
 								<div className='mb-2 sm:mb-6'>
-									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue'>
+									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Subscription
 									</label>
 									Platinum || Gold || Standard
 								</div>
-								{showChangeImage && (
+								{/* {showChangeImage && (
 									<form className='flex gap-1' onSubmit={handleSendNewImage}>
 										<input id='fileInput' type='file' className='file-input file-input-bordered file-input-warning w-full max-w-xs' name='file' accept='image/*' required></input>
 										<button
@@ -191,9 +201,11 @@ const Profile = () => {
 											Upload File
 										</button>
 									</form>
-								)}
+								)} */}
 							</div>
+							<div className='hidden lg:block'>{showChangeInfo && <ProfileEdit />}</div>
 						</div>
+						<div className='block lg:hidden pt-5'>{showChangeInfo && <ProfileEdit />}</div>
 						<BookingsUser userAppointments={userAppointments} />
 					</div>
 				</div>

@@ -22,8 +22,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<p className='font-base text-md'>You don´t have permission to access this page</p>
 		</div>
 	) : (
-		<div className='flex minh-screen flex-col md:flex-row md:overflow-hidden pt-6'>
-			<div className='w-full flex-none md:w-64'>
+		<div className='flex minh-screen flex-col md:flex-row md:overflow-hidden pt-6 dark:text-ghostwhite text-black'>
+			<div className='w-full flex-none md:w-64 text-black dark:text-ghostwhite'>
 				<SideNav />
 			</div>
 			<div className='flex-grow p-2 pt-0 md:overflow-y-auto md:p-8'>{children}</div>

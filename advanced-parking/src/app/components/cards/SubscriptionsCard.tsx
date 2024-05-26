@@ -12,7 +12,7 @@ interface ISubscription {
 
 export const SubscriptionsCard = ({ subscription }: { subscription: ISubscription }) => {
 	return (
-		<div className='flex flex-col items-start justify-start rounded-3xl w-12/12 h-40 sm:h-96 shadow-2xl mx-4'>
+		<div className='flex flex-col items-start justify-start rounded-3xl w-12/12 h-40 sm:h-96 shadow-2xl mx-4 bg-ghostwhite'>
 			<Link href={`/subscriptions/${subscription.name}`} className='w-full h-full flex justify-center'>
 				<div className='relative flex flex-col justify-center sm:justify-around items-center w-full h-40 sm:flex-col sm:w-full sm:gap-8 sm:[&>img]:hover:filter-none'>
 					<Image

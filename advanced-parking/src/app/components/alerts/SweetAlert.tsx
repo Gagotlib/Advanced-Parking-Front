@@ -41,3 +41,21 @@ export const showSweetAlertAppointment = async (onConfirm: any) => {
 		})
 	}
 }
+export const showSweetAlertChangeInfo = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want to save these changes?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Changes saved',
+			icon: 'success'
+		})
+	}
+}

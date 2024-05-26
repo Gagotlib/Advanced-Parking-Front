@@ -40,13 +40,13 @@ function BookingsAdmin({ userAppointments }: any) {
 					</thead>
 					<tbody>
 						{userAppointments?.map((appointment: any) => (
-							<tr key={appointment.id} className='bg-ghostwhite'>
-								<th scope='row' className='px-3 py-4 font-medium text-erieblack whitespace-nowrap border-collapse border border-erieblack'>
+							<tr key={appointment.id} className='bg-ghostwhite dark:bg-gray-500'>
+								<th scope='row' className='px-3 py-4 font-medium text-erieblack dark:text-ghostwhite whitespace-nowrap border-collapse border border-erieblack'>
 									{appointment.parking_lot?.name}
 								</th>
-								<td className='px-3 py-4 border border-erieblack/90'>{appointment.date}</td>
-								<td className='px-3 py-4 border border-erieblack/90'>{appointment.time}</td>
-								<td className='px-3 py-4 border border-erieblack/90'>{appointment.license_plate}</td>
+								<td className='px-3 py-4 border border-erieblack/90 text-erieblack dark:text-ghostwhite '>{appointment.date}</td>
+								<td className='px-3 py-4 border border-erieblack/90 text-erieblack dark:text-ghostwhite '>{appointment.time}</td>
+								<td className='px-3 py-4 border border-erieblack/90 text-erieblack dark:text-ghostwhite '>{appointment.license_plate}</td>
 								<td>
 									<Link href={`/dashboard/appointments/${appointment.id}`}>
 										<button type='button' className='py-3 px-3 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
