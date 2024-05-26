@@ -17,8 +17,8 @@ function OurParkingsMaps() {
   const lngLocalStorage = localStorage.getItem('lng')
 
   const positionDefault = {
-    lat: Number(latLocalStorage) - 34.590422,
-    lng: Number(lngLocalStorage) - 58.392357
+    lat: Number(latLocalStorage) || -34.590422,
+    lng: Number(lngLocalStorage) || -58.392357,
   }
 
   const [defaultPosition, setDefaultPosition] = useState({ lat: positionDefault.lat, lng: positionDefault.lng })
@@ -70,9 +70,6 @@ function OurParkingsMaps() {
           gestureHandling={'greedy'}
           defaultCenter={defaultPosition}
         >
-          {/* <AdvancedMarker
-            position={defaultPosition}>
-          </AdvancedMarker> */}
           <MapControl position={ControlPosition.TOP_LEFT}>
             <div
               style={{
