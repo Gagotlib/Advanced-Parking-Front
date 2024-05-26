@@ -25,6 +25,14 @@ export const Ourparkings = () => {
 		})
 	}, [page])
 
+	useEffect(() => {
+		axios.get(`${rute}/parking-lot`).then(({ data }) => {
+			setAllParkings(data)
+			const parkingLotString = JSON.stringify(data)
+			localStorage.setItem('allParkings', parkingLotString)
+			// console.log(data)
+		})
+	}, [])
 
 	const handleIsOpenMap = () => {
 		setIsOpenMap(!isOpenMap)
