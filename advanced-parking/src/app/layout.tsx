@@ -4,7 +4,7 @@ config.autoAddCss = false;
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { FooterRender, NavRender } from "./components/navbar/Navrender";
+import { ChatRender, FooterRender, NavRender } from "./components/navbar/Navrender";
 import { AuthProvider } from "./context/AuthContext";
 import Providers from "./Providers";
 
@@ -26,6 +26,7 @@ export default function RootLayout({
 				<html lang='en'>
 					<body className={plus_Jakarta_Sans.className}>
 						<NavRender />
+						<ChatRender />
 						<div className='w-full h-full dark:text-ghostwhite'>{children}</div>
 						<FooterRender />
 					</body>

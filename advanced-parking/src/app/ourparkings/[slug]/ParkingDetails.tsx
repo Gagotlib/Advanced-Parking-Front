@@ -1,5 +1,6 @@
 'use client'
 import { BackToOurParkingsButton } from '@/app/components/buttons/Buttons'
+import Directions from '@/app/components/googleMaps/Directions'
 import Maps from '@/app/components/googleMaps/Maps'
 import { ReservationForm } from '@/app/components/reservationForm/ReservationForm'
 import { Loading } from '@/app/components/suspense/Loading'
@@ -25,7 +26,7 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 	return (
 		<div className='flex flex-col min-h-screen pt-28 sm:pt-24 lg:pt-12 items-center lg:mr-10'>
 			<div className='flex flex-col lg:flex-row lg:justify-center lg:gap-40 p-2 m-0 items-center justify-start gap-4 text-center'>
-				{/* <Directions latProp={latProp} lngProp={lngProp} /> */}
+				<Directions latProp={parking?.lat} lngProp={parking?.lng} />
 				<Suspense fallback={<LoadingMapDetail />}>
 					{parking ? (
 						<div className='flex flex-col items-center gap-4 mt-0'>

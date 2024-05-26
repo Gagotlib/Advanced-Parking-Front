@@ -9,11 +9,23 @@ const Page = ({ params }: { params: { id: string } }) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 
 	useEffect(() => {
+		const token = localStorage.getItem('authToken')
 		//! peticion al back que modifique el estado de deleted a active
-		axios.put(`${rute}/appointments/success/` + params.id, { status: 'active' }).then(() => {
-			axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
-			console.log(booking)
-		})
+		axios
+			.put(
+				`${rute}/appointments/success/` + params.id,
+				{ status: 'active' },
+				{
+					headers: {
+						Authorization: `Bearer: ${token}`
+					}
+				}
+			)
+			.then(() => {
+				axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
+				console.log(booking)
+			})
+			.catch((err) => console.log(err))
 	}, [])
 
 	return (

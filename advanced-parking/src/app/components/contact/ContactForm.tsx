@@ -4,30 +4,48 @@ import Toast from '@/app/components/alerts/Toast'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { SendButton } from '../buttons/Buttons'
-
+import axios from 'axios'
 
 function ContactForm() {
+	const [showToast, setShowToast] = useState(false)
+	const router = useRouter()
+	useEffect(() => {
+		if (showToast) {
+			const timeout = setTimeout(() => {
+				setShowToast(false)
+				router.push('/contact')
+			}, 3000)
+			return () => clearTimeout(timeout)
+		}
+	}, [showToast, router])
 
-  const [showToast, setShowToast] = useState(false)
-  const router = useRouter()
+	const [formData, setFormData] = useState({
+		user_email: '',
+		user_name: '',
+		user_message: ''
+	})
 
-  useEffect(() => {
-    if (showToast) {
-      const timeout = setTimeout(() => {
-        setShowToast(false)
-        router.push('/contact')
-      }, 3000)
-      return () => clearTimeout(timeout)
-    }
-  }, [showToast, router])
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target
+		setFormData((formData) => ({
+			...formData,
+			[name]: value
+		}))
+	}
 
-  function handleOnSubmit(e: { preventDefault: () => void }) {
-    e.preventDefault()
-    setShowToast(true)
-    return
-  }
+	function handleOnSubmit(e: { preventDefault: () => void }) {
+		e.preventDefault()
+		setShowToast(true)
+		const rute = process.env.NEXT_PUBLIC_BACK_API_URL
+		axios
+			.post(`${rute}/email-sender/contact-form`, formData)
+			.then((response) => console.log(response))
+			.catch((error) => console.log(error))
 
-  return (
+		return
+	}
+
+	return (
 		<section className='pt-20 dark:text-ghostwhite'>
 			<div className='py-4 px-4 mx-auto max-w-screen-md dark:text-ghostwhite'>
 				<h1 className='mb-4 text-4xl font-extrabold text-center text-erieblack sm:text-5xl dark:text-ghostwhite'>Contact Us</h1>
@@ -42,6 +60,9 @@ function ContactForm() {
 								Your email
 							</label>
 							<input
+								name='user_email'
+								value={formData.user_email}
+								onChange={handleChange}
 								type='email'
 								id='email'
 								className='shadow-sm bg-ghostwhite border border-yaleblue text-erieblack text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5'
@@ -51,13 +72,16 @@ function ContactForm() {
 						</div>
 						<div>
 							<label htmlFor='subject' className='block mb-2 text-sm font-medium text-erieblack dark:text-ghostwhite'>
-								Subject
+								Your Name
 							</label>
 							<input
+								name='user_name'
+								value={formData.user_name}
+								onChange={handleChange}
 								type='text'
 								id='subject'
 								className='block p-3 w-full text-sm text-erieblack bg-ghostwhite rounded-lg border border-yaleblue shadow-sm '
-								placeholder='How we can help you?'
+								placeholder='what is your name?'
 								required
 							/>
 						</div>
@@ -66,13 +90,17 @@ function ContactForm() {
 								Your message
 							</label>
 							<textarea
-								name='message'
+								value={formData.user_message}
+								onChange={handleChange}
+								name='user_message'
 								id='message'
 								className='block p-2.5 w-full text-sm text-erieblack bg-ghostwhite rounded-lg shadow-sm border border-yaleblue resize-none'
 								placeholder='Leave a comment...'
 							></textarea>
 						</div>
-						<SendButton />
+						<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
+							Send message
+						</button>
 					</form>
 				</div>
 			</div>

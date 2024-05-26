@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from '../footer/Footer'
+import Chatbot from '../chatBot/ChatBot'
 
 const NavRender = () => {
 	const pathname = usePathname()
@@ -24,4 +25,13 @@ const FooterRender = () => {
 	}
 }
 
-export { NavRender, FooterRender }
+const ChatRender = () => {
+	const pathname = usePathname()
+	if (pathname === '/' || pathname === '/login' || pathname === '/register') {
+		return null
+	} else {
+		return <Chatbot />
+	}
+}
+
+export { NavRender, FooterRender, ChatRender }
