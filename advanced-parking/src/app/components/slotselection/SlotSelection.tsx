@@ -15,7 +15,6 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 	// const slots: IParkingSlot[] = parking.slot.sort((a: IParkingSlot, b: IParkingSlot) => a.slot_number - b.slot_number)
 	// console.log('slots', slots)
 	const [slots, setSlots] = useState<any | null>(null)
-	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
 		const rute = process.env.NEXT_PUBLIC_BACK_API_URL

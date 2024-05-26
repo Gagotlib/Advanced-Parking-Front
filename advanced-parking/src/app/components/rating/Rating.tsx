@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 
 function Rating() {
 
+  const [openModal, setOpenModal] = useState(false)
   const [rating, setRating] = useState(0);
 
   const handleChange = (index: any) => {
@@ -42,8 +43,21 @@ function Rating() {
               </textarea>
               <button
                 className="py-3 my-8 text-lg bg-yaleblue rounded-xl text-ghostwhite font-semibold">
-                <Link href="#"> Rate now </Link>
+                <Link href="/home"> Rate now </Link>
               </button>
+              {/* <button className="btn" onClick={() => document.getElementById('my_modal_5')?.showModal()}>open modal</button> */}
+              <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                  <h3 className="font-bold text-lg">Hello!</h3>
+                  <p className="py-4">Press ESC key or click the button below to close</p>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      {/* if there is a button in form, it will close the modal */}
+                      <button className="btn">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
             </div>
           </div>
           <div className="h-20 flex items-center justify-center">
