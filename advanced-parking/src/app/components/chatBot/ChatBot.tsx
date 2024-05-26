@@ -59,7 +59,7 @@ const Chatbot: React.FC = () => {
 		<div
 			className={`chat-container bg-duck-yellow fixed bottom-16 right-2.5 ${
 				isExpanded ? 'lg:w-1/5 min-w-80 w-1/2 h-3/5' : 'w-1/10 h-6'
-			} flex flex-col justify-between p-6 rounded-lg transition-all duration-500 ease-in-out overflow-hidden`}
+			} flex flex-col justify-between p-6 rounded-lg transition-all duration-500 ease-in-out overflow-hidden z-30`}
 			ref={bodyRef}
 		>
 			<div className=' flex items-center justify-center w-2 '>

@@ -15,8 +15,6 @@ function OurParkingsMaps() {
 	const latLocalStorage = localStorage.getItem('lat')
 	const lngLocalStorage = localStorage.getItem('lng')
 
-
-
   const positionDefault = {
     lat: Number(latLocalStorage) || -34.590422,
     lng: Number(lngLocalStorage) || -58.392357,
@@ -42,9 +40,9 @@ function OurParkingsMaps() {
 			setDefaultPosition({ lat: positionDefault.lat, lng: positionDefault.lng })
 			console.error('La geolocalización no es soportada por este navegador.')
 		}
-		console.log('Default', defaultPosition)
-		console.log(typeof defaultPosition.lat)
-		console.log(typeof defaultPosition.lng)
+		// console.log('Default', defaultPosition)
+		// console.log(typeof defaultPosition.lat)
+		// console.log(typeof defaultPosition.lng)
 	}, [])
 
 	const parkingValues = allParkings?.map((parking) => {

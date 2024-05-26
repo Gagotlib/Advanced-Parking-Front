@@ -153,12 +153,31 @@ const Page = () => {
 							/>
 							{errors.confirmPassword && <p className='text-red-500  my-1 text-xs font-light'>{errors.confirmPassword}</p>}
 						</div>
-						<button
-							type='submit'
-							className='mb-5 py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
-						>
-							Submit
-						</button>
+						<div className='flex gap-4 mb-8'>
+							<button
+								type='button'
+								className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-red-700 rounded-lg border border-silver hover:bg-red-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
+								onClick={() => {
+									console.log('reset')
+
+									setFormData({
+										name: '',
+										email: '',
+										phone: '',
+										password: '',
+										confirmPassword: ''
+									})
+								}}
+							>
+								Reset
+							</button>
+							<button
+								type='submit'
+								className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
+							>
+								Submit
+							</button>
+						</div>
 					</div>
 				</form>
 			)}

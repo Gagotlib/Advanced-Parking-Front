@@ -57,10 +57,17 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 		e.preventDefault()
 		console.log('fomrdata:', formData)
 
+		const registerPayload = formData.phone
+			? {
+					...formData,
+					phone: parseInt(formData.phone, 10)
+			  }
+			: formData
+
 		//* solicitud al back con el formulario de los cambios
 		const token = localStorage.getItem('authToken')
 		axios
-			.put(`${rute}/user/${params.id}`, formData, {
+			.put(`${rute}/user/${params.id}`, registerPayload, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}

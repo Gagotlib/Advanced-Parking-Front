@@ -3,12 +3,19 @@
 import { useState } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, MapControl, ControlPosition } from '@vis.gl/react-google-maps'
 import { CustomZoomControl } from './CustomZoomControl'
-import Directions from './Directions';
+import Directions from './Directions'
 
 function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number; nameProp: string }) {
-
 	const [zoom, setZoom] = useState(14)
 	const [open, setOpen] = useState(false)
+
+	const latLocalStorage = localStorage.getItem('lat')
+	const lngLocalStorage = localStorage.getItem('lng')
+
+	const originPosition = {
+		lat: Number(latLocalStorage) || -34.590422,
+		lng: Number(lngLocalStorage) || -58.392357
+	}
 
 	const [controlPosition, setControlControlPosition] = useState<ControlPosition>(ControlPosition.LEFT_BOTTOM)
 	const defaultPosition = {
@@ -32,12 +39,15 @@ function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number
 						</div>
 					</MapControl>
 					<CustomZoomControl controlPosition={controlPosition} zoom={zoom} onZoomChange={(zoom) => setZoom(zoom)} />
+
+					<AdvancedMarker position={originPosition} onClick={() => setOpen(true)}></AdvancedMarker>
+
 					<AdvancedMarker position={defaultPosition} onClick={() => setOpen(true)}>
 						<Pin background={'#FFCC00'} glyphColor={'#1C1C1C'} borderColor={'#1C1C1C'} />
 					</AdvancedMarker>
 					{open && (
 						<InfoWindow position={defaultPosition} onCloseClick={() => setOpen(false)}>
-							<p>Parking {nameProp}</p>
+							<p className='text-black'>Parking {nameProp}</p>
 						</InfoWindow>
 					)}
 				</Map>

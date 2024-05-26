@@ -58,7 +58,9 @@ const Parkinglots = () => {
 			<div className='flex flex-col'>
 				<Suspense fallback={<LoadingParkings />}>
 					<div className='flex flex-row justify-between items-center'>
-						<h3 className='flex justify-start text-md sm:text-xl font-base'>Total Parkings: <span className='font-bold'> {allParkinglots?.length}</span></h3>
+						<h3 className='flex justify-start text-md sm:text-xl font-base'>
+							Total Parkings: <span className='font-bold'> {allParkinglots?.length}</span>
+						</h3>
 						<button
 							type='button'
 							className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
@@ -108,12 +110,31 @@ const Parkinglots = () => {
 											value={formData.slot_stock}
 										/>
 									</div>
-									<button
-										type='submit'
-										className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
-									>
-										Submit
-									</button>
+									<div className='flex gap-4 mb-8'>
+										<button
+											type='button'
+											className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-red-700 rounded-lg border border-silver hover:bg-red-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
+											onClick={() => {
+												console.log('reset')
+
+												setFormData({
+													name: '',
+													location: '',
+													lat: '',
+													lng: '',
+													slot_stock: ''
+												})
+											}}
+										>
+											Reset
+										</button>
+										<button
+											type='submit'
+											className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
+										>
+											Submit
+										</button>
+									</div>
 								</div>
 							</form>
 						)}
@@ -130,14 +151,10 @@ const Parkinglots = () => {
 								allParkinglots.map((parkinglot) => (
 									<tr key={parkinglot.id} className='hover:bg-silver/20'>
 										<td className='border p-2'>
-											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>
-												{parkinglot.name}
-											</Link>
+											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>{parkinglot.name}</Link>
 										</td>
 										<td className='border p-2'>
-											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>
-												{parkinglot.location}
-											</Link>
+											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>{parkinglot.location}</Link>
 										</td>
 									</tr>
 								))
