@@ -81,16 +81,16 @@ export const LoginForm = () => {
 	}
 
 	return (
-		<div className='h-screen bg-ghostwhite text-erieblack pt-4'>
+		<div className='h-screen bg-ghostwhite text-erieblack dark:text-ghostwhite dark:bg-gray-500 pt-4  '>
 			<div className='w-full h-full flex flex-col items-center pt-20'>
 				{showToast && <Toast message='Login successful' type='success' />}
 				{errorToast && <Toast message='Username or password are incorrect' type='error' />}
 				<h1 className='text-3xl sm:text-6xl uppercase font-extrabold mb-6'>Login</h1>
-				<p className='text-erieblack mb-6 text-sm sm:text-3xl'>Welcome! So good to have you back!</p>
-				<div className='border-silver rounded-lg p-4 m-4 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40'>
+				<p className='text-erieblack dark:text-ghostwhite mb-6 text-sm sm:text-3xl'>Welcome! So good to have you back!</p>
+				<div className='border-silver rounded-lg p-4 m-4 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-ghostwhite'>
 					<form className='max-w-sm mx-auto' onSubmit={handleSubmit}>
 						<div className='mb-5'>
-							<label htmlFor='email' id='email' className='block mb-2 text-sm font-normal text-erieblack'>
+							<label htmlFor='email' id='email' className='block mb-2 text-sm font-normal text-erieblack dark:text-ghostwhite'>
 								Your email
 							</label>
 							<input
@@ -105,14 +105,14 @@ export const LoginForm = () => {
 							/>
 						</div>
 						<div className='mb-5'>
-							<label htmlFor='password' id='password' className='block mb-2 text-sm font-medium text-erieblack'>
+							<label htmlFor='password' id='password' className='block mb-2 text-sm font-medium text-erieblack dark:text-ghostwhite'>
 								Your password
 							</label>
 							<input
 								type='password'
 								id='password'
 								name='password'
-								className='bg-ghostwhite border border-silver text-erieblack text-sm rounded-lg block w-full p-2.5'
+								className='bg-ghostwhite border border-silver text-erieblack  text-sm rounded-lg block w-full p-2.5'
 								value={loginData.password}
 								onChange={handleChange}
 								placeholder='******'
@@ -137,7 +137,7 @@ export const LoginForm = () => {
 					</form>
 				</div>
 				<div className='text-center p-2'>
-					<Link className='inline-block text-sm text-erieblack align-baseline hover:text-yaleblue/80 pt-4' href='#'>
+					<Link className='inline-block text-sm text-erieblack dark:text-ghostwhite align-baseline hover:text-yaleblue/80 pt-4' href='#'>
 						Forgot Password?
 					</Link>
 				</div>
