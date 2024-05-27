@@ -1,4 +1,5 @@
 'use client'
+import { showSweetAlertDeleteAccounAdmin } from '@/app/components/alerts/SweetAlert'
 import BookingsAdmin from '@/app/components/bookings/BookingsAdmin'
 import { IUser } from '@/types'
 import axios from 'axios'
@@ -12,9 +13,9 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 	const [userDetails, setUserDetails] = useState<IUser | null>(null)
 	const [isEditInput, setIsEditInput] = useState(false)
 
-	//me traigo del back los datos de ese user segun id
 	useEffect(() => {
-		//!necesito token
+		//me traigo del back los datos de ese user segun id
+
 		const token = localStorage.getItem('authToken')
 		axios
 			.get(`${rute}/user/${params.id}`, {
@@ -26,17 +27,19 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 	}, [observer])
 
 	const handleDeleteUser = () => {
-		const token = localStorage.getItem('authToken')
-		axios
-			.delete(`${rute}/user/${params.id}`, {
-				headers: {
-					Authorization: `Bearer: ${token}`
-				}
-			})
-			.then((response) => {
-				console.log(response)
-				router.push('/dashboard/users')
-			})
+		showSweetAlertDeleteAccounAdmin(() => {
+			const token = localStorage.getItem('authToken')
+			axios
+				.delete(`${rute}/user/${params.id}`, {
+					headers: {
+						Authorization: `Bearer: ${token}`
+					}
+				})
+				.then((response) => {
+					console.log(response)
+					router.push('/dashboard/users')
+				})
+		})
 	}
 
 	const handleShowEdit = () => {
@@ -92,6 +95,7 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 							<h2> Name: {userDetails?.name}</h2>
 							<h2> Email: {userDetails?.email}</h2>
 							<h2> Phone: {userDetails?.phone}</h2>
+							<h2> Status: {userDetails?.status}</h2>
 							<button
 								type='button'
 								className=' py-2 px-2 w-20 h-10 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-blue-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
