@@ -18,19 +18,7 @@ function Navprofile() {
 
 	const { data: session } = useSession()
 
-	// console.log('sesion guardada por google, consologeado desde navbar', session?.user)
-	// console.log('user logeado por login, consologeado desde Navprofile', user)
-	// useEffect(() => {
-	// 	const handleBeforeUnload = () => {
-	// 		localStorage.clear()
-	// 	}
-
-	// 	window.addEventListener('beforeunload', handleBeforeUnload)
-
-	// 	return () => {
-	// 		window.removeEventListener('beforeunload', handleBeforeUnload)
-	// 	}
-	// }, [])
+	
 	useEffect(() => {
 		// session ? console.log('sesion guardada por google, consologeado desde navprofile', session?.user) : console.log('no hay sesion')
 

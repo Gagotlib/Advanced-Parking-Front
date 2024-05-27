@@ -8,7 +8,7 @@ function About() {
 			<div className='flex flex-col lg:flex-row justify-between gap-8 dark:text-ghostwhite'>
 				<div className='w-full lg:w-5/12 flex flex-col justify-center dark:text-ghostwhite'>
 					<h1 className='text-3xl lg:text-6xl font-extrabold leading-9 text-erieblack dark:text-ghostwhite'>About Us</h1>
-					<p className='font-medium text-base leading-6 text-erieblack dark:text-ghostwhite '>
+					<p className='font-medium text-base leading-6 text-erieblack dark:text-ghostwhite'>
 						We are an application created to give the user exclusivity when searching for available parking in the urban areas of the city. We provide security, 100% insured parking in the reservation
 						and with exclusive additional benefits.
 					</p>
@@ -57,7 +57,7 @@ function About() {
 						and send us a message.
 					</p>
 				</div>
-				<div className='w-full lg:w-8/12 lg:pt-8 dark:text-ghostwhite'>
+				<div className='w-full lg:w-8/12 lg:pt-8 dark:text-ghostwhite shadow-xl	 shadow-silver/30'>
 					<div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg rounded-md dark:text-ghostwhite'>
 						<Link target='_blank' href='https://www.linkedin.com/in/gabriel-gotlib-5855197b/' className='p-4 pb-6 flex justify-center flex-col items-center'>
 							<Image src='/GabrielGotlib.webp' className='md:block hidden rounded-full' alt='Gabriel featured Image' width={150} height={150} priority={true} />

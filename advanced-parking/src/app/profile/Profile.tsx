@@ -7,7 +7,9 @@ import React, { useEffect, useState } from 'react'
 import BookingsUser from '../components/bookings/BookingsUser'
 import ProfileEdit from '../components/profile_file/ProfileEdit'
 import DeleteAccount from '../components/profile_file/DeleteAccount'
-
+import { showSweetAlertDeleteAccountUser } from '../components/alerts/SweetAlert'
+import { useRouter } from 'next/navigation'
+import { signOut } from 'next-auth/react'
 
 interface IApointment {
 	date: string
@@ -30,20 +32,14 @@ interface IApointment {
 }
 
 const Profile = () => {
-	// const router = useRouter()
-	// const usernull = {
-	// 	name: '',
-	// 	email: '',
-	// 	phone: '',
-	// 	role: '',
-	// 	image: ''
-	// }
-
+	const router = useRouter()
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const { user, setUser } = useAuth()
+
 	const [userAppointments, setUserAppointments] = useState<IApointment[] | null>(null)
 	// const [showChangeImage, setShowChangeImage] = useState(false)
 	const [showChangeInfo, setShowChangeInfo] = useState(false)
+	const [observer, setObserver] = useState(0)
 
 	useEffect(() => {
 		const userString = localStorage.getItem('user')
@@ -51,8 +47,6 @@ const Profile = () => {
 		console.log('logedUser: ', logedUser)
 		const token = localStorage.getItem('authToken')
 		console.log('token: ', token)
-
-		setUser(logedUser)
 
 		//! hacer peticion al back por id del usuario para tener las reservas
 		const userId = logedUser.id
@@ -62,87 +56,47 @@ const Profile = () => {
 					Authorization: `Bearer: ${token}`
 				}
 			})
-			.then(({ data }) => setUserAppointments(data.appointments))
+			.then(({ data }) => {
+				setUser(data)
+				setUserAppointments(data.appointments)
+			})
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [observer])
 
 	const handleChangeInfo = () => {
 		setShowChangeInfo(!showChangeInfo)
 	}
 
-	// const handleChangeImage = () => {
-	// 	setShowChangeImage(!showChangeImage)
-	// }
+	const handleDeleteAccount = () => {
+		showSweetAlertDeleteAccountUser(async () => {
+			const rute = process.env.NEXT_PUBLIC_BACK_API_URL
+			await axios
+				.delete(`${rute}/user/${user?.id}`, {
+					headers: {
+						Authorization: `Bearer: ${localStorage.getItem('authToken')}`
+					}
+				})
+				.then((response) => {
+					console.log(response)
+					router.push('/home')
 
-	// const handleSendNewImage = (e: React.FormEvent<HTMLFormElement>) => {
-	// 	e.preventDefault()
-	// 	const fileInput = document.getElementById('fileInput') as HTMLInputElement
-	// 	const file = fileInput?.files ? fileInput.files[0] : null
-	// 	// console.log('fileinput', file)
-	// 	if (!file) {
-	// 		console.error('No file selected')
-	// 		return
-	// 	}
-
-	// 	const formData = new FormData()
-	// 	formData.append('file', file)
-	// 	// for (let key of formData.keys()) {
-	// 	// 	console.log(key, formData.get(key))
-	// 	// }
-
-	// 	const userString = localStorage.getItem('user')
-	// 	const logedUser = userString ? JSON.parse(userString) : null
-	// 	if (!logedUser) {
-	// 		console.error('No logged user found')
-	// 		return
-	// 	}
-	// 	const token = localStorage.getItem('authToken')
-	// 	if (!token) {
-	// 		console.error('No auth token found')
-	// 		return
-	// 	}
-
-	// 	// funcion que lleve el archivo al back
-	// 	axios
-	// 		.post(`${rute}/files/profile-image/${logedUser.id}`, formData, {
-	// 			headers: {
-	// 				'Content-Type': 'multipart/form-data',
-	// 				Authorization: `Bearer ${token}`
-	// 			}
-	// 		})
-	// 		.then((response) => {
-	// 			setUser(response.data)
-	// 		})
-	// 		.catch((error) => console.error('Error uploading file:', error))
-	// }
-
-	// //Función petición eliminar foto.
-	// const handleDeleteImage = () => {
-	// 	// funcion que permita hacer user.image="" y se guarde en bd
-	// 	showSweetAlert(() => {
-	// 		const userString = localStorage.getItem('user')
-	// 		const logedUser = userString ? JSON.parse(userString) : null
-	// 		const token = localStorage.getItem('authToken')
-	// 		axios.delete(`${rute}/files/profile-image/${logedUser.id}`, {
-	// 			headers: {
-	// 				Authorization: `Bearer: ${token}`
-	// 			}
-	// 		})
-
-	// 		const updatedUser = { ...logedUser, image: '' }
-	// 		setUser(updatedUser)
-	// 		localStorage.setItem('user', JSON.stringify(updatedUser))
-	// 	})
-	// }
+					localStorage.removeItem('authToken')
+					localStorage.removeItem('user')
+					// setToken(null)
+					setUser(null)
+					signOut()
+				})
+		})
+	}
 
 	return (
 		<div className=''>
 			<main className='h-3/4 w-full flex flex-col pt-24 gap-4'>
 				<div className='p-2 md:p-4'>
 					<h2 className='pl-6 text-5xl font-bold sm:text-5xl'>{user?.name}</h2>
-					<div className='w-full px-6 pb-8 mt-8 sm:rounded-lg'>
-						<div className='flex mt-8 gap-5 sm:gap-10'>
+					<div className='flex flex-col lg:flex-row  w-full px-6 pb-8 mt-8 sm:rounded-lg'>
+						<div className='flex  mt-8 gap-5 sm:gap-10'>
 							<div className='flex flex-col gap-3 items-center space-y-5 sm:space-y-0'>
 								<Avatar src={user?.image} name={user?.name} className='object-cover' size='150' round color='#1C1C1C' maxInitials={2} />
 
@@ -153,24 +107,13 @@ const Profile = () => {
 								>
 									Edit Profile
 								</button>
-								<DeleteAccount />
-
-								{/* <div className='flex flex-col gap-2 sm:ml-2'>
-									<button
-										type='button'
-										className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
-										onClick={handleChangeImage}
-									>
-										Change picture
-									</button>
-									<button
-										type='button'
-										className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
-										onClick={handleDeleteImage}
-									>
-										Delete picture
-									</button>
-								</div> */}
+								<button
+									type='button'
+									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-red-500 rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+									onClick={handleDeleteAccount}
+								>
+									Delect Account
+								</button>
 							</div>
 							<div className='items-center mt-8 sm:mt-14 text-erieblack dark:text-ghostwhite'>
 								<div className='mb-2 sm:mb-6'>
@@ -191,23 +134,11 @@ const Profile = () => {
 									</label>
 									Platinum || Gold || Standard
 								</div>
-								{/* {showChangeImage && (
-									<form className='flex gap-1' onSubmit={handleSendNewImage}>
-										<input id='fileInput' type='file' className='file-input file-input-bordered file-input-warning w-full max-w-xs' name='file' accept='image/*' required></input>
-										<button
-											type='submit'
-											className='py-2 px-2 text-base h-12 font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
-										>
-											Upload File
-										</button>
-									</form>
-								)} */}
 							</div>
-							<div className='hidden lg:block'>{showChangeInfo && <ProfileEdit />}</div>
 						</div>
-						<div className='block lg:hidden pt-5'>{showChangeInfo && <ProfileEdit />}</div>
-						<BookingsUser userAppointments={userAppointments} />
+						<div className='block pt-5'>{showChangeInfo && <ProfileEdit observer={observer} setObserver={setObserver} showChangeInfo={showChangeInfo} setShowChangeInfo={setShowChangeInfo} />}</div>
 					</div>
+					<BookingsUser userAppointments={userAppointments} />
 				</div>
 			</main>
 		</div>

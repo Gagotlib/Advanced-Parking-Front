@@ -11,6 +11,6 @@ export const homeCardProps = [
     img_href: "/parkingslot2.webp",
     alt: "imagen Nuestros parkings",
     text: "Subscriptions",
-    text2: "Subscribe for a monthly service and enjoy additional benefits",
+    text2: "Soon you will be able to enjoy our additional services.",
   },
 ];

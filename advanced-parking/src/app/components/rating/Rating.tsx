@@ -1,16 +1,23 @@
- "use client"
+"use client"
 
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { BackToHomeButton } from '../buttons/Buttons';
 
 function Rating() {
 
   const [openModal, setOpenModal] = useState(false)
   const [rating, setRating] = useState(0);
 
+  //Peticion Post al backend para guardar el mensaje del usuario
+
   const handleChange = (index: any) => {
     setRating(index + 1)
   };
+
+  const handleOpenModal = () => {
+    setOpenModal(!openModal)
+  }
 
   return (
     <div className="min-h-screen bg-ghostwhite py-6 px-6 flex flex-col justify-center sm:py-12 pt-24">
@@ -37,27 +44,28 @@ function Rating() {
             </div>
             <div className="w-3/4 flex flex-col">
               <textarea
+                name='message'
                 className="p-4 text-erieblack rounded-xl resize-none"
                 placeholder='Leave a message, if you want'
               >
               </textarea>
-              <button
-                className="py-3 my-8 text-lg bg-yaleblue rounded-xl text-ghostwhite font-semibold">
-                <Link href="/home"> Rate now </Link>
-              </button>
-              {/* <button className="btn" onClick={() => document.getElementById('my_modal_5')?.showModal()}>open modal</button> */}
-              <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
-                  <h3 className="font-bold text-lg">Hello!</h3>
-                  <p className="py-4">Press ESC key or click the button below to close</p>
-                  <div className="modal-action">
-                    <form method="dialog">
-                      {/* if there is a button in form, it will close the modal */}
-                      <button className="btn">Close</button>
-                    </form>
+              <button className="py-3 my-8 text-lg bg-yaleblue rounded-xl text-ghostwhite font-semibold" onClick={handleOpenModal}>Rate</button>
+              {openModal && (
+                <dialog open className="modal modal-bottom sm:modal-middle">
+                  <div className="modal-box">
+                    <h3 className="font-bold text-lg">Thank you for your feedback. </h3>
+                    <p className="py-4">We appreciate your time and effort in helping us improve our service.</p>
+                    <div className='flex justify-between'>
+                      <div className="modal-action">
+                        <BackToHomeButton />
+                      </div>
+                      <div className="modal-action">
+                        <button className="py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ring-4 focus:outline-none" onClick={handleOpenModal}>Rate again</button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </dialog>
+                </dialog>
+              )}
             </div>
           </div>
           <div className="h-20 flex items-center justify-center">

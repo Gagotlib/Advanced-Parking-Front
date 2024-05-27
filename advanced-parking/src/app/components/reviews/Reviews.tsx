@@ -1,9 +1,20 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import ReviewCard from './ReviewCard'
+
+// interface IReview {
+// 	user{
+// 	(todas las propiedades del usuario)
+// 	}
+// 	reviewMessage string (esto seria el mensaje que escribe el usuario)
+//	reviewRating(ESto seria la calificacion Esterellas)
+// }
 
 function Reviews() {
 	const reviews = [
+		// Llamada al backend para traerme todas las reviews
+
+
 		{
 			name: 'Juan Duarte',
 			review: 'I used to spend hours looking for a parking spot, especially downtown. This app has made it so much easier. I can find a parking spot quickly and easily, even on the busiest days.',
@@ -35,6 +46,7 @@ function Reviews() {
 					</ul>
 				</div>
 			</section>
+
 		</div>
 	)
 }

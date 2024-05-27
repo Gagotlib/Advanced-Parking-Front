@@ -32,7 +32,8 @@ function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number
 						<div
 							style={{
 								background: 'white',
-								padding: '1em'
+								padding: '1em',
+								color: 'black'
 							}}
 						>
 							Zoom: {zoom.toFixed(2)}

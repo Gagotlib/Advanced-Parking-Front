@@ -28,6 +28,7 @@ export interface IErrors {
 	address?: string
 }
 export interface IParking {
+	status?: string
 	id: string
 	lat: string
 	lng: string

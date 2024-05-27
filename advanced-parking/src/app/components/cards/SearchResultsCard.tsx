@@ -13,7 +13,7 @@ const SearchResultsCard = ({ cardProps }: { cardProps: IcardProps }) => {
 
 	return (
 		<Link href={`/ourparkings/${cardProps.id}`}>
-			<div className='border-2 rounded-3xl sm:h-52 flex flex-col shadow-x text-center p-2 items-center justify-around shadow-lg dark:shadow-ghostwhite gap-2 sm:gap-0'>
+			<div className='border-2 rounded-3xl sm:h-52 flex flex-col shadow-x text-center p-2 items-center justify-around shadow-lg dark:shadow-silver/30 gap-2 sm:gap-0'>
 				<p className='font-bold text-2xl'> {cardProps.name}</p>
 				<p>
 					Address: <span className='italic'>{cardProps.location}</span>
