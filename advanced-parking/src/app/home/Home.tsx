@@ -9,7 +9,7 @@ import Chatbot from '../components/chatBot/ChatBot'
 export const Home = () => {
 	useEffect(() => {
 		localStorage.removeItem('pathname')
-	},[])
+	}, [])
 
 	return (
 		<div className='flex flex-col min-h-screen pt-24'>
@@ -23,8 +23,6 @@ export const Home = () => {
 				<div className="position: fixed; bottom: 20px; right: 20px; z-index: 50;">
 					<Chatbot />
 				</div>
-
-
 			</div>
 		</div>
 	)
