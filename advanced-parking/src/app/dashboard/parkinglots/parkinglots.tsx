@@ -12,7 +12,7 @@ const Parkinglots = () => {
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		axios
-			.get(`${rute}/parking-lot`, {
+			.get(`${rute}/parking-lot/all`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}

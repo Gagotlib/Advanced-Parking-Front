@@ -59,3 +59,57 @@ export const showSweetAlertChangeInfo = async (onConfirm: any) => {
 		})
 	}
 }
+export const showSweetAlertDeleteAccountUser = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want to delete your account?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Account deleted',
+			icon: 'success'
+		})
+	}
+}
+export const showSweetAlertDeleteAccounAdmin = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want to delete this user account?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Account deleted',
+			icon: 'success'
+		})
+	}
+}
+export const showSweetAlertDeleteParking = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want to delete this Parking?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Parking deleted',
+			icon: 'success'
+		})
+	}
+}

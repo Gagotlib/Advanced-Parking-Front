@@ -3,6 +3,7 @@ import { IParking } from '@/types'
 import axios from 'axios'
 import React, { Suspense, useEffect, useState } from 'react'
 import clsx from 'clsx'
+import { showSweetAlertDeleteParking } from '@/app/components/alerts/SweetAlert'
 
 const ParkingDetails = ({ params }: { params: { id: string } }) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
@@ -92,17 +93,19 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 	}
 
 	const handleDeleteParking = () => {
-		const token = localStorage.getItem('authToken')
-		//* peticion al back que borre el parking
-		axios
-			.delete(`${rute}/parking-lot/${params.id}`, {
-				headers: {
-					Authorization: `Bearer: ${token}`
-				}
-			})
-			.then((response) => {
-				console.log(response)
-			})
+		showSweetAlertDeleteParking(() => {
+			const token = localStorage.getItem('authToken')
+			//* peticion al back que borre el parking
+			axios
+				.delete(`${rute}/parking-lot/${params.id}`, {
+					headers: {
+						Authorization: `Bearer: ${token}`
+					}
+				})
+				.then((response) => {
+					console.log(response)
+				})
+		})
 	}
 
 	return (
@@ -116,6 +119,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 							<h2>Address: {parking?.location}</h2>
 							<h2>Latitude: {parking?.lat}</h2>
 							<h2>Longitude: {parking?.lng}</h2>
+							<h2>Status: {parking?.status}</h2>
 							<button
 								type='button'
 								className=' py-2 px-2 w-20 h-10 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-blue-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
