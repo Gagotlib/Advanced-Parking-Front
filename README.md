@@ -91,7 +91,7 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
   </div>
 </div>
 
-## Meet the Brains
+## Conoce a los creadores
 
 1. [Gotlib, Gabriel](https://www.linkedin.com/in/gabriel-gotlib-5855197b/) – Frontend
 2. [Ibargüen Currea, Diego Sebastian](https://www.linkedin.com/in/sebastianibarguen/) - Frontend
