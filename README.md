@@ -100,7 +100,7 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 5. [Coledani Grillo, Jose Salvador](https://www.linkedin.com/in/jose-salvador-coledani-grillo-10b857278/) - Backend
 6. [Gutiérrez Tello, Mario Sebastián](https://www.linkedin.com/in/mario-gutierrez-tello/) - Backend
 
-# Modo de Uso
+# Modo de Uso App
 
 <p>Este proyecto esta creado con el fin de simular el proceso de reserva de establicimiento de parqueo, registrar, iniciar sesión y realizar las peticiones de crear un reserva, simulador de pago, edición de información de perfil y demás.</p>
 
@@ -110,3 +110,5 @@ Aprendimos y descrubimos algo nuevo en cada etapa del proceso. Disfrutamos mucho
 - Ubicarte en la ruta a la altura de la carpeta **/front** e instalar las dependencias usando _npm install_.
 - Configurar las variables de entorno, usa la guia del arhchivo _.env.example_ en la raiz de la carpeta **/front**.
 - Levanta el proyecto desde la ruta _/front_ usado **npm run dev**.
+- Referencia del repositorio del Backend. [Repositorio Backend](https://github.com/TjoseColedani/advanced-parking-back)
+- Para crear un usario **Admin** debes realizar la creación desde el backend. (sigue las intrucciones en el repositorio del backend)
