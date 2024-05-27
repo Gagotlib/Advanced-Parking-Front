@@ -1,11 +1,12 @@
 import React from 'react'
 import { subscriptionsMock } from '@/app/utils/subscriptionsMock'
-import { BackToSubscriptionsButton, HireButton } from '@/app/components/buttons/Buttons'
+import { BackToSubscriptionsButton, SoonButton } from '@/app/components/buttons/Buttons'
 import { CheckIcon } from '@/app/components/icons/icons'
 
 import Link from 'next/link'
 
 export const SubscriptionDetails = ({ params }: { params: { slug: string } }) => {
+
 	const subscription = subscriptionsMock.find((subscription) => subscription.name === params.slug)
 
 	return (
@@ -34,7 +35,8 @@ export const SubscriptionDetails = ({ params }: { params: { slug: string } }) =>
 
 				<p className='font-semibold text-2xl '>${subscription?.price} per Month</p>
 
-				<HireButton />
+				<p> Soon.</p>
+
 				<BackToSubscriptionsButton />
 			</div>
 		</div>

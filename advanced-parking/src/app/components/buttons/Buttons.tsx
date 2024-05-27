@@ -45,12 +45,12 @@ export const BackToOurParkingsButton = () => {
 	)
 }
 
-export const HireButton = () => {
+export const SoonButton = () => {
 	return (
 		<button
 			type='button'
-			className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none">
-			<Link href='#'>Hire</Link>
+			className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none  ">
+			Soon
 		</button>
 	)
 }
