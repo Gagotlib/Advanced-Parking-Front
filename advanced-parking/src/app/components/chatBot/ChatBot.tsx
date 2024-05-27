@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Chats from '../chatBot/Chats'
 import { analyzeNextSteps } from '../../utils/analizeNextStep'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,6 +24,9 @@ const Chatbot: React.FC = () => {
 	const [sendUserResponse, setSendUserResponse] = useState<string>('')
 	const [isExpanded, setIsExpanded] = useState<boolean>(false) // Estado para controlar si el chatbot está expandido o minimizado
 	const bodyRef = useRef<HTMLDivElement>(null)
+
+	
+
 	// Función para alternar entre expandir y minimizar el chatbot
 	const toggleCompression = () => {
 		setIsExpanded((prevState) => !prevState)
@@ -43,6 +46,15 @@ const Chatbot: React.FC = () => {
 		if (option) {
 			setNextStep(option)
 		}
+		setTimeout(
+			() => {
+				if (option === "Finish chat") {
+					toggleCompression();
+					setStep((prevState) => prevState = 0)
+				}
+			}
+			, 2000
+		)
 	}
 
 	// event handlers
@@ -69,6 +81,7 @@ const Chatbot: React.FC = () => {
 			</div>
 
 			{!isExpanded && <button onClick={toggleCompression}></button>}
+			
 
 			<div className={`${isExpanded ? '' : 'hidden'} flex-grow overflow-auto mt-4`} ref={bodyRef}>
 				<Chats userResponse={userResponse} botResponse={botResponse} sendUserResponse={sendUserResponse} optionClick={optionClick} />
