@@ -102,14 +102,14 @@ const Profile = () => {
 
 								<button
 									type='button'
-									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue  focus:ring-2 focus:ring-yaleblue/50'
 									onClick={handleChangeInfo}
 								>
 									Edit Profile
 								</button>
 								<button
 									type='button'
-									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-red-500 rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-red-500 rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue  focus:ring-2 focus:ring-yaleblue/50'
 									onClick={handleDeleteAccount}
 								>
 									Delect Account
