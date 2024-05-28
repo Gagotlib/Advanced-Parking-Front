@@ -127,7 +127,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			localStorage.removeItem("duration")
 			localStorage.removeItem("license_plate")
 			setFormData({
-				date:  getTodayDate(),
+				date: getTodayDate(),
 				time: '08:00',
 				parkingLotId: parking?.id,
 				user_id: user?.id,
@@ -215,7 +215,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						Pick your slot
 					</button>
 					<p className='text-md font-normal'>
-						Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span>
+						Nro: <span className='font-semibold underline decoration-yaleblue dark:decoration-silver'>{selectedSlot}</span>
 					</p>
 				</div>
 				<div>
@@ -224,7 +224,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						id='license_plate'
 						name='license_plate'
 						value={formData.license_plate}
-						className='block w-full p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite focus:ring-blue-500 focus:border-blue-500 text-center'
+						className='block w-full p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite text-center'
 						onChange={handleInputChange}
 						placeholder='AAA-000'
 						required
@@ -245,8 +245,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 				)}
 				{!user ? (
 					<div className='flex flex-col items-center'>
-						<p className='text-erieblack text-sm sm:text-lg m-2'>
-							You must be <span className='font-semibold'>logged</span> in to book
+						<p className='text-erieblack dark:text-ghostwhite text-sm sm:text-lg m-2'>
+							You must be <span className='font-semibold text-yaleblue dark:text-silver'>logged</span> in to book
 						</p>
 						<LoginButton />
 					</div>
@@ -260,9 +260,8 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						<div>
 							<button
 								type='submit'
-								className={`py-3 px-5 text-sm font-medium text-center text-white rounded-lg ${
-									isFormValid ? 'bg-yaleblue hover:bg-yaleblue/90' : 'bg-gray-400 cursor-not-allowed'
-								} sm:w-fit focus:ring-4 focus:outline-none`}
+								className={`py-3 px-5 text-sm font-medium text-center text-white rounded-lg ${isFormValid ? 'bg-yaleblue hover:bg-yaleblue/90' : 'bg-gray-400 cursor-not-allowed'
+									} sm:w-fit focus:ring-4 focus:outline-none`}
 								disabled={!isFormValid}
 							>
 								{isLoading ? <Spiner /> : 'Reserve'}

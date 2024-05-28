@@ -61,7 +61,7 @@ function Navprofile() {
 			<button
 				type='button'
 				onClick={toggleMenu}
-				className='flex text-sm bg-erieblack rounded-full md:me-0 focus:ring-4 focus:ring-silver ml-2'
+				className='flex text-sm bg-erieblack rounded-full md:me-0 focus:ring-4 focus:ring-silver focus-outline-none ml-2'
 				id='dropdownInformationButton'
 				aria-expanded={menuOpen ? 'true' : 'false'}
 				data-dropdown-toggle='dropdownInformation'

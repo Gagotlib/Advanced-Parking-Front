@@ -57,7 +57,7 @@ const Parkinglots = () => {
 			<h1 className='text-2xl sm:text-5xl font-bold'> Parking Lots Info</h1>
 			<div className='flex flex-col'>
 				<Suspense fallback={<LoadingParkings />}>
-					<div className='flex flex-row justify-between items-center'>
+					<div className='flex flex-row justify-between items-center pb-2'>
 						<h3 className='flex justify-start text-md sm:text-xl font-base'>
 							Total Parkings: <span className='font-bold'> {allParkinglots?.length}</span>
 						</h3>

@@ -48,15 +48,15 @@ function BookingDetail({ booking }: { booking: IBooking }) {
 				<h1 className='font-bold text-2xl sm:text-3xl my-4 text-center text-erieblack '>Reservation Successful</h1>
 				<hr className='mb-1' />
 				<div className='flex flex-col mb-2'>
-					<p className='flex justify-end text-lg sm:text-2xl font-bold'>Invoice </p>
-					<p className='text-sm'>Date: {dateToday} </p>
+					<p className='flex justify-end text-lg sm:text-2xl font-bold dark:text-erieblack/80'>Invoice </p>
+					<p className='text-sm dark:text-erieblack/80'>Date: {dateToday} </p>
 				</div>
 				<div className='flex justify-center'>
 					<QRGenerator />
 				</div>
 				<div className='mb-8'>
 					<h2 className='text-lg font-bold mb-4'>
-						Ticket To: <span className='text-erieblack/80 text-sm '>{booking.id}</span>
+						Ticket To: <span className='text-erieblack/80 text-sm dark:text-erieblack/80 '>{booking.id}</span>
 					</h2>
 					<p className='text-erieblack/80 text-sm'>Name: {user?.name}</p>
 					<p className='text-erieblack/80 text-sm'>Email: {user?.email} </p>

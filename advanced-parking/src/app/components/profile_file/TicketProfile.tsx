@@ -86,8 +86,8 @@ const TicketProfile = ({ params }: { params: { id: string } }) => {
 
 
                 <div className='mb-8'>
-                  <h2 className='text-md font-bold mb-4'>
-                    Ticket: <span className='text-erieblack/80 text-sm'>{appointmentDetails.id}</span>
+                  <h2 className='text-md font-bold mb-4 dark:text-erieblack/80'>
+                    Ticket: <span className='text-erieblack/80 text-sm '>{appointmentDetails.id}</span>
                   </h2>
                   <p className='text-erieblack/80 text-sm'>Parking: {appointmentDetails.parking_lot.name}</p>
                   <p className='text-erieblack/80 text-sm'>Check-in date: {appointmentDetails.date}</p>

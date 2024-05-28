@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { BackToHomeButton } from '../buttons/Buttons'
 import { useAuth } from '@/app/context/AuthContext'
 import axios from 'axios'
@@ -43,9 +43,9 @@ function Rating() {
 	}
 
 	return (
-		<div className='min-h-screen bg-ghostwhite dark:bg-gray-500 py-6 px-6 flex flex-col justify-center sm:py-12 pt-24'>
+		<div className='min-h-screen py-6 px-6 flex flex-col justify-center sm:py-12 pt-24'>
 			<div className='py-3 sm:max-w-xl sm:mx-auto'>
-				<div className='bg-ghostwhite dark:bg-gray-500  min-w-1xl flex flex-col rounded-xl shadow-xl shadow-silver/90  border border-silver'>
+				<div className='bg-ghostwhite dark:bg-silver/30  min-w-1xl flex flex-col rounded-xl shadow-lg shadow-silver/90  border border-silver'>
 					<div className='px-12 py-5'>
 						<h2 className='text-erieblack dark:text-ghostwhite text-3xl font-bold antialiased sm:text-4xl'>Your opinion matters to us!</h2>
 					</div>
