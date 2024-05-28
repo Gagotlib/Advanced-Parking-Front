@@ -1,7 +1,4 @@
-
-import Image from 'next/image'
 import React from 'react'
-import { IReview } from './Reviews'
 import Avatar from 'react-avatar'
 
 
@@ -21,7 +18,7 @@ const ReviewCard = ({ userName, userImage, message }: { userName: string, userIm
 						<div className='font-bold text-base text-erieblack dark:text-ghostwhite'>{userName}</div>
 					</div>
 					<div className='overflow-hidden rounded-full bg-silver'>
-						{/* {userImage ? <Image src={userImage} alt='User Photo' className='h-14 w-14 object-cover text-erieblack' width={80} height={80} priority /> : null} */}
+					
 						{userImage ? (<Avatar name={userName} size='40' round color='#063971' src={userImage} maxInitials={2} />
 						) : (
 							<Avatar size='40' round src='/profile-picture-blank.webp' />

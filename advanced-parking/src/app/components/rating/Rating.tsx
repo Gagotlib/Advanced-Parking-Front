@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React, { ChangeEventHandler, useState } from 'react'
+import React, {  useState } from 'react'
 import { BackToHomeButton } from '../buttons/Buttons'
 import { useAuth } from '@/app/context/AuthContext'
 import axios from 'axios'
