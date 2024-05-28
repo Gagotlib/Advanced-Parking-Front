@@ -113,3 +113,21 @@ export const showSweetAlertDeleteParking = async (onConfirm: any) => {
 		})
 	}
 }
+export const showSweetAlertChangePassword = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want to change your password?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Password changed',
+			icon: 'success'
+		})
+	}
+}
