@@ -46,7 +46,7 @@ const Recoverpassword = () => {
 	}
 
 	return (
-		<div className='h-screen bg-ghostwhite text-erieblack dark:text-ghostwhite dark:bg-gray-500 pt-4  '>
+		<div className='h-screen text-erieblack dark:text-ghostwhite pt-4'>
 			<div className='w-full h-full flex flex-col items-center pt-20'>
 				{showToast && <Toast message='A new password has been send to your email' type='success' />}
 				{errorToast && <Toast message='email not registered' type='error' />}

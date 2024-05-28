@@ -61,7 +61,7 @@ const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 					</thead>
 					<tbody>
 						{userAppointments?.map((appointment: IApointment) => (
-							<tr key={appointment.id} className='bg-ghostwhite dark:bg-gray-500'>
+							<tr key={appointment.id} className='bg-ghostwhite dark:bg-silver/50'>
 								<th scope='row' className='px-3 py-4 font-medium text-erieblack dark:text-ghostwhite border-collapse border border-erieblack'>
 									{appointment.parking_lot?.name}
 								</th>
@@ -71,7 +71,7 @@ const BookingsUser: React.FC<BookingsUserProps> = ({ userAppointments }) => {
 								<td className='px-1 py-1 border border-erieblack/90'>
 									<button
 										type='button'
-										className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+										className='py-2 px-2 text-base font-medium text-ghostwhite bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue'
 										onClick={() => handleClick(appointment.id)}
 									>
 										See Ticket
