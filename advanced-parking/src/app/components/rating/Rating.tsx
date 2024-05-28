@@ -31,7 +31,7 @@ function Rating() {
 			.catch((error) => console.log(error))
 	}
 	const handleMessage = (e: any) => {
-		console.log(e)
+		// console.log(e)
 		setMessage((prev) => (prev = e.target?.value))
 	}
 	const handleChange = (index: any) => {
@@ -43,15 +43,15 @@ function Rating() {
 	}
 
 	return (
-		<div className='min-h-screen bg-ghostwhite py-6 px-6 flex flex-col justify-center sm:py-12 pt-24'>
+		<div className='min-h-screen bg-ghostwhite dark:bg-gray-500 py-6 px-6 flex flex-col justify-center sm:py-12 pt-24'>
 			<div className='py-3 sm:max-w-xl sm:mx-auto'>
-				<div className='bg-ghostwhite min-w-1xl flex flex-col rounded-xl shadow-xl shadow-silver/90  border border-silver'>
+				<div className='bg-ghostwhite dark:bg-gray-500  min-w-1xl flex flex-col rounded-xl shadow-xl shadow-silver/90  border border-silver'>
 					<div className='px-12 py-5'>
-						<h2 className='text-erieblack text-3xl font-bold antialiased sm:text-4xl'>Your opinion matters to us!</h2>
+						<h2 className='text-erieblack dark:text-ghostwhite text-3xl font-bold antialiased sm:text-4xl'>Your opinion matters to us!</h2>
 					</div>
 					<div className='bg-silver/50 w-full flex flex-col items-center border border-yaleblue rounded-lg'>
 						<div className='flex flex-col items-center py-6 space-y-3'>
-							<span className='text-lg text-erieblack text-center'>What did you think of the booking process?</span>
+							<span className='text-lg text-erieblack dark:text-ghostwhite text-center'>What did you think of the booking process?</span>
 							<div className='rating'>
 								{[...Array(5)].map((_, index) => (
 									<input key={index} type='radio' name='rating' className='mask mask-star-2 bg-orange-400' checked={index === rating - 1} onClick={() => handleChange(index)} />
@@ -93,7 +93,7 @@ function Rating() {
 						</div>
 					</div>
 					<div className='h-20 flex items-center justify-center'>
-						<Link href='/home' className='text-erieblack text-sm sm:text-md'>
+						<Link href='/home' className='text-erieblack dark:text-ghostwhite text-sm sm:text-md'>
 							Maybe later
 						</Link>
 					</div>
