@@ -1,42 +1,45 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { ChangeEventHandler, useState } from 'react'
 import { BackToHomeButton } from '../buttons/Buttons'
+import { useAuth } from '@/app/context/AuthContext'
 import axios from 'axios'
 
 function Rating() {
-	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-	const userString = localStorage.getItem('user')
-	const logedUser = userString ? JSON.parse(userString) : null
 	const [openModal, setOpenModal] = useState(false)
-	const [rating, setRating] = useState(0)
-	const [formData, setFormData] = useState({
-		user_id: logedUser.id,
-		message: '',
-		rating: rating
-	})
+	const [rating, setRating] = useState(5)
+	const [message, setMessage] = useState('')
+	const { user } = useAuth()
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 
 	//Peticion Post al backend para guardar el mensaje del usuario
-
-	const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		const { name, value } = e.target
-		setFormData((formData) => ({
-			...formData,
-			[name]: value
-		}))
+	const handleRateClick = () => {
+		const data = {
+			user_id: user?.id,
+			message: message,
+			rating: rating
+		}
+		axios
+			.post(`${rute}/reviews`, data)
+			.then((response) => {
+				console.log(response)
+				setMessage('')
+				setRating(0)
+				handleOpenModal()
+			})
+			.catch((error) => console.log(error))
 	}
-
-	const handleChangeRating = (index: any) => {
+	const handleMessage = (e: any) => {
+		console.log(e)
+		setMessage((prev) => (prev = e.target?.value))
+	}
+	const handleChange = (index: any) => {
 		setRating(index + 1)
 	}
 
 	const handleOpenModal = () => {
 		setOpenModal(!openModal)
-		axios
-			.post(`${rute}/`, formData)
-			.then((response) => console.log(response))
-			.catch((error) => console.error())
 	}
 
 	return (
@@ -51,19 +54,19 @@ function Rating() {
 							<span className='text-lg text-erieblack text-center'>What did you think of the booking process?</span>
 							<div className='rating'>
 								{[...Array(5)].map((_, index) => (
-									<input key={index} type='radio' name='rating' className='mask mask-star-2 bg-orange-400' checked={index === rating - 1} onClick={() => handleChangeRating(index)} />
+									<input key={index} type='radio' name='rating' className='mask mask-star-2 bg-orange-400' checked={index === rating - 1} onClick={() => handleChange(index)} />
 								))}
 							</div>
 						</div>
 						<div className='w-3/4 flex flex-col'>
 							<textarea
-								value={formData.message}
 								name='message'
-								className='p-4 text-erieblack rounded-xl resize-none'
+								className='p-4 text-erieblack rounded-xl resize-none dark:text-slate-200'
+								onChange={(e) => handleMessage(e)}
+								value={message}
 								placeholder='Leave a message, if you want'
-								onChange={handleChangeTextArea}
 							></textarea>
-							<button className='py-3 my-8 text-lg bg-yaleblue rounded-xl text-ghostwhite font-semibold' onClick={handleOpenModal}>
+							<button className='py-3 my-8 text-lg bg-yaleblue rounded-xl text-ghostwhite font-semibold' onClick={handleRateClick}>
 								Rate
 							</button>
 							{openModal && (
