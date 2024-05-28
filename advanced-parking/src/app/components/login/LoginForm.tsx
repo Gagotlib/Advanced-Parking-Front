@@ -10,7 +10,6 @@ import { GoogleButton } from '../buttons/GoogleButton'
 import Spiner from '../spiner/Spiner'
 
 export const LoginForm = () => {
-
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const router = useRouter()
 	const [errorToast, setErrorToast] = useState(false)
@@ -119,15 +118,6 @@ export const LoginForm = () => {
 								required
 							/>
 						</div>
-						{/* <div className='flex items-start mb-5'>
-						<div className='flex items-center h-5'>
-							<label htmlFor='remember'></label>
-							<input id='remember' type='checkbox' value='' className='w-4 h-4 border border-silver rounded bg-silver focus:ring-3 focus:ring-yaleblue' required />
-						</div>
-						<label id='remember' className='ms-2 text-sm font-normal text-ghostwhite'>
-							Remember me
-						</label>
-					</div> */}
 						<button
 							type='submit'
 							className='text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
@@ -137,7 +127,7 @@ export const LoginForm = () => {
 					</form>
 				</div>
 				<div className='text-center p-2'>
-					<Link className='inline-block text-sm text-erieblack dark:text-ghostwhite align-baseline hover:text-yaleblue/80 pt-4' href='#'>
+					<Link className='inline-block text-sm text-erieblack dark:text-ghostwhite align-baseline hover:text-yaleblue/80 pt-4' href='/recoverpassword'>
 						Forgot Password?
 					</Link>
 				</div>
