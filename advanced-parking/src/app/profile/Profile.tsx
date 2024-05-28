@@ -10,6 +10,7 @@ import { showSweetAlertDeleteAccountUser } from '../components/alerts/SweetAlert
 import { useRouter } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
+import PasswordEdit from '../components/profile_file/PasswordEdit'
 
 interface IApointment {
 	date: string
@@ -64,10 +65,6 @@ const Profile = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [observer])
 
-	const handleChangeInfo = () => {
-		setShowChangeInfo(!showChangeInfo)
-	}
-
 	const handleDeleteAccount = () => {
 		showSweetAlertDeleteAccountUser(async () => {
 			const rute = process.env.NEXT_PUBLIC_BACK_API_URL
@@ -90,6 +87,20 @@ const Profile = () => {
 		})
 	}
 
+	const handleChangeInfo = () => {
+		setShowChangeInfo(!showChangeInfo)
+		if (showChangePassword) {
+			setShowChangePassword(false)
+		}
+	}
+	const [showChangePassword, setShowChangePassword] = useState(false)
+	const handleShowChangePassword = () => {
+		setShowChangePassword(!showChangePassword)
+		if (showChangeInfo) {
+			setShowChangeInfo(false)
+		}
+	}
+
 	return (
 		<div className=''>
 			<main className='h-3/4 w-full flex flex-col pt-24 gap-4'>
@@ -109,13 +120,20 @@ const Profile = () => {
 								</button>
 								<button
 									type='button'
+									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue  focus:ring-2 focus:ring-yaleblue/50'
+									onClick={handleShowChangePassword}
+								>
+									Change Password
+								</button>
+								<button
+									type='button'
 									className='py-2 px-2 text-base font-medium text-ghostwhite focus:outline-none bg-red-500 rounded-lg border border-silver hover:bg-ghostwhite hover:text-yaleblue  focus:ring-2 focus:ring-yaleblue/50'
 									onClick={handleDeleteAccount}
 								>
 									Delect Account
 								</button>
 							</div>
-							<div className='items-center mt-8 sm:mt-14 text-erieblack dark:text-ghostwhite'>
+							<div className='items-center mt-8 sm:mt-14 text-erieblack dark:text-ghostwhite md:pr-20'>
 								<div className='mb-2 sm:mb-6'>
 									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Your email
@@ -137,6 +155,9 @@ const Profile = () => {
 							</div>
 						</div>
 						<div className='block pt-5'>{showChangeInfo && <ProfileEdit observer={observer} setObserver={setObserver} showChangeInfo={showChangeInfo} setShowChangeInfo={setShowChangeInfo} />}</div>
+						<div className='block pt-5'>
+							{showChangePassword && <PasswordEdit observer={observer} setObserver={setObserver} showChangePassword={showChangePassword} setShowChangePassword={setShowChangePassword} />}
+						</div>
 					</div>
 					<BookingsUser userAppointments={userAppointments} />
 				</div>

@@ -67,15 +67,8 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 			console.error('No logged user found')
 			return
 		}
-		// console.log('token', token)
-		// if (!token) {
-		//   console.error('No auth token found')
-		//   return
-		// }
-
 		try {
 			// console.log(newUserData)
-
 			const token = localStorage.getItem('authToken')
 			const response = await axios.put(`${rute}/user/${logedUser.id}`, newUserData, {
 				headers: {
@@ -91,6 +84,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 			setPhone('')
 			setPassword('')
 			setConfirmPassword('')
+			setShowChangeInfo(!showChangeInfo)
 		} catch (error) {
 			console.error('Error uploading file:', error)
 		}
@@ -126,39 +120,16 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 						{errors.phone && <p className='text-red-500'>{errors.phone}</p>}
 					</div>
 				</div>
-				<div className='flex flex-col gap-8 pt-9 sm:pt-0 lg:pl-4'>
-					<div className='flex flex-col'>
-						<label htmlFor='password' className='text-md font-semibold'>
-							Password:
-						</label>
-						<input id='password' name='password' type='password' className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl' placeholder='Change your password' value={password} onChange={handleChange} />
-						{errors.password && <p className='text-red-500'>{errors.password}</p>}
-					</div>
-					<div className='flex flex-col'>
-						<label htmlFor='confirmPassword' className='text-md font-semibold'>
-							Confirm Password:
-						</label>
-						<input
-							id='confirmPassword'
-							name='confirmPassword'
-							type='password'
-							className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl'
-							placeholder='Confirm your new password'
-							value={confirmPassword}
-							onChange={handleChange}
-						/>
-						{errors.confirmPassword && <p className='text-red-500'>{errors.confirmPassword}</p>}
-					</div>
-				</div>
+
 				<div className='flex justify-center items-center pt-8'></div>
 				<div className='flex  md:flex-col justify-around pt-5 lg:pl-4'>
-					<button type='submit' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32'>
+					<button type='submit' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32 hover:bg-yaleblue'>
 						Save
 					</button>
-					<button onClick={handleDiscard} type='button' className='bg-red-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32'>
+					<button onClick={handleDiscard} type='button' className='bg-red-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32 hover:bg-red-700'>
 						Discard
 					</button>
-					<button onClick={handleCancel} type='button' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32'>
+					<button onClick={handleCancel} type='button' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32 hover:bg-yaleblue'>
 						Cancel
 					</button>
 				</div>
