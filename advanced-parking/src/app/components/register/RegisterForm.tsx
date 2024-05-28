@@ -17,9 +17,8 @@ export const RegisterForm = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 
 	useEffect(() => {
-		if (showToast || errorToast) {
+		if (errorToast) {
 			const timeout = setTimeout(() => {
-				setShowToast(false)
 				setErrorToast(false)
 				setErrorMessage('')
 			}, 3000)

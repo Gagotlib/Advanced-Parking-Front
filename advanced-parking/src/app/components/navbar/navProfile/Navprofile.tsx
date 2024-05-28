@@ -18,14 +18,10 @@ function Navprofile() {
 
 	const { data: session } = useSession()
 
-	
 	useEffect(() => {
-		// session ? console.log('sesion guardada por google, consologeado desde navprofile', session?.user) : console.log('no hay sesion')
-
 		if (session) {
 			const newUser = session?.user
 			// console.log(user)
-
 			axios
 				.post(`${rute}/auth/signup-auth0`, newUser)
 				.then((response) => response.data)
@@ -39,35 +35,27 @@ function Navprofile() {
 		} else {
 			// console.log('NO HAY sesion')
 			const userstring = localStorage.getItem('user')
-
 			const user = userstring && JSON.parse(userstring)
 			const token = localStorage.getItem('authToken')
+			// console.log(user)
 			setUser(user)
 			setToken(token)
-
-			// console.log('AHORA SI HAY sesion, user del localstorage:', user)
-			// setShowToast(true))
 		}
-		// console.log('renderizado de navbar', user)
-		// console.log('renderizado', token)
 	}, [session])
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen)
 	}
 	const handleLogOut = async () => {
-		// console.log('TE DESLOGEASTE')
-		// que borre todos los datos del user
 		router.push('/home')
-
 		localStorage.removeItem('authToken')
 		localStorage.removeItem('user')
 		setToken(null)
 		setUser(null)
 		signOut()
 	}
+	// console.log(user)
 
-	
 	return (
 		<div className='flex items-center md:order-2 relative'>
 			<button
@@ -106,13 +94,11 @@ function Navprofile() {
 							</li>
 						)}
 						{user.role === 'user' && (
-							<>
-								<li>
-									<Link href='/profile' onClick={toggleMenu} className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
-										My Profile
-									</Link>
-								</li>
-							</>
+							<li>
+								<Link href='/profile' onClick={toggleMenu} className='block px-4 py-2 text-sm text-erieblack hover:bg-silver'>
+									My Profile
+								</Link>
+							</li>
 						)}
 
 						<li>
