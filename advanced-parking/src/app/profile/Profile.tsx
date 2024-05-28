@@ -44,9 +44,9 @@ const Profile = () => {
 	useEffect(() => {
 		const userString = localStorage.getItem('user')
 		const logedUser = userString ? JSON.parse(userString) : null
-		console.log('logedUser: ', logedUser)
+		// console.log('logedUser: ', logedUser)
 		const token = localStorage.getItem('authToken')
-		console.log('token: ', token)
+		// console.log('token: ', token)
 
 		//! hacer peticion al back por id del usuario para tener las reservas
 		const userId = logedUser.id
@@ -78,7 +78,7 @@ const Profile = () => {
 					}
 				})
 				.then((response) => {
-					console.log(response)
+					// console.log(response)
 					router.push('/home')
 
 					localStorage.removeItem('authToken')

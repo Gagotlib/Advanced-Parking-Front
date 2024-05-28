@@ -60,7 +60,7 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 
 	const handleDeleteAppointment = () => {
 		const token = localStorage.getItem('authToken')
-		console.log('Boorando appointment')
+		// console.log('Boorando appointment')
 
 		showSweetAlertAppointment(() => {
 			axios
@@ -70,13 +70,13 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 					}
 				})
 				.then(({ data }) => {
-					console.log(data)
+					// console.log(data)
 					// setObserver((observer) => observer + 1)
 					router.push('/dashboard/appointments')
 				})
 		})
 	}
-	console.log(appointmentDetails)
+	// console.log(appointmentDetails)
 
 	return (
 		<Suspense fallback={<h1></h1>}>

@@ -23,7 +23,7 @@ function Rating() {
 		axios
 			.post(`${rute}/reviews`, data)
 			.then((response) => {
-				console.log(response)
+				// console.log(response)
 				setMessage('')
 				setRating(0)
 				handleOpenModal()

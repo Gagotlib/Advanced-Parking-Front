@@ -146,18 +146,18 @@ export const Appointments = () => {
 			...prevFormData,
 			slot_number: selectedSlot
 		}))
-		console.log(formData)
+		// console.log(formData)
 	}
 
 	const handleCreateNewAppointment = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		setIsLoading(true)
-		console.log(formData)
+		// console.log(formData)
 
 		try {
 			const response = await axios.post(`${rute}/appointments`, formData)
-			console.log(response)
+			// console.log(response)
 			setIsLoading(false)
 			setShowToast(true)
 			setObserver((observer) => observer + 1)

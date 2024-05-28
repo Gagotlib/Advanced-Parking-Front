@@ -33,7 +33,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		console.log('enviando')
+		// console.log('enviando')
 		const newUserData: any = {}
 
 		if (name.trim() !== '') newUserData.name = name
@@ -56,7 +56,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 				return handleSubmitConfirmed(newUserData)
 			})
 		} else {
-			console.log('hay errores')
+			// console.log('hay errores')
 		}
 	}
 
@@ -74,7 +74,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 		// }
 
 		try {
-			console.log(newUserData)
+			// console.log(newUserData)
 
 			const token = localStorage.getItem('authToken')
 			const response = await axios.put(`${rute}/user/${logedUser.id}`, newUserData, {
@@ -85,7 +85,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 			// const updatedUser = { ...logedUser, image: response.data.image }
 			setUser(response.data)
 			localStorage.setItem('user', JSON.stringify(response.data))
-			console.log('data update :', response.data)
+			// console.log('data update :', response.data)
 			setObserver((observer: any) => observer + 1)
 			setName('')
 			setPhone('')

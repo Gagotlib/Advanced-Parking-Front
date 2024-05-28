@@ -36,7 +36,7 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 					}
 				})
 				.then((response) => {
-					console.log(response)
+					// console.log(response)
 					router.push('/dashboard/users')
 				})
 		})
@@ -58,7 +58,7 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 
 	const handleSendChanges = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		console.log('fomrdata:', formData)
+		// console.log('fomrdata:', formData)
 
 		const registerPayload = formData.phone
 			? {
@@ -76,7 +76,7 @@ const UserDetails = ({ params }: { params: { id: string } }) => {
 				}
 			})
 			.then((response) => {
-				console.log(response)
+				// console.log(response)
 				setObserver((observer) => observer + 1)
 				setFormData({})
 				setIsEditInput(false)

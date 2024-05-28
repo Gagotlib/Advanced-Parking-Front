@@ -70,8 +70,8 @@ const Page = () => {
 	}
 	const handleSendChanges = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		console.log('adding new User')
-		console.log(formData)
+		// console.log('adding new User')
+		// console.log(formData)
 
 		const validationErrors = validateRegister(formData)
 		setErrors(validationErrors)
@@ -85,7 +85,7 @@ const Page = () => {
 				.post(`${rute}/auth/signup`, registerPayload)
 				.then(({ data }) => {
 					setShowToast(true)
-					console.log(data)
+					// console.log(data)
 					setObserver((observer) => observer + 1)
 					const bodyemail = {
 						name: formData.name,
@@ -158,7 +158,7 @@ const Page = () => {
 								type='button'
 								className='py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-red-700 rounded-lg border border-silver hover:bg-red-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
 								onClick={() => {
-									console.log('reset')
+									// console.log('reset')
 
 									setFormData({
 										name: '',

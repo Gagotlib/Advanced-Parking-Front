@@ -21,7 +21,7 @@ function Reviews() {
 
 	useEffect(() => {
 		axios.get(`${rute}/reviews`).then(({ data }) => {
-			console.log(data)
+			// console.log(data)
 			setReviews(data)
 		})
 	}, [])

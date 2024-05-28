@@ -98,27 +98,27 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 			return
 		}
 		//! control
-		console.log('Esto es todo el formData', formData)
-		console.log(typeof formData.date)
+		// console.log('Esto es todo el formData', formData)
+		// console.log(typeof formData.date)
 
 		try {
 			//! enviar info al backend
 			//!creamos el appointment
 			const responseAppointment = await axios.post(`${rute}/appointments`, formData)
 			const appointment_id = responseAppointment.data.id
-			console.log('la id del appointment creado', appointment_id)
+			// console.log('la id del appointment creado', appointment_id)
 
 			//!enviamos al pago
 			const bodyreq = { type_of_service: 'One time payment', unit_amount: formData.total, appointment_id: appointment_id }
 			const token = process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY
-			console.log('el token de stripe', token)
+			// console.log('el token de stripe', token)
 
 			const response = await axios.post(`${rute}/payment/create-checkout-session`, bodyreq, {
 				headers: {
 					'stripe-signature': token
 				}
 			})
-			console.log('la respuesta del pago:', response.data.url)
+			// console.log('la respuesta del pago:', response.data.url)
 			const url = response.data.url //! url que devuelve la creacion de la solicitud
 			setIsLoading(false)
 			setShowToast(true)

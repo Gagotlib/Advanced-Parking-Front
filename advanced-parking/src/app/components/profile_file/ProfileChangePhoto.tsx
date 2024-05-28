@@ -50,7 +50,7 @@ function ProfileChangePhoto() {
 			// const updatedUser = { ...logedUser, image: response.data.image }
 			setUser(response.data)
 			localStorage.setItem('user', JSON.stringify(response.data))
-			console.log('imagen update :', response.data)
+			// console.log('imagen update :', response.data)
 		} catch (error) {
 			console.error('Error uploading file:', error)
 		}

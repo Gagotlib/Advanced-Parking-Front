@@ -49,12 +49,12 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 				}
 			)
 			.then((response) => {
-				console.log(response)
+				// console.log(response)
 
 				setObserver((observer) => observer + 1)
 			})
 			.catch((error) => {
-				console.log(error)
+				// console.log(error)
 			})
 	}
 	const parkingSlots = parking?.slot.sort((a, b) => a.slot_number - b.slot_number)
@@ -74,7 +74,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 
 	const handleSendChanges = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		console.log('fomrdata:', formData)
+		// console.log('fomrdata:', formData)
 
 		//* solicitud al back con el formulario de los cambios
 		const token = localStorage.getItem('authToken')
@@ -85,7 +85,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 				}
 			})
 			.then((response) => {
-				console.log(response)
+				// console.log(response)
 				setObserver((observer) => observer + 1)
 				setFormData({})
 				setIsEditInput(false)
@@ -103,7 +103,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 					}
 				})
 				.then((response) => {
-					console.log(response)
+					// console.log(response)
 				})
 		})
 	}
