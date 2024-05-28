@@ -6,10 +6,10 @@ import { useAuth } from '../context/AuthContext'
 import React, { useEffect, useState } from 'react'
 import BookingsUser from '../components/bookings/BookingsUser'
 import ProfileEdit from '../components/profile_file/ProfileEdit'
-import DeleteAccount from '../components/profile_file/DeleteAccount'
 import { showSweetAlertDeleteAccountUser } from '../components/alerts/SweetAlert'
 import { useRouter } from 'next/navigation'
 import { signOut } from 'next-auth/react'
+import Link from 'next/link'
 
 interface IApointment {
 	date: string
@@ -132,13 +132,22 @@ const Profile = () => {
 									<label htmlFor='email' className='block mb-2 text-sm font-bold text-yaleblue dark:text-ghostwhite'>
 										Subscription
 									</label>
-									Platinum || Gold || Standard
+									Soon you will be able to enjoy our subscriptions plans and additional benefits
 								</div>
 							</div>
 						</div>
 						<div className='block pt-5'>{showChangeInfo && <ProfileEdit observer={observer} setObserver={setObserver} showChangeInfo={showChangeInfo} setShowChangeInfo={setShowChangeInfo} />}</div>
 					</div>
 					<BookingsUser userAppointments={userAppointments} />
+				</div>
+				<div className='pb-4 text-sm pl-4 sm:text-lg'>
+					<p className='text-erieblack dark:text-ghostwhite'>
+						We would like to know your opinion about our service. Please visit this
+						<Link href='/rating'>
+							<span className='text-erieblack dark:text-ghostwhite underline hover:decoration-yaleblue focus:underline focus:decoration-yaleblue'> link </span>
+						</Link>
+						and tell us.
+					</p>
 				</div>
 			</main>
 		</div>
