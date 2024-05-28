@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { BackToHomeButton, BackToOurParkingsButton, BackToSubscriptionsButton, HireButton } from '../components/buttons/Buttons'
+import { BackToHomeButton, BackToOurParkingsButton, BackToSubscriptionsButton } from '../components/buttons/Buttons'
 import { availableHours, getMaxDate, getTodayDate } from '../utils/dateHelpers'
 import { ParkingsMocks } from '../utils/parkingsMock'
 import { useRouter } from 'next/navigation'
@@ -85,7 +85,6 @@ export const Reservations = () => {
 				userId: user.id
 			})
 			setShowToast(true)
-
 		} catch (error) {
 			console.log(error)
 			setErrorToast(true)
