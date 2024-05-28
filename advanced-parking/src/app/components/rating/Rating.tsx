@@ -1,16 +1,37 @@
 "use client"
 
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { ChangeEventHandler, useState } from 'react'
 import { BackToHomeButton } from '../buttons/Buttons';
+import { useAuth } from '@/app/context/AuthContext';
+import axios from 'axios';
 
 function Rating() {
 
   const [openModal, setOpenModal] = useState(false)
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(5);
+  const [message, setMessage] = useState('');
+  const { user } = useAuth()
+  const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 
   //Peticion Post al backend para guardar el mensaje del usuario
-
+  const handleRateClick = () => {
+    const data = {
+      user_id: user?.id,
+      message: message,
+      rating: rating,
+    }
+    axios.post(`${rute}/reviews`, data).then(response => {
+      console.log(response)
+      setMessage('')
+      setRating(0)
+      handleOpenModal()
+    }).catch(error => console.log(error))
+  }
+  const handleMessage = (e: any) => {
+    console.log(e)
+    setMessage(prev => prev = e.target?.value)
+  }
   const handleChange = (index: any) => {
     setRating(index + 1)
   };
@@ -45,11 +66,13 @@ function Rating() {
             <div className="w-3/4 flex flex-col">
               <textarea
                 name='message'
-                className="p-4 text-erieblack rounded-xl resize-none"
+                className="p-4 text-erieblack rounded-xl resize-none dark:text-slate-200"
+                onChange={(e) => handleMessage(e)}
+                value={message}
                 placeholder='Leave a message, if you want'
               >
               </textarea>
-              <button className="py-3 my-8 text-lg bg-yaleblue rounded-xl text-ghostwhite font-semibold" onClick={handleOpenModal}>Rate</button>
+              <button className="py-3 my-8 text-lg bg-yaleblue rounded-xl text-ghostwhite font-semibold" onClick={handleRateClick}>Rate</button>
               {openModal && (
                 <dialog open className="modal modal-bottom sm:modal-middle">
                   <div className="modal-box">

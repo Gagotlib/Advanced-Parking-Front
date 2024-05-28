@@ -1,36 +1,30 @@
-import Image from 'next/image'
-import React, { useState } from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import ReviewCard from './ReviewCard'
+import axios from 'axios'
 
-// interface IReview {
-// 	user{
-// 	(todas las propiedades del usuario)
-// 	}
-// 	reviewMessage string (esto seria el mensaje que escribe el usuario)
-//	reviewRating(ESto seria la calificacion Esterellas)
-// }
+export interface IReview {
+	id: string;
+	message: string;
+	rating: number;
+	user: {
+		id: string;
+		name: string;
+		email: string;
+		image: string;
+	};
+}
 
 function Reviews() {
-	const reviews = [
-		// Llamada al backend para traerme todas las reviews
+	const [reviews, setReviews] = useState<IReview[] | []>([])
+	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 
-
-		{
-			name: 'Juan Duarte',
-			review: 'I used to spend hours looking for a parking spot, especially downtown. This app has made it so much easier. I can find a parking spot quickly and easily, even on the busiest days.',
-			img_href: '/user1.webp'
-		},
-		{
-			name: 'Laura Gimenez',
-			review: 'This app guides me through the process step-by-step and helps me do it without any problems. It´s super intuitive and easy to use, even for someone like me who isn´t very tech-savvy. Plus, the parking spot finder feature is super helpful. It´s helped me find a place to park quickly, even during rush hour.',
-			img_href: '/user2.webp'
-		},
-		{
-			name: 'Roberto Sanchez',
-			review: 'If you´re looking for a parking reversal app that is easy to use, effective, and reliable, this is the perfect app for you.',
-			img_href: '/user3.webp'
-		}
-	]
+	useEffect(() => {
+		axios.get(`${rute}/reviews`).then(({ data }) => {
+			console.log(data)
+			setReviews(data)
+		})
+	}, [])
 
 	return (
 		<div className='pt-2 w-full max-w-screen'>
@@ -40,9 +34,10 @@ function Reviews() {
 						<h2 className='text-2xl font-bold tracking-tight text-erieblack dark:text-ghostwhite sm:text-5xl'>What our users say</h2>
 					</div>
 					<ul role='list' className='mt-10 px-4 pb-10 grid gap-6 md:grid md:gap-8 md:mt-10 md:max-w-none md:grid-cols-2 lg:grid-cols-3 '>
-						{reviews.map((review, index) => (
-							<ReviewCard key={index} review={review} />
-						))}
+						{
+							reviews.length > 0 ? reviews.map((review) => (
+								<ReviewCard key={review.id} userName={review.user.name} userImage={review.user.image} message={review.message} />
+							)) : null}
 					</ul>
 				</div>
 			</section>
