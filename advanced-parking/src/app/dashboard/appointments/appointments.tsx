@@ -188,7 +188,7 @@ export const Appointments = () => {
 				<Suspense fallback={<p>Loading...</p>}>
 					<button
 						type='button'
-						className='py-2 mb-4 px-2 w-fit text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2'
+						className='py-2 mb-4 px-2 w-fit text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite  focus:ring-2'
 						onClick={showNewAppForm}
 					>
 						Create new appointment
