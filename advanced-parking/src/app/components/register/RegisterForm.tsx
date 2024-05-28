@@ -106,13 +106,13 @@ export const RegisterForm = () => {
 	}
 
 	return (
-		<div className='h-screen bg-ghostwhite dark:bg-gray-500'>
+		<div className='h-screen'>
 			<div className='w-full h-full flex flex-col items-center pt-24'>
 				{showToast && <Toast message='Registered correctly' type='success' />}
 				{errorToast && <Toast message={errorMessage} type='error' />}
 				<div className='w-full lg:w-7/12 p-5 rounded-lg lg:rounded-l-none'>
 					<h3 className='py-2 text-2xl text-center font-extrabold text-erieblack dark:text-ghostwhite sm:text-5xl'>Create an Account!</h3>
-					<div className='border-silver rounded-lg p-4 m-2 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40'>
+					<div className='border-silver rounded-lg p-4 m-2 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-silver/50'>
 						<form className='px-8 pb-8 mb-4 rounded sm:pt-6' onSubmit={handleSubmit}>
 							<div className='mb-4 sm:flex sm:justify-between'>
 								<div className='mb-4 md:mr-2 md:mb-0'>

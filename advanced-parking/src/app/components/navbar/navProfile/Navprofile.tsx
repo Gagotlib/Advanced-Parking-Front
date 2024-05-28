@@ -18,7 +18,7 @@ function Navprofile() {
 
 	const { data: session } = useSession()
 
-	
+
 	useEffect(() => {
 		// session ? console.log('sesion guardada por google, consologeado desde navprofile', session?.user) : console.log('no hay sesion')
 
@@ -67,13 +67,13 @@ function Navprofile() {
 		signOut()
 	}
 
-	
+
 	return (
 		<div className='flex items-center md:order-2 relative'>
 			<button
 				type='button'
 				onClick={toggleMenu}
-				className='flex text-sm bg-erieblack rounded-full md:me-0 focus:ring-4 focus:ring-silver ml-2'
+				className='flex text-sm bg-erieblack rounded-full md:me-0 focus:ring-4 focus:ring-silver focus-outline-none ml-2'
 				id='dropdownInformationButton'
 				aria-expanded={menuOpen ? 'true' : 'false'}
 				data-dropdown-toggle='dropdownInformation'

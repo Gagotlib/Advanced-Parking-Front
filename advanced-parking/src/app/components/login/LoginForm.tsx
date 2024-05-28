@@ -80,15 +80,15 @@ export const LoginForm = () => {
 	}
 
 	return (
-		<div className='h-screen bg-ghostwhite text-erieblack dark:text-ghostwhite dark:bg-gray-500 pt-4  '>
-			<div className='w-full h-full flex flex-col items-center pt-20'>
+		<div className='h-screen  text-erieblack dark:text-ghostwhite pt-4'>
+			<div className='w-full flex flex-col items-center pt-20 sm:pt-16'>
 				{showToast && <Toast message='Login successful' type='success' />}
 				{errorToast && <Toast message='Username or password are incorrect' type='error' />}
-				<h1 className='text-3xl sm:text-6xl uppercase font-extrabold mb-6'>Login</h1>
-				<p className='text-erieblack dark:text-ghostwhite mb-6 text-sm sm:text-3xl'>Welcome! So good to have you back!</p>
-				<div className='border-silver rounded-lg p-4 m-4 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-ghostwhite'>
+				<h1 className='text-4xl sm:text-6xl uppercase font-extrabold mb-4'>Login</h1>
+				<p className='text-erieblack dark:text-ghostwhite mb-1 text-sm sm:text-3xl'>Welcome! So good to have you back!</p>
+				<div className='border-silver rounded-lg p-4 m-4 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-silver/50'>
 					<form className='max-w-sm mx-auto' onSubmit={handleSubmit}>
-						<div className='mb-5'>
+						<div className='mb-6'>
 							<label htmlFor='email' id='email' className='block mb-2 text-sm font-normal text-erieblack dark:text-ghostwhite'>
 								Your email
 							</label>
@@ -103,7 +103,7 @@ export const LoginForm = () => {
 								required
 							/>
 						</div>
-						<div className='mb-5'>
+						<div className='mb-3'>
 							<label htmlFor='password' id='password' className='block mb-2 text-sm font-medium text-erieblack dark:text-ghostwhite'>
 								Your password
 							</label>
@@ -118,12 +118,15 @@ export const LoginForm = () => {
 								required
 							/>
 						</div>
-						<button
-							type='submit'
-							className='text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
-						>
-							{isloging ? <Spiner /> : 'Login'}
-						</button>
+						<div className='flex justify-center items-center'>
+							<button
+								type='submit'
+								className='text-ghostwhite bg-yaleblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-silver font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center '
+							>
+								{isloging ? <Spiner /> : 'Login'}
+							</button>
+
+						</div>
 					</form>
 				</div>
 				<div className='text-center p-2'>
@@ -133,7 +136,7 @@ export const LoginForm = () => {
 				</div>
 				<div className='flex gap-2 pt-4'>
 					<p className='text-sm sm:text-lg'>Don´t have an account?</p>
-					<Link className='text-erieblack text-sm font-bold underline hover:text-yaleblue/80 decoration-yaleblue hover:decoration-duck-yellow sm:text-lg' href='/register'>
+					<Link className='text-erieblack text-sm font-bold underline hover:text-yaleblue/80 decoration-yaleblue hover:decoration-duck-yellow sm:text-lg dark:text-ghostwhite' href='/register'>
 						Register here
 					</Link>
 				</div>
