@@ -1,7 +1,9 @@
 'use client'
 import { showSweetAlert, showSweetAlertAppointment } from '@/app/components/alerts/SweetAlert'
+import Toast from '@/app/components/alerts/Toast'
 import BookingDetail, { IBooking } from '@/app/success/[id]/BookingDetail'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 
 interface IAppointment {
@@ -40,6 +42,7 @@ interface IAppointment {
 }
 
 const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
+	const router = useRouter()
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [appointmentDetails, setAppointmentDetails] = useState<IAppointment | null>(null)
 	const [observer, setObserver] = useState(0)
@@ -58,25 +61,27 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 	const handleDeleteAppointment = () => {
 		const token = localStorage.getItem('authToken')
 		console.log('Boorando appointment')
-		//*alerta para solicitar confirmacion
+
 		showSweetAlertAppointment(() => {
-			//* funcion que me elimine el appointment
 			axios
 				.delete(`${rute}/appointments/${params.id}`, {
 					headers: {
 						Authorization: `Bearer: ${token}`
 					}
 				})
-				.then(({ data }) => console.log(data))
+				.then(({ data }) => {
+					console.log(data)
+					// setObserver((observer) => observer + 1)
+					router.push('/dashboard/appointments')
+				})
 		})
-		setObserver((observer) => observer + 1)
 	}
 	console.log(appointmentDetails)
 
 	return (
 		<Suspense fallback={<h1></h1>}>
 			{appointmentDetails ? (
-				<div className='flex flex-col  min-h-screen px-4 pb-4 lg:pt-10'>
+				<div className='flex flex-col  min-h-screen px-4 pb-4 md:pt-10'>
 					<div className='bg-ghostwhite dark:bg-gray-500 border border-silver/80 rounded-lg shadow-lg shadow-erieblack/80 px-6 mx-auto mt-8 '>
 						<div className='mb-8 '>
 							<h2 className='text-lg font-bold mb-4'>
@@ -115,13 +120,11 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 							</tfoot>
 						</table>
 					</div>
-					{
-						appointmentDetails.status === 'active' &&
-              <button onClick={handleDeleteAppointment} type='button' className='bg-red-500 text-white rounded-lg px-4 py-2 mt-4 w-fit'>
-                Delete Appointment
-              </button>
-            
-					}
+					{appointmentDetails.status === 'active' && (
+						<button onClick={handleDeleteAppointment} type='button' className='bg-red-500 text-white rounded-lg px-4 py-2 mt-4 w-fit'>
+							Delete Appointment
+						</button>
+					)}
 				</div>
 			) : (
 				// <div className='flex flex-col min-h-screen md:pt-8'>

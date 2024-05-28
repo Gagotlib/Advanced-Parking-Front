@@ -60,6 +60,16 @@ export const Appointments = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
+		if (showToast || errorToast) {
+			const timeout = setTimeout(() => {
+				setShowToast(false)
+				setErrorToast(false)
+			}, 3000)
+			return () => clearTimeout(timeout)
+		}
+	}, [showToast, errorToast])
+
+	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		// console.log(token);
 		axios
@@ -149,6 +159,8 @@ export const Appointments = () => {
 			const response = await axios.post(`${rute}/appointments`, formData)
 			console.log(response)
 			setIsLoading(false)
+			setShowToast(true)
+			setObserver((observer) => observer + 1)
 		} catch (error) {
 			console.log(error)
 			setIsLoading(false)
