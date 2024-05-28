@@ -34,7 +34,7 @@ export interface IBooking {
 
 function BookingDetail({ booking }: { booking: IBooking }) {
 	const { user, setUser } = useAuth()
-	console.log(' booking:', booking)
+	// console.log(' booking:', booking)
 
 	const dateToday = getTodayDate()
 

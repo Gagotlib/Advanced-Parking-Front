@@ -23,7 +23,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 			)
 			.then(() => {
 				axios.get(`${rute}/appointments/` + params.id).then(({ data }) => setBooking(data))
-				console.log(booking)
+				// console.log(booking)
 			})
 			.catch((err) => console.log(err))
 	}, [])
@@ -44,30 +44,3 @@ const Page = ({ params }: { params: { id: string } }) => {
 
 export default Page
 
-// const { user, setUser } = useAuth()
-// const [booking, setBooking] = useState<IBooking | null>(null)
-// const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-
-// useEffect(() => {
-// 	const fetchBooking = async () => {
-// 		try {
-// 			const { data } = await axios.get(`${rute}/appointments/${params.id}`)
-// 			setBooking(data)
-// 		} catch (error) {
-// 			console.error('Error fetching booking:', error)
-// 		}
-// 	}
-
-// 	const response = await fetchBooking()
-// 	const bodyemail = {
-// 		name: user?.name,
-// 		email: user?.email,
-// 		date: booking?.date,
-// 		time: booking?.time,
-// 		slot: booking?.slot_number,
-// 		parkingLot: booking?.parking_lot.name,
-// 		location: booking?.parking_lot.location
-// 	}
-
-// 	axios.post(`${rute}/email-sender/confirmed`, bodyemail).then(({ data }) => console.log(data))
-// }, [params.id, rute])

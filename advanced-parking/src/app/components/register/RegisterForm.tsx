@@ -70,8 +70,8 @@ export const RegisterForm = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		console.log('mandado')
-		console.log(registerData)
+		// console.log('mandado')
+		// console.log(registerData)
 
 		const validationErrors = validateRegister(registerData)
 		setErrors(validationErrors)
@@ -84,7 +84,7 @@ export const RegisterForm = () => {
 				}
 
 				const response = await axios.post(`${rute}/auth/signup`, registerPayload) //!deberia funcionar
-				console.log(response.data)
+				// console.log(response.data)
 
 				setShowToast(true)
 

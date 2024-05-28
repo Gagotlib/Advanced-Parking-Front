@@ -67,9 +67,9 @@ export const Reservations = () => {
 		event.preventDefault()
 
 		//! control
-		console.log('Fecha seleccionada:', formData.date)
-		console.log('Hora seleccionada:', formData.time)
-		console.log('Parking:', formData.parking)
+		// console.log('Fecha seleccionada:', formData.date)
+		// console.log('Hora seleccionada:', formData.time)
+		// console.log('Parking:', formData.parking)
 
 		try {
 			//! enviar info al backend

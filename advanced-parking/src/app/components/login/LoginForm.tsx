@@ -36,7 +36,7 @@ export const LoginForm = () => {
 				setShowToast(false)
 				router.refresh()
 				if (previewUrl?.includes('ourparkings')) {
-					console.log('CONTIENEEEEE')
+					// console.log('CONTIENEEEEE')
 
 					router.push(previewUrl)
 				} else router.push('/home')
@@ -73,7 +73,7 @@ export const LoginForm = () => {
 			setShowToast(true)
 			//! throw new Error('Login successful') para forzar error
 		} catch (error: Error | any) {
-			console.log(error)
+			// console.log(error)
 			console.error('Error al iniciar sesión:', error?.response)
 			setErrorToast(true)
 			setIsloging(false)

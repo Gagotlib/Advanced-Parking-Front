@@ -30,30 +30,30 @@ We created a user flow that defines how to interact with the application and the
 • Searching for or selecting a nearby parking space and making a reservation.
 
   <div style="display: flex; justify-content: center; flex-wrap: wrap;">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-1.webp" alt="Image Step One-1" width="250" height="500">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-2.webp" alt="Image Step One-2" width="250" height="500">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-3.webp" alt="Image Step One-3" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-1.png" alt="Image Step One-1" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-2.png" alt="Image Step One-2" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-3.png" alt="Image Step One-3" width="250" height="500">
   </div>
 
 • Registering or logging in and then making the payment.
 
   <div style="display: flex; justify-content: center; flex-wrap: wrap;">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-4.webp" alt="Image Step One-4" width="250" height="500">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-5.webp" alt="Image Step One-5" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-4.png" alt="Image Step One-4" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepOne-5.png" alt="Image Step One-5" width="250" height="500">
   </div>
 
 • Upon arrival, head to the property, scan the QR code on your ticket to access, and drive to the selected parking area.
 
   <div style="display: flex; justify-content: center; flex-wrap: wrap;">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepTwo-1.webp" alt="Image Step Two-1" width="250" height="500">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepTwo-2.webp" alt="Image Step Two-2" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepTwo-1.png" alt="Image Step Two-1" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepTwo-2.png" alt="Image Step Two-2" width="250" height="500">
   </div>
 
 • When your reservation ends, rate the service through the web application.
 
   <div style="display: flex; justify-content: center; flex-wrap: wrap;">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepThree-1.webp" alt="Image Step Three-1" width="250" height="500">
-    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepThree-2.webp" alt="Image Step Three-2" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepThree-1.png" alt="Image Step Three-1" width="250" height="500">
+    <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/stepThree-2.png" alt="Image Step Three-2" width="250" height="500">
   </div>
 
 ## Conclusion

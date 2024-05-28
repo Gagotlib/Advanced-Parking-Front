@@ -30,11 +30,11 @@ export const analyzeNextSteps = (step: number, userResponse: string): ResponseBo
         sender: "bot"
       };
     }
-  } else if ((step === 2 || step === 3) && (userResponse === "Parking lots" || userResponse === "Price information" || userResponse === "Cancellation policy")) {
+  } else if ((step === 2 || step === 3 || step === 4) && (userResponse === "Parking lots" || userResponse === "Price information" || userResponse === "Cancellation policy")) {
     response = {
       purpose: userResponse.toLowerCase().replace(/\s/g, "_"), 
       message: userResponse === "Parking lots" ?
-        `You can search for parking located in your neighborhoods by clicking on this link: <a href="/ourparkings">Our Parkings</a>` :
+        `<p>You can search for parking located in your neighborhoods by clicking on this link: <a href='https://advanced-parking.vercel.app/ourparkings'>Parkings</a></p>` :
         userResponse === "Price information" ?
         "The price is 3.55 USD per hour. Would you like to know something else?" :
         "No cancellation is available and funds are not refundable. Would you like to know something else?",
@@ -47,11 +47,19 @@ export const analyzeNextSteps = (step: number, userResponse: string): ResponseBo
       message: "Bye!",
       sender: "bot"
     };
+  }
+  else if (userResponse === "Finish chat") {
+    response = {
+      purpose: "end chat",
+      message: "Bye!",
+      sender: "bot"
+    };
   } else {
     response = {
       purpose: "default",
-      message: "I'm sorry, I didn't understand that. Can you please choose one of the options: Parking lots, Price information, or Cancellation policy.",
-      sender: "bot"
+      message: "I'm sorry, I didn't understand that. Can you please choose one of the options: ",
+      sender: "bot",
+      options: ["Parking lots", "Price information", "Cancellation policy", "Finish chat"]
     };
   }
 

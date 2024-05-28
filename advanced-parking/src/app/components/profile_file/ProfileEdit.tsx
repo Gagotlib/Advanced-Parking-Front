@@ -33,7 +33,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		console.log('enviando')
+		// console.log('enviando')
 		const newUserData: any = {}
 
 		if (name.trim() !== '') newUserData.name = name
@@ -56,7 +56,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 				return handleSubmitConfirmed(newUserData)
 			})
 		} else {
-			console.log('hay errores')
+			// console.log('hay errores')
 		}
 	}
 
@@ -74,7 +74,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 		// }
 
 		try {
-			console.log(newUserData)
+			// console.log(newUserData)
 
 			const token = localStorage.getItem('authToken')
 			const response = await axios.put(`${rute}/user/${logedUser.id}`, newUserData, {
@@ -85,7 +85,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 			// const updatedUser = { ...logedUser, image: response.data.image }
 			setUser(response.data)
 			localStorage.setItem('user', JSON.stringify(response.data))
-			console.log('data update :', response.data)
+			// console.log('data update :', response.data)
 			setObserver((observer: any) => observer + 1)
 			setName('')
 			setPhone('')
@@ -107,7 +107,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 	}
 
 	return (
-		<div className='flex flex-col md:flex md:justify-around bg-ghostwhite border border-silver/80 rounded-xl shadow-lg shadow-silver/90 gap-4 text-erieblack lg:w-[900px] lg:h-full p-4'>
+		<div className='flex flex-col lg:flex lg:justify-around bg-ghostwhite border border-silver/80 rounded-xl shadow-lg shadow-silver/90 gap-4 text-erieblack lg:w-full lg:h-full p-4'>
 			<h3 className='font-bold text-3xl'>Edit Profile</h3>
 			<form onSubmit={handleSubmit} className='md:flex md:justify-evenly'>
 				<div className='flex flex-col gap-8'>
@@ -126,7 +126,7 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 						{errors.phone && <p className='text-red-500'>{errors.phone}</p>}
 					</div>
 				</div>
-				<div className='flex flex-col gap-8 pt-9 sm:pt-0'>
+				<div className='flex flex-col gap-8 pt-9 sm:pt-0 lg:pl-4'>
 					<div className='flex flex-col'>
 						<label htmlFor='password' className='text-md font-semibold'>
 							Password:
@@ -151,14 +151,14 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 					</div>
 				</div>
 				<div className='flex justify-center items-center pt-8'></div>
-				<div className='flex justify-around pt-5'>
-					<button type='submit' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl'>
+				<div className='flex  md:flex-col justify-around pt-5 lg:pl-4'>
+					<button type='submit' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32'>
 						Save
 					</button>
-					<button onClick={handleDiscard} type='button' className='bg-red-500 text-ghostwhite py-2 px-4 rounded-xl'>
+					<button onClick={handleDiscard} type='button' className='bg-red-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32'>
 						Discard
 					</button>
-					<button onClick={handleCancel} type='button' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl'>
+					<button onClick={handleCancel} type='button' className='bg-blue-500 text-ghostwhite py-2 px-4 rounded-xl w-1/4 md:w-32'>
 						Cancel
 					</button>
 				</div>
