@@ -1,17 +1,16 @@
 'use client'
-import Toast from '@/app/components/alerts/Toast'
-import { OverlayFull } from '@/app/components/overlay'
-import PricingRender from '@/app/components/pricing/PricingRender'
-import Slotselection from '@/app/components/slotselection'
-import Spiner from '@/app/components/spiner/Spiner'
-import LoadingParkings from '@/app/components/suspense/LoadingParkings'
-import { IBooking } from '@/app/success/[id]/BookingDetail'
-import { getMaxDate, getTodayDate } from '@/app/utils/dateHelpers'
-import { IParking, IUser } from '@/types'
+
 import axios from 'axios'
 import Link from 'next/link'
+import { IParking, IUser } from '@/types'
 import { useRouter } from 'next/navigation'
+import Spiner from '@/app/components/spiner/Spiner'
+import { OverlayFull } from '@/app/components/overlay'
+import Slotselection from '@/app/components/slotselection'
 import React, { Suspense, useEffect, useState } from 'react'
+import { getMaxDate, getTodayDate } from '@/app/utils/dateHelpers'
+import PricingRender from '@/app/components/pricing/PricingRender'
+import { showSweetAlertCreatedAppointment } from '@/app/components/alerts/SweetAlert'
 
 export interface IAppointment {
 	date: string
@@ -50,24 +49,16 @@ export interface IAppointment {
 
 export const Appointments = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
-	const [page, setPage] = useState(1)
-	const [observer, setObserver] = useState(0)
+
 	const cardLimit = 100
 	const router = useRouter()
-	const [errorToast, setErrorToast] = useState(false)
-	const [showToast, setShowToast] = useState(false)
+	const [page, setPage] = useState(1)
+	const [observer, setObserver] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
 
-	useEffect(() => {
-		if (showToast || errorToast) {
-			const timeout = setTimeout(() => {
-				setShowToast(false)
-				setErrorToast(false)
-			}, 3000)
-			return () => clearTimeout(timeout)
-		}
-	}, [showToast, errorToast])
+	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
+
+
 
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
@@ -115,6 +106,7 @@ export const Appointments = () => {
 	const handleRefresh = () => {
 		setObserver((observer) => observer + 1)
 	}
+
 	const [selectedSlot, setSelectedSlot] = useState('1')
 	const [isFormShow, setIsFormShow] = useState(false)
 	const [slotShow, setSlotShow] = useState(false)
@@ -151,20 +143,22 @@ export const Appointments = () => {
 
 	const handleCreateNewAppointment = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-
-		setIsLoading(true)
-		// console.log(formData)
-
-		try {
-			const response = await axios.post(`${rute}/appointments`, formData)
-			// console.log(response)
-			setIsLoading(false)
-			setShowToast(true)
-			setObserver((observer) => observer + 1)
-		} catch (error) {
-			console.log(error)
-			setIsLoading(false)
-		}
+		showSweetAlertCreatedAppointment(() => {
+			setIsLoading(true)
+			// console.log(formData)
+			try {
+				// const response =  
+				axios
+					.post(`${rute}/appointments`, formData)
+				// console.log(response)
+				setIsLoading(false)
+				setObserver((observer) => observer + 1)
+				setIsFormShow(false)
+			} catch (error) {
+				console.log(error)
+				setIsLoading(false)
+			}
+		})
 	}
 
 	const handleShowSelectSlot = () => {
@@ -177,8 +171,6 @@ export const Appointments = () => {
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
 			<div className='flex justify-between items-center'>
-				{showToast && <Toast message='Appointment created' type='success' />}
-				{errorToast && <Toast message='Reservation error.' type='error' />}
 				<h1 className='text-2xl sm:text-5xl font-bold'> Appointments Info</h1>
 				<button type='button' onClick={handleRefresh} className='px-4 py-2 h-10 bg-yaleblue text-ghostwhite rounded hover:bg-yaleblue/80'>
 					Refresh
