@@ -1,14 +1,18 @@
 'use client'
-import LoadingParkings from '@/app/components/suspense/LoadingParkings'
-import { IParking } from '@/types'
+
 import axios from 'axios'
 import Link from 'next/link'
+import { IParking } from '@/types'
 import React, { Suspense, useEffect, useState } from 'react'
+import LoadingParkings from '@/app/components/suspense/LoadingParkings'
+import { showSweetAlertCreatedParkinkLot } from '@/app/components/alerts/SweetAlert'
 
 const Parkinglots = () => {
-	const [observer, setObserver] = useState(0)
+
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
+	const [observer, setObserver] = useState(0)
 	const [allParkinglots, setAllParkinglots] = useState<IParking[] | null>(null)
+
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		axios
@@ -25,7 +29,9 @@ const Parkinglots = () => {
 	const [isForm, setIsForm] = useState(false)
 	const [formData, setFormData] = useState<{ [key: string]: any }>({})
 	const handleAddNewParking = () => {
+
 		setIsForm(!isForm)
+
 	}
 	const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
@@ -39,18 +45,20 @@ const Parkinglots = () => {
 		e.preventDefault()
 		// console.log('adding new parking lot')
 		// console.log(formData)
-
-		const token = localStorage.getItem('authToken')
-		axios
-			.post(`${rute}/parking-lot`, formData, {
-				headers: {
-					Authorization: `Bearer: ${token}`
-				}
-			})
-			.then(({ data }) => {
-				// console.log(data)
-				setObserver((observer) => observer + 1)
-			})
+		showSweetAlertCreatedParkinkLot(() => {
+			const token = localStorage.getItem('authToken')
+			axios
+				.post(`${rute}/parking-lot`, formData, {
+					headers: {
+						Authorization: `Bearer: ${token}`
+					}
+				})
+				.then(({ data }) => {
+					// console.log(data)
+					setObserver((observer) => observer + 1)
+					setIsForm(false)
+				})
+		})
 	}
 	return (
 		<div className='flex flex-col min-h-screen md:pt-8'>
@@ -126,7 +134,7 @@ const Parkinglots = () => {
 												})
 											}}
 										>
-											Reset
+											Discard
 										</button>
 										<button
 											type='submit'
@@ -144,6 +152,7 @@ const Parkinglots = () => {
 							<tr>
 								<th className='border p-2 text-left'>Parking name</th>
 								<th className='border p-2 text-left'>Address</th>
+								<th className='border p-2 text-left'>Status</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -155,6 +164,9 @@ const Parkinglots = () => {
 										</td>
 										<td className='border p-2'>
 											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>{parkinglot.location}</Link>
+										</td>
+										<td className='border p-2'>
+											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>{parkinglot.status}</Link>
 										</td>
 									</tr>
 								))

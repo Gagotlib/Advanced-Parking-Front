@@ -16,8 +16,8 @@ function Directions({ latProp, lngProp }: { latProp: any; lngProp: any }) {
 	const lngLocalStorage = localStorage.getItem('lng')
 
 	const positionOrigin = {
-		lat: Number(latLocalStorage) || -34.590422,
-		lng: Number(lngLocalStorage) || -58.392357
+		lat: Number(latLocalStorage) || 0,
+		lng: Number(lngLocalStorage) || 0
 	}
 
 	const positionDestionation = {

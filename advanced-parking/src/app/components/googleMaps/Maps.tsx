@@ -13,8 +13,8 @@ function Maps({ latProp, lngProp, nameProp }: { latProp: number; lngProp: number
 	const lngLocalStorage = localStorage.getItem('lng')
 
 	const originPosition = {
-		lat: Number(latLocalStorage) || -34.590422,
-		lng: Number(lngLocalStorage) || -58.392357
+		lat: Number(latLocalStorage) || 0,
+		lng: Number(lngLocalStorage) || 0
 	}
 
 	const [controlPosition, setControlControlPosition] = useState<ControlPosition>(ControlPosition.LEFT_BOTTOM)
