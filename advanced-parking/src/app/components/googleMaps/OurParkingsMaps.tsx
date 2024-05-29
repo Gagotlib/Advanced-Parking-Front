@@ -74,16 +74,18 @@ function OurParkingsMaps() {
 				>
 					<MapControl position={ControlPosition.TOP_LEFT}>
 						<div
-							style={{
-								background: 'white',
-								padding: '1em',
-								color: 'black'
-							}}
+							// style={{
+							// 	background: 'white',
+							// 	padding: '1em',
+							// 	color: 'yaleblue'
+								
+							// }}
+							className='bg-white p-2 text-black '
 						>
 							Zoom: {zoom.toFixed(2)}
 						</div>
 					</MapControl>
-					<CustomZoomControl controlPosition={controlPosition} zoom={zoom} onZoomChange={(zoom) => setZoom(zoom)} />
+					<CustomZoomControl controlPosition={controlPosition} zoom={zoom} onZoomChange={(zoom) => setZoom(zoom)}  />
 
 					{userPosition.lat !== 0 && <AdvancedMarker position={userPosition}></AdvancedMarker>}
 
@@ -94,8 +96,8 @@ function OurParkingsMaps() {
 							</AdvancedMarker>
 							{openIndex === index && (
 								<InfoWindow position={parking.position} onCloseClick={() => setOpenIndex(null)}>
-									<p className='font-bold'>Parking {parking.name}</p>
-									<p className='font-light'>{parking.address}</p>
+									<p className='font-bold text-black'>Parking {parking.name}</p>
+									<p className='font-light text-black'>{parking.address}</p>
 									<Link href={`/ourparkings/${parking.id}`} className='underline decoration-yaleblue text-yaleblue'>
 										View details
 									</Link>
