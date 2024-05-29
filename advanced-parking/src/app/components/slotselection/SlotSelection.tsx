@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import axios from 'axios'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 interface IParkingSlot {
 	id: string
@@ -18,8 +18,11 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 
 	useEffect(() => {
 		const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-		axios.get(`${rute}/slot?date=${date}&time=${time}&duration=${duration}&parking_lot_id=${parking.id}`).then(({ data }) => setSlots(data))
-	}, [slots])
+		axios.get(`${rute}/slot?date=${date}&time=${time}&duration=${duration}&parking_lot_id=${parking.id}`).then(({ data }) => {
+			setSlots(data)
+			console.log('renderizado')
+		})
+	}, [])
 
 	const floor1 = slots?.sort((a: IParkingSlot, b: IParkingSlot) => a.slot_number - b.slot_number).slice(0, 10)
 	const floor2 = slots?.sort((a: IParkingSlot, b: IParkingSlot) => a.slot_number - b.slot_number).slice(10, 20)
@@ -32,14 +35,12 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 	}
 	// console.log('selected slot', selectedSlot)
 
-
-
 	return (
 		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[8rem] z-5 h-auto w-3/4 top-[38rem] bg-ghostwhite border dark:bg-gray-500 border-black rounded-xl shadow-lg shadow-silver/80'>
 			<div className='sm:mx-4 mr-2'>
 				<div className='flex justify-end'>
 					<button
-						className="text-silver hover:text-erieblack"
+						className='text-silver hover:text-erieblack'
 						onClick={() => {
 							setSlotShow(false)
 							setShowOverlay(false)

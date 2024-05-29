@@ -13,7 +13,7 @@ function ContactForm() {
 		if (showToast) {
 			const timeout = setTimeout(() => {
 				setShowToast(false)
-				router.push('/contact')
+				router.push('/home')
 			}, 3000)
 			return () => clearTimeout(timeout)
 		}
@@ -47,7 +47,14 @@ function ContactForm() {
 		const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 		axios
 			.post(`${rute}/email-sender/contact-form`, formData)
-			.then((response) => console.log(response))
+			.then((response) => {
+				console.log(response)
+				setFormData({
+					user_email: '',
+					user_name: '',
+					user_message: ''
+				})
+			})
 			.catch((error) => console.log(error))
 
 		return
