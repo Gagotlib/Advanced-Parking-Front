@@ -101,13 +101,13 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 	return (
 		<div className='flex flex-col lg:flex lg:justify-around bg-ghostwhite border border-silver/80 rounded-xl shadow-lg shadow-silver/90 gap-4 text-erieblack lg:w-full lg:h-full p-4'>
 			<h3 className='font-bold text-3xl'>Edit Profile</h3>
-			<form onSubmit={handleSubmit} className='md:flex md:justify-evenly'>
-				<div className='flex flex-col gap-8'>
-					<div className='flex flex-col'>
+			<form onSubmit={handleSubmit} className='md:flex md:justify-evenly lg:max-w-[400px]'>
+				<div className='flex flex-col gap-8 w-full pr-10'>
+					<div className='flex flex-col w-full'>
 						<label htmlFor='name' className='text-md font-semibold'>
 							Name:
 						</label>
-						<input type='text' name='name' id='name' className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl' placeholder='Change your Name' value={changeInfo.name} onChange={handleChange} />
+						<input type='text' name='name' id='name' className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl w-full' placeholder='Change your Name' value={changeInfo.name} onChange={handleChange} />
 						{errors.name && <p className='text-red-500 text-xs'>{errors.name}</p>}
 					</div>
 					<div className='flex flex-col'>
