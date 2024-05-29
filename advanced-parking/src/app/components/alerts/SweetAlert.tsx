@@ -131,3 +131,60 @@ export const showSweetAlertChangePassword = async (onConfirm: any) => {
 		})
 	}
 }
+
+export const showSweetAlertCreatedAppointment = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want create this reserve?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Reservation created',
+			icon: 'success'
+		})
+	}
+}
+
+export const showSweetAlertCreatedParkinkLot = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want create this parkink lot?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Creating Parking lot',
+			text: 'This operation may take a few minutes.',
+			icon: 'success'
+		})
+	}
+}
+export const showSweetAlertCreatedParkingSlot = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want create one slot for this Parking lot?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'Parking slot created',
+			icon: 'success'
+		})
+	}
+}

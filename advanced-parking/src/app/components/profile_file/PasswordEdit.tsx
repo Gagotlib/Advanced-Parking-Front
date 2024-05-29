@@ -1,11 +1,9 @@
-import { useAuth } from '@/app/context/AuthContext'
-import { IErrors } from '@/types'
 import axios from 'axios'
+import { IErrors } from '@/types'
 import React, { useState } from 'react'
+import { useAuth } from '@/app/context/AuthContext'
 import { showSweetAlertChangePassword } from '../alerts/SweetAlert'
-import { validateChangePassword, validateRegister } from '@/app/utils/formsValidation'
-
-type Props = {}
+import { validateChangePassword } from '@/app/utils/formsValidation'
 
 const PasswordEdit = ({ observer, setObserver, showChangePassword, setShowChangePassword }: { observer: any; setObserver: any; showChangePassword: any; setShowChangePassword: any }) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
