@@ -188,3 +188,21 @@ export const showSweetAlertCreatedParkingSlot = async (onConfirm: any) => {
 		})
 	}
 }
+export const showSweetAlertCreatedUser = async (onConfirm: any) => {
+	const result = await Swal.fire({
+		text: 'Do you really want create this User?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#063971',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, I want!'
+	})
+
+	if (result.isConfirmed) {
+		onConfirm()
+		Swal.fire({
+			title: 'User created',
+			icon: 'success'
+		})
+	}
+}

@@ -7,10 +7,11 @@ import { Loading } from '@/app/components/suspense/Loading'
 import LoadingMapDetail from '@/app/components/suspense/LoadingMapDetail'
 import { IParking } from '@/types'
 import axios from 'axios'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 
 const ParkingDetails = ({ params }: { params: { slug: string } }) => {
+	const router = useRouter()
 	const pathname = usePathname()
 	console.log('el pathname', pathname)
 	localStorage.setItem('pathname', pathname)
@@ -18,7 +19,13 @@ const ParkingDetails = ({ params }: { params: { slug: string } }) => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [parking, setParking] = useState<IParking | undefined>(undefined)
 	useEffect(() => {
-		axios.get(`${rute}/parking-lot/${params.slug}`).then(({ data }) => setParking(data))
+		axios.get(`${rute}/parking-lot/${params.slug}`).then(({ data }) => {
+			if (data.status !== 'active') {
+				router.push('/ourparkings')
+			} else {
+				setParking(data)
+			}
+		})
 	}, [])
 
 	// console.log(parking)

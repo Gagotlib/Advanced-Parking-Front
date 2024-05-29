@@ -12,7 +12,7 @@ const Parkinglots = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [observer, setObserver] = useState(0)
 	const [allParkinglots, setAllParkinglots] = useState<IParking[] | null>(null)
-
+const [searchValue, setSearchValue] = useState('')
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		axios
@@ -40,6 +40,10 @@ const Parkinglots = () => {
 			[name]: name === 'lat' || name === 'lng' || name === 'slot_stock' ? parseFloat(value) : value
 		}))
 	}
+		const filteredResults =
+			searchValue !== ''
+				? allParkinglots?.filter((parking) => parking.location.toLowerCase().includes(searchValue.toLowerCase()) || parking.name.toLowerCase().includes(searchValue.toLowerCase()))
+				: allParkinglots
 
 	const handleSendChanges = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -147,6 +151,15 @@ const Parkinglots = () => {
 							</form>
 						)}
 					</div>
+					<input
+						type='search'
+						id='search'
+						className='w-1/2 max-w-[350px] mb-4 p-4 ps-10 text-sm text-erieblack/80 border border-silver rounded-lg bg-ghostwhite focus:ring-2 focus:border-yaleblue'
+						placeholder='Search by address or parking name'
+						value={searchValue}
+						onChange={(e) => setSearchValue(e.target.value)}
+						required
+					/>
 					<table className='sm:max-w-full min-w-full table-auto w-full h-full border-collapse'>
 						<thead>
 							<tr>
@@ -156,8 +169,8 @@ const Parkinglots = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{allParkinglots ? (
-								allParkinglots.map((parkinglot) => (
+							{filteredResults ? (
+								filteredResults.map((parkinglot) => (
 									<tr key={parkinglot.id} className='hover:bg-silver/20'>
 										<td className='border p-2'>
 											<Link href={`/dashboard/parkinglots/${parkinglot.id}`}>{parkinglot.name}</Link>
