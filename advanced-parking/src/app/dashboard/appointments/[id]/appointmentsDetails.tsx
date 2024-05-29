@@ -81,7 +81,7 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 	return (
 		<Suspense fallback={<h1></h1>}>
 			{appointmentDetails ? (
-				<div className='flex flex-col  min-h-screen px-4 pb-4 md:pt-10'>
+				<div className='flex flex-col  min-h-screen px-4 pb-4 md:pt-10 items-center'>
 					<div className='bg-ghostwhite dark:bg-gray-500 border border-silver/80 rounded-lg shadow-lg shadow-erieblack/80 px-6 mx-auto mt-8 '>
 						<div className='mb-8 '>
 							<h2 className='text-lg font-bold mb-4 dark:text-erieblack/80'>

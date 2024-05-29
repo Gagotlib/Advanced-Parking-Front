@@ -226,7 +226,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						value={formData.license_plate}
 						className='block w-full p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite text-center'
 						onChange={handleInputChange}
-						placeholder='AAA-000'
+						placeholder='XXXXXXXXX'
 						required
 					></input>
 				</div>

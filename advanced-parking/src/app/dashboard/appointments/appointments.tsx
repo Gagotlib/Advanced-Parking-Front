@@ -50,21 +50,20 @@ export interface IAppointment {
 export const Appointments = () => {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 
-	const cardLimit = 100
 	const router = useRouter()
-	const [page, setPage] = useState(1)
 	const [observer, setObserver] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
+	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null | undefined>(null)
+	const [shownAppointments, setShownAppointments] = useState<IAppointment[] | null | undefined>(null)
 
-	const [allAppointments, setAllAppointments] = useState<IAppointment[] | null>(null)
-
-
-
+	const [page, setPage] = useState(1)
+	const cardLimitAll = 1000
+	const cardLimitshown = 20
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		// console.log(token);
 		axios
-			.get(`${rute}/appointments?page=${page}&limit=${cardLimit}`, {
+			.get(`${rute}/appointments?page=${page}&limit=${cardLimitAll}`, {
 				headers: {
 					Authorization: `Bearer: ${token}`
 				}
@@ -74,6 +73,23 @@ export const Appointments = () => {
 				setAllAppointments(sortedAppointments)
 			})
 	}, [observer])
+
+	useEffect(() => {
+		const token = localStorage.getItem('authToken')
+		// console.log(token);
+		axios
+			.get(`${rute}/appointments?page=${page}&limit=${cardLimitshown}`, {
+				headers: {
+					Authorization: `Bearer: ${token}`
+				}
+			})
+			.then(({ data }) => {
+				const sortedAppointments = data.sort((a: IAppointment, b: IAppointment) => new Date(b.date).getTime() - new Date(a.date).getTime())
+				setShownAppointments(sortedAppointments)
+			})
+	}, [observer, page])
+console.log(allAppointments);
+console.log(shownAppointments);
 
 	const [allUsers, setAllUsers] = useState<IUser[] | null>(null)
 	useEffect(() => {
@@ -85,9 +101,11 @@ export const Appointments = () => {
 				}
 			})
 			.then(({ data }) => {
-				setAllUsers(data)
+				const activeUsers = data.filter((user: any) => user.status === 'active')
+				setAllUsers(activeUsers)
 			})
 	}, [])
+	// console.log(allUsers)
 
 	const [allParkinglots, setAllParkinglots] = useState<IParking[] | null>(null)
 	useEffect(() => {
@@ -147,9 +165,8 @@ export const Appointments = () => {
 			setIsLoading(true)
 			// console.log(formData)
 			try {
-				// const response =  
-				axios
-					.post(`${rute}/appointments`, formData)
+				// const response =
+				axios.post(`${rute}/appointments`, formData)
 				// console.log(response)
 				setIsLoading(false)
 				setObserver((observer) => observer + 1)
@@ -176,8 +193,6 @@ export const Appointments = () => {
 					Refresh
 				</button>
 			</div>
-			<div className='flex flex-col '>
-				<Suspense fallback={<p>Loading...</p>}>
 					<button
 						type='button'
 						className='py-2 mb-4 px-2 w-fit text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite  focus:ring-2'
@@ -185,6 +200,8 @@ export const Appointments = () => {
 					>
 						Create new appointment
 					</button>
+			<div className='flex flex-col items-center'>
+				<Suspense fallback={<p>Loading...</p>}>
 					{isFormShow && (
 						<div>
 							<form onSubmit={handleCreateNewAppointment} className='flex flex-col gap-4'>
@@ -336,8 +353,8 @@ export const Appointments = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{allAppointments ? (
-								allAppointments.map((appointment) => (
+							{shownAppointments ? (
+								shownAppointments.map((appointment) => (
 									<tr key={appointment.id} className='hover:bg-silver/20'>
 										<td className='border p-2'>
 											<Link href={`/dashboard/appointments/${appointment.id}`}>{appointment.slot.parking_lot.name}</Link>
@@ -362,6 +379,21 @@ export const Appointments = () => {
 							)}
 						</tbody>
 					</table>
+					<div className='flex gap-4 '>
+						<button type='button' className=' text-black dark:text-ghostwhite disabled:opacity-50' disabled={page === 1}>
+							<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth='1.5' stroke='currentColor' className='w-10 h-10' onClick={() => page > 1 && setPage(page - 1)}>
+								<path strokeLinecap='round' strokeLinejoin='round' d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18' />
+							</svg>
+						</button>
+
+						<h4 className='text-3xl'>{page}</h4>
+
+						<button type='button' className=' text-black dark:text-ghostwhite disabled:opacity-50' disabled={allAppointments != undefined && allAppointments?.length <= cardLimitshown * page}>
+							<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth='1.5' stroke='currentColor' className='w-10 h-10' onClick={() => setPage(page + 1)}>
+								<path strokeLinecap='round' strokeLinejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' />
+							</svg>
+						</button>
+					</div>
 				</Suspense>
 			</div>
 		</div>

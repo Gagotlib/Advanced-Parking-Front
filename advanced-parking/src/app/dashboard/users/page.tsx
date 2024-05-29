@@ -1,4 +1,5 @@
 'use client'
+import { showSweetAlertCreatedUser } from '@/app/components/alerts/SweetAlert'
 import Toast from '@/app/components/alerts/Toast'
 import { validateRegister } from '@/app/utils/formsValidation'
 import { IErrors, IUser } from '@/types'
@@ -33,7 +34,10 @@ const Page = () => {
 				}
 			})
 			.then(({ data }) => {
-				setAllsers(data)
+				const activeUsers = data.filter((user: IUser) => user.status === 'active')
+				const deletedUsers = data.filter((user: IUser) => user.status === 'deleted')
+				const sortedUsers = activeUsers.concat(deletedUsers)
+				setAllsers(sortedUsers)
 			})
 	}, [observer])
 
@@ -72,32 +76,41 @@ const Page = () => {
 		e.preventDefault()
 		// console.log('adding new User')
 		// console.log(formData)
-
-		const validationErrors = validateRegister(formData)
-		setErrors(validationErrors)
-		if (Object.keys(validationErrors).length === 0) {
-			const registerPayload = {
-				...formData,
-				phone: parseInt(formData.phone, 10)
+		showSweetAlertCreatedUser(() => {
+			const validationErrors = validateRegister(formData)
+			setErrors(validationErrors)
+			if (Object.keys(validationErrors).length === 0) {
+				const registerPayload = {
+					...formData,
+					phone: parseInt(formData.phone, 10)
+				}
+				const token = localStorage.getItem('authToken')
+				axios
+					.post(`${rute}/auth/signup`, registerPayload)
+					.then(({ data }) => {
+						setShowToast(true)
+						// console.log(data)
+						setObserver((observer) => observer + 1)
+						setFormData({
+							name: '',
+							phone: '',
+							email: '',
+							password: '',
+							confirmPassword: ''
+						})
+						setIsForm(!isForm)
+						const bodyemail = {
+							name: formData.name,
+							email: formData.email
+						}
+						axios.post(`${rute}/email-sender/registered`, bodyemail)
+					})
+					.catch((error) => {
+						setErrorToast(true)
+						setErrorMessage(error.response?.data?.message || 'An unexpected error occurred')
+					})
 			}
-			const token = localStorage.getItem('authToken')
-			axios
-				.post(`${rute}/auth/signup`, registerPayload)
-				.then(({ data }) => {
-					setShowToast(true)
-					// console.log(data)
-					setObserver((observer) => observer + 1)
-					const bodyemail = {
-						name: formData.name,
-						email: formData.email
-					}
-					axios.post(`${rute}/email-sender/registered`, bodyemail)
-				})
-				.catch((error) => {
-					setErrorToast(true)
-					setErrorMessage(error.response?.data?.message || 'An unexpected error occurred')
-				})
-		}
+		})
 	}
 
 	return (
@@ -167,9 +180,16 @@ const Page = () => {
 										password: '',
 										confirmPassword: ''
 									})
+									setErrors({
+										name: '',
+										phone: '',
+										email: '',
+										password: '',
+										confirmPassword: ''
+									})
 								}}
 							>
-								Reset
+								Discard
 							</button>
 							<button
 								type='submit'
