@@ -16,11 +16,16 @@ function OurParkingsMaps() {
 	const lngLocalStorage = localStorage.getItem('lng')
 
 	const positionDefault = {
-		lat: Number(latLocalStorage) || -34.590422,
-		lng: Number(lngLocalStorage) || -58.392357,
+		lat: Number(latLocalStorage) || 0,
+		lng: Number(lngLocalStorage) || 0
 	}
 
-	const [defaultPosition, setDefaultPosition] = useState({ lat: positionDefault.lat, lng: positionDefault.lng })
+	const defaultCenter = {
+		lat: -34.590422,
+		lng: -58.392357
+	}
+
+	const [userPosition, setUserPosition] = useState({ lat: positionDefault.lat, lng: positionDefault.lng })
 	// Solicita permisos de geolocalización
 	useEffect(() => {
 		if (navigator.geolocation) {
@@ -28,7 +33,7 @@ function OurParkingsMaps() {
 				(position) => {
 					const { latitude, longitude } = position.coords
 					// console.log('Tomando posicion del navegador', latitude, longitude)
-					setDefaultPosition({ lat: latitude, lng: longitude })
+					setUserPosition({ lat: latitude, lng: longitude })
 					localStorage.setItem('lat', latitude.toString())
 					localStorage.setItem('lng', longitude.toString())
 				},
@@ -37,12 +42,11 @@ function OurParkingsMaps() {
 				}
 			)
 		} else {
-			setDefaultPosition({ lat: positionDefault.lat, lng: positionDefault.lng })
+			localStorage.removeItem('lat')
+			localStorage.removeItem('lng')
+			setUserPosition({ lat: 0, lng: 0 })
 			console.error('La geolocalización no es soportada por este navegador.')
 		}
-		// console.log('Default', defaultPosition)
-		// console.log(typeof defaultPosition.lat)
-		// console.log(typeof defaultPosition.lng)
 	}, [])
 
 	const parkingValues = allParkings?.map((parking) => {
@@ -60,7 +64,14 @@ function OurParkingsMaps() {
 	return (
 		<APIProvider apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>
 			<div className='relative w-full h-[60vh]'>
-				<Map mapId={process.env.NEXT_PUBLIC_MAP_ID} zoom={zoom} onZoomChanged={(ev) => setZoom(ev.detail.zoom)} disableDefaultUI={true} gestureHandling={'greedy'} defaultCenter={defaultPosition}>
+				<Map
+					mapId={process.env.NEXT_PUBLIC_MAP_ID}
+					zoom={zoom}
+					onZoomChanged={(ev) => setZoom(ev.detail.zoom)}
+					disableDefaultUI={true}
+					gestureHandling={'greedy'}
+					defaultCenter={userPosition.lat !== 0 ? userPosition : defaultCenter}
+				>
 					<MapControl position={ControlPosition.TOP_LEFT}>
 						<div
 							style={{
@@ -74,7 +85,7 @@ function OurParkingsMaps() {
 					</MapControl>
 					<CustomZoomControl controlPosition={controlPosition} zoom={zoom} onZoomChange={(zoom) => setZoom(zoom)} />
 
-					<AdvancedMarker position={defaultPosition}></AdvancedMarker>
+					{userPosition.lat !== 0 && <AdvancedMarker position={userPosition}></AdvancedMarker>}
 
 					{parkingValues?.map((parking, index) => (
 						<div key={index}>
@@ -96,8 +107,6 @@ function OurParkingsMaps() {
 			</div>
 		</APIProvider>
 	)
-
-
 }
 
 export default OurParkingsMaps
