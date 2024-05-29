@@ -1,15 +1,18 @@
 'use client'
-import { IParking } from '@/types'
-import axios from 'axios'
-import React, { Suspense, useEffect, useState } from 'react'
+
 import clsx from 'clsx'
-import { showSweetAlertDeleteParking } from '@/app/components/alerts/SweetAlert'
+import axios from 'axios'
+import { IParking } from '@/types'
+import React, { Suspense, useEffect, useState } from 'react'
+import { showSweetAlertChangeInfo, showSweetAlertCreatedParkingSlot, showSweetAlertDeleteParking } from '@/app/components/alerts/SweetAlert'
 
 const ParkingDetails = ({ params }: { params: { id: string } }) => {
+
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const [observer, setObserver] = useState(0)
-	const [parking, setParking] = useState<IParking | undefined>(undefined)
 	const [isEditInput, setIsEditInput] = useState(false)
+	const [parking, setParking] = useState<IParking | undefined>(undefined)
+
 	useEffect(() => {
 		axios.get(`${rute}/parking-lot/${params.id}`).then(({ data }) => setParking(data))
 	}, [observer])
@@ -17,21 +20,23 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 
 	const handleCreateSlot = () => {
 		// solicitud al back
-		const parkingLotId = params.id
-		const token = localStorage.getItem('authToken')
-		axios
-			.post(
-				`${rute}/slot`,
-				{ parking_lot_id: parkingLotId },
-				{
-					headers: {
-						Authorization: `Bearer: ${token}`
+		showSweetAlertCreatedParkingSlot(() => {
+			const parkingLotId = params.id
+			const token = localStorage.getItem('authToken')
+			axios
+				.post(
+					`${rute}/slot`,
+					{ parking_lot_id: parkingLotId },
+					{
+						headers: {
+							Authorization: `Bearer: ${token}`
+						}
 					}
-				}
-			)
-			.then((response) => {
-				setObserver((observer) => observer + 1)
-			})
+				)
+				.then((response) => {
+					setObserver((observer) => observer + 1)
+				})
+		})
 	}
 
 	const handleChangeStatus = (e: any, slot_id: any) => {
@@ -74,22 +79,24 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 
 	const handleSendChanges = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		// console.log('fomrdata:', formData)
+		showSweetAlertChangeInfo(() => {
+			// console.log('fomrdata:', formData)
 
-		//* solicitud al back con el formulario de los cambios
-		const token = localStorage.getItem('authToken')
-		axios
-			.put(`${rute}/parking-lot/${params.id}`, formData, {
-				headers: {
-					Authorization: `Bearer: ${token}`
-				}
-			})
-			.then((response) => {
-				// console.log(response)
-				setObserver((observer) => observer + 1)
-				setFormData({})
-				setIsEditInput(false)
-			})
+			//* solicitud al back con el formulario de los cambios
+			const token = localStorage.getItem('authToken')
+			axios
+				.put(`${rute}/parking-lot/${params.id}`, formData, {
+					headers: {
+						Authorization: `Bearer: ${token}`
+					}
+				})
+				.then((response) => {
+					// console.log(response)
+					setObserver((observer) => observer + 1)
+					setFormData({})
+					setIsEditInput(false)
+				})
+		})
 	}
 
 	const handleDeleteParking = () => {
@@ -122,10 +129,10 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 							<h2>Status: {parking?.status}</h2>
 							<button
 								type='button'
-								className=' py-2 px-2 w-20 h-10 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-blue-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+								className=' py-2 px-2 w-24 h-10 text-base font-medium text-white focus:outline-none bg-yaleblue rounded-lg border border-silver hover:bg-blue-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
 								onClick={handleShowEdit}
 							>
-								Edit
+								Edit Info
 							</button>
 						</div>
 						{isEditInput && (
@@ -150,7 +157,7 @@ const ParkingDetails = ({ params }: { params: { id: string } }) => {
 					<h2>Available slots:{parking.slots_stock} </h2>
 					<button
 						type='button'
-						className='mb-4 py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite focus:z-10 focus:ring-2 focus:ring-yaleblue/50'
+						className='mb-4 py-2 px-2 w-40 text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite  focus:ring-2 focus:ring-yaleblue/50'
 						onClick={handleCreateSlot}
 					>
 						Create new Slot

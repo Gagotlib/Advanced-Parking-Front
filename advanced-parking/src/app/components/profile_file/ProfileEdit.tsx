@@ -1,62 +1,61 @@
-import { useAuth } from '@/app/context/AuthContext'
-import { IErrors } from '@/types'
-import React, { useEffect, useState } from 'react'
-import { validateName, validatePhone, validatePassword, confirmPassword } from '@/app/utils/formsValidation'
-import { showSweetAlertChangeInfo } from '../alerts/SweetAlert'
-import ProfileChangePhoto from './ProfileChangePhoto'
 import axios from 'axios'
+import { IErrors } from '@/types'
+import React, { useState } from 'react'
+import { useAuth } from '@/app/context/AuthContext'
+import ProfileChangePhoto from './ProfileChangePhoto'
+import { showSweetAlertChangeInfo } from '../alerts/SweetAlert'
+import { validateName, validatePhone, validateChangeInfo } from '@/app/utils/formsValidation'
 
 function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo }: { observer: any; setObserver: any; showChangeInfo: any; setShowChangeInfo: any }) {
 	const rute = process.env.NEXT_PUBLIC_BACK_API_URL
 	const { user, setUser } = useAuth()
 
-	const [name, setName] = useState('')
-	const [phone, setPhone] = useState('')
-	const [password, setPassword] = useState('')
-	const [confirmPassword, setConfirmPassword] = useState('')
+	const [changeInfo, setChangeInfo] = useState({
+		name: '',
+		phone: '',
+	})
+
 	const [errors, setErrors] = useState<IErrors>({
 		name: '',
 		phone: '',
-		password: '',
-		confirmPassword: ''
 	})
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
-		// console.log(name, value);
 
-		if (name === 'name') setName(value)
-		if (name === 'phone') setPhone(value)
-		if (name === 'password') setPassword(value)
-		if (name === 'confirmPassword') setConfirmPassword(value)
+		setChangeInfo((prevInfo) => ({
+			...prevInfo,
+			[name]: value
+		}))
+
+		const fieldErrors = validateChangeInfo({ ...changeInfo, name: value, })
+		setErrors((prevErrors: any) => ({
+			...prevErrors,
+			[name]: fieldErrors[name]
+		}))
 	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		// console.log('enviando')
+		// console.log('Enviado al backend')
+
 		const newUserData: any = {}
 
-		if (name.trim() !== '') newUserData.name = name
-		if (phone.trim() !== '') newUserData.phone = Number(phone)
-		if (password.trim() !== '') newUserData.password = password
-		if (confirmPassword.trim() !== '') newUserData.confirmPassword = confirmPassword
+		if (changeInfo.name.trim() !== '') newUserData.name = changeInfo.name
+		if (changeInfo.phone.trim() !== '') newUserData.phone = Number(changeInfo.phone)
 
 		const validationErrors: IErrors = {}
-		if (!validateName(newUserData.name)) validationErrors.name = 'Invalid name'
-		if (!validatePhone(newUserData.phone)) validationErrors.phone = 'Invalid phone number'
-		if (newUserData.password && !validatePassword(newUserData.password)) {
-			validationErrors.password = 'Invalid password'
-		}
-		if (newUserData.password !== newUserData.confirmPassword) validationErrors.confirmPassword = 'Passwords do not match'
+		if (!validateName(newUserData.name)) validationErrors.name = errors.name
+		if (!validatePhone(newUserData.phone)) validationErrors.phone = errors.phone
 
 		setErrors(validationErrors)
 
-		if (Object.keys(validationErrors).length === 0 || Object.keys(newUserData).length === 1) {
+		if (Object.keys(validationErrors).every(key => validationErrors[key] === '')) {
 			const confirm = await showSweetAlertChangeInfo(() => {
-				return handleSubmitConfirmed(newUserData)
-			})
+				return handleSubmitConfirmed(newUserData);
+			});
 		} else {
-			// console.log('hay errores')
+			console.error('There are errors or all fields are empty.')
 		}
 	}
 
@@ -75,15 +74,15 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 					Authorization: `Bearer ${token}`
 				}
 			})
-			// const updatedUser = { ...logedUser, image: response.data.image }
+
 			setUser(response.data)
 			localStorage.setItem('user', JSON.stringify(response.data))
 			// console.log('data update :', response.data)
 			setObserver((observer: any) => observer + 1)
-			setName('')
-			setPhone('')
-			setPassword('')
-			setConfirmPassword('')
+			setChangeInfo({
+				name: '',
+				phone: '',
+			})
 			setShowChangeInfo(!showChangeInfo)
 		} catch (error) {
 			console.error('Error uploading file:', error)
@@ -91,10 +90,9 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 	}
 
 	const handleDiscard = () => {
-		setName('')
-		setPhone('')
-		setPassword('')
-		setConfirmPassword('')
+		setChangeInfo({ name: '', phone: '' })
+		setErrors({ name: '', phone: '' });
+
 	}
 	const handleCancel = () => {
 		setShowChangeInfo(!showChangeInfo)
@@ -109,15 +107,15 @@ function ProfileEdit({ observer, setObserver, showChangeInfo, setShowChangeInfo 
 						<label htmlFor='name' className='text-md font-semibold'>
 							Name:
 						</label>
-						<input type='text' name='name' id='name' className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl' placeholder='Change your Name' value={name} onChange={handleChange} />
-						{errors.name && <p className='text-red-500'>{errors.name}</p>}
+						<input type='text' name='name' id='name' className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl' placeholder='Change your Name' value={changeInfo.name} onChange={handleChange} />
+						{errors.name && <p className='text-red-500 text-xs'>{errors.name}</p>}
 					</div>
 					<div className='flex flex-col'>
 						<label htmlFor='phone' className='text-md font-semibold'>
 							Phone:
 						</label>
-						<input type='text' name='phone' id='phone' className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl' placeholder='Change your Phone' value={phone} onChange={handleChange} />
-						{errors.phone && <p className='text-red-500'>{errors.phone}</p>}
+						<input type='text' name='phone' id='phone' className='bg-silver/20 px-2 py-3 md:px-5 rounded-xl' placeholder='Change your Phone' value={changeInfo.phone} onChange={handleChange} />
+						{errors.phone && <p className='text-red-500 text-xs'>{errors.phone}</p>}
 					</div>
 				</div>
 
