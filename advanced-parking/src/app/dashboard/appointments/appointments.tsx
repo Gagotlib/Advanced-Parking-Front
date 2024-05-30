@@ -59,6 +59,7 @@ export const Appointments = () => {
 	const [page, setPage] = useState(1)
 	const cardLimitAll = 1000
 	const cardLimitshown = 20
+
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		// console.log(token);
@@ -88,8 +89,9 @@ export const Appointments = () => {
 				setShownAppointments(sortedAppointments)
 			})
 	}, [observer, page])
-console.log(allAppointments);
-console.log(shownAppointments);
+
+	// console.log(allAppointments);
+	// console.log(shownAppointments);
 
 	const [allUsers, setAllUsers] = useState<IUser[] | null>(null)
 	useEffect(() => {
@@ -193,13 +195,13 @@ console.log(shownAppointments);
 					Refresh
 				</button>
 			</div>
-					<button
-						type='button'
-						className='py-2 mb-4 px-2 w-fit text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite  focus:ring-2'
-						onClick={showNewAppForm}
-					>
-						Create new appointment
-					</button>
+			<button
+				type='button'
+				className='py-2 mb-4 px-2 w-fit text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite  focus:ring-2'
+				onClick={showNewAppForm}
+			>
+				Create new appointment
+			</button>
 			<div className='flex flex-col items-center'>
 				<Suspense fallback={<p>Loading...</p>}>
 					{isFormShow && (
