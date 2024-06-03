@@ -84,40 +84,40 @@ const [searchValue, setSearchValue] = useState('')
 					<div>
 						{isForm && (
 							<form onSubmit={handleSendChanges}>
-								<div className='flex flex-col gap-4 w-auto'>
-									<div>
-										<label htmlFor='name'>Name</label>
-										<input type='text' placeholder='e.g. Central Parking ' name='name' id='name' className='border rounded-md text-md h-7 ml-4' value={formData.name} onChange={handleChangeValue} />
+								<div className='flex flex-col gap-4 w-80'>
+									<div className='flex flex-col'>
+										<label className='font-medium' htmlFor='name'>Name</label>
+										<input type='text' placeholder='e.g. Central Parking ' name='name' id='name' className='border rounded-md text-md h-7 pl-2 ' value={formData.name} onChange={handleChangeValue} />
 									</div>
-									<div>
-										<label htmlFor='location'>Address</label>
+									<div className='flex flex-col'>
+										<label className='font-medium' htmlFor='location'>Address</label>
 										<input
 											type='text'
 											placeholder='e.g. Av. Juan XX'
 											name='location'
 											id='locationinput'
-											className='border rounded-md h-7 ml-4'
+											className='border rounded-md h-7 pl-2 '
 											onChange={handleChangeValue}
 											value={formData.location}
 										/>
 									</div>
-									<div>
-										<label htmlFor='lat'>Lat</label>
-										<input type='number' placeholder='e.g. 34.636989' name='lat' id='latinput' className='border rounded-md h-7 ml-4' onChange={handleChangeValue} value={formData.lat} />
+									<div className='flex flex-col'>
+										<label className='font-medium' htmlFor='lat'>Lat</label>
+										<input type='number' placeholder='e.g. 34.636989' name='lat' id='latinput' className='border rounded-md h-7 pl-2 ' onChange={handleChangeValue} value={formData.lat} />
 									</div>
-									<div>
-										<label htmlFor='lng'>Lng</label>
-										<input type='number' placeholder='e.g. 58.482000' name='lng' id='lnginput' className='border rounded-md h-7 ml-4' onChange={handleChangeValue} value={formData.lng} />
+									<div className='flex flex-col'>
+										<label className='font-medium' htmlFor='lng'>Lng</label>
+										<input type='number' placeholder='e.g. 58.482000' name='lng' id='lnginput' className='border rounded-md h-7 pl-2 ' onChange={handleChangeValue} value={formData.lng} />
 									</div>
-									<div>
-										<label htmlFor='slot_stock'>Slots stock</label>
+									<div className='flex flex-col'>
+										<label className='font-medium' htmlFor='slot_stock'>Slots stock</label>
 										<input
 											type='text'
 											max={20}
 											placeholder='e.g. 20'
 											name='slot_stock'
 											id='slot_stock'
-											className='border rounded-md h-7 ml-4'
+											className='border rounded-md h-7 pl-2 '
 											onChange={handleChangeValue}
 											value={formData.slot_stock}
 										/>

@@ -62,15 +62,15 @@ function ContactForm() {
 
 	return (
 		<section className='pt-20 dark:text-ghostwhite'>
-			<div className='py-4 px-4 mx-auto max-w-screen-md dark:text-ghostwhite'>
+			<div className='flex flex-col items-center py-4 px-4 mx-auto max-w-screen-md dark:text-ghostwhite'>
 				<h1 className='mb-4 text-4xl font-extrabold text-center text-erieblack sm:text-5xl dark:text-ghostwhite'>Contact Us</h1>
 				{showToast && <Toast message='Your message has been sent correctly' type='success' />}
-				<p className='mb-8 lg:mb-16 font-medium italic text-center text-erieblack sm:text-lg dark:text-ghostwhite'>
+				<p className='mb-8 lg:mb-0 font-medium italic text-center text-erieblack sm:text-lg dark:text-ghostwhite'>
 					Got a technical issue? Want to send feedback about a this project? Need details about our suscriptions plan? Let us know.
 				</p>
-				<div className='border-silver rounded-lg p-4 m-4 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/50'>
-					<form className='space-y-8' onSubmit={handleOnSubmit}>
-						<div>
+				<div className='border-silver min-w-96 rounded-lg p-4 m-4 bg-duck-yellow drop-shadow-md shadow-lg shadow-erieblack/50 relative'>
+					<form className='space-y-5 flex flex-col items-center' onSubmit={handleOnSubmit}>
+						<div className='w-full'>
 							<label htmlFor='email' id='email' className='block mb-2 text-sm font-medium text-erieblack dark:text-ghostwhite'>
 								Your email
 							</label>
@@ -85,7 +85,7 @@ function ContactForm() {
 								required
 							/>
 						</div>
-						<div>
+						<div className='w-full'>
 							<label htmlFor='subject' className='block mb-2 text-sm font-medium text-erieblack dark:text-ghostwhite'>
 								Your Name
 							</label>
@@ -100,7 +100,7 @@ function ContactForm() {
 								required
 							/>
 						</div>
-						<div className='sm:col-span-2'>
+						<div className='sm:col-span-2 w-full'>
 							<label htmlFor='message' className='block mb-2 text-sm font-medium text-gray-900 dark:text-ghostwhite'>
 								Your message
 							</label>
@@ -113,7 +113,7 @@ function ContactForm() {
 								placeholder='Leave a comment...'
 							></textarea>
 						</div>
-						<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-fit focus:ring-4 focus:outline-none'>
+						<button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90  sm:w-3/4  focus:ring-4 focus:outline-none'>
 							Send message
 						</button>
 					</form>

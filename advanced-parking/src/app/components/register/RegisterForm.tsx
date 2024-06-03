@@ -109,41 +109,39 @@ export const RegisterForm = () => {
 			<div className='w-full h-full flex flex-col items-center pt-24'>
 				{showToast && <Toast message='Registered correctly' type='success' />}
 				{errorToast && <Toast message={errorMessage} type='error' />}
-				<div className='w-full lg:w-7/12 p-5 rounded-lg lg:rounded-l-none'>
+				<div className='w-full lg:w-7/12 p-5 rounded-lg lg:rounded-l-none flex flex-col items-center'>
 					<h3 className='py-2 text-2xl text-center font-extrabold text-erieblack dark:text-ghostwhite sm:text-5xl'>Create an Account!</h3>
-					<div className='border-silver rounded-lg p-4 m-2 bg-silver/30 drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-silver/50'>
-						<form className='px-8 pb-8 mb-4 rounded sm:pt-6' onSubmit={handleSubmit}>
-							<div className='mb-4 sm:flex sm:justify-between'>
-								<div className='mb-4 md:mr-2 md:mb-0'>
-									<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Full Name</label>
-									<input
-										className='w-full px-3 py-2 text-sm leading-tight bg-ghostwhite text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
-										id='name'
-										name='name'
-										type='text'
-										placeholder='Full Name'
-										required
-										value={registerData.name}
-										onChange={handleChange}
-									/>
-									{errors.name && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.name}</p>}
-								</div>
-								<div className='mb-4 md:mr-2 md:mb-0'>
-									<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Phone Number</label>
-									<input
-										className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
-										id='phone'
-										name='phone'
-										type='text'
-										placeholder='Phone number'
-										required
-										value={registerData.phone}
-										onChange={handleChange}
-									/>
-									{errors.phone && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.phone}</p>}
-								</div>
+					<div className='border-silver min-w-96 rounded-lg p-4 m-2 bg-duck-yellow drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-silver/50'>
+						<form className='px-8 pb-8 mb-4 rounded sm:pt-6 flex flex-col gap-2' onSubmit={handleSubmit}>
+							<div >
+								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Full Name</label>
+								<input
+									className='w-full px-3 py-2 text-sm leading-tight bg-ghostwhite text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
+									id='name'
+									name='name'
+									type='text'
+									placeholder='Full Name'
+									required
+									value={registerData.name}
+									onChange={handleChange}
+								/>
+								{errors.name && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.name}</p>}
 							</div>
-							<div className='mb-4 sm:mr-2 sm:mb-5'>
+							<div>
+								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Phone Number</label>
+								<input
+									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
+									id='phone'
+									name='phone'
+									type='text'
+									placeholder='Phone number'
+									required
+									value={registerData.phone}
+									onChange={handleChange}
+								/>
+								{errors.phone && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.phone}</p>}
+							</div>
+							<div >
 								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Email</label>
 								<input
 									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
@@ -157,36 +155,34 @@ export const RegisterForm = () => {
 								/>
 								{errors.email && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.email}</p>}
 							</div>
-							<div className='mb-4 sm:flex sm:justify-between'>
-								<div className='mb-4 sm:mr-2 sm:mb-5'>
-									<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Password</label>
-									<input
-										className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
-										id='password'
-										name='password'
-										type='password'
-										placeholder='*********'
-										required
-										value={registerData.password}
-										onChange={handleChange}
-									/>
-									{errors.password && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.password}</p>}
-								</div>
-								<div className='mb-4 md:mr-2 md:mb-0'>
-									<label className='block mb-2 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Confirm Password</label>
-									<input
-										className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
-										id='c_password'
-										name='confirmPassword'
-										type='password'
-										placeholder='*********'
-										value={registerData.confirmPassword}
-										onChange={handleChange}
-									/>
-									{errors.confirmPassword && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.confirmPassword}</p>}
-								</div>
+							<div >
+								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Password</label>
+								<input
+									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
+									id='password'
+									name='password'
+									type='password'
+									placeholder='*********'
+									required
+									value={registerData.password}
+									onChange={handleChange}
+								/>
+								{errors.password && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.password}</p>}
 							</div>
-							<div className='mb-6 text-center'>
+							<div >
+								<label className='block mb-2 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Confirm Password</label>
+								<input
+									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
+									id='c_password'
+									name='confirmPassword'
+									type='password'
+									placeholder='*********'
+									value={registerData.confirmPassword}
+									onChange={handleChange}
+								/>
+								{errors.confirmPassword && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.confirmPassword}</p>}
+							</div>
+							<div className='mb-6 text-center pt-5'>
 								{Object.values(errors).some((error) => error) ? (
 									<button className='w-full px-4 py-2 font-bold text-ghostwhite bg-yaleblue rounded-full hover:bg-yaleblue/80 focus:outline-none focus:shadow-outline' type='submit' disabled>
 										Register Account
@@ -200,8 +196,8 @@ export const RegisterForm = () => {
 							<hr className='border-t' />
 							<div className='text-center'>
 								<p className='text-erieblack text-sm dark:text-ghostwhite '>
-									Already have an account?
-									<Link href='/login' className='inline-block text-sm text-erieblack dark:text-ghostwhite align-baseline hover:text-yaleblue/80 underline'>
+									Already have an account?{' '}
+									<Link href='/login' className='inline-block text-md font-bold text-erieblack dark:text-ghostwhite align-baseline hover:text-yaleblue/80 underline'>
 										Login!
 									</Link>
 								</p>

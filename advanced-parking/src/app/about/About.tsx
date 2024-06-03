@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 function About() {
 	return (
-		<div className='2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 pt-24 px-4 dark:text-ghostwhite'>
+		<div className='2xl:container 2xl:mx-auto lg:py-20 lg:px-20 md:py-12 md:px-6 pt-24 px-4 dark:text-ghostwhite'>
 			<div className='flex flex-col lg:flex-row justify-between gap-8 dark:text-ghostwhite'>
 				<div className='w-full lg:w-5/12 flex flex-col justify-center dark:text-ghostwhite'>
 					<h1 className='text-3xl lg:text-6xl font-extrabold leading-9 text-erieblack dark:text-ghostwhite'>About Us</h1>

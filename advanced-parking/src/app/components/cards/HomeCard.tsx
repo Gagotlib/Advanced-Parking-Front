@@ -12,7 +12,7 @@ interface IcardProp {
 
 export const HomeCard = ({ cardProps }: { cardProps: IcardProp }) => {
 	return (
-		<div className='flex flex-col lg:flex-row items-start justify-start rounded-3xl w-11/12 h-60 shadow-lg shadow-silver dark:shadow-ghostwhite mb-3'>
+		<div className='flex flex-col lg:flex-row items-start justify-start rounded-3xl w-11/12 h-60 shadow-md shadow-silver dark:shadow-ghostwhite mb-3'>
 			<Link href={cardProps.href} className='w-full'>
 				<div className='relative flex justify-center lg:justify-between items-center w-full h-60 lg:flex-row lg:w-full lg:[&>img]:hover:filter-none'>
 					<Image src={cardProps.img_href} alt={cardProps.alt} width={600} height={200} className='shadow-xl object-cover rounded-3xl h-full  lg:filter lg:grayscale brightness-70 blur-[2px]' />

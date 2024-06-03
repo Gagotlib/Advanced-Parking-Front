@@ -132,35 +132,35 @@ const Page = () => {
 			</div>
 			{isForm && (
 				<form onSubmit={handleSendChanges}>
-					<div className='flex flex-col w-auto gap-3'>
-						<div>
-							<label htmlFor='name'>Name</label>
-							<input type='text' placeholder=' User name ' name='name' id='name' className='border rounded-md text-md h-7 ml-4' value={formData.name} onChange={handleChangeValue} />
+					<div className='flex flex-col w-auto md:max-w-80 gap-3'>
+						<div className='flex flex-col'>
+							<label htmlFor='name' className='font-medium'>Name</label>
+							<input type='text' placeholder=' User name ' name='name' id='name' className='border rounded-md text-md h-7 pl-2' value={formData.name} onChange={handleChangeValue} />
 							{errors.name && <p className='text-red-500  my-1 text-xs font-light'>{errors.name}</p>}
 						</div>
-						<div>
-							<label htmlFor='Email'>Email</label>
-							<input type='email' placeholder='User email' name='email' id='email' className='border rounded-md h-7 ml-4' onChange={handleChangeValue} value={formData.email} />
+						<div className='flex flex-col'>
+							<label  className='font-medium' htmlFor='Email'>Email</label>
+							<input type='email' placeholder='User email' name='email' id='email' className='border rounded-md h-7 pl-2' onChange={handleChangeValue} value={formData.email} />
 							{errors.email && <p className='text-red-500 my-1 text-xs font-light'>{errors.email}</p>}
 						</div>
-						<div>
-							<label htmlFor='phone'>Phone</label>
-							<input type='text' placeholder='Phone number' name='phone' id='phone' className='border rounded-md h-7 ml-4' onChange={handleChangeValue} value={formData.phone} />
+						<div className='flex flex-col'>
+							<label  className='font-medium' htmlFor='phone'>Phone</label>
+							<input type='text' placeholder='Phone number' name='phone' id='phone' className='border rounded-md h-7 pl-2' onChange={handleChangeValue} value={formData.phone} />
 							{errors.phone && <p className='text-red-500 my-1 text-xs font-light'>{errors.phone}</p>}
 						</div>
-						<div>
-							<label htmlFor='password'>Password</label>
-							<input type='password' placeholder='*******' name='password' id='password' className='border rounded-md h-7 ml-4' onChange={handleChangeValue} value={formData.password} />
+						<div className='flex flex-col'>
+							<label  className='font-medium' htmlFor='password'>Password</label>
+							<input type='password' placeholder='*******' name='password' id='password' className='border rounded-md h-7 pl-2' onChange={handleChangeValue} value={formData.password} />
 							{errors.password && <p className='text-red-500 my-1 text-xs font-light'>{errors.password}</p>}
 						</div>
-						<div>
-							<label htmlFor='confirmPassword'>Confirm Password</label>
+						<div className='flex flex-col'>
+							<label  className='font-medium' htmlFor='confirmPassword'>Confirm Password</label>
 							<input
 								type='password'
-								placeholder='******'
+								placeholder='*******'
 								name='confirmPassword'
 								id='confirmPassword'
-								className='border rounded-md h-7 ml-4'
+								className='border rounded-md h-7 pl-2'
 								onChange={handleChangeValue}
 								value={formData.confirmPassword}
 							/>
