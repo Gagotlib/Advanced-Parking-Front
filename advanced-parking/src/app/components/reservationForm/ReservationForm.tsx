@@ -151,10 +151,24 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 	const isFormValid = formData.date && formData.time && formData.license_plate && selectedSlot
 
 	return (
-		<div className='max-w-10/12 flex flex-col items-center text-erieblack dark:text-ghostwhite pt-12 sm:pt-0 relative'>
+		<div className='max-w-10/12 flex flex-col items-center text-erieblack dark:text-ghostwhite pt-12 sm:pt-0 '>
 			{showToast && <Toast message='Redirecting to the payment' type='success' />}
 			{errorToast && <Toast message='Reservation error. Please try again or contact our support team' type='error' />}
 			<h1 className='font-medium text-4xl lg:text-4xl lg:pt-12'> Booking</h1>
+
+			{showOverlay && <OverlayFull />}
+				{slotShow && (
+					<SlotSelection
+						setShowOverlay={setShowOverlay}
+						selectedSlot={selectedSlot}
+						setSelectedSlot={setSelectedSlot}
+						setSlotShow={setSlotShow}
+						parking={parking}
+						date={formData.date}
+						time={formData.time}
+						duration={formData.duration}
+					/>
+				)}
 
 			<form className='flex flex-col justify-center lg:justify-start items-center gap-4 text-center border-2 border-silver/80 rounded-xl p-4 min-w-3/4 text-lg relative' onSubmit={handleSubmit}>
 				<div className='flex items-center justify-center gap-3'>
@@ -230,19 +244,7 @@ export const ReservationForm = ({ parking }: { parking: IParking | undefined }) 
 						required
 					></input>
 				</div>
-				{showOverlay && <OverlayFull />}
-				{slotShow && (
-					<SlotSelection
-						setShowOverlay={setShowOverlay}
-						selectedSlot={selectedSlot}
-						setSelectedSlot={setSelectedSlot}
-						setSlotShow={setSlotShow}
-						parking={parking}
-						date={formData.date}
-						time={formData.time}
-						duration={formData.duration}
-					/>
-				)}
+				
 				{!user ? (
 					<div className='flex flex-col items-center'>
 						<p className='text-erieblack dark:text-ghostwhite text-sm sm:text-lg m-2'>

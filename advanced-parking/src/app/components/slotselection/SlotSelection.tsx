@@ -36,11 +36,11 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 	// console.log('selected slot', selectedSlot)
 
 	return (
-		<div className='absolute lg:left-[32rem] lg:w-[345px] lg:top-[8rem] z-5 h-auto w-3/4 top-[38rem] bg-ghostwhite border dark:bg-gray-500 border-black rounded-xl shadow-lg shadow-silver/80'>
-			<div className='sm:mx-4 mr-2'>
-				<div className='flex justify-end'>
+		<div className='absolute lg:w-[345px] m-auto left-0 right-0 top-32 bottom-0 z-5 h-max w-3/4 bg-ghostwhite border dark:bg-gray-500 border-black rounded-xl shadow-lg shadow-silver/80'>
+			<div className='sm:mx-4 mr-2 flex flex-col items-center gap-2 relative'>
+				<div className='flex justify-end w-full'>
 					<button
-						className='text-silver hover:text-erieblack'
+						className='text-silver hover:text-erieblack mt-2'
 						onClick={() => {
 							setSlotShow(false)
 							setShowOverlay(false)
