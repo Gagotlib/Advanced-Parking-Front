@@ -111,10 +111,10 @@ export const RegisterForm = () => {
 				{errorToast && <Toast message={errorMessage} type='error' />}
 				<div className='w-full lg:w-7/12 p-5 rounded-lg lg:rounded-l-none flex flex-col items-center'>
 					<h3 className='py-2 text-2xl text-center font-extrabold text-erieblack dark:text-ghostwhite sm:text-5xl'>Create an Account!</h3>
-					<div className='border-silver min-w-96 rounded-lg p-4 m-2 bg-duck-yellow drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-silver/50'>
-						<form className='px-8 pb-8 mb-4 rounded sm:pt-6 flex flex-col gap-2' onSubmit={handleSubmit}>
+					<div className='border-silver min-w-96 max-w-96 rounded-lg p-4 m-2 bg-duck-yellow drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-silver/50'>
+						<form className='px-8 pb-8 mb-4 rounded sm:pt-6 flex flex-col gap-1 ' onSubmit={handleSubmit}>
 							<div >
-								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Full Name</label>
+								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-erieblack sm:text-lg'>Full Name</label>
 								<input
 									className='w-full px-3 py-2 text-sm leading-tight bg-ghostwhite text-erieblack rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 									id='name'
@@ -125,10 +125,10 @@ export const RegisterForm = () => {
 									value={registerData.name}
 									onChange={handleChange}
 								/>
-								{errors.name && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.name}</p>}
+								{errors.name && <p className='text-red-500 dark:text-erieblack my-1 text-xs font-light'>{errors.name}</p>}
 							</div>
 							<div>
-								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Phone Number</label>
+								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-erieblack sm:text-lg'>Phone Number</label>
 								<input
 									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 									id='phone'
@@ -139,10 +139,10 @@ export const RegisterForm = () => {
 									value={registerData.phone}
 									onChange={handleChange}
 								/>
-								{errors.phone && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.phone}</p>}
+								{errors.phone && <p className='text-red-500 dark:text-erieblack my-1 text-xs font-light'>{errors.phone}</p>}
 							</div>
 							<div >
-								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Email</label>
+								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-erieblack sm:text-lg'>Email</label>
 								<input
 									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 									id='email'
@@ -153,10 +153,10 @@ export const RegisterForm = () => {
 									value={registerData.email}
 									onChange={handleChange}
 								/>
-								{errors.email && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.email}</p>}
+								{errors.email && <p className='text-red-500 dark:text-erieblack my-1 text-xs font-light'>{errors.email}</p>}
 							</div>
 							<div >
-								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Password</label>
+								<label className='block mb-1 text-sm font-bold text-erieblack dark:text-erieblack sm:text-lg'>Password</label>
 								<input
 									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 									id='password'
@@ -167,10 +167,10 @@ export const RegisterForm = () => {
 									value={registerData.password}
 									onChange={handleChange}
 								/>
-								{errors.password && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.password}</p>}
+								{errors.password && <p className='text-red-500 dark:text-erieblack my-1 text-xs font-light'>{errors.password}</p>}
 							</div>
 							<div >
-								<label className='block mb-2 text-sm font-bold text-erieblack dark:text-ghostwhite sm:text-lg'>Confirm Password</label>
+								<label className='block mb-2 text-sm font-bold text-erieblack dark:text-erieblack sm:text-lg'>Confirm Password</label>
 								<input
 									className='w-full px-3 py-2 text-sm leading-tight text-erieblack bg-ghostwhite rounded shadow shadow-erieblack appearance-none focus:outline-yaleblue/80 focus:shadow-yaleblue'
 									id='c_password'
@@ -180,7 +180,7 @@ export const RegisterForm = () => {
 									value={registerData.confirmPassword}
 									onChange={handleChange}
 								/>
-								{errors.confirmPassword && <p className='text-red-500 dark:text-ghostwhite sm:absolute my-1 text-xs font-light'>{errors.confirmPassword}</p>}
+								{errors.confirmPassword && <p className='text-red-500 dark:text-erieblack my-1 text-xs font-light'>{errors.confirmPassword}</p>}
 							</div>
 							<div className='mb-6 text-center pt-5'>
 								{Object.values(errors).some((error) => error) ? (
@@ -195,9 +195,9 @@ export const RegisterForm = () => {
 							</div>
 							<hr className='border-t' />
 							<div className='text-center'>
-								<p className='text-erieblack text-sm dark:text-ghostwhite '>
+								<p className='text-erieblack text-sm dark:text-erieblack '>
 									Already have an account?{' '}
-									<Link href='/login' className='inline-block text-md font-bold text-erieblack dark:text-ghostwhite align-baseline hover:text-yaleblue/80 underline'>
+									<Link href='/login' className='inline-block text-md font-bold text-erieblack dark:text-erieblack align-baseline hover:text-yaleblue/80 underline'>
 										Login!
 									</Link>
 								</p>

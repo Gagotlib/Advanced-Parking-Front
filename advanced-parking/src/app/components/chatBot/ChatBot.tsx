@@ -83,13 +83,13 @@ const Chatbot: React.FC = () => {
 			{!isExpanded && <button onClick={toggleCompression}></button>}
 			
 
-			<div className={`${isExpanded ? '' : 'hidden'} flex-grow overflow-auto mt-4`} ref={bodyRef}>
+			<div className={`${isExpanded ? '' : 'hidden'} flex-grow overflow-auto mt-4 pb-10 origin-bottom will-change-scroll`} ref={bodyRef}>
 				<Chats userResponse={userResponse} botResponse={botResponse} sendUserResponse={sendUserResponse} optionClick={optionClick} />
-				<form onSubmit={handleSubmit} className='form-container flex justify-between mt-auto mb-4'>
-					<input onChange={handleInputChange} value={userResponse} className='w-11/12 border-b border-gray-700 rounded-lg px-4 py-2 focus:outline-none bg-ghostwhite text-black' />
-					<button type='submit' className='bg-gray-200 text-gray-700 rounded-lg px-4 py-2 hover:bg-opacity-80 hover:cursor-pointer'>
-						<FontAwesomeIcon icon={faPaperPlane} size='2x' />
-						<i className='fas fa-paper-plane'></i>
+				<form onSubmit={handleSubmit} className='form-container flex  justify-between mt-auto mb-4 absolute bottom-0 left-auto bg-duck-yellow pt-2'>
+					<input onChange={handleInputChange} value={userResponse} className='w-3/4 border-b border-gray-700 rounded-lg px-4 py-2 focus:outline-none bg-ghostwhite text-black' />
+					<button type='submit' className='bg-slate-200/65 hover:bg-slate-200 text-gray-700 rounded-lg px-4 py-2 hover:cursor-pointer'>
+						<FontAwesomeIcon icon={faPaperPlane} size='2x'/>
+						{/* <i className='fas fa-paper-plane'></i> */}
 					</button>
 				</form>
 			</div>

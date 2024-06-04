@@ -89,7 +89,7 @@ export const LoginForm = () => {
 				<div className='border-silver rounded-lg p-4 py-8 m-4 bg-duck-yellow min-w-80  drop-shadow-md shadow-lg shadow-erieblack/40 dark:shadow-silver/50'>
 					<form className='max-w-sm mx-auto' onSubmit={handleSubmit}>
 						<div className='mb-6'>
-							<label htmlFor='email' id='email' className='block mb-2 text-sm font-bold text-erieblack dark:text-ghostwhite'>
+							<label htmlFor='email' id='email' className='block mb-2 text-sm font-bold text-erieblack dark:text-erieblack'>
 								Your email
 							</label>
 							<input
@@ -104,7 +104,7 @@ export const LoginForm = () => {
 							/>
 						</div>
 						<div className='mb-3'>
-							<label htmlFor='password' id='password' className='block mb-2 text-sm font-bold text-erieblack dark:text-ghostwhite'>
+							<label htmlFor='password' id='password' className='block mb-2 text-sm font-bold text-erieblack dark:text-erieblack'>
 								Your password
 							</label>
 							<input

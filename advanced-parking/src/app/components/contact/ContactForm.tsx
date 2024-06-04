@@ -71,7 +71,7 @@ function ContactForm() {
 				<div className='border-silver min-w-96 rounded-lg p-4 m-4 bg-duck-yellow drop-shadow-md shadow-lg shadow-erieblack/50 relative'>
 					<form className='space-y-5 flex flex-col items-center' onSubmit={handleOnSubmit}>
 						<div className='w-full'>
-							<label htmlFor='email' id='email' className='block mb-2 text-sm font-medium text-erieblack dark:text-ghostwhite'>
+							<label htmlFor='email' id='email' className='block mb-2 text-sm font-medium text-erieblack dark:text-erieblack'>
 								Your email
 							</label>
 							<input
@@ -86,7 +86,7 @@ function ContactForm() {
 							/>
 						</div>
 						<div className='w-full'>
-							<label htmlFor='subject' className='block mb-2 text-sm font-medium text-erieblack dark:text-ghostwhite'>
+							<label htmlFor='subject' className='block mb-2 text-sm font-medium text-erieblack dark:text-erieblack'>
 								Your Name
 							</label>
 							<input
@@ -101,7 +101,7 @@ function ContactForm() {
 							/>
 						</div>
 						<div className='sm:col-span-2 w-full'>
-							<label htmlFor='message' className='block mb-2 text-sm font-medium text-gray-900 dark:text-ghostwhite'>
+							<label htmlFor='message' className='block mb-2 text-sm font-medium text-gray-900 dark:text-erieblack'>
 								Your message
 							</label>
 							<textarea

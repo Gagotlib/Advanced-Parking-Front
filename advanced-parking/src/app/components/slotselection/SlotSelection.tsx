@@ -18,7 +18,7 @@ const SlotSelection = ({ setSlotShow, selectedSlot, setSelectedSlot, setShowOver
 
 	useEffect(() => {
 		const rute = process.env.NEXT_PUBLIC_BACK_API_URL
-		axios.get(`${rute}/slot?date=${date}&time=${time}&duration=${duration}&parking_lot_id=${parking.id}`).then(({ data }) => {
+		axios.get(`${rute}/slot?date=${date}&time=${time}&duration=${duration}&parking_lot_id=${parking?.id}`).then(({ data }) => {
 			setSlots(data)
 			console.log('renderizado')
 		})
