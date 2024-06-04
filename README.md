@@ -20,7 +20,7 @@ Nuestra aplicación se distingue por ser amigable con el usuario, con políticas
 
 ###### Flujo del Usuario
 
-Creamos un el flujo del usuario que define cómo interactuar con la aplicación y los pasos involucrados al reservar el primer espacio de estacionamiento. Nos basamos en una estructura muy dinamica pero a su minimizando la cantidad de pasos que se vieran involucrados.
+Creamos el flujo del usuario que define cómo interactuar con la aplicación y los pasos involucrados al reservar su primer espacio de estacionamiento. Nos basamos en una estructura muy dinámica y a su vez minimizando la cantidad de pasos que se vieran involucrados.
 
 <img src="https://github.com/Gagotlib/Advanced-Parking-Front/blob/main/advanced-parking/public/userFlow.webp" alt="User Flow" width="650" height="400" />
 

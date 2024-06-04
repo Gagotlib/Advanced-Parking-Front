@@ -1,6 +1,7 @@
 'use client'
 import { showSweetAlert, showSweetAlertAppointment } from '@/app/components/alerts/SweetAlert'
 import Toast from '@/app/components/alerts/Toast'
+import QRGenerator from '@/app/components/qrcode/QRGenerator'
 import BookingDetail, { IBooking } from '@/app/success/[id]/BookingDetail'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
@@ -87,14 +88,21 @@ const AppointmentsDetails = ({ params }: { params: { id: string } }) => {
 							<h2 className='text-lg font-bold mb-4 dark:text-erieblack/80'>
 								Appointment id: <span className='text-erieblack/80 text-sm dark:text-ghostwhite'>{appointmentDetails.id}</span>
 							</h2>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Satus: {appointmentDetails.status}</p>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Name: {appointmentDetails.user.name}</p>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Email: {appointmentDetails.user.email} </p>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Parking: {appointmentDetails.parking_lot.name}</p>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Slot: {appointmentDetails.slot_number}</p>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Check-in date: {appointmentDetails.date}</p>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Check-in hour: {appointmentDetails.time}</p>
-							<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Address: {appointmentDetails.parking_lot.location}</p>
+							<div className="flex">
+								<div className='flex flex-col items-start pt-10'>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Satus: {appointmentDetails.status}</p>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Name: {appointmentDetails.user.name}</p>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Email: {appointmentDetails.user.email} </p>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Parking: {appointmentDetails.parking_lot.name}</p>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Slot: {appointmentDetails.slot_number}</p>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Check-in date: {appointmentDetails.date}</p>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Check-in hour: {appointmentDetails.time}</p>
+									<p className='text-erieblack/80 dark:text-erieblack/80 text-sm'>Address: {appointmentDetails.parking_lot.location}</p>
+								</div>
+								<div className='p-2'>
+									<QRGenerator />
+								</div>
+							</div>
 						</div>
 						<table className='w-full mb-8'>
 							<thead>

@@ -59,6 +59,7 @@ export const Appointments = () => {
 	const [page, setPage] = useState(1)
 	const cardLimitAll = 1000
 	const cardLimitshown = 20
+
 	useEffect(() => {
 		const token = localStorage.getItem('authToken')
 		// console.log(token);
@@ -88,8 +89,9 @@ export const Appointments = () => {
 				setShownAppointments(sortedAppointments)
 			})
 	}, [observer, page])
-console.log(allAppointments);
-console.log(shownAppointments);
+
+	// console.log(allAppointments);
+	// console.log(shownAppointments);
 
 	const [allUsers, setAllUsers] = useState<IUser[] | null>(null)
 	useEffect(() => {
@@ -186,33 +188,33 @@ console.log(shownAppointments);
 	const isFormValid = formData.date && formData.time && formData.license_plate && formData.duration && formData.parkingLotId && formData.slot_number
 
 	return (
-		<div className='flex flex-col min-h-screen md:pt-8'>
-			<div className='flex justify-between items-center'>
+		<div className='flex flex-col w-full items-start min-h-screen md:pt-8'>
+			<div className='flex w-full justify-between items-center'>
 				<h1 className='text-2xl sm:text-5xl font-bold'> Appointments Info</h1>
 				<button type='button' onClick={handleRefresh} className='px-4 py-2 h-10 bg-yaleblue text-ghostwhite rounded hover:bg-yaleblue/80'>
 					Refresh
 				</button>
 			</div>
-					<button
-						type='button'
-						className='py-2 mb-4 px-2 w-fit text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite  focus:ring-2'
-						onClick={showNewAppForm}
-					>
-						Create new appointment
-					</button>
-			<div className='flex flex-col items-center'>
+			<button
+				type='button'
+				className='py-2 mb-4 px-2 w-fit text-base font-medium text-white focus:outline-none bg-green-500 rounded-lg border border-silver hover:bg-green-600 hover:text-ghostwhite  focus:ring-2'
+				onClick={showNewAppForm}
+			>
+				Create new appointment
+			</button>
+			<div className='flex flex-col items-center w-full'>
 				<Suspense fallback={<p>Loading...</p>}>
 					{isFormShow && (
-						<div>
-							<form onSubmit={handleCreateNewAppointment} className='flex flex-col gap-4'>
-								<div className='flex'>
+						<div className='flex flex-col items-start w-full'>
+							<form onSubmit={handleCreateNewAppointment} className='flex flex-col gap-4 max-w-96 relative'>
+								<div className='flex flex-col'>
 									<label htmlFor='userid' className='font-bold text-md sm:text-lg'>
 										Select User:
 									</label>
 									<select
 										name='user_id'
 										id='userinput'
-										className='bg-ghostwhite/50 border border-silver/80 text-erieblack text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto ml-4 ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+										className='bg-ghostwhite/50 border border-silver/80 text-erieblack text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 										value={formData.user_id}
 										onChange={(e) => handleInputChange(e)}
 									>
@@ -224,14 +226,14 @@ console.log(shownAppointments);
 											))}
 									</select>
 								</div>
-								<div className='flex'>
+								<div className='flex flex-col'>
 									<label htmlFor='parkingLotId' className='font-bold text-md sm:text-lg'>
 										Select Parking:
 									</label>
 									<select
 										name='parkingLotId'
 										id='parkingidinput'
-										className='bg-ghostwhite/50 border border-silver/80 text-erieblack text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto ml-4 ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+										className='bg-ghostwhite/50 border border-silver/80 text-erieblack text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 										value={formData.parkingLotId}
 										onChange={(e) => handleInputChange(e)}
 									>
@@ -243,7 +245,7 @@ console.log(shownAppointments);
 											))}
 									</select>
 								</div>
-								<div className='flex  gap-3'>
+								<div className='flex flex-col gap-3'>
 									<label htmlFor='date' className='font-bold text-md sm:text-lg'>
 										Select date:
 									</label>
@@ -261,7 +263,7 @@ console.log(shownAppointments);
 										placeholder='Select date'
 									/>
 								</div>
-								<div className='flex gap-3'>
+								<div className='flex flex-col'>
 									<label htmlFor='time' className='block mb-2 text-md sm:text-lg font-bold'>
 										Select time:
 									</label>
@@ -287,12 +289,12 @@ console.log(shownAppointments);
 										/>
 									</div>
 								</div>
-								<div className='block pb-2'>
-									<span className='text-sm text-center font-semibold'>Select Parking Duration</span>
+								<div className='flex flex-col w-full items-start pb-2'>
+									<span className='text-md sm:text-lg text-center font-bold'>Select Parking Duration</span>
 									<PricingRender duration={parseInt(formData.duration)} setFormData={setFormData} />
 								</div>
 
-								<div className='flex  gap-4'>
+								<div className='flex items-center'>
 									<button
 										type='button'
 										className='py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ringz-4 focus:outline-none'
@@ -300,12 +302,12 @@ console.log(shownAppointments);
 									>
 										Pick your slot
 									</button>
-									<p className='text-md font-normal'>
+									<p className='text-md font-normal flex-1 text-center'>
 										Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span>
 									</p>
 									{showOverlay && <OverlayFull />}
 									{slotShow && (
-										<div className='absolute flex flox-row w-full h-full -right-14 -top-96 md:-right-36 lg:top-20 lg:right-10 '>
+										<div className='absolute flex flox-row items-center justify-center w-full h-full -right-14 -top-96 md:-right-36 lg:top-20 lg:right-10 '>
 											<Slotselection
 												setShowOverlay={setShowOverlay}
 												selectedSlot={selectedSlot}
@@ -319,22 +321,22 @@ console.log(shownAppointments);
 										</div>
 									)}
 								</div>
-								<div>
-									<label htmlFor='license_plate' className='block mb-2 text-md lg:text-lg font-bold'>
+								<div className='w-full flex flex-col'>
+									<label htmlFor='license_plate' className='block text-md sm:text-lg font-bold'>
 										License plate:
 									</label>
 									<input
 										id='license_plate'
 										name='license_plate'
 										value={formData.license_plate}
-										className='block  p-4 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite focus:ring-blue-500 focus:border-blue-500 text-center'
+										className='block  p-2 mt-4 text-lg lg:text-xl font-medium text-erieblack border border-silver rounded-lg bg-ghostwhite focus:ring-blue-500 focus:border-blue-500 text-center'
 										onChange={handleInputChange}
-										placeholder='AAA-000'
+										placeholder='XXXXXXX'
 										required
 									></input>
 								</div>
 
-								<button type='submit' className='py-2 px-4 w-fit text-sm font-medium text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-fit focus:ringz-4 focus:outline-none'>
+								<button type='submit' className='py-2 px-4 w-fit text-lg font-bold text-center text-white rounded-lg bg-yaleblue hover:bg-yaleblue/90 sm:w-full self-center focus:ringz-4 focus:outline-none'>
 									{isLoading ? <Spiner /> : 'Reserve'}
 								</button>
 							</form>
