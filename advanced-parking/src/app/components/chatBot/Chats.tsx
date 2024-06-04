@@ -76,16 +76,13 @@ const Chats: React.FC<Props> = ({
 
   // enable autoscroll after each message
   useEffect(() => {
-    if (bodyRef.current) {
-      bodyRef.current.scrollTo({
-        top: bodyRef.current.scrollHeight,
-        behavior: "smooth",
-      });
+    if (dummyRef.current) {
+      dummyRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
   return (
-    <div ref={bodyRef} className="flex-1 overflow-y-auto max-h-90">
+    <div ref={bodyRef} className="flex-1 overflow-y-auto max-h-90 origin-bottom">
       {messages.map((chat, index) => (
         <div
           key={index}

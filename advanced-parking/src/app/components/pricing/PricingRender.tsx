@@ -20,7 +20,7 @@ function PricingRender({ duration, setFormData }: PricingRenderProps) {
 	}
 
 	return (
-		<div className='w-[320px] overflow-x-scroll scroll  whitespace-nowrap scroll-smooth focus:scroll-auto'>
+		<div className='w-full overflow-x-scroll scroll  whitespace-nowrap scroll-smooth focus:scroll-auto'>
 			<div className='flex p-1 gap-2 text-xs'>
 				{durations.map((hour: any, index: any) => (
 					<div key={index}>
