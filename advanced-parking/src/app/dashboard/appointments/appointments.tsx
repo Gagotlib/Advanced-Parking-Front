@@ -206,6 +206,21 @@ export const Appointments = () => {
 				<Suspense fallback={<p>Loading...</p>}>
 					{isFormShow && (
 						<div className='flex flex-col items-start w-full'>
+							{showOverlay && <OverlayFull />}
+									{slotShow && (
+										<div className='z-[9] absolute flex flox-row items-center justify-center w-full h-full m-auto left-0 right-0 top-72 bottom-0 '>
+											<Slotselection
+												setShowOverlay={setShowOverlay}
+												selectedSlot={selectedSlot}
+												setSelectedSlot={setSelectedSlot}
+												setSlotShow={setSlotShow}
+												parking={allParkinglots?.find((parkinglot) => parkinglot.id === formData.parkingLotId)}
+												date={formData.date}
+												time={formData.time}
+												duration={formData.duration}
+											/>
+										</div>
+									)}
 							<form onSubmit={handleCreateNewAppointment} className='flex flex-col gap-4 max-w-96 relative'>
 								<div className='flex flex-col'>
 									<label htmlFor='userid' className='font-bold text-md sm:text-lg'>
@@ -305,21 +320,7 @@ export const Appointments = () => {
 									<p className='text-md font-normal flex-1 text-center'>
 										Nro: <span className='font-semibold underline decoration-yaleblue'>{selectedSlot}</span>
 									</p>
-									{showOverlay && <OverlayFull />}
-									{slotShow && (
-										<div className='absolute flex flox-row items-center justify-center w-full h-full -right-14 -top-96 md:-right-36 lg:top-20 lg:right-10 '>
-											<Slotselection
-												setShowOverlay={setShowOverlay}
-												selectedSlot={selectedSlot}
-												setSelectedSlot={setSelectedSlot}
-												setSlotShow={setSlotShow}
-												parking={allParkinglots?.find((parkinglot) => parkinglot.id === formData.parkingLotId)}
-												date={formData.date}
-												time={formData.time}
-												duration={formData.duration}
-											/>
-										</div>
-									)}
+									
 								</div>
 								<div className='w-full flex flex-col'>
 									<label htmlFor='license_plate' className='block text-md sm:text-lg font-bold'>
